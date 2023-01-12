@@ -1,0 +1,43 @@
+name: Ansible lint
+on:
+  pull_request:
+    paths:
+      - 'ansible/**'
+      - '.tool-versions'
+  push:
+    branches:
+      - master
+    paths:
+      - 'ansible/**'
+      - '.tool-versions'
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v1
+
+      - name: Install asdf tools
+        run: ./asdf-setup.sh
+
+      - name: Install ansible role/collection dependencies
+        working-directory: ./ansible
+        run: ./install_dependencies.sh
+
+      - name: Lint
+        working-directory: ./ansible
+        run: >
+          ansible-lint playbook.yaml
+          --nocolor
+          --exclude vendor
+          --profile production
+          --skip-list 'name[play]'
+          --skip-list 'meta-no-info'

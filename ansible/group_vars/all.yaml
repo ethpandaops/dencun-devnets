@@ -1,0 +1,38 @@
+ansible_user: devops
+ansible_python_interpreter: /usr/bin/python3
+
+######################################################
+##
+##          Role specific overwrites
+##
+######################################################
+
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+
+# role: robertdebock.fail2ban
+fail2ban_loglevel: INFO
+fail2ban_logtarget: /var/log/fail2ban.log
+fail2ban_maxretry: 10
+fail2ban_bantime: 600
+
+# role: nickhammond.logrotate
+logrotate_scripts:
+- name: docker-containers
+  path: /var/lib/docker/containers/*/*.log
+  options:
+    - daily
+    - size 20M
+    - rotate 4
+    - missingok
+    - copytruncate
+    - nodateext
+    - maxage 5
+
+# role: ethpandaops.general.docker_network
+docker_network_name: shared
