@@ -1,29 +1,28 @@
-- ansible.builtin.import_playbook: ethpandaops.general.bootstrap_server
-  become: true
+- import_playbook: ethpandaops.general.bootstrap_server
   tags: [bootstrap]
 
 - hosts: all
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-  # Security
-  - role: robertdebock.fail2ban
-    tags: [fail2ban]
-  # Docker
-  - role: geerlingguy.docker
-    tags: [docker]
-  - role: geerlingguy.pip
-    pip_install_packages:
-    - name: docker
-    - name: docker-compose
-    tags: [pip]
-  - role: ethpandaops.general.docker_cleanup
-    tags: [docker_cleanup]
-  - role: ethpandaops.general.docker_network
-    tags: [docker_network]
-  # Log rotation
-  - role: nickhammond.logrotate
-    tags: [logrotate]
-  # Monitoring
-  - role: ethpandaops.general.node_exporter
-    tags: [node_exporter]
+    # Security
+    - role: robertdebock.fail2ban
+      tags: [fail2ban]
+    # Docker
+    - role: geerlingguy.docker
+      tags: [docker]
+    - role: geerlingguy.pip
+      pip_install_packages:
+        - name: docker
+        - name: docker-compose
+      tags: [pip]
+    - role: ethpandaops.general.docker_cleanup
+      tags: [docker_cleanup]
+    - role: ethpandaops.general.docker_network
+      tags: [docker_network]
+    # Log rotation
+    - role: nickhammond.logrotate
+      tags: [logrotate]
+    # Monitoring
+    - role: ethpandaops.general.node_exporter
+      tags: [node_exporter]
