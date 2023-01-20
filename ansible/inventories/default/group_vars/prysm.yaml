@@ -1,0 +1,8 @@
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: prysm
+
+# role: ethpandaops.general.prysm
+prysm_container_image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+prysm_container_command_extra_args: []
+prysm_validator_container_image: "gcr.io/prysmaticlabs/prysm/validator:stable"
+prysm_validator_container_command_extra_args: []

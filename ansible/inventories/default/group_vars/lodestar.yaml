@@ -1,0 +1,7 @@
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: lodestar
+
+# role: ethpandaops.general.lodestar
+lodestar_container_image: chainsafe/lodestar:latest
+lodestar_container_command_extra_args: []
+lodestar_validator_container_command_extra_args: []

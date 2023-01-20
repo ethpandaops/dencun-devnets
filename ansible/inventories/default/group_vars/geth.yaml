@@ -1,0 +1,6 @@
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: geth
+
+# role: ethpandaops.general.geth
+geth_container_image: ethereum/client-go:stable
+geth_container_command_extra_args: []

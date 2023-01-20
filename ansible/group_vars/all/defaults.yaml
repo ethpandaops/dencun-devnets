@@ -8,6 +8,7 @@ ansible_python_interpreter: /usr/bin/python3
 ######################################################
 
 # role: ethpandaops.general.bootstrap
+bootstrap_user: root
 bootstrap_default_user_authorized_keys_github:
   - barnabasbusa
   - parithosh
