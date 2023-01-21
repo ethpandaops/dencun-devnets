@@ -1,0 +1,18 @@
+#
+# Copy over custom network config directory
+#
+
+# Option A: Allow cloning from git
+- name: Git checkout config
+  ansible.builtin.git:
+    repo: "{{ eth_testnet_config_git_repo }}"
+    dest: "{{ eth_testnet_config_dir }}"
+    version: "{{ eth_testnet_config_git_version }}"
+  when: eth_testnet_config_git_enabled
+
+# Option B: Allow copying over local dir
+- name: Copy local config dir
+  ansible.posix.synchronize:
+    src: "{{ eth_testnet_config_local_dir_src }}"
+    dest: "{{ eth_testnet_config_dir }}"
+  when: eth_testnet_config_local_dir_enabled

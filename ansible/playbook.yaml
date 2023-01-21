@@ -26,5 +26,7 @@
 - hosts: ethereum_node
   become: true
   roles:
+    - role: eth_testnet_config
+      tags: [eth_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum_node]
