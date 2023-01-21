@@ -3,5 +3,14 @@ ethereum_node_cl: lighthouse
 
 # role: ethpandaops.general.lighthouse
 lighthouse_container_image: sigp/lighthouse:latest
-lighthouse_container_command_extra_args: []
-lighthouse_validator_container_command_extra_args: []
+lighthouse_container_volumes:
+  - "{{ lighthouse_datadir }}:/data"
+  - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+lighthouse_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --trusted-setup-file=/network-config/trusted_setup.txt
+  - --debug-level=info
+lighthouse_validator_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el}}

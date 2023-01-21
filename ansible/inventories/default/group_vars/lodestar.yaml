@@ -3,5 +3,14 @@ ethereum_node_cl: lodestar
 
 # role: ethpandaops.general.lodestar
 lodestar_container_image: chainsafe/lodestar:latest
-lodestar_container_command_extra_args: []
-lodestar_validator_container_command_extra_args: []
+lodestar_container_volumes:
+  - "{{ lodestar_datadir }}:/data"
+  - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+lodestar_container_command_extra_args:
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
+  - --logLevel=info
+lodestar_validator_container_command_extra_args:
+  - --paramsFile=/network-config/config.yaml
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el}}

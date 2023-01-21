@@ -1,0 +1,6 @@
+ethereum_network_config_dir: /data/ethereum-network-config/config
+
+# role: eth_testnet_config
+eth_testnet_config_git_enabled: true
+eth_testnet_config_git_repo: https://github.com/Inphi/eip4844-testnet
+eth_testnet_config_git_version: devnet-4

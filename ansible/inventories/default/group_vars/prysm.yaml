@@ -3,6 +3,13 @@ ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
 prysm_container_image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+prysm_container_volumes:
+  - "{{ prysm_datadir }}:/data"
+  - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
 prysm_container_command_extra_args: []
 prysm_validator_container_image: "gcr.io/prysmaticlabs/prysm/validator:stable"
+prysm_validator_container_volumes:
+  - "{{ prysm_validator_datadir }}:/validator-data"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
 prysm_validator_container_command_extra_args: []
