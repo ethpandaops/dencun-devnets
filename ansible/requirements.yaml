@@ -22,5 +22,5 @@ roles:
 collections:
   - name: ansible.posix
   - name: ethpandaops.general
-    source: https://github.com/ethpandaops/ansible-collection-general.git,master
+    source: https://github.com/ethpandaops/ansible-collection-general.git,skylenet/geth-erigon-init
     type: git
