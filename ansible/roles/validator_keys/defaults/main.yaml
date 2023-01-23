@@ -1,0 +1,3 @@
+validator_keys_sync_files:
+ - src: /path/to/local/keydir
+   dest: /path/to/remote/keydir

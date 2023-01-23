@@ -28,5 +28,7 @@
   roles:
     - role: eth_testnet_config
       tags: [eth_testnet_config]
+    - role: validator_keys
+      tags: [validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum_node]
