@@ -231,6 +231,7 @@ resource "cloudflare_record" "server_record_beacon" {
 resource "local_file" "ansible_inventory" {
   content = templatefile("ansible_inventory.tmpl",
     {
+      ethereum_network_name = "${var.ethereum_network}"
       groups = merge(
         { for group in var.digitalocean_vm_groups: "${group.id}" => true },
       )

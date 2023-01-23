@@ -1,3 +1,6 @@
+[all:vars]
+ethereum_network_name=${ethereum_network_name}
+
 %{ for gid, group in groups ~}
 [${replace(gid, "-", "_")}]
 %{ for key, host in hosts ~}

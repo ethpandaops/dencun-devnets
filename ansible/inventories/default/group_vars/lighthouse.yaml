@@ -27,6 +27,11 @@ ethereum_node_cl: lighthouse
 
 # role: ethpandaops.general.lighthouse
 lighthouse_container_image: sigp/lighthouse:latest
+lighthouse_ports_http_beacon: 4000
+lighthouse_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ lighthouse_ports_http_beacon }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 lighthouse_container_volumes:
   - "{{ lighthouse_datadir }}:/data"
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
