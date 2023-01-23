@@ -17,10 +17,10 @@ bootstrap_default_user_authorized_keys_github:
 
 # role: validator_keys
 validator_keys_sync_files:
- - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/keys/
-   dest: "{{ lighthouse_validator_datadir }}/keys/"
- - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/secrets/
-   dest: "{{ lighthouse_validator_datadir }}/secrets/"
+  - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/keys/
+    dest: "{{ lighthouse_validator_datadir }}/keys/"
+  - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/secrets/
+    dest: "{{ lighthouse_validator_datadir }}/secrets/"
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: lighthouse
@@ -42,7 +42,7 @@ lighthouse_container_command_extra_args:
   - --debug-level=info
 lighthouse_validator_container_command_extra_args:
   - --testnet-dir=/network-config
-  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el}}
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lighthouse_validator_datadir: /data/lighthouse-validator
 
 # role: ethpandaops.general.ethereum_metrics_exporter

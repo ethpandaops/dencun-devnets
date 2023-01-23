@@ -10,4 +10,5 @@
     path: "{{ item }}"
     name: "{{ gen_basic_auth_nginx_name }}"
     password: "{{ gen_basic_auth_nginx_password }}"
+    mode: 0644
   loop: "{{ gen_basic_auth_nginx_paths }}"
