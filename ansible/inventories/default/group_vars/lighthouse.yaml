@@ -1,0 +1,49 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+  # ---------
+  - AgeManning
+  - ethdreamer
+  - paulhauner
+  - pawanjay176
+  - michaelsproul
+  - potuz
+  - nisdas
+  - antondlr
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/keys/
+    dest: "{{ lighthouse_validator_datadir }}/keys/"
+  - src: inventories/default/files/validator_keys/{{ inventory_hostname }}/secrets/
+    dest: "{{ lighthouse_validator_datadir }}/secrets/"
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: lighthouse
+
+# role: ethpandaops.general.lighthouse
+lighthouse_container_image: sigp/lighthouse:latest
+lighthouse_ports_http_beacon: 4000
+lighthouse_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ lighthouse_ports_http_beacon }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+lighthouse_container_volumes:
+  - "{{ lighthouse_datadir }}:/data"
+  - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+lighthouse_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --trusted-setup-file=/network-config/trusted_setup.txt
+  - --debug-level=info
+lighthouse_validator_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+lighthouse_validator_datadir: /data/lighthouse-validator
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_cl_endpoint: http://lighthouse:5052

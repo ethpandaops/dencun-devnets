@@ -21,3 +21,9 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+
+# Sops
+**/.decrypted*
+
+# Validator keys
+**/files/validator_keys/*

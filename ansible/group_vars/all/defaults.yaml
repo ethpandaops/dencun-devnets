@@ -8,6 +8,7 @@ ansible_python_interpreter: /usr/bin/python3
 ######################################################
 
 # role: ethpandaops.general.bootstrap
+bootstrap_user: root
 bootstrap_default_user_authorized_keys_github:
   - barnabasbusa
   - parithosh
@@ -23,16 +24,20 @@ fail2ban_bantime: 600
 
 # role: nickhammond.logrotate
 logrotate_scripts:
-- name: docker-containers
-  path: /var/lib/docker/containers/*/*.log
-  options:
-    - daily
-    - size 20M
-    - rotate 4
-    - missingok
-    - copytruncate
-    - nodateext
-    - maxage 5
+  - name: docker-containers
+    path: /var/lib/docker/containers/*/*.log
+    options:
+      - daily
+      - size 20M
+      - rotate 4
+      - missingok
+      - copytruncate
+      - nodateext
+      - maxage 5
 
 # role: ethpandaops.general.docker_network
 docker_network_name: shared
+
+# role: ethpandaops.general.prometheus
+prometheus_container_networks:
+  - name: "{{ docker_network_name }}"

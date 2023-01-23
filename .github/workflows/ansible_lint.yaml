@@ -38,6 +38,7 @@ jobs:
           ansible-lint playbook.yaml
           --nocolor
           --exclude vendor
+          --exclude '*.sops.yaml'
           --profile production
           --skip-list 'name[play]'
           --skip-list 'meta-no-info'

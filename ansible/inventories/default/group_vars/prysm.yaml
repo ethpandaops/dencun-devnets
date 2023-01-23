@@ -1,0 +1,48 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+  # ----------
+  - kasey
+  - terencechain
+  - potuz
+  - nisdas
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: "inventories/default/files/validator_keys/prysm_wallet_pass.txt"
+    dest: "{{ prysm_validator_datadir }}/wallet_pass.txt"
+  - src: "inventories/default/files/validator_keys/{{ inventory_hostname }}/prysm/direct/accounts/all-accounts.keystore.json"
+    dest: "{{ prysm_validator_datadir }}/wallet/direct/accounts/all-accounts.keystore.json"
+  - src: "inventories/default/files/validator_keys/{{ inventory_hostname }}/prysm/keymanageropts.json"
+    dest: "{{ prysm_validator_datadir }}/wallet/direct/keymanageropts.json"
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: prysm
+
+# role: ethpandaops.general.prysm
+prysm_container_image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+prysm_container_volumes:
+  - "{{ prysm_datadir }}:/data"
+  - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+prysm_container_command_extra_args:
+  - --chain-config-file=/network-config/config.yaml
+  - --genesis-state=/network-config/genesis.ssz
+  - --min-sync-peers=1
+  - --pprof
+  - --enable-debug-rpc-endpoints
+  - --verbosity=info
+prysm_validator_container_image: "gcr.io/prysmaticlabs/prysm/validator:stable"
+prysm_validator_container_volumes:
+  - "{{ prysm_validator_datadir }}:/validator-data"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+prysm_validator_container_command_extra_args:
+  - --chain-config-file="/network-config/config.yaml"
+prysm_validator_datadir: /data/prysm-validator
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_cl_endpoint: http://prysm:4000

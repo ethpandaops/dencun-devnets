@@ -1,22 +1,22 @@
 roles:
-- name: cloudalchemy.node_exporter
-  version: "2.0.0"
-- name: cloudalchemy.prometheus
-  version: "2.16.2"
-- name: gantsign.oh-my-zsh
-  version: "2.4.0"
-- name: geerlingguy.docker
-  version: "6.0.3"
-- name: geerlingguy.firewall
-  version: "2.5.0"
-- src: geerlingguy.pip
-  version: "2.2.0"
-- name: robertdebock.bootstrap
-  version: "6.1.1"
-- name: robertdebock.fail2ban
-  version: "4.2.3"
-- src: nickhammond.logrotate
-  version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
+  - name: cloudalchemy.node_exporter
+    version: "2.0.0"
+  - name: cloudalchemy.prometheus
+    version: "2.16.2"
+  - name: gantsign.oh-my-zsh
+    version: "2.4.0"
+  - name: geerlingguy.docker
+    version: "6.0.3"
+  - name: geerlingguy.firewall
+    version: "2.5.0"
+  - src: geerlingguy.pip
+    version: "2.2.0"
+  - name: robertdebock.bootstrap
+    version: 5.2.5 # Don't update this. Newer versions contain a bug.
+  - name: robertdebock.fail2ban
+    version: "4.2.3"
+  - src: nickhammond.logrotate
+    version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
 
 
 collections:
@@ -24,3 +24,5 @@ collections:
   - name: ethpandaops.general
     source: https://github.com/ethpandaops/ansible-collection-general.git,master
     type: git
+  - name: community.sops
+    version: 1.6.0

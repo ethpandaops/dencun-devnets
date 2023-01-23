@@ -5,10 +5,8 @@
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-    # Security
     - role: robertdebock.fail2ban
       tags: [fail2ban]
-    # Docker
     - role: geerlingguy.docker
       tags: [docker]
     - role: geerlingguy.pip
@@ -20,9 +18,25 @@
       tags: [docker_cleanup]
     - role: ethpandaops.general.docker_network
       tags: [docker_network]
-    # Log rotation
     - role: nickhammond.logrotate
       tags: [logrotate]
-    # Monitoring
     - role: ethpandaops.general.node_exporter
       tags: [node_exporter]
+    - role: ethpandaops.general.prometheus
+      tags: [prometheus]
+
+- hosts: ethereum_node
+  become: true
+  roles:
+    - role: eth_testnet_config
+      tags: [eth_testnet_config]
+    - role: validator_keys
+      tags: [validator_keys]
+    - role: ethpandaops.general.ethereum_node
+      tags: [ethereum_node]
+    - role: ethpandaops.general.ethereum_metrics_exporter
+      tags: [ethereum_metrics_exporter]
+    - role: ethpandaops.general.docker_nginx_proxy
+      tags: [docker_nginx_proxy]
+    - role: gen_basic_auth_nginx
+      tags: [docker_nginx_proxy]

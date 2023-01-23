@@ -1,0 +1,5 @@
+gen_basic_auth_nginx_paths:
+  - "{{ docker_nginx_proxy_datadir }}/htpasswd/{{ ethereum_node_rcp_hostname }}"
+  - "{{ docker_nginx_proxy_datadir }}/htpasswd/{{ ethereum_node_beacon_hostname }}"
+gen_basic_auth_nginx_name: "some-user"
+gen_basic_auth_nginx_password: "some-password"
