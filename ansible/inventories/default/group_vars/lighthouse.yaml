@@ -38,3 +38,6 @@ lighthouse_validator_container_command_extra_args:
   - --testnet-dir=/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el}}
 lighthouse_validator_datadir: /data/lighthouse-validator
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_cl_endpoint: http://lighthouse:5052

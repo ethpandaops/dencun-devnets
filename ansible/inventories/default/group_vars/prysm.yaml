@@ -43,3 +43,6 @@ prysm_validator_container_volumes:
 prysm_validator_container_command_extra_args:
   - --chain-config-file="/network-config/config.yaml"
 prysm_validator_datadir: /data/prysm-validator
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_cl_endpoint: http://prysm:4000

@@ -43,3 +43,9 @@ prometheus_config: |
         - targets: ["172.17.0.1:9100"]
           labels:
             instance: "{{ inventory_hostname }}"
+    - job_name: "exporter"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["ethereum-metrics-exporter:9090"]
+          labels:
+            instance: "{{ inventory_hostname }}"

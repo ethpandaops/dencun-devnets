@@ -36,3 +36,6 @@ lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el}}
 lodestar_validator_datadir: /data/lodestar-validator
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_cl_endpoint: http://lodestar:9596

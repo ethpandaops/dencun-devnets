@@ -32,6 +32,8 @@
       tags: [validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum_node]
+    - role: ethpandaops.general.ethereum_metrics_exporter
+      tags: [ethereum_metrics_exporter]
 
 - hosts: all
   become: true
