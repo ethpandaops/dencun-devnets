@@ -1,0 +1,29 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+  # ---------
+  - MarekM25
+  - kamilchodola
+  - LukaszRozmej
+  - marcindsobczak
+  - asdacap
+  - rubo
+  - smartprogrammer93
+  - g11tech
+  - cbermudez97
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: nethermind
+
+# role: ethpandaops.general.nethermind
+nethermind_container_image: nethermind/nethermind:latest
+nethermind_container_volumes:
+  - "{{ nethermind_datadir }}:/data"
+  - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+nethermind_container_command_extra_args:
+  - --Init.ChainSpecPath="/network-config/chainspec.json"

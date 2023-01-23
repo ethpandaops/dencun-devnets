@@ -74,6 +74,24 @@ variable "digitalocean_vm_groups" {
         "1" = {}
       }
     },
+    {
+      id = "lighthouse-nethermind"
+      vms = {
+        "1" = {}
+      },
+    },
+    {
+      id = "prysm-nethermind"
+      vms = {
+        "1" = {}
+      },
+    },
+    {
+      id = "lodestar-nethermind"
+      vms = {
+        "1" = {}
+      }
+    },
   ]
 }
 

@@ -10,18 +10,26 @@ ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host
 
 [lighthouse:children]
 lighthouse_geth
+lighthouse_nethermind
 
 [prysm:children]
 prysm_geth
+prysm_nethermind
 
 [lodestar:children]
 lodestar_geth
+lodestar_nethermind
 
 [geth:children]
 bootnode
 lighthouse_geth
 prysm_geth
 lodestar_geth
+
+[nethermind:children]
+lighthouse_nethermind
+prysm_nethermind
+lodestar_nethermind
 
 
 [consensus_node:children]
@@ -31,6 +39,7 @@ lodestar
 
 [execution_node:children]
 geth
+nethermind
 
 [ethereum_node:children]
 consensus_node
