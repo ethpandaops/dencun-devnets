@@ -32,3 +32,9 @@
       tags: [validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum_node]
+
+- hosts: all
+  become: true
+  roles:
+    - role: ethpandaops.general.prometheus
+      tags: [prometheus]

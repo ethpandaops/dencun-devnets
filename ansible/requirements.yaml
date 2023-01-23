@@ -24,3 +24,5 @@ collections:
   - name: ethpandaops.general
     source: https://github.com/ethpandaops/ansible-collection-general.git,skylenet/geth-erigon-init
     type: git
+  - name: community.sops
+    version: 1.6.0
