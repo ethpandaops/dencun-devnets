@@ -15,7 +15,7 @@ bootstrap_default_user_authorized_keys_github:
 ethereum_node_el: geth
 
 # role: ethpandaops.general.geth
-geth_container_image: ethereum/client-go:stable
+geth_container_image: inphi/geth:eip4844-devnet4
 geth_container_command_extra_args: []
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ ethereum_network_config_dir }}/genesis.json"

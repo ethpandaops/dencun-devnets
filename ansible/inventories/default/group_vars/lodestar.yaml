@@ -23,7 +23,7 @@ validator_keys_sync_files:
 ethereum_node_cl: lodestar
 
 # role: ethpandaops.general.lodestar
-lodestar_container_image: chainsafe/lodestar:latest
+lodestar_container_image: g11tech/lodestar:4844-jan23
 lodestar_container_volumes:
   - "{{ lodestar_datadir }}:/data"
   - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
