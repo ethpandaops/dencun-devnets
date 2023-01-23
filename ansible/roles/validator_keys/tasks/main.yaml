@@ -9,6 +9,7 @@
   register: validataor_keys_dir_0
 
 - name: Copy key directories
+  when: not validataor_keys_dir_0.stat.exists
   block:
     - name: Create dest dir
       ansible.builtin.file:
@@ -21,4 +22,3 @@
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
       loop: "{{ validator_keys_sync_files }}"
-  when: not validataor_keys_dir_0.stat.exists
