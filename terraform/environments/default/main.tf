@@ -7,6 +7,10 @@ terraform {
       source = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -20,6 +24,9 @@ terraform {
     key                         = "infrastructure/4844-devnet-default/terraform.tfstate"
   }
 }
+
+provider "cloudflare" {}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //                                        VARIABLES
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -50,12 +57,6 @@ variable "digitalocean_vpcs" {
 variable "digitalocean_vm_groups" {
   type = list
   default = [
-    {
-      id = "bootnode"
-      vms = {
-        "1" = {}
-      },
-    },
     {
       id = "lighthouse-geth"
       vms = {
@@ -117,7 +118,7 @@ locals {
         group_key = group.id
         vm_key    = vm_key
 
-        name        = try(vm.name, "${var.ethereum_network}-${group.id}-${vm_key}")
+        name        = try(vm.name, "${group.id}-${vm_key}")
         ssh_keys    = try(vm.ssh_keys, [data.digitalocean_ssh_key.main.fingerprint])
         region      = try(vm.region, try(group.region, local.digitalocean_default_region))
         image       = try(vm.image, local.digitalocean_default_image)
@@ -135,6 +136,7 @@ locals {
       }
     ]
   ])
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -179,6 +181,50 @@ resource "digitalocean_project_resources" "droplets" {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
+//                                   DNS NAMES
+////////////////////////////////////////////////////////////////////////////////////////
+
+data "cloudflare_zone" "default" {
+  name = "ethpandaops.io"
+}
+
+resource "cloudflare_record" "server_record" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "${each.value.name}.server.${var.ethereum_network}"
+  type    = "A"
+  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  proxied = false
+  ttl     = 120
+}
+
+resource "cloudflare_record" "server_record_rpc" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "rpc.${each.value.name}.server.${var.ethereum_network}"
+  type    = "A"
+  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  proxied = false
+  ttl     = 120
+}
+
+resource "cloudflare_record" "server_record_beacon" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "beacon.${each.value.name}.server.${var.ethereum_network}"
+  type    = "A"
+  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  proxied = false
+  ttl     = 120
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
 //                          GENERATED FILES AND OUTPUTS
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -193,7 +239,7 @@ resource "local_file" "ansible_inventory" {
           for key, server in digitalocean_droplet.main: "do.${key}" => {
             ip = "${server.ipv4_address}"
             group = split(".", key)[0]
-            hostname = "${var.ethereum_network}-${split(".", key)[0]}-${split(".", key)[1]}"
+            hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
             cloud  = "digitalocean"
             region = "${server.region}"
           }
