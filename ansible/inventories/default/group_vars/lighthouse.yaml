@@ -13,6 +13,7 @@ bootstrap_default_user_authorized_keys_github:
   - michaelsproul
   - potuz
   - nisdas
+  - antondlr
 
 # role: validator_keys
 validator_keys_sync_files:
