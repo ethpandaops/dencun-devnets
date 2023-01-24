@@ -60,7 +60,9 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = {}
+        "1" = {
+          size = "s-4vcpu-8gb-amd"
+        }
       },
     },
     {
