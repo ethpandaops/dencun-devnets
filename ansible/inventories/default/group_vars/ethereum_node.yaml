@@ -1,4 +1,4 @@
-ethereum_network_config_dir: /data/ethereum-network-config/config
+ethereum_network_config_dir: /data/ethereum-network-config
 
 
 ethereum_node_hostname: "{{ inventory_hostname }}.server.{{ ethereum_network_name }}.ethpandaops.io"
@@ -6,9 +6,8 @@ ethereum_node_rcp_hostname: "rpc.{{ ethereum_node_hostname }}"
 ethereum_node_beacon_hostname: "beacon.{{ ethereum_node_hostname }}"
 
 # role: eth_testnet_config
-eth_testnet_config_git_enabled: true
-eth_testnet_config_git_repo: https://github.com/Inphi/eip4844-testnet
-eth_testnet_config_git_version: devnet-4
+eth_testnet_config_local_dir_enabled: true
+eth_testnet_config_local_dir_src: "../network-configs/default/"
 
 # role: ethpandaops.general.docker_nginx_proxy
 docker_nginx_proxy_default_email: "certs@ethpandaops.io"

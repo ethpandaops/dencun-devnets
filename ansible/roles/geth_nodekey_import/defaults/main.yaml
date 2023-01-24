@@ -1,0 +1,2 @@
+geth_nodekey_import_key: "0000000000000000000000000000000000000000000000000000000000000000"
+geth_nodekey_import_dst_file: /data/geth/geth/nodekey

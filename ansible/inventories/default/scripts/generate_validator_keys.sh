@@ -34,13 +34,17 @@ function prep_group {
   done
 }
 
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "teku-geth" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lighthouse-geth" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "prysm-geth" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lodestar-geth" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "teku-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "lodestar-nethermind" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "prysm-geth" 200
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "prysm-geth" 200
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "prysm-geth" 200
+
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "teku-geth" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lighthouse-geth" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "prysm-geth" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lodestar-geth" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "teku-nethermind" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-nethermind" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-nethermind" 100
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "lodestar-nethermind" 100
 
 echo "$PRYSM_WALLET_PASSWORD" > $OUTPUT_DIR/prysm_wallet_pass.txt

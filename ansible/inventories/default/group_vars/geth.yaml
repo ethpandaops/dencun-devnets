@@ -21,7 +21,8 @@ geth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ geth_ports_http_rpc }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-geth_container_command_extra_args: []
+geth_container_command_extra_args:
+  - "--bootnodes=enode://8488a57c323d5e5bef1c40c5cb2330cb0bd75d900afad5e7f50a47ecc1ae7683fb664f509908c6b978633b9af75788e943f26e9b64989504d189ae7b3278ede3@{{ hostvars['prysm-geth-1']['ansible_host'] }}:30303"
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ ethereum_network_config_dir }}/genesis.json"
 

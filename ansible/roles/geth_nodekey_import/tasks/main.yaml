@@ -1,0 +1,12 @@
+- name: Create dest dir
+  ansible.builtin.file:
+    path: "{{ geth_nodekey_import_dst_file | dirname }}"
+    state: directory
+    recurse: true
+  when: eth_testnet_config_local_dir_enabled
+
+- name: Copy nodekey
+  ansible.builtin.copy:
+    content: "{{ geth_nodekey_import_key }}"
+    dest: "{{ geth_nodekey_import_dst_file }}"
+    mode: 0600

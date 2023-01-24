@@ -43,6 +43,8 @@ prysm_container_command_extra_args:
   - --pprof
   - --enable-debug-rpc-endpoints
   - --verbosity=info
+  #- --bootstrap-node=enr:-Iq4QJk4WqRkjsX5c2CXtOra6HnxN-BMXnWhmhEQO9Bn9iABTJGdjUOurM7Btj1ouKaFkvTRoju5vz2GPmVON2dffQKGAX53x8JigmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
+  - --bootstrap-node=enr:-Iq4QJeAbbcPp7KbIeUNj8KtwOiuatuZgRn_oyxpfJVtDYCiIuaGMFk9n467Yj8tQJ2oSEoWs1qyG8lXpwOxXvPT4KSGAYXj4P0ogmlkgnY0gmlwhKUWx6qJc2VjcDI1NmsxoQI09IhWa1eB1AqmHV8bHUvEtBES6Bq4qXL-NoIdTkL6QIN1ZHCCIyk
 prysm_validator_container_image: "inphi/prysm:eip4844"
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
@@ -50,7 +52,7 @@ prysm_validator_container_volumes:
 prysm_validator_container_entrypoint:
   - validator
 prysm_validator_container_command_extra_args:
-  - --chain-config-file="/network-config/config.yaml"
+  - --chain-config-file=/network-config/config.yaml
 prysm_validator_datadir: /data/prysm-validator
 
 # role: ethpandaops.general.ethereum_metrics_exporter
