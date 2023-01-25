@@ -35,20 +35,20 @@
   become: true
   roles:
     - role: geth_nodekey_import
-      tags: [ethereum,geth_nodekey_import]
+      tags: [ethereum, geth_nodekey_import]
 
 
 - hosts: ethereum_node
   become: true
   roles:
     - role: eth_testnet_config
-      tags: [ethereum,eth_testnet_config]
+      tags: [ethereum, eth_testnet_config]
     - role: validator_keys
-      tags: [ethereum,validator_keys]
+      tags: [ethereum, validator_keys]
     - role: ethpandaops.general.ethereum_node
-      tags: [ethereum,ethereum_node]
+      tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.ethereum_metrics_exporter
-      tags: [ethereum,ethereum_metrics_exporter]
+      tags: [ethereum, ethereum_metrics_exporter]
     - role: ethpandaops.general.docker_nginx_proxy
       tags: [docker_nginx_proxy]
     - role: gen_basic_auth_nginx

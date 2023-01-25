@@ -1,5 +1,7 @@
-ethereum_cl_bootnode: enr:-Iq4QJeAbbcPp7KbIeUNj8KtwOiuatuZgRn_oyxpfJVtDYCiIuaGMFk9n467Yj8tQJ2oSEoWs1qyG8lXpwOxXvPT4KSGAYXj4P0ogmlkgnY0gmlwhKUWx6qJc2VjcDI1NmsxoQI09IhWa1eB1AqmHV8bHUvEtBES6Bq4qXL-NoIdTkL6QIN1ZHCCIyk
-ethereum_el_bootnode: enode://8488a57c323d5e5bef1c40c5cb2330cb0bd75d900afad5e7f50a47ecc1ae7683fb664f509908c6b978633b9af75788e943f26e9b64989504d189ae7b3278ede3@{{ hostvars['prysm-geth-1']['ansible_host'] }}:30303
+ethereum_cl_bootnode: >-
+  enr:-Iq4QJeAbbcPp7KbIeUNj8KtwOiuatuZgRn_oyxpfJVtDYCiIuaGMFk9n467Yj8tQJ2oSEoWs1qyG8lXpwOxXvPT4KSGAYXj4P0ogmlkgnY0gmlwhKUWx6qJc2VjcDI1NmsxoQI09IhWa1eB1AqmHV8bHUvEtBES6Bq4qXL-NoIdTkL6QIN1ZHCCIyk
+ethereum_el_bootnode: >-
+  enode://8488a57c323d5e5bef1c40c5cb2330cb0bd75d900afad5e7f50a47ecc1ae7683fb664f509908c6b978633b9af75788e943f26e9b64989504d189ae7b3278ede3@{{ hostvars['prysm-geth-1']['ansible_host'] }}:30303
 
 ethereum_network_config_dir: /data/ethereum-network-config
 
