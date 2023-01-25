@@ -63,6 +63,7 @@ variable "digitalocean_vm_groups" {
         "1" = {}
       }
     },
+    // Lighthouse combos
     {
       id = "lighthouse-geth"
       vms = {
@@ -70,6 +71,19 @@ variable "digitalocean_vm_groups" {
         "2" = { size = "s-4vcpu-8gb-amd" }
       },
     },
+    {
+      id = "lighthouse-nethermind"
+      vms = {
+        "1" = {}
+      },
+    },
+      {
+      id = "lighthouse-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    // Prysm combos
     {
       id = "prysm-geth"
       vms = {
@@ -80,27 +94,34 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
-      id = "lodestar-geth"
-      vms = {
-        "1" = {}
-      }
-    },
-    {
-      id = "lighthouse-nethermind"
-      vms = {
-        "1" = {}
-      },
-    },
-    {
       id = "prysm-nethermind"
       vms = {
         "1" = {}
       },
     },
     {
+      id = "prysm-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    // Lodestar combos
+    {
+      id = "lodestar-geth"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
+    {
       id = "lodestar-nethermind"
       vms = {
         "1" = {}
+      }
+    },
+    {
+      id = "lodestar-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
   ]
