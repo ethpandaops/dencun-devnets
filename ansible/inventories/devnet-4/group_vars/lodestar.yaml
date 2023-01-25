@@ -18,7 +18,7 @@ validator_keys_sync_files:
 ethereum_node_cl: lodestar
 
 # role: ethpandaops.general.lodestar
-lodestar_container_image: g11tech/lodestar:jan25@sha256:3f4f551a7c89582322fc7ade4386824da28a00ef30b50f078edde3d85ea011ab
+lodestar_container_image: g11tech/lodestar:4844-jan25-1
 lodestar_ports_http_beacon: 4000
 lodestar_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
