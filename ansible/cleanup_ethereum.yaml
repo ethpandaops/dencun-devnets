@@ -1,0 +1,35 @@
+- hosts: all
+  serial: "{{ batch_count | default('100%') }}"
+  become: true
+  tasks:
+    - name: Remove eth containers
+      community.docker.docker_container:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - "geth"
+        - "geth-init"
+        - "nethermind"
+        - "prysm"
+        - "prysm-validator"
+        - "lighthouse"
+        - "lighthouse-validator"
+        - "lodestar"
+        - "lodestar-validator"
+        - "nimbus"
+    - name: Remove data dirs
+      file:
+        state: absent
+        path: "{{ item }}"
+      loop:
+        - /data/geth
+        - /data/nethermind
+        - /data/prysm
+        - /data/prysm-validator
+        - /data/lighthouse
+        - /data/lighthouse-validator
+        - /data/lodestar
+        - /data/lodestar-validator
+        - /data/nimbus
+        - /data/execution-auth.secret
+        - /data/ethereum-network-config

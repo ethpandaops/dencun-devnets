@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ---------
+bootstrap_default_user_authorized_keys_github_team_el:
   - MarekM25
   - kamilchodola
   - LukaszRozmej

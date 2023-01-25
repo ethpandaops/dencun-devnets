@@ -1,0 +1,12 @@
+- name: Run cl_bootnode container
+  community.docker.docker_container:
+    name: "{{ cl_bootnode_container_name }}"
+    image: "{{ cl_bootnode_container_image }}"
+    state: started
+    restart_policy: always
+    stop_timeout: "{{ cl_bootnode_container_stop_timeout }}"
+    ports: "{{ cl_bootnode_container_ports }}"
+    volumes: "{{ cl_bootnode_container_volumes }}"
+    env: "{{ cl_bootnode_container_env }}"
+    networks: "{{ cl_bootnode_container_networks }}"
+    command: "{{ cl_bootnode_container_command }}"

@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ---------
+bootstrap_default_user_authorized_keys_github_team_el:
   - mariusVanDerWijden
   - holiman
   - karalabe
@@ -21,7 +15,9 @@ geth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ geth_ports_http_rpc }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-geth_container_command_extra_args: []
+geth_container_command_extra_args:
+  - "--syncmode=full"
+  - "--bootnodes={{ ethereum_el_bootnode }}"
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ ethereum_network_config_dir }}/genesis.json"
 

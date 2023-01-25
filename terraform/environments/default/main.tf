@@ -58,21 +58,29 @@ variable "digitalocean_vm_groups" {
   type = list
   default = [
     {
-      id = "lighthouse-geth"
+      id = "bootnode"
       vms = {
         "1" = {}
+      }
+    },
+    {
+      id = "lighthouse-geth"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "prysm-geth"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
+        "2" = { size = "s-4vcpu-8gb-amd" }
+        "3" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "lodestar-geth"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {

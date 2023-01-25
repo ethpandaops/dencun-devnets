@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ----------
+bootstrap_default_user_authorized_keys_github_team_cl:
   - kasey
   - terencechain
   - potuz
@@ -24,24 +18,37 @@ validator_keys_sync_files:
 ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
-prysm_container_image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+prysm_container_image: inphi/prysm:eip4844-f08af1
+prysm_ports_http_beacon: 4000
+prysm_ports_grpc: "3500"
+prysm_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ prysm_ports_grpc }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 prysm_container_volumes:
   - "{{ prysm_datadir }}:/data"
   - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
+prysm_container_entrypoint:
+  - beacon-chain
 prysm_container_command_extra_args:
+  - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
   - --genesis-state=/network-config/genesis.ssz
   - --min-sync-peers=1
   - --pprof
   - --enable-debug-rpc-endpoints
   - --verbosity=info
-prysm_validator_container_image: "gcr.io/prysmaticlabs/prysm/validator:stable"
+  - --subscribe-all-subnets
+  - --bootstrap-node={{ ethereum_cl_bootnode }}
+prysm_validator_container_image: inphi/prysm:eip4844-f08af1
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
+prysm_validator_container_entrypoint:
+  - validator
 prysm_validator_container_command_extra_args:
-  - --chain-config-file="/network-config/config.yaml"
+  - --chain-config-file=/network-config/config.yaml
 prysm_validator_datadir: /data/prysm-validator
 
 # role: ethpandaops.general.ethereum_metrics_exporter

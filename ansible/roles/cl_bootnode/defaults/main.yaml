@@ -1,0 +1,23 @@
+cl_bootnode_privkey: "0000000000000000000000000000000000000000000000000000000000000000"
+
+cl_bootnode_container_name: "cl-bootnode"
+cl_bootnode_container_image: "protolambda/eth2-bootnode:cleanup"
+cl_bootnode_container_env: {}
+cl_bootnode_container_ports:
+  - "9001:9001"
+  - "9001:9001/udp"
+  - "127.0.0.1:8002:8002"
+cl_bootnode_container_volumes:
+  - "/data/cl-bootnode:/data"
+cl_bootnode_container_stop_timeout: "30"
+cl_bootnode_container_networks: []
+cl_bootnode_container_command:
+  - --color=false
+  - --enr-ip={{ ansible_host }}
+  - --enr-udp=9001
+  - --level=trace
+  - --listen-ip=0.0.0.0
+  - --listen-udp=9001
+  - --api-addr=0.0.0.0:8002
+  - --node-db="/data/localnode.db"
+  - --priv={{ cl_bootnode_privkey }}
