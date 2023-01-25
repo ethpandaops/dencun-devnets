@@ -34,7 +34,9 @@ function prep_group {
   done
 }
 
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "prysm-geth" 200
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "prysm-geth" 200       # 600
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lighthouse-geth" 200  # 200
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "lodestar-geth" 200    # 200
 #prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "prysm-geth" 200
 #prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "prysm-geth" 200
 

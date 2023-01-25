@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ----------
+bootstrap_default_user_authorized_keys_github_team_cl:
   - dapplion
   - wemeetagain
   - tuyennhv
@@ -26,7 +20,7 @@ ethereum_node_cl: lodestar
 lodestar_container_image: g11tech/lodestar:4844-jan23
 lodestar_ports_http_beacon: 4000
 lodestar_container_env:
-  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ lodestar_ports_http_beacon }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 lodestar_container_volumes:
@@ -36,7 +30,12 @@ lodestar_container_volumes:
 lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
-  - --logLevel=info
+  - --logLevel=debug
+  - --bootnodes={{ ethereum_cl_bootnode }}
+  - --network.connectToDiscv5Bootnodes
+lodestar_validator_container_volumes:
+  - "{{ lodestar_validator_datadir }}:/validator-data"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
 lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}

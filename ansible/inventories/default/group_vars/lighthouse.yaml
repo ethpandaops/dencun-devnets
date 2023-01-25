@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ---------
+bootstrap_default_user_authorized_keys_github_team_cl:
   - AgeManning
   - ethdreamer
   - paulhauner
@@ -29,7 +23,7 @@ ethereum_node_cl: lighthouse
 lighthouse_container_image: inphi/lighthouse:eip4844
 lighthouse_ports_http_beacon: 4000
 lighthouse_container_env:
-  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ lighthouse_ports_http_beacon }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 lighthouse_container_volumes:
@@ -38,8 +32,11 @@ lighthouse_container_volumes:
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
-  - --trusted-setup-file=/network-config/trusted_setup.txt
   - --debug-level=info
+  - --boot-nodes={{ ethereum_cl_bootnode }}
+lighthouse_validator_container_volumes:
+  - "{{ lighthouse_validator_datadir }}:/validator-data"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
 lighthouse_validator_container_command_extra_args:
   - --testnet-dir=/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}

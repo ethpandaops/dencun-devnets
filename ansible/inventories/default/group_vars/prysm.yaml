@@ -1,11 +1,5 @@
 # role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github:
-  - barnabasbusa
-  - parithosh
-  - samcm
-  - savid
-  - skylenet
-  # ----------
+bootstrap_default_user_authorized_keys_github_team_cl:
   - kasey
   - terencechain
   - potuz
@@ -24,11 +18,12 @@ validator_keys_sync_files:
 ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
-prysm_container_image: inphi/prysm:eip4844
+prysm_container_image: inphi/prysm:eip4844-f08af1
 prysm_ports_http_beacon: 4000
+prysm_ports_grpc: "3500"
 prysm_container_env:
-  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
-  VIRTUAL_PORT: "{{ prysm_ports_http_beacon }}"
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ prysm_ports_grpc }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 prysm_container_volumes:
   - "{{ prysm_datadir }}:/data"
@@ -37,15 +32,16 @@ prysm_container_volumes:
 prysm_container_entrypoint:
   - beacon-chain
 prysm_container_command_extra_args:
+  - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
   - --genesis-state=/network-config/genesis.ssz
   - --min-sync-peers=1
   - --pprof
   - --enable-debug-rpc-endpoints
   - --verbosity=info
-  #- --bootstrap-node=enr:-Iq4QJk4WqRkjsX5c2CXtOra6HnxN-BMXnWhmhEQO9Bn9iABTJGdjUOurM7Btj1ouKaFkvTRoju5vz2GPmVON2dffQKGAX53x8JigmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
-  - --bootstrap-node=enr:-Iq4QJeAbbcPp7KbIeUNj8KtwOiuatuZgRn_oyxpfJVtDYCiIuaGMFk9n467Yj8tQJ2oSEoWs1qyG8lXpwOxXvPT4KSGAYXj4P0ogmlkgnY0gmlwhKUWx6qJc2VjcDI1NmsxoQI09IhWa1eB1AqmHV8bHUvEtBES6Bq4qXL-NoIdTkL6QIN1ZHCCIyk
-prysm_validator_container_image: "inphi/prysm:eip4844"
+  - --subscribe-all-subnets
+  - --bootstrap-node={{ ethereum_cl_bootnode }}
+prysm_validator_container_image: inphi/prysm:eip4844-f08af1
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
