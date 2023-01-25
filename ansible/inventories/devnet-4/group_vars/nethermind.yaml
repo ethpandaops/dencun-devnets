@@ -26,12 +26,13 @@ nethermind_container_volumes:
   - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
 nethermind_container_command_extra_args:
-  - --Init.ChainSpecPath="/network-config/chainspec.json"
+  - --Init.ChainSpecPath=/network-config/chainspec.json
   - --JsonRpc.MaxBatchSize=1000
   - --JsonRpc.MaxBatchResponseBodySize=1000000000
   - --Network.Bootnodes={{ ethereum_el_bootnode }}
-  - --Init.IsMining=true
-  - --config none.cfg
+  - --Init.IsMining=false
+  - --Pruning.Mode=None
+  - --config=none.cfg
 
 # role: ethpandaops.general.ethereum_metrics_exporter
 ethereum_metrics_exporter_el_endpoint: http://nethermind:8545
