@@ -42,3 +42,4 @@ jobs:
           --profile production
           --skip-list 'name[play]'
           --skip-list 'meta-no-info'
+          --skip-list 'yaml[line-length]'

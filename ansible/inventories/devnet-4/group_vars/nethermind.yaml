@@ -1,0 +1,31 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_el:
+  - MarekM25
+  - kamilchodola
+  - LukaszRozmej
+  - marcindsobczak
+  - asdacap
+  - rubo
+  - smartprogrammer93
+  - g11tech
+  - cbermudez97
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: nethermind
+
+# role: ethpandaops.general.nethermind
+nethermind_container_image: nethermind/nethermind:latest
+nethermind_ports_http_rpc: 8545
+nethermind_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ nethermind_ports_http_rpc }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+nethermind_container_volumes:
+  - "{{ nethermind_datadir }}:/data"
+  - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+nethermind_container_command_extra_args:
+  - --Init.ChainSpecPath="/network-config/chainspec.json"
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_el_endpoint: http://nethermind:8545

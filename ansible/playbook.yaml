@@ -1,29 +1,29 @@
 - import_playbook: ethpandaops.general.bootstrap_server
-  tags: [bootstrap]
+  tags: [init-server, bootstrap]
 
 - hosts: all
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
     - role: robertdebock.fail2ban
-      tags: [fail2ban]
+      tags: [init-server,fail2ban]
     - role: geerlingguy.docker
-      tags: [docker]
+      tags: [init-server, docker]
     - role: geerlingguy.pip
       pip_install_packages:
         - name: docker
         - name: docker-compose
-      tags: [pip]
+      tags: [init-server, pip]
     - role: ethpandaops.general.docker_cleanup
-      tags: [docker_cleanup]
+      tags: [init-server, docker_cleanup]
     - role: ethpandaops.general.docker_network
-      tags: [docker_network]
+      tags: [init-server, docker_network]
     - role: nickhammond.logrotate
-      tags: [logrotate]
+      tags: [init-server, logrotate]
     - role: ethpandaops.general.node_exporter
-      tags: [node_exporter]
+      tags: [init-server, node_exporter]
     - role: ethpandaops.general.prometheus
-      tags: [prometheus]
+      tags: [init-server, prometheus]
 
 - hosts: bootnode
   become: true
