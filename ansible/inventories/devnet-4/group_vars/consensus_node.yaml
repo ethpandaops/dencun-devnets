@@ -1,0 +1,3 @@
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl_validator_enabled: true
+ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
