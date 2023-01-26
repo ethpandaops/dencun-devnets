@@ -52,4 +52,4 @@ prysm_validator_container_command_extra_args:
 prysm_validator_datadir: /data/prysm-validator
 
 # role: ethpandaops.general.ethereum_metrics_exporter
-ethereum_metrics_exporter_cl_endpoint: http://prysm:4000
+ethereum_metrics_exporter_cl_endpoint: "http://prysm:{{ prysm_ports_grpc }}"
