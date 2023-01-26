@@ -74,7 +74,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
       {
@@ -96,7 +96,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-nethermind"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
     {
@@ -115,7 +115,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { size = "s-8vcpu-16gb-amd" }
       }
     },
     {
