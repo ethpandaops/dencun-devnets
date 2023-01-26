@@ -39,6 +39,7 @@
 
 
 - hosts: ethereum_node
+  serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
     - role: eth_testnet_config
@@ -53,3 +54,14 @@
       tags: [docker_nginx_proxy]
     - role: gen_basic_auth_nginx
       tags: [docker_nginx_proxy]
+  post_tasks:
+  - name: Wait between runs
+    tags: [ethereum, ethereum_node]
+    ansible.builtin.pause:
+      seconds: >-
+        {{
+          batch_count is defined | ternary(
+              (batch_wait_seconds | default(30)),
+              0
+            )
+        }}
