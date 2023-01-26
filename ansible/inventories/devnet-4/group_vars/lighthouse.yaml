@@ -21,10 +21,9 @@ ethereum_node_cl: lighthouse
 
 # role: ethpandaops.general.lighthouse
 lighthouse_container_image: inphi/lighthouse:eip4844
-lighthouse_ports_http_beacon: 4000
 lighthouse_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
-  VIRTUAL_PORT: "{{ lighthouse_ports_http_beacon }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
 lighthouse_container_volumes:
   - "{{ lighthouse_datadir }}:/data"
@@ -43,4 +42,4 @@ lighthouse_validator_container_command_extra_args:
 lighthouse_validator_datadir: /data/lighthouse-validator
 
 # role: ethpandaops.general.ethereum_metrics_exporter
-ethereum_metrics_exporter_cl_endpoint: http://lighthouse:5052
+ethereum_metrics_exporter_cl_endpoint: "http://lighthouse:{{ ethereum_node_cl_ports_http_beacon }}"

@@ -19,7 +19,6 @@ ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
 prysm_container_image: inphi/prysm:eip4844-f08af1
-prysm_ports_http_beacon: 4000
 prysm_ports_grpc: "3500"
 prysm_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
