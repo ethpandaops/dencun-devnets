@@ -28,7 +28,7 @@
 - hosts: bootnode
   become: true
   roles:
-    - role: cl_bootnode
+    - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
 
 - hosts: prysm-geth-1 # EL bootnode, needs to inject nodekey
