@@ -37,7 +37,8 @@ logrotate_scripts:
 
 # role: ethpandaops.general.docker_network
 docker_network_name: shared
+docker_networks_shared:
+  - name: "{{ docker_network_name }}"
 
 # role: ethpandaops.general.prometheus
-prometheus_container_networks:
-  - name: "{{ docker_network_name }}"
+prometheus_container_networks: "{{ docker_networks_shared }}"
