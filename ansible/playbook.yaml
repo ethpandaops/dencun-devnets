@@ -55,13 +55,13 @@
     - role: gen_basic_auth_nginx
       tags: [docker_nginx_proxy]
   post_tasks:
-  - name: Wait between runs
-    tags: [ethereum, ethereum_node]
-    ansible.builtin.pause:
-      seconds: >-
-        {{
-          batch_count is defined | ternary(
-              (batch_wait_seconds | default(30)),
-              0
-            )
-        }}
+    - name: Wait between runs
+      tags: [ethereum, ethereum_node]
+      ansible.builtin.pause:
+        seconds: >-
+          {{
+            batch_count is defined | ternary(
+                (batch_wait_seconds | default(30)),
+                0
+              )
+          }}
