@@ -37,7 +37,7 @@ prysm_container_command_extra_args:
   - --min-sync-peers=1
   - --pprof
   - --enable-debug-rpc-endpoints
-  - --verbosity=info
+  - --verbosity=debug
   - --subscribe-all-subnets
   - --bootstrap-node={{ ethereum_cl_bootnode }}
 prysm_validator_container_image: inphi/prysm:eip4844-f08af1
