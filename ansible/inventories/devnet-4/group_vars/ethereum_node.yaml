@@ -9,6 +9,9 @@ ethereum_node_hostname: "{{ inventory_hostname }}.server.{{ ethereum_network_nam
 ethereum_node_rcp_hostname: "rpc.{{ ethereum_node_hostname }}"
 ethereum_node_beacon_hostname: "beacon.{{ ethereum_node_hostname }}"
 
+ethstats_url: "ethstats.eip{{ ethereum_network_name }}.ethpandaops.io"
+ethstats_secret: "{{ secret_ethstats }}"
+
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_all:
   - barnabasbusa
