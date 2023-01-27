@@ -18,7 +18,7 @@ validator_keys_sync_files:
 ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
-prysm_container_image: inphi/prysm:eip4844-f08af1
+prysm_container_image: ethpandaops/prysm:eip4844-1-67ba2c4
 prysm_ports_grpc: 3500
 prysm_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
@@ -29,7 +29,7 @@ prysm_container_volumes:
   - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
 prysm_container_entrypoint:
-  - beacon-chain
+  - /app/cmd/beacon-chain/beacon-chain
 prysm_container_command_extra_args:
   - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
@@ -40,12 +40,12 @@ prysm_container_command_extra_args:
   - --verbosity=debug
   - --subscribe-all-subnets
   - --bootstrap-node={{ ethereum_cl_bootnode }}
-prysm_validator_container_image: inphi/prysm:eip4844-f08af1
+prysm_validator_container_image: "{{ prysm_container_image }}"
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
   - "{{ ethereum_network_config_dir }}:/network-config:ro"
 prysm_validator_container_entrypoint:
-  - validator
+  - /app/cmd/validator/validator
 prysm_validator_container_command_extra_args:
   - --chain-config-file=/network-config/config.yaml
 prysm_validator_datadir: /data/prysm-validator
