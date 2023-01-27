@@ -7,11 +7,11 @@ bootstrap_default_user_authorized_keys_github_team_cl:
 
 # role: validator_keys
 validator_keys_sync_files:
-  - src: "inventories/devnet-4/files/validator_keys/prysm_wallet_pass.txt"
+  - src: "{{ inventory_dir }}/files/validator_keys/prysm_wallet_pass.txt"
     dest: "{{ prysm_validator_datadir }}/wallet_pass.txt"
-  - src: "inventories/devnet-4/files/validator_keys/{{ inventory_hostname }}/prysm/direct/accounts/all-accounts.keystore.json"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/prysm/direct/accounts/all-accounts.keystore.json"
     dest: "{{ prysm_validator_datadir }}/wallet/direct/accounts/all-accounts.keystore.json"
-  - src: "inventories/devnet-4/files/validator_keys/{{ inventory_hostname }}/prysm/keymanageropts.json"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/prysm/keymanageropts.json"
     dest: "{{ prysm_validator_datadir }}/wallet/direct/keymanageropts.json"
 
 # role: ethpandaops.general.ethereum_node
