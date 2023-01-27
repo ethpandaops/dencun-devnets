@@ -11,45 +11,59 @@ ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host
 
 %{ endfor ~}
 
+# Consensus client groups
+
 [lighthouse:children]
+lighthouse_ethereumjs
 lighthouse_geth
 lighthouse_nethermind
-lighthouse_ethereumjs
 
 [prysm:children]
+prysm_ethereumjs
 prysm_geth
 prysm_nethermind
-prysm_ethereumjs
 
 [lodestar:children]
+lodestar_ethereumjs
 lodestar_geth
 lodestar_nethermind
-lodestar_ethereumjs
+
+[teku:children]
+teku_ethereumjs
+teku_geth
+teku_nethermind
+
+# Execution client groups
 
 [geth:children]
 lighthouse_geth
-prysm_geth
 lodestar_geth
+prysm_geth
+teku_geth
 
 [nethermind:children]
 lighthouse_nethermind
-prysm_nethermind
 lodestar_nethermind
+prysm_nethermind
+teku_nethermind
 
 [ethereumjs:children]
 lighthouse_ethereumjs
-prysm_ethereumjs
 lodestar_ethereumjs
+prysm_ethereumjs
+teku_ethereumjs
+
+# Global groups
 
 [consensus_node:children]
 lighthouse
-prysm
 lodestar
+prysm
 
 [execution_node:children]
+ethereumjs
 geth
 nethermind
-ethereumjs
 
 [ethereum_node:children]
 consensus_node
