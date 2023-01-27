@@ -77,8 +77,14 @@ variable "digitalocean_vm_groups" {
         "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
-      {
+    {
       id = "lighthouse-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    {
+      id = "lighthouse-erigon"
       vms = {
         "1" = { size = "s-4vcpu-8gb-amd" }
       },
@@ -105,6 +111,12 @@ variable "digitalocean_vm_groups" {
         "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
+    {
+      id = "prysm-erigon"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
     // Lodestar combos
     {
       id = "lodestar-geth"
@@ -124,6 +136,12 @@ variable "digitalocean_vm_groups" {
         "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
+    {
+      id = "lodestar-erigon"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
     // Teku combos
     {
       id = "teku-geth"
@@ -139,6 +157,12 @@ variable "digitalocean_vm_groups" {
     },
     {
       id = "teku-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
+    {
+      id = "teku-erigon"
       vms = {
         "1" = { size = "s-4vcpu-8gb-amd" }
       }
