@@ -37,6 +37,3 @@ nethermind_container_command_extra_args:
   - --EthStats.Name={{ inventory_hostname }}
   - --EthStats.Secret={{ ethstats_secret }}
   - --EthStats.Server=wss://{{ ethstats_url }}/api/
-
-# role: ethpandaops.general.ethereum_metrics_exporter
-ethereum_metrics_exporter_el_endpoint: http://nethermind:8545

@@ -27,6 +27,19 @@ bootstrap_default_user_authorized_keys_github: >
     bootstrap_default_user_authorized_keys_github_team_cl
   }}
 
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl_validator_enabled: true
+ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
+ethereum_node_cl_ports_p2p_tcp: 9000
+ethereum_node_cl_ports_p2p_udp: 9000
+ethereum_node_cl_ports_http_beacon: 5052
+ethereum_node_cl_ports_metrics: 5054
+ethereum_node_el_ports_p2p_tcp: 30303
+ethereum_node_el_ports_p2p_udp: 30303
+ethereum_node_el_ports_http_rpc: 8545
+ethereum_node_el_ports_engine: 8551
+ethereum_node_el_ports_metrics: 6060
+
 # role: eth_testnet_config
 eth_testnet_config_local_dir_enabled: true
 eth_testnet_config_local_dir_src: "../network-configs/devnet-4/"
@@ -48,6 +61,8 @@ docker_nginx_proxy_container_volumes:
 
 # role: ethpandaops.general.ethereum_metrics_exporter
 ethereum_metrics_exporter_container_networks: "{{ docker_networks_shared }}"
+ethereum_metrics_exporter_cl_endpoint: http://{{ ethereum_node_cl }}:{{ ethereum_node_cl_ports_http_beacon }}
+ethereum_metrics_exporter_el_endpoint: http://{{ ethereum_node_el }}:{{ ethereum_node_el_ports_http_rpc }}
 
 # role: gen_basic_auth_nginx
 gen_basic_auth_nginx_name: "{{ secret_nginx_shared_basic_auth.name }}"

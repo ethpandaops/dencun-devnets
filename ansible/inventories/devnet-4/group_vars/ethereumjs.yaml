@@ -24,6 +24,3 @@ ethereumjs_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnode }}
   - --syncMode=full
   - --maxPeers=75
-
-# role: ethpandaops.general.ethereum_metrics_exporter
-ethereum_metrics_exporter_el_endpoint: http://ethereumjs:8545
