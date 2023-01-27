@@ -12,9 +12,9 @@ bootstrap_default_user_authorized_keys_github_team_cl:
 
 # role: validator_keys
 validator_keys_sync_files:
-  - src: inventories/devnet-4/files/validator_keys/{{ inventory_hostname }}/keys/
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/keys/"
     dest: "{{ lighthouse_validator_datadir }}/keys/"
-  - src: inventories/devnet-4/files/validator_keys/{{ inventory_hostname }}/secrets/
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/secrets/"
     dest: "{{ lighthouse_validator_datadir }}/secrets/"
 
 # role: ethpandaops.general.ethereum_node
