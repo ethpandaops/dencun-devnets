@@ -21,6 +21,3 @@ geth_container_command_extra_args:
   - "--ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}"
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ ethereum_network_config_dir }}/genesis.json"
-
-# role: ethpandaops.general.ethereum_metrics_exporter
-ethereum_metrics_exporter_el_endpoint: http://geth:8545

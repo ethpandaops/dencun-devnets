@@ -124,6 +124,25 @@ variable "digitalocean_vm_groups" {
         "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
+    // Teku combos
+    {
+      id = "teku-geth"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
+    {
+      id = "teku-nethermind"
+      vms = {
+        "1" = { size = "s-8vcpu-16gb-amd" }
+      }
+    },
+    {
+      id = "teku-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
   ]
 }
 
