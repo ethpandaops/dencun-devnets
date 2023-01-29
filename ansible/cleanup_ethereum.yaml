@@ -7,29 +7,47 @@
         name: "{{ item }}"
         state: absent
       loop:
-        - "geth"
+        # Execution layer clients
+        - "besu"
+        - "erigon-init"
+        - "erigon"
+        - "ethereumjs"
         - "geth-init"
+        - "geth"
         - "nethermind"
-        - "prysm"
-        - "prysm-validator"
-        - "lighthouse"
+        # Consensus layer clients
         - "lighthouse-validator"
-        - "lodestar"
+        - "lighthouse"
         - "lodestar-validator"
+        - "lodestar"
         - "nimbus"
+        - "prysm-validator"
+        - "prysm"
+        - "teku-validator"
+        - "teku"
+        # Others
+        - "ethereum-metrics-exporter"
     - name: Remove data dirs
       file:
         state: absent
         path: "{{ item }}"
       loop:
+        # Execution layer data
+        - /data/besu
+        - /data/erigon
+        - /data/ethereumjs
         - /data/geth
         - /data/nethermind
-        - /data/prysm
-        - /data/prysm-validator
+        # Consensus layer data
         - /data/lighthouse
         - /data/lighthouse-validator
         - /data/lodestar
         - /data/lodestar-validator
         - /data/nimbus
-        - /data/execution-auth.secret
+        - /data/prysm
+        - /data/prysm-validator
+        - /data/teku
+        - /data/teku-validator
+        # Config files
         - /data/ethereum-network-config
+        - /data/execution-auth.secret
