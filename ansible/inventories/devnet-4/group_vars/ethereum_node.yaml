@@ -4,7 +4,8 @@ ethereum_el_bootnode: >-
   enode://8488a57c323d5e5bef1c40c5cb2330cb0bd75d900afad5e7f50a47ecc1ae7683fb664f509908c6b978633b9af75788e943f26e9b64989504d189ae7b3278ede3@{{ hostvars['prysm-geth-1']['ansible_host'] }}:30303
 
 ethereum_network_config_dir: /data/ethereum-network-config
-ethereum_network_id: "4844001004"
+ethereum_network_id: >-
+  {{ (lookup('file', eth_testnet_config_local_dir_src + '/genesis.json') | from_json).config.chainId }}
 
 ethereum_node_hostname: "{{ inventory_hostname }}.server.{{ ethereum_network_name }}.ethpandaops.io"
 ethereum_node_rcp_hostname: "rpc.{{ ethereum_node_hostname }}"
