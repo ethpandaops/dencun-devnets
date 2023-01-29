@@ -255,11 +255,9 @@ resource "digitalocean_project_resources" "droplets" {
 }
 
 resource "digitalocean_firewall" "main" {
-  for_each = digitalocean_droplet.main
+  for_each    = digitalocean_droplet.main
   name        = each.value.name
-  //droplet_ids = digitalocean_droplet.main[*].id
   droplet_ids = [each.value.id]
-
   tags        = local.digitalocean_global_tags
 
   // SSH
