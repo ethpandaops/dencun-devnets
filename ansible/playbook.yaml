@@ -48,8 +48,6 @@
       tags: [ethereum, validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
-    - role: ethpandaops.general.ethereum_metrics_exporter
-      tags: [ethereum, ethereum_metrics_exporter]
     - role: ethpandaops.general.docker_nginx_proxy
       tags: [docker_nginx_proxy]
     - role: gen_basic_auth_nginx
