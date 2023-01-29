@@ -44,7 +44,7 @@ ethereum_node_el_ports_metrics: 6060
 
 # role: eth_testnet_config
 eth_testnet_config_local_dir_enabled: true
-eth_testnet_config_local_dir_src: "../network-configs/{{ ethereum_network_name | replace('4844-','') }}/"
+eth_testnet_config_local_dir_src: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}/"
 
 # role: ethpandaops.general.docker_nginx_proxy
 docker_nginx_proxy_default_email: "certs@ethpandaops.io"
