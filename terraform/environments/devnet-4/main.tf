@@ -258,7 +258,7 @@ resource "digitalocean_firewall" "main" {
   for_each    = digitalocean_droplet.main
   name        = each.value.name
   droplet_ids = [each.value.id]
-  tags        = local.digitalocean_global_tags
+  //tags        = local.digitalocean_global_tags
 
   // SSH
   inbound_rule {
