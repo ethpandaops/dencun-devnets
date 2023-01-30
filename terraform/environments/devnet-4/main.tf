@@ -255,10 +255,12 @@ resource "digitalocean_project_resources" "droplets" {
 }
 
 resource "digitalocean_firewall" "main" {
-  for_each    = digitalocean_droplet.main
-  name        = each.value.name
-  droplet_ids = [each.value.id]
-  tags        = local.digitalocean_global_tags
+  name        = "${var.ethereum_network}-nodes"
+  // Tags are used to select which droplets should
+  // be assigned to this firewall.
+  tags        = [
+    "EthNetwork:${var.ethereum_network}"
+  ]
 
   // SSH
   inbound_rule {
