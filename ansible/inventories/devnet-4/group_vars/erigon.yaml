@@ -18,5 +18,6 @@ erigon_container_command_extra_args:
   - --externalcl
   - --bootnodes={{ ethereum_el_bootnode }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}"
+  - --http.vhosts=*
 erigon_init_custom_network: true
 erigon_init_custom_network_genesis_file: "{{ ethereum_network_config_dir }}/genesis.json"
