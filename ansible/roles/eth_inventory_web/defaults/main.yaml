@@ -1,0 +1,35 @@
+eth_inventory_web_dir: /data/eth-inventory-web
+
+eth_inventory_web_container_image: nginx:alpine
+eth_inventory_web_container_name: eth-inventory-web
+eth_inventory_web_container_published_ports: []
+eth_inventory_web_container_restart_policy: always
+eth_inventory_web_container_networks_cli_compatible: true
+eth_inventory_web_container_network_mode: default
+eth_inventory_web_container_networks: []
+eth_inventory_web_container_env: {}
+eth_inventory_web_container_volumes_from: []
+eth_inventory_web_container_volumes:
+  - "{{ eth_inventory_web_dir }}:/usr/share/nginx/html:ro"
+
+eth_inventory_web_content:
+  - file: v1/inventory.json
+    content: |
+      {
+        "ethereum_pairs": {
+          {% for host in groups['ethereum_node'] | sort %}
+            "{{ host }}": {
+              "consensus": {
+                "client": "{{ hostvars[host]['ethereum_node_cl'] }}",
+                "enr": "{{ hostvars[host]['ethereum_node_cl_enr'] }}",
+                "beacon_uri": "https://{{ hostvars[host]['ethereum_node_beacon_hostname'] }}"
+              },
+              "execution": {
+                "client": "{{ hostvars[host]['ethereum_node_el'] }}",
+                "enode": "{{ hostvars[host]['ethereum_node_el_enode'] }}",
+                "rpc_uri": "https://{{ hostvars[host]['ethereum_node_rcp_hostname'] }}"
+              }
+            }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        }
+      }
