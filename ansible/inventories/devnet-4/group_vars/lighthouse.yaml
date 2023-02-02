@@ -21,7 +21,7 @@ validator_keys_sync_files:
 ethereum_node_cl: lighthouse
 
 # role: ethpandaops.general.lighthouse
-lighthouse_container_image: ethpandaops/lighthouse:eip4844-6d2dff6
+lighthouse_container_image: "{{ default_ethereum_client_images.lighthouse }}"
 lighthouse_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"

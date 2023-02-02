@@ -1,0 +1,11 @@
+default_ethereum_client_images:
+  # Consensus layer clients
+  teku: ethpandaops/teku:4844-interop-e74d915
+  prysm: ethpandaops/prysm:eip4844-1-08a910e
+  lodestar: g11tech/lodestar:4844-jan25-1
+  lighthouse: ethpandaops/lighthouse:eip4844-6d2dff6
+  # Execution layer clients
+  geth: ethpandaops/geth:mdehoog-eip4844-20d3ce8
+  erigon: rbayardo/erigon:4844-e92c32
+  ethereumjs: g11tech/ethereumjs:jan25
+  nethermind: nethermindeth/nethermind@sha256:2f869878f0aeec35b05ba203b1f09082888d1be5e1d3768086b25ec7048813aa # tag eip-4844-v4-workaround
