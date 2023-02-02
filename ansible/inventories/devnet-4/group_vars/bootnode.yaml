@@ -1,0 +1,8 @@
+# role: eth_inventory_web
+eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
+eth_inventory_web_container_env:
+  VIRTUAL_HOST: "{{ server_fqdn }}"
+  VIRTUAL_PORT: "80"
+  VIRTUAL_PATH: "/meta/api"
+  VIRTUAL_DEST: "/"
+  LETSENCRYPT_HOST: "{{ server_fqdn }}"

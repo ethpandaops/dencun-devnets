@@ -1,0 +1,17 @@
+- name: Extract CL ENRs
+  ansible.builtin.import_tasks: consensus_layer.yaml
+  when: eth_discovery_cl
+
+- name: Extract EL enodes
+  ansible.builtin.import_tasks: execution_layer.yaml
+  when: eth_discovery_el
+
+- name: Show CL ENRs
+  when: eth_discovery_cl
+  ansible.builtin.debug:
+    var: ethereum_node_cl_enr
+
+- name: Show EL enodes
+  when: eth_discovery_el
+  ansible.builtin.debug:
+    var: ethereum_node_el_enode

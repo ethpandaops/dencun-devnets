@@ -1,0 +1,42 @@
+- name: Create nginx-conf dir
+  ansible.builtin.file:
+    path: "{{ eth_inventory_web_dir }}/nginx-conf"
+    state: directory
+    recurse: true
+
+- name: Copy nginx config
+  ansible.builtin.copy:
+    content: "{{ eth_inventory_web_nginx_config }}"
+    dest: "{{ eth_inventory_web_dir }}/nginx-conf/default.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ (eth_inventory_web_dir + '/content/' + item.file) | dirname }}"
+    state: directory
+    recurse: true
+  loop: "{{ eth_inventory_web_content }}"
+
+- name: Copy content files
+  ansible.builtin.copy:
+    content: "{{ item.content }}"
+    dest: "{{ eth_inventory_web_dir }}/content/{{ item.file }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  loop: "{{ eth_inventory_web_content }}"
+
+# Run nginx container that serves the json file
+- name: Run nginx container
+  community.general.docker_container:
+    name: "{{ eth_inventory_web_container_name }}"
+    image: "{{ eth_inventory_web_container_image }}"
+    published_ports: "{{ eth_inventory_web_container_published_ports }}"
+    restart_policy: "{{ eth_inventory_web_container_restart_policy }}"
+    networks: "{{ eth_inventory_web_container_networks }}"
+    networks_cli_compatible: "{{ eth_inventory_web_container_networks_cli_compatible }}"
+    network_mode: "{{ eth_inventory_web_container_network_mode }}"
+    volumes: "{{ eth_inventory_web_container_volumes }}"
+    env: "{{ eth_inventory_web_container_env }}"

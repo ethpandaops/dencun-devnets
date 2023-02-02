@@ -1,0 +1,36 @@
+- name: Handle Geth, Erigon, Nethermind enode
+  when: ethereum_node_el in ["geth", "erigon", "nethermind"]
+  block:
+    - name: Get EL node key
+      ansible.builtin.command: "{{ eth_discovery_el_key_cmd[ethereum_node_el] }}"
+      register: eth_discovery_el_nodekey
+      changed_when: false
+
+    - name: Turn EL nodekey into enode
+      ansible.builtin.command: >-
+        docker run -t --rm ethereum/client-go:alltools-latest bootnode -writeaddress -nodekeyhex {{ eth_discovery_el_nodekey.stdout }}
+      vars:
+        ansible_connection: local
+      delegate_to: 127.0.0.1
+      become: false
+      register: eth_discovery_el_pubkey
+      changed_when: false
+
+    - name: Store enode var "ethereum_node_el_enode"
+      ansible.builtin.set_fact:
+        ethereum_node_el_enode: >-
+          enode://{{ eth_discovery_el_pubkey.stdout }}@{{ ansible_host }}:{{ ethereum_node_el_ports_p2p_tcp }}?discport={{ ethereum_node_el_ports_p2p_udp }}
+        cacheable: true
+
+- name: Handle EthereumJS enode
+  when: ethereum_node_el in ["ethereumjs"]
+  block:
+    - name: Get enode
+      ansible.builtin.command: "{{ eth_discovery_el_enode_cmd[ethereum_node_el] }}"
+      register: eth_discovery_el_enode
+      changed_when: false
+
+    - name: Store enode var "ethereum_node_el_enode"
+      ansible.builtin.set_fact:
+        ethereum_node_el_enode: "{{ eth_discovery_el_enode.stdout }}"
+        cacheable: true

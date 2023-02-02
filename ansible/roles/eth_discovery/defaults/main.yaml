@@ -1,0 +1,15 @@
+eth_discovery_el: true
+eth_discovery_cl: true
+
+# How to find the EL node key on the target system
+eth_discovery_el_key_cmd:
+  geth: cat /data/geth/geth/nodekey
+  erigon: cat /data/erigon/nodekey
+  nethermind: xxd -p -c32 /data/nethermind/keystore/node.key.plain
+
+# How to find the EL enode on the target system
+eth_discovery_el_enode_cmd:
+  ethereumjs: cat /data/ethereumjs/genesis/rlpx
+
+# How to find the CL ENR
+eth_discovery_cl_cmd: curl -s localhost:5052/eth/v1/node/identity | jq -r '.data.enr'
