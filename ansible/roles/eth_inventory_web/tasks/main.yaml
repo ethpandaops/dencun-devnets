@@ -1,6 +1,6 @@
 - name: Create directories
   ansible.builtin.file:
-    path: "{{ (eth_inventory_web_dir + '/' + item.file )| dirname }}"
+    path: "{{ (eth_inventory_web_dir + '/' + item.file) | dirname }}"
     state: directory
     recurse: true
   loop: "{{ eth_inventory_web_content }}"

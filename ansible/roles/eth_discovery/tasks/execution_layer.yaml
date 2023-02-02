@@ -8,7 +8,7 @@
 
     - name: Turn EL nodekey into enode
       ansible.builtin.command: >-
-        docker run -t --rm ethereum/client-go:alltools-latest bootnode -writeaddress -nodekeyhex {{ eth_discovery_el_nodekey.stdout}}
+        docker run -t --rm ethereum/client-go:alltools-latest bootnode -writeaddress -nodekeyhex {{ eth_discovery_el_nodekey.stdout }}
       vars:
         ansible_connection: local
       delegate_to: 127.0.0.1

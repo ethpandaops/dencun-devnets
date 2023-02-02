@@ -8,10 +8,10 @@
 
 - name: Show CL ENRs
   when: eth_discovery_cl
-  debug:
+  ansible.builtin.debug:
     var: ethereum_node_cl_enr
 
 - name: Show EL enodes
   when: eth_discovery_el
-  debug:
+  ansible.builtin.debug:
     var: ethereum_node_el_enode
