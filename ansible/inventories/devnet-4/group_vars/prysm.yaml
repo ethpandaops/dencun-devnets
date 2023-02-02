@@ -18,7 +18,7 @@ validator_keys_sync_files:
 ethereum_node_cl: prysm
 
 # role: ethpandaops.general.prysm
-prysm_container_image: ethpandaops/prysm:eip4844-1-08a910e
+prysm_container_image: "{{ default_ethereum_client_images.prysm }}"
 prysm_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"

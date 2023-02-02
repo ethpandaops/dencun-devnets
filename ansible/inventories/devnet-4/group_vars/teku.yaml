@@ -17,7 +17,7 @@ validator_keys_sync_files:
 ethereum_node_cl: teku
 
 # role: ethpandaops.general.teku
-teku_container_image: ethpandaops/teku:4844-interop-e74d915
+teku_container_image: "{{ default_ethereum_client_images.teku }}"
 teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
