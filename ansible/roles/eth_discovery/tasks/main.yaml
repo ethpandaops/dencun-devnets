@@ -11,6 +11,11 @@
   ansible.builtin.debug:
     var: ethereum_node_cl_enr
 
+- name: Show CL peer_id
+  when: eth_discovery_cl
+  ansible.builtin.debug:
+    var: ethereum_node_cl_peer_id
+
 - name: Show EL enodes
   when: eth_discovery_el
   ansible.builtin.debug:

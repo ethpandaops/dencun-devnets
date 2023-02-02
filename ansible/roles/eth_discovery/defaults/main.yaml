@@ -11,5 +11,6 @@ eth_discovery_el_key_cmd:
 eth_discovery_el_enode_cmd:
   ethereumjs: cat /data/ethereumjs/genesis/rlpx
 
-# How to find the CL ENR
-eth_discovery_cl_cmd: curl -s localhost:5052/eth/v1/node/identity | jq -r '.data.enr'
+# How to find the CL data
+eth_discovery_cl_cmd_enr: curl -s localhost:5052/eth/v1/node/identity | jq -r '.data.enr'
+eth_discovery_cl_cmd_peer_id: curl -s localhost:5052/eth/v1/node/identity | jq -r '.data.peer_id'
