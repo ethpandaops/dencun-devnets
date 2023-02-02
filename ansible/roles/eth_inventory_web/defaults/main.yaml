@@ -18,12 +18,13 @@ eth_inventory_web_content:
     content: |
       {
         "ethereum_pairs": {
-          {% for host in groups['ethereum_node'] | sort %}
+          {% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
             "{{ host }}": {
               "consensus": {
                 "client": "{{ hostvars[host]['ethereum_node_cl'] }}",
                 "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_cl']) + '_container_image'] }}",
                 "enr": "{{ hostvars[host]['ethereum_node_cl_enr'] }}",
+                "peer_id": "{{ hostvars[host]['ethereum_node_cl_peer_id'] }}",
                 "beacon_uri": "https://{{ hostvars[host]['ethereum_node_beacon_hostname'] }}"
               },
               "execution": {
