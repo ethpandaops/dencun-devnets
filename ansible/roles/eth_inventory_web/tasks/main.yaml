@@ -1,15 +1,28 @@
+- name: Create nginx-conf dir
+  ansible.builtin.file:
+    path: "{{ eth_inventory_web_dir }}/nginx-conf"
+    state: directory
+    recurse: true
+
+- name: Copy nginx config
+  ansible.builtin.copy:
+    content: "{{ eth_inventory_web_nginx_config }}"
+    dest: "{{ eth_inventory_web_dir }}/nginx-conf/default.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
 - name: Create directories
   ansible.builtin.file:
-    path: "{{ (eth_inventory_web_dir + '/' + item.file) | dirname }}"
+    path: "{{ (eth_inventory_web_dir + '/content/' + item.file) | dirname }}"
     state: directory
     recurse: true
   loop: "{{ eth_inventory_web_content }}"
 
-# Copy the json file
-- name: Copy files
+- name: Copy content files
   ansible.builtin.copy:
     content: "{{ item.content }}"
-    dest: "{{ eth_inventory_web_dir }}/{{ item.file }}"
+    dest: "{{ eth_inventory_web_dir }}/content/{{ item.file }}"
     owner: "root"
     group: "root"
     mode: "0644"
