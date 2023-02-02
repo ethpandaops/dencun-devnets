@@ -5,6 +5,7 @@
 
 # Ansible
 ansible/vendor/**
+ansible/tmp/**
 *.retry
 
 # Terraform
