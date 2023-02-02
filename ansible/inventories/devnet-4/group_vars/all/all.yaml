@@ -1,0 +1,26 @@
+server_fqdn: "{{ inventory_hostname }}.server.{{ ethereum_network_name }}.ethpandaops.io"
+
+# role: ethpandaops.general.docker_nginx_proxy
+docker_nginx_proxy_container_name: nginx-proxy
+docker_nginx_proxy_default_email: "certs@ethpandaops.io"
+docker_nginx_proxy_docker_gen_container_name: nginx-proxy-gen
+docker_nginx_proxy_docker_gen_container_env:
+  RESOLVERS: "1.1.1.1"
+docker_nginx_proxy_acme_companion_container_name: nginx-proxy-acme
+docker_nginx_proxy_acme_companion_container_env:
+  DEFAULT_EMAIL: "{{ docker_nginx_proxy_default_email }}"
+  NGINX_PROXY_CONTAINER: "{{ docker_nginx_proxy_container_name }}"
+  NGINX_DOCKER_GEN_CONTAINER: "{{ docker_nginx_proxy_docker_gen_container_name }}"
+  ACME_CA_URI: https://acme.zerossl.com/v2/DV90
+  ACME_EAB_KID: "{{ secret_zerossl.ACME_EAB_KID }}"
+  ACME_EAB_HMAC_KEY: "{{ secret_zerossl.ACME_EAB_HMAC_KEY }}"
+docker_nginx_proxy_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_docker_gen_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_acme_companion_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_datadir: /opt/nginx-proxy
+docker_nginx_proxy_container_volumes:
+  - "{{ docker_nginx_proxy_datadir }}/conf:/etc/nginx/conf.d"
+  - "{{ docker_nginx_proxy_datadir }}/vhost:/etc/nginx/vhost.d"
+  - "{{ docker_nginx_proxy_datadir }}/certs:/etc/nginx/certs:ro"
+  - html:/usr/share/nginx/html
+  - "{{ docker_nginx_proxy_datadir }}/htpasswd:/etc/nginx/htpasswd:ro"
