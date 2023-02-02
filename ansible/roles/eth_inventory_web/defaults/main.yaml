@@ -22,13 +22,13 @@ eth_inventory_web_content:
             "{{ host }}": {
               "consensus": {
                 "client": "{{ hostvars[host]['ethereum_node_cl'] }}",
-                "image": "{{ hostvars[host][ (hostvars[host]['ethereum_node_cl']) + '_container_image'] }}",
+                "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_cl']) + '_container_image'] }}",
                 "enr": "{{ hostvars[host]['ethereum_node_cl_enr'] }}",
                 "beacon_uri": "https://{{ hostvars[host]['ethereum_node_beacon_hostname'] }}"
               },
               "execution": {
                 "client": "{{ hostvars[host]['ethereum_node_el'] }}",
-                "image": "{{ hostvars[host][ (hostvars[host]['ethereum_node_el']) + '_container_image'] }}",
+                "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_el']) + '_container_image'] }}",
                 "enode": "{{ hostvars[host]['ethereum_node_el_enode'] }}",
                 "rpc_uri": "https://{{ hostvars[host]['ethereum_node_rcp_hostname'] }}"
               }
