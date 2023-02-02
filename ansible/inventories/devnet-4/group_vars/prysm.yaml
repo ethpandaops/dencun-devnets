@@ -26,10 +26,12 @@ prysm_container_env:
 prysm_container_volumes:
   - "{{ prysm_datadir }}:/data"
   - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 prysm_container_entrypoint:
   - /app/cmd/beacon-chain/beacon-chain
-prysm_container_command_extra_args:
+prysm_container_command_extra_args: >-
+  {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args }}
+prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
   - --genesis-state=/network-config/genesis.ssz
@@ -38,11 +40,13 @@ prysm_container_command_extra_args:
   - --enable-debug-rpc-endpoints
   - --verbosity=debug
   - --subscribe-all-subnets
-  - --bootstrap-node={{ ethereum_cl_bootnode }}
+prysm_container_command_extra_bootnode_args: >-
+  {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+
 prysm_validator_container_image: "{{ prysm_container_image }}"
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 prysm_validator_container_entrypoint:
   - /app/cmd/validator/validator
 prysm_validator_container_command_extra_args:

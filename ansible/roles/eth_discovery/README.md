@@ -6,5 +6,6 @@ The results will be set as facts on each host under the following variables:
 
 ```yaml
 ethereum_node_cl_enr:
+ethereum_node_cl_peer_id:
 ethereum_node_el_enode:
 ```

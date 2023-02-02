@@ -25,11 +25,11 @@ teku_container_env:
 teku_container_volumes:
   - "{{ teku_datadir }}:/data"
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
   - --initial-state=/network-config/genesis.ssz
-  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnode }}
+  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
   - --data-storage-mode=PRUNE
@@ -42,5 +42,5 @@ teku_container_command_extra_args:
   - --Xtrusted-setup=/network-config/trusted_setup.txt
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_validator_datadir: /data/teku-validator

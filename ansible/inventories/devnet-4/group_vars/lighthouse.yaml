@@ -29,14 +29,14 @@ lighthouse_container_env:
 lighthouse_container_volumes:
   - "{{ lighthouse_datadir }}:/data"
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --debug-level=debug
-  - --boot-nodes={{ ethereum_cl_bootnode }}
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"
-  - "{{ ethereum_network_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_validator_container_command_extra_args:
   - --testnet-dir=/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
