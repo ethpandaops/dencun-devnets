@@ -1,0 +1,34 @@
+name: Terraform lint
+on:
+  pull_request:
+    paths:
+      - 'terraform/**'
+      - '.tool-versions'
+  push:
+    branches:
+      - master
+    paths:
+      - 'terraform/**'
+      - '.tool-versions'
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v1
+
+      - name: Install asdf tools
+        run: ./asdf-setup.sh
+
+      - name: Lint
+        working-directory: ./terraform
+        run: >
+          terraform fmt --recursive --check --list=true --diff
