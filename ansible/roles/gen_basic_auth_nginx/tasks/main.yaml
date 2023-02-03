@@ -12,3 +12,10 @@
     password: "{{ gen_basic_auth_nginx_password }}"
     mode: 0644
   loop: "{{ gen_basic_auth_nginx_paths }}"
+
+- name: Add CORS config for beacon endpoint
+  ansible.builtin.copy:
+    dest: "{{ item }}"
+    mode: "0644"
+    content: "{{ gen_cors_nginx_config }}"
+  loop: "{{ gen_cors_nginx_paths }}"
