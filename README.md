@@ -1,4 +1,4 @@
-<div align="center"><img style="max-width:150px" src="https://www.eip4844.com/images/logo.png"/></div>
+<div align="center"><img src="./docs/images/4844-logo-200px.png"/></div>
 <h1 align="center">Infrastructure code for EIP4844 Dev/Testnets<br>🐼 ❤️.oO
 <br>"Pandas love blobs"</h1>
 
