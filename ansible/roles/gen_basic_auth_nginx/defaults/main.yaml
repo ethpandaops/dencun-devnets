@@ -1,5 +1,44 @@
+# Basic auth
 gen_basic_auth_nginx_paths:
   - "{{ docker_nginx_proxy_datadir }}/htpasswd/{{ ethereum_node_rcp_hostname }}"
   - "{{ docker_nginx_proxy_datadir }}/htpasswd/{{ ethereum_node_beacon_hostname }}"
 gen_basic_auth_nginx_name: "some-user"
 gen_basic_auth_nginx_password: "some-password"
+
+# CORS
+gen_cors_nginx_paths:
+  - "{{ docker_nginx_proxy_datadir }}/vhost/{{ ethereum_node_rcp_hostname }}_location"
+  - "{{ docker_nginx_proxy_datadir }}/vhost/{{ ethereum_node_beacon_hostname }}_location"
+
+gen_cors_nginx_config: |
+  proxy_hide_header 'Access-Control-Allow-Credentials';
+  proxy_hide_header 'Access-Control-Allow-Origin';
+  proxy_hide_header 'Access-Control-Allow-Methods';
+  proxy_hide_header 'Access-Control-Allow-Headers';
+  proxy_hide_header 'Access-Control-Expose-Headers';
+  proxy_hide_header 'Access-Control-Max-Age';
+  if ($request_method = 'OPTIONS') {
+    add_header 'Access-Control-Allow-Credentials' 'true' always;
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+    add_header 'Access-Control-Max-Age' 1728000;
+    add_header 'Content-Type' 'text/plain; charset=utf-8';
+    add_header 'Content-Length' 0;
+    return 204;
+  }
+  if ($request_method = 'POST') {
+    add_header 'Access-Control-Allow-Credentials' 'true' always;
+    add_header 'Access-Control-Allow-Origin' '*' always;
+
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization' always;
+    add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+  }
+  if ($request_method = 'GET') {
+    add_header 'Access-Control-Allow-Credentials' 'true' always;
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization' always;
+    add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+  }
