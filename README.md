@@ -1,6 +1,7 @@
 <div align="center"><img src="./docs/images/4844-logo-200px.png"/></div>
-<h1 align="center">Infrastructure code for EIP4844 Dev/Testnets<br>🐼 ❤️.oO
-<br>"Pandas love blobs"</h1>
+<h2 align="center">🐼 ❤️.oO<br>"Pandas love blobs"</h2>
+<h1 align="center">Infrastructure code for EIP4844 Dev/Testnets</h1>
+
 
 [![Ansible lint](https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml/badge.svg)](https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml)
 [![Terraform lint](https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml/badge.svg)](https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml)
@@ -11,7 +12,7 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status   | Network    | Links   | Ansible                                                      | Terraform | ArgoCD
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢 Live | devnet-4   | [🏠](https://eip4844-devnet-4.ethpandaops.io/) [📃](https://bootnode-1.server.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | 🛠️ Soon
+ 🟢 Live | [devnet-4](https://eip4844-devnet-4.ethpandaops.io/)   | [📃 Inventory](https://bootnode-1.server.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | 🛠️ Soon
 
 # Development
 ## Version management for tools
