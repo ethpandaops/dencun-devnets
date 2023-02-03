@@ -336,7 +336,7 @@ resource "cloudflare_record" "server_record" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "${each.value.name}.server.${var.ethereum_network}"
+  name    = "${each.value.name}.srv.${var.ethereum_network}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
@@ -348,7 +348,7 @@ resource "cloudflare_record" "server_record_rpc" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "rpc.${each.value.name}.server.${var.ethereum_network}"
+  name    = "rpc.${each.value.name}.srv.${var.ethereum_network}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
@@ -360,7 +360,7 @@ resource "cloudflare_record" "server_record_beacon" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "beacon.${each.value.name}.server.${var.ethereum_network}"
+  name    = "bn.${each.value.name}.srv.${var.ethereum_network}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
