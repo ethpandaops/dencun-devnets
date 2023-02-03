@@ -4,7 +4,7 @@
 terraform {
   required_providers {
     digitalocean = {
-      source = "digitalocean/digitalocean"
+      source  = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
     cloudflare = {
@@ -31,22 +31,22 @@ provider "cloudflare" {}
 //                                        VARIABLES
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "ethereum_network" {
-  type = string
+  type    = string
   default = "4844-devnet-4"
 }
 
 variable "digitalocean_project_name" {
-  type = string
+  type    = string
   default = "4844 Testnets"
 }
 
 variable "digitalocean_ssh_key_name" {
-  type = string
+  type    = string
   default = "rafael"
 }
 
 variable "digitalocean_vpcs" {
-  type = map
+  type = map(any)
   default = {
     "ams3" = {
       ip_range = "10.48.45.0/24"
@@ -55,7 +55,7 @@ variable "digitalocean_vpcs" {
 }
 
 variable "digitalocean_vm_groups" {
-  type = list
+  type = list(any)
   default = [
     {
       id = "bootnode"
@@ -201,12 +201,12 @@ locals {
         monitoring  = try(vm.monitoring, true)
         backups     = try(vm.backups, false)
         ipv6        = try(vm.ipv6, false)
-        vpc_uuid    = try(vm.vpc_uuid, try(
+        vpc_uuid = try(vm.vpc_uuid, try(
           digitalocean_vpc.main[vm.region].id,
           digitalocean_vpc.main[try(group.region, local.digitalocean_default_region)].id
         ))
 
-        tags = concat(local.digitalocean_global_tags, try(split(",", group.tags),[]), try(split(",",vm.tags),[]))
+        tags = concat(local.digitalocean_global_tags, try(split(",", group.tags), []), try(split(",", vm.tags), []))
       }
     ]
   ])
@@ -249,16 +249,16 @@ resource "digitalocean_droplet" "main" {
 }
 
 resource "digitalocean_project_resources" "droplets" {
-  for_each = digitalocean_droplet.main
-  project = data.digitalocean_project.main.id
+  for_each  = digitalocean_droplet.main
+  project   = data.digitalocean_project.main.id
   resources = [each.value.urn]
 }
 
 resource "digitalocean_firewall" "main" {
-  name        = "${var.ethereum_network}-nodes"
+  name = "${var.ethereum_network}-nodes"
   // Tags are used to select which droplets should
   // be assigned to this firewall.
-  tags        = [
+  tags = [
     "EthNetwork:${var.ethereum_network}"
   ]
 
@@ -338,7 +338,7 @@ resource "cloudflare_record" "server_record" {
   zone_id = data.cloudflare_zone.default.id
   name    = "${each.value.name}.server.${var.ethereum_network}"
   type    = "A"
-  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
   ttl     = 120
 }
@@ -350,7 +350,7 @@ resource "cloudflare_record" "server_record_rpc" {
   zone_id = data.cloudflare_zone.default.id
   name    = "rpc.${each.value.name}.server.${var.ethereum_network}"
   type    = "A"
-  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
   ttl     = 120
 }
@@ -362,7 +362,7 @@ resource "cloudflare_record" "server_record_beacon" {
   zone_id = data.cloudflare_zone.default.id
   name    = "beacon.${each.value.name}.server.${var.ethereum_network}"
   type    = "A"
-  value   = "${digitalocean_droplet.main[each.value.id].ipv4_address}"
+  value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
   ttl     = 120
 }
@@ -376,16 +376,16 @@ resource "local_file" "ansible_inventory" {
     {
       ethereum_network_name = "${var.ethereum_network}"
       groups = merge(
-        { for group in var.digitalocean_vm_groups: "${group.id}" => true },
+        { for group in var.digitalocean_vm_groups : "${group.id}" => true },
       )
-      hosts  = merge(
+      hosts = merge(
         {
-          for key, server in digitalocean_droplet.main: "do.${key}" => {
-            ip = "${server.ipv4_address}"
-            group = split(".", key)[0]
+          for key, server in digitalocean_droplet.main : "do.${key}" => {
+            ip       = "${server.ipv4_address}"
+            group    = split(".", key)[0]
             hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
-            cloud  = "digitalocean"
-            region = "${server.region}"
+            cloud    = "digitalocean"
+            region   = "${server.region}"
           }
         }
       )
