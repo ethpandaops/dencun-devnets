@@ -2,9 +2,10 @@
 <h2 align="center">🐼 ❤️.oO<br>"Pandas love blobs"</h2>
 <h1 align="center">Infrastructure code for EIP4844 Dev/Testnets</h1>
 
-
-[![Ansible lint](https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml/badge.svg)](https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml)
-[![Terraform lint](https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml/badge.svg)](https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml)
+<p align="center">
+<a href="https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml"><img src="https://github.com/ethpandaops/4844-testnet/actions/workflows/ansible_lint.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml"><img src="https://github.com/ethpandaops/4844-testnet/actions/workflows/terraform_lint.yaml/badge.svg"></a>
+</p>
 
 This repository contains the infrastructure code used to setup [EIP4844](https://www.eip4844.com/) dev/testnets. A lot of the code uses reusable components either provided by our [ansible collection](https://github.com/ethpandaops/ansible-collection-general) or our [helm charts for kubernetes](https://github.com/ethpandaops/ethereum-helm-charts/).
 
