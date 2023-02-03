@@ -5,7 +5,7 @@
 #  ╚██████╔╝███████╗╚█████╔╝██████╦╝██║░░██║███████╗  ░░╚██╔╝░░██║░░██║██║░░██║██████╔╝
 #  ░╚═════╝░╚══════╝░╚════╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
-server_fqdn: "{{ inventory_hostname }}.server.{{ ethereum_network_name }}.ethpandaops.io"
+server_fqdn: "{{ inventory_hostname }}.srv.{{ ethereum_network_name }}.ethpandaops.io"
 
 ethereum_network_id: >-
   {{ (lookup('file', eth_testnet_config_local_dir_src + '/genesis.json') | from_json).config.chainId }}
@@ -15,7 +15,7 @@ ethereum_network_deposit_contract_block: >-
   {{ lookup('file', eth_testnet_config_local_dir_src + '/deposit_contract_block.txt') }}
 
 ethereum_node_rcp_hostname: "rpc.{{ server_fqdn }}"
-ethereum_node_beacon_hostname: "beacon.{{ server_fqdn }}"
+ethereum_node_beacon_hostname: "bn.{{ server_fqdn }}"
 
 ethstats_url: "ethstats.eip{{ ethereum_network_name }}.ethpandaops.io"
 ethstats_secret: "{{ secret_ethstats }}"
