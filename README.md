@@ -9,11 +9,11 @@
 
 This repository contains the infrastructure code used to setup [EIP4844](https://www.eip4844.com/) dev/testnets. A lot of the code uses reusable components either provided by our [ansible collection](https://github.com/ethpandaops/ansible-collection-general) or our [helm charts for kubernetes](https://github.com/ethpandaops/ethereum-helm-charts/).
 
-# Current networks
+# Networks
 
 Status   | Network    | Links   | Ansible                                                      | Terraform | ArgoCD
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢 Live | [devnet-4](https://eip4844-devnet-4.ethpandaops.io/)   | [📃 Inventory](https://bootnode-1.server.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | 🛠️ Soon
+ 🟢 Live | [devnet-4](https://eip4844-devnet-4.ethpandaops.io/)   | [Network config](network-configs/devnet-4) / [Inventory](https://bootnode-1.server.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | 🛠️ Soon
 
 # Development
 ## Version management for tools
