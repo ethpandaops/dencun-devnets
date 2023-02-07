@@ -37,7 +37,7 @@ geth-prysm-001-exe:
 
   initContainers:
   - name: init-genesis
-    image: ethpandaops/geth:mdehoog-4844-20d3ce8
+    image: ethpandaops/geth:mdehoog-eip4844-20d3ce8
     imagePullPolicy: IfNotPresent
     securityContext:
       runAsNonRoot: false
@@ -69,8 +69,8 @@ geth-prysm-001-con:
   fullnameOverride: geth-prysm-001-con
 
   image:
-    repository: inphi/prysm@sha256
-    tag: f0891b3497216153bd081b1b969b5ef66343237c73186350da39ea5b83139918
+    repository: ethpandaops/prysm
+    tag: eip4844-1-08a910e
     pullPolicy: Always
 
   mode: "beacon"
@@ -125,7 +125,7 @@ geth-prysm-001-con:
 
   initContainers:
   - name: init-genesis
-    image: alpine:latest
+    image: ethpandaops/prysm
     imagePullPolicy: IfNotPresent
     securityContext:
       runAsNonRoot: false
