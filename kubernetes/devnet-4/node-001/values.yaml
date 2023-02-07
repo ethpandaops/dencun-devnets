@@ -23,7 +23,7 @@ geth-prysm-001-exe:
 
   p2pNodePort:
     enabled: true
-    port: 31120
+    port: 31220
 
   persistence:
     enabled: true
