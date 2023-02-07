@@ -3,7 +3,7 @@ default_ethereum_client_images:
   teku: ethpandaops/teku:4844-interop-e74d915
   prysm: ethpandaops/prysm:eip4844-1-08a910e
   lodestar: g11tech/lodestar:4844-jan25-1
-  lighthouse: ethpandaops/lighthouse:eip4844-6d2dff6
+  lighthouse: ethpandaops/lighthouse:eip4844-21e5b7f
   # Execution layer clients
   geth: ethpandaops/geth:mdehoog-eip4844-20d3ce8
   erigon: rbayardo/erigon:4844-e92c32
