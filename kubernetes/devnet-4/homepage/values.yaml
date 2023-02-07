@@ -9,7 +9,7 @@ testnet-homepage:
 
   resources:
     requests:
-      cpu: 32m
+      cpu: 33m
       memory: 64Mi
   ingress:
     enabled: true
