@@ -11,9 +11,9 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 # Networks
 
-Status   | Network    | Links   | Ansible                                                      | Terraform | ArgoCD
+Status   | Network    | Links   | Ansible                                                      | Terraform | Kubernetes
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢 Live | [devnet-4](https://eip4844-devnet-4.ethpandaops.io/)   | [Network config](network-configs/devnet-4) / [Inventory](https://bootnode-1.srv.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | 🛠️ Soon
+ 🟢 Live | [devnet-4](https://eip4844-devnet-4.ethpandaops.io/)   | [Network config](network-configs/devnet-4) / [Inventory](https://bootnode-1.srv.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | [🔗](kubernetes/devnet-4)
 
 # Development
 ## Version management for tools
