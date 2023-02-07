@@ -1,0 +1,145 @@
+testnet-homepage:
+  fullnameOverride: homepage
+
+  replicas: 1
+
+  image:
+    pullPolicy: Always
+    repository: ethpandaops/ethereum-testnet-homepage
+
+  resources:
+    requests:
+      cpu: 32m
+      memory: 64Mi
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: eip4844-devnet-4.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customMarkdown: |-
+    ## General information
+    ### Key split
+    ```
+    0-9000 - EthPandaOps
+    9000-9500 - EthPandsOps
+    9500 - 10000 - Client Teams (50 per team) - Contact EF DevOps if you want to run a validator!
+    ```
+
+    ## Ansible setup
+    https://github.com/ethpandaops/4844-testnet
+
+    ## Client versions
+    https://notes.ethereum.org/@samcm/eip4844-devnet-4
+
+    enode for execution clients:
+    ```sh
+    - enode://8488a57c323d5e5bef1c40c5cb2330cb0bd75d900afad5e7f50a47ecc1ae7683fb664f509908c6b978633b9af75788e943f26e9b64989504d189ae7b3278ede3@161.35.91.184:30303
+    - enode://aaae89afb5fbb38c39d12ea57bc42da5f93b68bcf820fdaccd5169084770cf7c13f4b67102312cb564e69b31fff32c0cdc934c962498a4fde69a310e68d06ba2@164.92.211.204:30303
+    - enode://468e0b9086a5b36f00167a1fba0e01a8b80a1ffcee23a4f66dc22774828ca995d63f8c6f01ccadc455c69d5f0d8f745db29e7c88b4e3b0fffc2c7ff33a2aa121@161.35.91.165:30303
+    - enode://7dfd6afc83ce698e72e7ce0a7b6143790f83084981fc75a812eaafbc7e663ed4bf6a6c4e6113af2a064fe3573766b37821b5d6120588adc8cd0b591d1410c397@164.92.155.224:30303
+    - enode://c602624d0574a09eb8419503cfc51279677bbf08d116b992ef7b5f7fed1209cb65daef9f88d1c1ed4b56bb5c66757ee27c35bc37557c4b4f4575b9536782eafc@64.225.74.231:30303
+    - enode://f54e2fabfa21d8c7f3b0ac405b0e853419634aa0181218ac9cba809d43fd00f5942cfeecc4f9e5871d983ae39125290d7ad9e041df00f8303f1d87dc49ea0d76@164.92.159.59:30303
+    - enode://c44742e76163896da03a3ba280c0f46624f861a0f7b838056e3b001c3bf740fe156217cfbc407b93e09010fc55cbf982aba903f26c35afd038b8928c854284da@161.35.90.140:30303
+    ```
+
+    enr for consensus clients:
+    ```sh
+    - enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk
+    ```
+
+
+
+    ## Genesis configuration
+    ### Execution layer clients
+    ```sh
+    https://config.eip4844-devnet-4.ethpandaops.io/el/bootnodes
+    https://config.eip4844-devnet-4.ethpandaops.io/el/genesis.json
+    https://config.eip4844-devnet-4.ethpandaops.io/el/chainspec.json
+    ```
+    ### Consensus layer clients
+    ```sh
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/bootnodes
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/config.yaml
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/genesis.ssz
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/deploy_block.txt
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/deposit_contract.txt
+    https://config.eip4844-devnet-4.ethpandaops.io/cl/deposit_contract_block.txt
+    ```
+
+
+
+  customArgs:
+    - -b
+    - https://eip4844-devnet-4.ethpandaops.io
+
+  config:
+    baseURL: https://eip4844-devnet-4.ethpandaops.io
+    languageCode: en-us
+    title: eip4844-devnet-4
+    theme: PaperMod
+    markup:
+      highlight:
+        codeFences: true
+        guessSyntax: true
+        lineNos: false
+        style: monokai
+    params:
+      disableThemeToggle: true
+      defaultTheme: dark
+      ethereum:
+        faucetUrl: https://faucet.eip4844-devnet-4.ethpandaops.io
+        rpcUrl: https://rpc.eip4844-devnet-4.ethpandaops.io
+        explorerUrl: https://beaconchain.eip4844-devnet-4.ethpandaops.io
+        forkmonUrl: https://forkmon.eip4844-devnet-4.ethpandaops.io
+        beaconexplorerUrl: https://beaconchain.eip4844-devnet-4.ethpandaops.io
+        checkpointSyncUrl: https://checkpoint-sync.eip4844-devnet-4.ethpandaops.io
+        blobscanUrl: https://blobscan.eip4844-devnet-4.ethpandaops.io
+        ethstatsUrl: https://ethstats.eip4844-devnet-4.ethpandaops.io
+        chainName: "eip4844-devnet-4"
+        chainId: "4844001004"
+        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-4
+      metamask:
+        enabled: true
+      logo:
+        enabled: false
+        url: https://i.imgur.com/M0gEdpw.png
+      assets:
+        favicon: https://i.imgur.com/M0gEdpw.png
+        favicon16x16: https://i.imgur.com/M0gEdpw.png
+        favicon32x32: https://i.imgur.com/M0gEdpw.png
+        apple_touch_icon: https://i.imgur.com/M0gEdpw.png
+        safari_pinned_tab: https://i.imgur.com/M0gEdpw.png
+
+      links:
+      - name: "Testnet Spec"
+        dataLookup: github
+      - name: "JSON RPC"
+        dataLookup: rpcUrl
+      # - name: "Beaconchain explorer"
+      #   dataLookup: beaconexplorerUrl
+      # - name: "Transaction explorer"
+      #   dataLookup: explorerUrl
+      # - name: "Checkpoint Sync"
+      #   dataLookup: checkpointSyncUrl
+      - name: "Faucet"
+        dataLookup: faucetUrl
+      - name: "Forkmon"
+        dataLookup: forkmonUrl
+      - name: "Blobscan"
+        dataLookup: blobscanUrl
+      - name: "Ethstats"
+        dataLookup: ethstatsUrl
+    menu:
+      main:
+        - identifier: ethereum-website
+          name: ethereum.org
+          url: https://ethereum.org
+          weight: 30
+    disableKinds: ["taxonomy", "taxonomyTerm"]
+    copyright: "This page is "
