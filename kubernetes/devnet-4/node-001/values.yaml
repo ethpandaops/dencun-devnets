@@ -134,7 +134,6 @@ geth-prysm-001-con:
       - sh
       - -ace
       - >
-        rm -rf /data/beaconchaindata
         DEPOSIT_CONTRACT_URI=https://config.4844-devnet-4.ethpandaops.io/deposit_contract.txt;
         DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-4.ethpandaops.io/cl/deposit_contract_block.txt;
         DEPLOY_BLOCK_URI=https://config.4844-devnet-4.ethpandaops.io/cl/deploy_block.txt;
