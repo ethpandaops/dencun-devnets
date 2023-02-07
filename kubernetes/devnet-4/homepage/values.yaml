@@ -17,7 +17,7 @@ testnet-homepage:
     className: ingress-nginx-public
 
     hosts:
-      - host: eip4844-devnet-4.ethpandaops.io
+      - host: 4844-devnet-4.ethpandaops.io
         paths:
           - path: /
             pathType: Prefix
@@ -58,30 +58,30 @@ testnet-homepage:
     ## Genesis configuration
     ### Execution layer clients
     ```sh
-    https://config.eip4844-devnet-4.ethpandaops.io/el/bootnodes
-    https://config.eip4844-devnet-4.ethpandaops.io/el/genesis.json
-    https://config.eip4844-devnet-4.ethpandaops.io/el/chainspec.json
+    https://config.4844-devnet-4.ethpandaops.io/el/bootnodes
+    https://config.4844-devnet-4.ethpandaops.io/el/genesis.json
+    https://config.4844-devnet-4.ethpandaops.io/el/chainspec.json
     ```
     ### Consensus layer clients
     ```sh
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/bootnodes
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/config.yaml
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/genesis.ssz
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/deploy_block.txt
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/deposit_contract.txt
-    https://config.eip4844-devnet-4.ethpandaops.io/cl/deposit_contract_block.txt
+    https://config.4844-devnet-4.ethpandaops.io/cl/bootnodes
+    https://config.4844-devnet-4.ethpandaops.io/cl/config.yaml
+    https://config.4844-devnet-4.ethpandaops.io/cl/genesis.ssz
+    https://config.4844-devnet-4.ethpandaops.io/cl/deploy_block.txt
+    https://config.4844-devnet-4.ethpandaops.io/cl/deposit_contract.txt
+    https://config.4844-devnet-4.ethpandaops.io/cl/deposit_contract_block.txt
     ```
 
 
 
   customArgs:
     - -b
-    - https://eip4844-devnet-4.ethpandaops.io
+    - https://4844-devnet-4.ethpandaops.io
 
   config:
-    baseURL: https://eip4844-devnet-4.ethpandaops.io
+    baseURL: https://4844-devnet-4.ethpandaops.io
     languageCode: en-us
-    title: eip4844-devnet-4
+    title: 4844-devnet-4
     theme: PaperMod
     markup:
       highlight:
@@ -93,15 +93,15 @@ testnet-homepage:
       disableThemeToggle: true
       defaultTheme: dark
       ethereum:
-        faucetUrl: https://faucet.eip4844-devnet-4.ethpandaops.io
-        rpcUrl: https://rpc.eip4844-devnet-4.ethpandaops.io
-        explorerUrl: https://beaconchain.eip4844-devnet-4.ethpandaops.io
-        forkmonUrl: https://forkmon.eip4844-devnet-4.ethpandaops.io
-        beaconexplorerUrl: https://beaconchain.eip4844-devnet-4.ethpandaops.io
-        checkpointSyncUrl: https://checkpoint-sync.eip4844-devnet-4.ethpandaops.io
-        blobscanUrl: https://blobscan.eip4844-devnet-4.ethpandaops.io
-        ethstatsUrl: https://ethstats.eip4844-devnet-4.ethpandaops.io
-        chainName: "eip4844-devnet-4"
+        faucetUrl: https://faucet.4844-devnet-4.ethpandaops.io
+        rpcUrl: https://rpc.4844-devnet-4.ethpandaops.io
+        explorerUrl: https://beaconchain.4844-devnet-4.ethpandaops.io
+        forkmonUrl: https://forkmon.4844-devnet-4.ethpandaops.io
+        beaconexplorerUrl: https://beaconchain.4844-devnet-4.ethpandaops.io
+        checkpointSyncUrl: https://checkpoint-sync.4844-devnet-4.ethpandaops.io
+        blobscanUrl: https://blobscan.4844-devnet-4.ethpandaops.io
+        ethstatsUrl: https://ethstats.4844-devnet-4.ethpandaops.io
+        chainName: "4844-devnet-4"
         chainId: "4844001004"
         github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-4
       metamask:
