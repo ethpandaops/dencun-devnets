@@ -125,7 +125,7 @@ geth-prysm-001-con:
 
   initContainers:
   - name: init-genesis
-    image: ethpandaops/prysm:eip4844-1-08a910e
+    image: alpine:latest
     imagePullPolicy: IfNotPresent
     securityContext:
       runAsNonRoot: false
