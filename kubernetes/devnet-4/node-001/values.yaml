@@ -104,7 +104,7 @@ geth-prysm-001-con:
   - sh
   - -ac
   - >
-    /usr/local/bin/beacon-chain
+    exec /usr/local/bin/beacon-chain
     --accept-terms-of-use=true
     --datadir=/data
     --p2p-host-ip=$(POD_IP)
