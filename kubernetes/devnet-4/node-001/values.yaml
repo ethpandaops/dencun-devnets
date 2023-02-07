@@ -2,7 +2,7 @@ geth-prysm-001-exe:
   fullnameOverride: geth-prysm-001-exe
   image:
     repository: ethpandaops/geth
-    tag: mdehoog-4844-20d3ce8
+    tag: mdehoog-eip4844-20d3ce8
 
   podLabels:
     network: 4844-devnet-4
