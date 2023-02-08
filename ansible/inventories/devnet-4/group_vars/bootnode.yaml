@@ -1,4 +1,4 @@
-ethereum_cl_bootnode: "{{ hostvars['bootnode-1']['cl_bootnode_facts_enr'] }}"
+ethereum_cl_bootnode: "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
 
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
@@ -53,7 +53,7 @@ prysm_container_command_extra_args:
   - --verbosity=debug
   - --subscribe-all-subnets
   - --p2p-max-peers=100
-  - --bootstrap-node={{ ethereum_cl_bootnode }}
+  #- --bootstrap-node={{ ethereum_cl_bootnode }}
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
