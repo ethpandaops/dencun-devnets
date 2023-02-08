@@ -17,7 +17,7 @@ ethereum_network_deposit_contract_block: >-
 ethereum_node_rcp_hostname: "rpc.{{ server_fqdn }}"
 ethereum_node_beacon_hostname: "bn.{{ server_fqdn }}"
 
-ethstats_url: "ethstats.eip{{ ethereum_network_name }}.ethpandaops.io"
+ethstats_url: "ethstats.{{ ethereum_network_name }}.ethpandaops.io"
 ethstats_secret: "{{ secret_ethstats }}"
 
 
