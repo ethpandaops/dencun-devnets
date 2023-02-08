@@ -23,14 +23,14 @@ eth_inventory_web_content:
               "consensus": {
                 "client": "{{ hostvars[host]['ethereum_node_cl'] }}",
                 "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_cl']) + '_container_image'] }}",
-                "enr": "{{ hostvars[host]['ethereum_node_cl_enr'] }}",
-                "peer_id": "{{ hostvars[host]['ethereum_node_cl_peer_id'] }}",
+                "enr": "{{ hostvars[host]['ethereum_node_fact_cl_enr'] }}",
+                "peer_id": "{{ hostvars[host]['ethereum_node_fact_cl_peer_id'] }}",
                 "beacon_uri": "https://{{ hostvars[host]['ethereum_node_beacon_hostname'] }}"
               },
               "execution": {
                 "client": "{{ hostvars[host]['ethereum_node_el'] }}",
                 "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_el']) + '_container_image'] }}",
-                "enode": "{{ hostvars[host]['ethereum_node_el_enode'] }}",
+                "enode": "{{ hostvars[host]['ethereum_node_fact_el_enode'] }}",
                 "rpc_uri": "https://{{ hostvars[host]['ethereum_node_rcp_hostname'] }}"
               }
             }{% if not loop.last %},{% endif %}

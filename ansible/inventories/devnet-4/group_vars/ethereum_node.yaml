@@ -1,9 +1,8 @@
-ethereum_cl_bootnode: "{{ hostvars['bootnode-1']['cl_bootnode_facts_enr'] }}"
 ethereum_cl_bootnodes:
-  - "{{ hostvars['bootnode-1']['cl_bootnode_facts_enr'] }}"
-  - "{{ hostvars['bootnode-1']['ethereum_node_cl_enr'] }}"
+  - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+  - "{{ hostvars['bootnode-1']['ethereum_node_fact_cl_enr'] }}"
 
-ethereum_el_bootnode: "{{ hostvars['bootnode-1']['ethereum_node_el_enode'] }}"
+ethereum_el_bootnode: "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
