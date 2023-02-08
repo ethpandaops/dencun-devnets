@@ -30,4 +30,4 @@ jobs:
 
       - name: Lint
         run: >
-          helm-lint kubernetes/*/*
+          helm lint kubernetes/*/*
