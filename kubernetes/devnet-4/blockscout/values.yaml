@@ -19,6 +19,7 @@ blockscout:
   - /bin/sh
   - -ace
   - >
+    export DATABASE_URL=postgresql://postgres:postgres@blockscout-postgresql:5432/explorer?sslmode=disable;
     bin/blockscout eval "Elixir.Explorer.ReleaseTasks.create_and_migrate()"; exec bin/blockscout start;
 
   config:
