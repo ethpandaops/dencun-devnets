@@ -19,12 +19,12 @@ blockscout:
   - /bin/sh
   - -ace
   - >
-    export DATABASE_URL=postgresql://postgres:postgres@blockscout-postgresql:5432/explorer?sslmode=disable;
     bin/blockscout eval "Elixir.Explorer.ReleaseTasks.create_and_migrate()"; exec bin/blockscout start;
 
   config:
     MIX_ENV: prod
     COIN: ETH
+    PORT: "4000"
     LOGO: /images/ethereum_logo.svg
     LOGO_FOOTER: /images/ethereum_logo.svg
     DISABLE_EXCHANGE_RATES: "true"
@@ -34,8 +34,9 @@ blockscout:
     DISABLE_READ_API: "false"
     DISABLE_WRITE_API: "true"
     ENABLE_TXS_STATS: "true"
+    ECTO_USE_SSL: "false"
     SHOW_TXS_CHART: "true"
-    DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/explorer?sslmode=disable
+    DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/blockscout
     SECRET_KEY_BASE: RMgI4C1HSkxsEjdhtGMfwAHfyT6CKWXOgzCboJflfSm4jeAlic52io05KB6mqzc5
     ETHEREUM_JSONRPC_VARIANT: geth
     ETHEREUM_JSONRPC_HTTP_URL: http://geth-prysm-001-exe:8545
@@ -83,5 +84,5 @@ blockscout:
         enabled: true
     persistence:
       enabled: true
-      size: 30Gi
-      storageClass: "local-path"
+      size: 100Gi
+      storageClass: "do-block-storage"
