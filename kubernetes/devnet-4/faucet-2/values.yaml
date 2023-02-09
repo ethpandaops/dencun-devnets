@@ -20,6 +20,6 @@ eth-faucet:
       value: "http://geth-prysm-001-exe:8545"
   
   args:
-    - -faucet.amount=32.05
+    - -faucet.amount=33
     - -faucet.name=4844-devnet-4
     - -proxycount=2
