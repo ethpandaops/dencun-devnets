@@ -13,6 +13,13 @@ eth_inventory_web_container_env:
 ethereum_node_el: geth
 ethereum_node_cl: prysm
 ethereum_node_cl_validator_enabled: false
+ethereum_node_xatu_sentry_enabled: true
+
+# role: ethpandaops.general.xatu_sentry
+xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
+xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
+xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
 
 # role: ethpandaops.general.geth
 geth_container_image: "{{ default_ethereum_client_images.geth }}"
