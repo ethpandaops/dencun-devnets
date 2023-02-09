@@ -1,4 +1,4 @@
-fauceth:
+eth-faucet:
   fullnameOverride: faucet-2
 
   ingress:
