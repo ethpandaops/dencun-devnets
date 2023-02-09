@@ -1,6 +1,11 @@
 blockscout:
   fullnameOverride: blockscout
 
+  resources:
+    requests:
+      cpu: 3000m
+      memory: 5Gi
+
   image:
     repository: blockscout/blockscout
     tag: latest
@@ -78,6 +83,10 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
+    resources:
+      requests:
+        cpu: 3000m
+        memory: 5Gi
     metrics:
       enabled: true
       serviceMonitor:
