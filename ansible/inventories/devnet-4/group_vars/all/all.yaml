@@ -45,6 +45,7 @@ bootstrap_default_user_authorized_keys_github: >
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_metrics_exporter_enabled: true
+ethereum_node_xatu_sentry_enabled: true
 ethereum_node_cl_validator_enabled: true
 ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 ethereum_node_cl_ports_p2p_tcp: 9000
@@ -56,6 +57,16 @@ ethereum_node_el_ports_p2p_udp: 30303
 ethereum_node_el_ports_http_rpc: 8545
 ethereum_node_el_ports_engine: 8551
 ethereum_node_el_ports_metrics: 6060
+
+# role: ethpandaops.general.xatu_sentry
+xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
+xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
+xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
+xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_container_image: "{{ default_tooling_images.ethereum_metrics_exporter }}"
 
 # role: eth_testnet_config
 eth_testnet_config_dir: /data/ethereum-network-config
