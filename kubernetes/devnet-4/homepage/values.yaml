@@ -96,7 +96,7 @@ testnet-homepage:
       ethereum:
         faucetUrl: https://faucet.4844-devnet-4.ethpandaops.io
         rpcUrl: https://rpc.4844-devnet-4.ethpandaops.io
-        explorerUrl: https://beaconchain.4844-devnet-4.ethpandaops.io
+        explorerUrl: https://explorer.4844-devnet-4.ethpandaops.io
         forkmonUrl: https://forkmon.4844-devnet-4.ethpandaops.io
         beaconexplorerUrl: https://beaconchain.4844-devnet-4.ethpandaops.io
         checkpointSyncUrl: https://checkpoint-sync.4844-devnet-4.ethpandaops.io
@@ -122,6 +122,8 @@ testnet-homepage:
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl
+      - name: "Explorer"
+        dataLookup: ethstatsUrl
       # - name: "Beaconchain explorer"
       #   dataLookup: beaconexplorerUrl
       # - name: "Transaction explorer"
