@@ -95,6 +95,7 @@ testnet-homepage:
       defaultTheme: dark
       ethereum:
         faucetUrl: https://faucet.4844-devnet-4.ethpandaops.io
+        faucetUrl: https://faucet-2.4844-devnet-4.ethpandaops.io
         rpcUrl: https://rpc.4844-devnet-4.ethpandaops.io
         explorerUrl: https://explorer.4844-devnet-4.ethpandaops.io
         forkmonUrl: https://forkmon.4844-devnet-4.ethpandaops.io
@@ -130,8 +131,10 @@ testnet-homepage:
       #   dataLookup: explorerUrl
       # - name: "Checkpoint Sync"
       #   dataLookup: checkpointSyncUrl
-      - name: "Faucet"
+      - name: "Faucet 1"
         dataLookup: faucetUrl
+      - name: "Faucet 2"
+        dataLookup: faucetUrl  
       - name: "Forkmon"
         dataLookup: forkmonUrl
       - name: "Blobscan"
