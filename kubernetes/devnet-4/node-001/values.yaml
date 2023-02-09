@@ -32,8 +32,8 @@ geth-prysm-001-exe:
   extraArgs:
   - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
   - --networkid="$(cat /data/chainid.txt)"
-  - --ws.api="eth,net,engine,web3"
-  - --http.api="eth,net,engine,web3"
+  - --ws.api="eth,net,engine,web3,txpool"
+  - --http.api="eth,net,engine,web3,txpool"
   - --syncmode=full
 
   initContainers:
