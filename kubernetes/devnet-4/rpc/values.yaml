@@ -10,6 +10,9 @@ rpc-proxy:
   ingress:
     enabled: true
 
+    annotations:
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+
     className: ingress-nginx-public
 
     hosts:
