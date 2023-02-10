@@ -1,6 +1,6 @@
 default_ethereum_client_images:
   # Consensus layer clients
-  teku: ethpandaops/teku:4844-interop-e74d915
+  teku: ethpandaops/teku:4844-interop-297d15c
   prysm: ethpandaops/prysm:eip4844-1-08a910e
   lodestar: g11tech/lodestar:4844-jan25-1
   lighthouse: ethpandaops/lighthouse:eip4844-21e5b7f
