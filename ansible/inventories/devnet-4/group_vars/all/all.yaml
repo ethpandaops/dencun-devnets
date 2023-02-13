@@ -64,6 +64,7 @@ xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
 xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
 xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
 xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
+xatu_sentry_config_network_name_override: "{{ ethereum_network_name }}"
 
 # role: ethpandaops.general.ethereum_metrics_exporter
 ethereum_metrics_exporter_container_image: "{{ default_tooling_images.ethereum_metrics_exporter }}"
