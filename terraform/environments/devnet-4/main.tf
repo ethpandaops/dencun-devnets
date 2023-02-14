@@ -72,6 +72,12 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
+      id = "lighthouse-besu"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    {
       id = "lighthouse-nethermind"
       vms = {
         "1" = { size = "s-8vcpu-16gb-amd" }
@@ -100,6 +106,12 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
+      id = "prysm-besu"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    {
       id = "prysm-nethermind"
       vms = {
         "1" = { size = "s-8vcpu-16gb-amd" }
@@ -125,6 +137,12 @@ variable "digitalocean_vm_groups" {
       }
     },
     {
+      id = "lodestar-besu"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    {
       id = "lodestar-nethermind"
       vms = {
         "1" = { size = "s-8vcpu-16gb-amd" }
@@ -148,6 +166,12 @@ variable "digitalocean_vm_groups" {
       vms = {
         "1" = { size = "s-4vcpu-8gb-amd" }
       }
+    },
+    {
+      id = "teku-besu"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
     },
     {
       id = "teku-nethermind"
