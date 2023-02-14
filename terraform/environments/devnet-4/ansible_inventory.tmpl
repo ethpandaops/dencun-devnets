@@ -14,24 +14,28 @@ ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host
 # Consensus client groups
 
 [lighthouse:children]
+lighthouse_besu
 lighthouse_erigon
 lighthouse_ethereumjs
 lighthouse_geth
 lighthouse_nethermind
 
 [prysm:children]
+prysm_besu
 prysm_erigon
 prysm_ethereumjs
 prysm_geth
 prysm_nethermind
 
 [lodestar:children]
+lodestar_besu
 lodestar_erigon
 lodestar_ethereumjs
 lodestar_geth
 lodestar_nethermind
 
 [teku:children]
+teku_besu
 teku_erigon
 teku_ethereumjs
 teku_geth
@@ -44,6 +48,12 @@ lighthouse_geth
 lodestar_geth
 prysm_geth
 teku_geth
+
+[besu:children]
+lighthouse_besu
+lodestar_besu
+prysm_besu
+teku_besu
 
 [nethermind:children]
 lighthouse_nethermind
@@ -72,6 +82,7 @@ prysm
 teku
 
 [execution_node:children]
+besu
 erigon
 ethereumjs
 geth

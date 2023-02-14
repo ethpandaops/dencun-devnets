@@ -5,6 +5,8 @@ default_ethereum_client_images:
   lodestar: g11tech/lodestar:4844-jan25-1
   lighthouse: ethpandaops/lighthouse:eip4844-21e5b7f
   # Execution layer clients
+  besu: skylenet/besu:eip-4844-interop-97edc67-fixup-perms2
+  #besu: ethpandaops/besu:eip-4844-interop-97edc67 # needs fix https://github.com/hyperledger/besu/pull/5092
   geth: ethpandaops/geth:mdehoog-eip4844-8444ecf
   erigon: rbayardo/erigon:4844-e92c32
   ethereumjs: g11tech/ethereumjs:jan25
