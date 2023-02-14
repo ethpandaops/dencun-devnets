@@ -26,7 +26,7 @@ appVersion: "0.0.1"
 dependencies:
 - name: mongodb
   repository: https://charts.bitnami.com/bitnami
-  version: 13.6.4
+  version: 13.6.7
   alias: blobscan-mongodb
 - name: blobscan
   repository: https://ethpandaops.github.io/ethereum-helm-charts
