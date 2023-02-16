@@ -24,6 +24,9 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-4.srv.4844-devnet-4.ethpandaops.io
     name: prysm-geth-4
     kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-4.ethpandaops.io
+    name: prysm-besu-1
+    kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-4.ethpandaops.io
     name: prysm-ethereumjs-1
     kind: "rpc"
@@ -40,6 +43,9 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-2.srv.4844-devnet-4.ethpandaops.io
     name: lighthouse-geth-2
     kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-devnet-4.ethpandaops.io
+    name: lighthouse-besu-1
+    kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-4.ethpandaops.io
     name: lighthouse-ethereumjs-1
     kind: "rpc"
@@ -53,6 +59,9 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-4.ethpandaops.io
     name: lodestar-geth-1
     kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-besu-1.srv.4844-devnet-4.ethpandaops.io
+    name: lodestar-besu-1
+    kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-4.ethpandaops.io
     name: lodestar-ethereumjs-1
     kind: "rpc"
@@ -65,6 +74,9 @@ forkmon:
 
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.teku-geth-1.srv.4844-devnet-4.ethpandaops.io
     name: teku-geth-1
+    kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.teku-besu-1.srv.4844-devnet-4.ethpandaops.io
+    name: teku-besu-1
     kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.teku-ethereumjs-1.srv.4844-devnet-4.ethpandaops.io
     name: teku-ethereumjs-1
