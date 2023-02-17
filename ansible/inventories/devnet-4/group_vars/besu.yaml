@@ -25,6 +25,7 @@ besu_container_volumes:
 besu_container_command_extra_args:
   - --genesis-file=/network-config/besu.json
   - --bootnodes={{ ethereum_el_bootnode }}
+  - --rpc-http-api=ADMIN,DEBUG,ETH,MINER,NET,TRACE,TXPOOL,WEB3
   - --sync-mode=FULL
   - --data-storage-format=BONSAI
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
