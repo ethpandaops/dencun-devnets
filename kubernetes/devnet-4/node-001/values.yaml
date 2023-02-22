@@ -122,7 +122,6 @@ geth-prysm-001-con:
     --genesis-state=/data/testnet_spec/genesis.ssz
     --chain-config-file=/data/testnet_spec/config.yaml
     --execution-endpoint=http://geth-prysm-001-exe:8551
-    --force-clear-db
 
   initContainers:
   - name: init-genesis
