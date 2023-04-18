@@ -1,0 +1,12 @@
+dependencies:
+- name: mongodb
+  repository: https://charts.bitnami.com/bitnami
+  version: 13.6.7
+- name: blobscan
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.1.0
+- name: blobscan-indexer
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.1.0
+digest: sha256:89b453fa2d199845db626874ab7b3422b97055457b59cf60f6bbcb0dd7d1aa5d
+generated: "2023-02-14T06:12:30.839072775Z"
