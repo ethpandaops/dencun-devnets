@@ -26,7 +26,7 @@ appVersion: "0.0.1"
 dependencies:
 - name: prysm
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.2.7
+  version: 1.0.1
   alias: geth-prysm-001-con
 - name: geth
   repository: https://ethpandaops.github.io/ethereum-helm-charts
