@@ -160,6 +160,37 @@ variable "digitalocean_vm_groups" {
         "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
+    // Nimbus combos
+    {
+      id = "nimbus-geth"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
+    {
+      id = "nimbus-besu"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      },
+    },
+    {
+      id = "nimbus-nethermind"
+      vms = {
+        "1" = { size = "s-8vcpu-16gb-amd" }
+      }
+    },
+    {
+      id = "nimbus-ethereumjs"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
+    {
+      id = "nimbus-erigon"
+      vms = {
+        "1" = { size = "s-4vcpu-8gb-amd" }
+      }
+    },
     // Teku combos
     {
       id = "teku-geth"

@@ -34,6 +34,14 @@ lodestar_ethereumjs
 lodestar_geth
 lodestar_nethermind
 
+[nimbus:children]
+nimbus_besu
+nimbus_erigon
+nimbus_ethereumjs
+nimbus_geth
+nimbus_nethermind
+
+
 [teku:children]
 teku_besu
 teku_erigon
@@ -46,30 +54,35 @@ teku_nethermind
 [geth:children]
 lighthouse_geth
 lodestar_geth
+nimbus_geth
 prysm_geth
 teku_geth
 
 [besu:children]
 lighthouse_besu
 lodestar_besu
+nimbus_besu
 prysm_besu
 teku_besu
 
 [nethermind:children]
 lighthouse_nethermind
 lodestar_nethermind
+nimbus_nethermind
 prysm_nethermind
 teku_nethermind
 
 [ethereumjs:children]
 lighthouse_ethereumjs
 lodestar_ethereumjs
+nimbus_ethereumjs
 prysm_ethereumjs
 teku_ethereumjs
 
 [erigon:children]
 lighthouse_erigon
 lodestar_erigon
+nimbus_erigon
 prysm_erigon
 teku_erigon
 
@@ -78,6 +91,7 @@ teku_erigon
 [consensus_node:children]
 lighthouse
 lodestar
+nimbus
 prysm
 teku
 
