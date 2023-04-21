@@ -126,7 +126,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-erigon"
       vms = {
-       //"1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     // Lodestar combos
