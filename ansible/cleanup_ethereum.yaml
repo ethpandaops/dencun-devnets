@@ -44,7 +44,7 @@
             - "teku"
             # Others
             - "ethereum-metrics-exporter"
-            - "cl-bootnode"
+            #- "cl-bootnode"
         - name: Remove data dirs
           file:
             state: absent
