@@ -33,6 +33,7 @@ lodestar_container_command_extra_args:
   #- --logLevel=debug
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
+  - --nat=true
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"

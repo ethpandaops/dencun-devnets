@@ -44,6 +44,7 @@ lodestar_container_command_extra_args:
   - --genesisStateFile=/network-config/genesis.ssz
   #- --logLevel=debug
   - --network.connectToDiscv5Bootnodes
+  - --nat=true
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
