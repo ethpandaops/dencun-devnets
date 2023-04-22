@@ -42,7 +42,7 @@ lodestar_container_volumes:
 lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
-  - --logLevel=debug
+  #- --logLevel=debug
   - --network.connectToDiscv5Bootnodes
 
 # role: ethpandaops.general.prometheus
