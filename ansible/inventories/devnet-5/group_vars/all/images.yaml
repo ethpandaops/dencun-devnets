@@ -1,7 +1,7 @@
 default_ethereum_client_images:
   # Consensus layer clients
   lighthouse: ethpandaops/lighthouse:eip4844-21e5b7f # needs update
-  lodestar: g11tech/lodestar:blobs-60b3c
+  lodestar: g11tech/lodestar:blobs-60b3c-1
   nimbus: statusim/nimbus-eth2:amd64-latest # needs update
   prysm: ethpandaops/prysm:eip4844-1-08a910e # needs update
   teku: ethpandaops/teku:4844-interop-297d15c # needs update
@@ -9,7 +9,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
   geth: ethpandaops/geth:mdehoog-eip4844-47cf187
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-ad2f42f
-  ethereumjs: g11tech/ethereumjs:blobs-f9764
+  ethereumjs: g11tech/ethereumjs:blobs-c35af
   nethermind: nethermindeth/nethermind@sha256:2f869878f0aeec35b05ba203b1f09082888d1be5e1d3768086b25ec7048813aa # needs update
 
 default_tooling_images:
