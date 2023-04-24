@@ -1,0 +1,48 @@
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+
+  image:
+    tag: sha-1dc7529
+
+  extraEnv:
+    - name: MONGODB_URI
+      value: mongodb://root:root@blobscan-mongodb:27017
+    - name: MONGODB_DB
+      value: blobscan
+    - name: EXECUTION_NODE_URL
+      value: http://geth-prysm-001-exe:8545
+    - name: BEACON_NODE_RPC
+      value: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
+
+blobscan:
+  fullnameOverride: blobscan
+
+  extraEnv:
+    - name: MONGODB_URI
+      value: mongodb://root:root@blobscan-mongodb:27017
+    - name: MONGODB_DB
+      value: blobscan
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: blobscan.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+blobscan-mongodb:
+  fullnameOverride: blobscan-mongodb
+
+  architecture: standalone
+
+  auth:
+    rootUser: root
+    rootPassword: root
+
+  persistence:
+    enabled: true
+    size: 50Gi

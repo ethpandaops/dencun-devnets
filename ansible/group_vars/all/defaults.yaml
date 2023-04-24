@@ -40,5 +40,9 @@ docker_network_name: shared
 docker_networks_shared:
   - name: "{{ docker_network_name }}"
 
+# role: geerlingguy.docker
+docker_users:
+  - devops
+
 # role: ethpandaops.general.prometheus
 prometheus_container_networks: "{{ docker_networks_shared }}"
