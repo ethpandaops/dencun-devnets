@@ -1,6 +1,6 @@
 default_ethereum_client_images:
   # Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:eip4844-21e5b7f # needs update
+  lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-ffd4675
   lodestar: g11tech/lodestar:blobs-60b3c
   nimbus: statusim/nimbus-eth2:amd64-latest # needs update
   prysm: ethpandaops/prysm:eip4844-1-08a910e # needs update
