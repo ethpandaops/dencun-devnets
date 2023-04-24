@@ -23,3 +23,5 @@ ethereumjs_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnode }}
   - --syncMode=full
   - --maxPeers=75
+  - --isSingleNode=true
+  - --logLevel=debug
