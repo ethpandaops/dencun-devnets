@@ -9,7 +9,7 @@ fi
 
 OUTPUT_DIR=../files/validator_keys
 PRYSM_WALLET_PASSWORD="prysm"
-
+echo $PRYSM_WALLET_PASSWORD > ../files/validator_keys/prysm_wallet_password.txt
 function prep_group {
   let group_base=$1
   validators_source_mnemonic="$2"
