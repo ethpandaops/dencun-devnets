@@ -143,7 +143,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-nethermind"
       vms = {
-        //"1" = { size = "s-8vcpu-16gb-amd" }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
@@ -157,7 +157,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-erigon"
       vms = {
-        //"1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     // Nimbus combos
