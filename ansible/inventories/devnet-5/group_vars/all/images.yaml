@@ -10,7 +10,7 @@ default_ethereum_client_images:
   geth: ethpandaops/geth:mdehoog-eip4844-47cf187
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-2d1be62
   ethereumjs: g11tech/ethereumjs:blobs-c35af
-  nethermind: nethermindeth/nethermind@sha256:2f869878f0aeec35b05ba203b1f09082888d1be5e1d3768086b25ec7048813aa # needs update
+  nethermind: nethermindeth/nethermind:eip-4844-v5
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.31
