@@ -137,7 +137,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-geth"
       vms = {
-        "1" = {tags="no_validator_keys"}
+        "1" = { tags = "no_validator_keys" }
       }
     },
     {
