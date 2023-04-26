@@ -25,3 +25,6 @@ ethereumjs_container_command_extra_args:
   - --maxPeers=75
   - --isSingleNode=true
   - --logLevel=debug
+  - --wsOrigins=*
+  - --ws
+  
