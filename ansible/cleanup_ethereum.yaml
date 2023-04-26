@@ -2,26 +2,27 @@
   serial: "{{ batch_count | default('100%') }}"
   become: true
   tasks:
-    - name:
-      ansible.builtin.pause:
-        prompt: |+
-          =========================================================
-                      !!!!!!!!!  WARNING  !!!!!!!!!
-          =========================================================
-          You're about to cleanup all data on the following nodes:
-          {% for host in ansible_play_hosts_all | sort %}
-            - {{ host }}
-          {% endfor %}
-          =========================================================
-          Are you sure you want to continue? (yes/no)
-      register: prompt
+    #- name:
+    #  ansible.builtin.pause:
+    #    prompt: |+
+    #      =========================================================
+    #                  !!!!!!!!!  WARNING  !!!!!!!!!
+    #      =========================================================
+    #      You're about to cleanup all data on the following nodes:
+    #      {% for host in ansible_play_hosts_all | sort %}
+    #        - {{ host }}
+    #      {% endfor %}
+    #      =========================================================
+    #      Are you sure you want to continue? (yes/no)
+    #  register: prompt
     - name: Cleanup all data
-      when: prompt.user_input == "yes"
+      #when: prompt.user_input == "yes"
       block:
         - name: Remove eth containers
           community.docker.docker_container:
             name: "{{ item }}"
             state: absent
+            timeout: 5
           loop:
             # Execution layer clients
             - "besu"
@@ -43,6 +44,7 @@
             - "teku"
             # Others
             - "ethereum-metrics-exporter"
+            #- "cl-bootnode"
         - name: Remove data dirs
           file:
             state: absent

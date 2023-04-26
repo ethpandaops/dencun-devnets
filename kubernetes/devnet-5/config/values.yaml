@@ -1,6 +1,6 @@
 # Find All + Replace all instances of these values in this entire folder to swap to a different network
 network: 4844-devnet-5
-chainId: 4844001004
+chainId: 4844001005
 
 # Actual values (change these too)
 domain: 4844-devnet-5.ethpandaops.io
