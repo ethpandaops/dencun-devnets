@@ -24,11 +24,11 @@ version: 0.0.1
 appVersion: "0.0.1"
 
 dependencies:
-- name: prysm
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.2.7
-  alias: geth-prysm-001-con
-- name: geth
+- name: lodestar
   repository: https://ethpandaops.github.io/ethereum-helm-charts
   version: 1.0.1
-  alias: geth-prysm-001-exe
+  alias: ethereumjs-lodestar-001-con
+- name: ethereumjs
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 1.0.1
+  alias: ethereumjs-lodestar-001-exe

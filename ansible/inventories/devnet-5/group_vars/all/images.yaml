@@ -3,7 +3,7 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-fa9c263
   lodestar: g11tech/lodestar:blobs-2467
   nimbus: statusim/nimbus-eth2:amd64-latest # needs update
-  prysm: ethpandaops/prysm:eip4844-651ceeb
+  prysm: ethpandaops/prysm:eip4844-8efb57c
   teku: ethpandaops/teku:4844-interop-297d15c # needs update
   # Execution layer clients
   besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
