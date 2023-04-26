@@ -75,7 +75,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
@@ -106,7 +106,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-geth"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {

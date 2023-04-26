@@ -21,6 +21,8 @@ forkmon:
     kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-5.ethpandaops.io
     name: prysm-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: prysm-geth-1
     kind: "rpc"
   # Lighthouse
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
@@ -31,6 +33,9 @@ forkmon:
     kind: "rpc"
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-5.ethpandaops.io
     name: lighthouse-erigon-1
+    kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-geth-1
     kind: "rpc"
   # Lodestar
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
