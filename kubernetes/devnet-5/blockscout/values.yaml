@@ -44,8 +44,8 @@ blockscout:
     DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/blockscout
     SECRET_KEY_BASE: RMgI4C1HSkxsEjdhtGMfwAHfyT6CKWXOgzCboJflfSm4jeAlic52io05KB6mqzc5
     ETHEREUM_JSONRPC_VARIANT: ethereumjs
-    ETHEREUM_JSONRPC_HTTP_URL: http://ethereumjs-lodestar-001-exe:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://ethereumjs-lodestar-001-exe:8546
+    ETHEREUM_JSONRPC_HTTP_URL: http://rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+    ETHEREUM_JSONRPC_WS_URL: ws://rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-5
     BLOCK_TRANSFORMER: base
