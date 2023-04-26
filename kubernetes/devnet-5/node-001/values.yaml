@@ -35,6 +35,7 @@ geth-prysm-001-exe:
   - --ws.api="eth,net,engine,web3,txpool"
   - --http.api="eth,net,engine,web3,txpool"
   - --syncmode=full
+  - --port=30303
   - --gcmode archive
 
   initContainers:
