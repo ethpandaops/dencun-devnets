@@ -10,9 +10,9 @@ blobscan-indexer:
     - name: MONGODB_DB
       value: blobscan
     - name: EXECUTION_NODE_URL
-      value: http://ethereumjs-lodestar-001-exe:8545
+      value: http://geth-prysm-001-exe:8545
     - name: BEACON_NODE_RPC
-      value: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+      value: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
 
 blobscan:
   fullnameOverride: blobscan

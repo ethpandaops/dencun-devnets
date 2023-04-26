@@ -1,17 +1,17 @@
-ethereumjs-lodestar-001-exe:
-  fullnameOverride: ethereumjs-lodestar-001-exe
+geth-prysm-001-exe:
+  fullnameOverride: geth-prysm-001-exe
   image:
-    repository: g11tech/ethereumjs
-    tag: blobs-b6b63
+    repository: ethpandaops/geth
+    tag: mdehoog-eip4844-7d7c642
 
   podLabels:
     network: 4844-devnet-5
     testnet: 4844-devnet-5
     ethereum_network: 4844-devnet-5
     ethereum_role: execution
-    consensus_client: lodestar
-    execution_client: ethereumjs
-    ethereum_instance: ethereumjs-lodestar-001
+    consensus_client: prysm
+    execution_client: geth
+    ethereum_instance: geth-prysm-001
 
   resources:
     requests:
@@ -31,22 +31,15 @@ ethereumjs-lodestar-001-exe:
 
   extraArgs:
   - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
-  - --gethGenesis=/data/genesis.json
-  - --rpcAddr=0.0.0.0 
-  - --rpcCors="*"
-  - --rpc 
-  - --rpcPort=8545
-  - --rpcEngine
-  - --rpcEngineAddr=0.0.0.0
-  - --rpcEnginePort=8551
-  - --ws
-  - --wsAddr=0.0.0.0
-  - --wsPort=8546
-  - --wsEnginePort=8552
+  - --networkid="$(cat /data/chainid.txt)"
+  - --ws.api="eth,net,engine,web3,txpool"
+  - --http.api="eth,net,engine,web3,txpool"
+  - --syncmode=full
+  - --gcmode archive
 
   initContainers:
   - name: init-genesis
-    image: g11tech/ethereumjs:blobs-b6b63
+    image: ethpandaops/geth:mdehoog-eip4844-7d7c642
     imagePullPolicy: IfNotPresent
     securityContext:
       runAsNonRoot: false
@@ -63,6 +56,7 @@ ethereumjs-lodestar-001-exe:
           wget -O /data/bootnodes.txt $BOOTNODE_URI;
           apk update && apk add jq;
           cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
+          geth init --datadir /data /data/genesis.json;
           touch /data/genesis_init_done;
           echo "genesis init done";
         else
@@ -73,12 +67,12 @@ ethereumjs-lodestar-001-exe:
       - name: storage
         mountPath: "/data"
 
-ethereumjs-lodestar-001-con:
-  fullnameOverride: ethereumjs-lodestar-001-con
+geth-prysm-001-con:
+  fullnameOverride: geth-prysm-001-con
 
   image:
-    repository: ethpandaops/lodestar
-    tag: eip4844-651ceeb
+    repository: ethpandaops/prysm
+    tag: eip4844-8efb57c
     pullPolicy: Always
 
   mode: "beacon"
@@ -88,9 +82,9 @@ ethereumjs-lodestar-001-con:
     testnet: 4844-devnet-5
     ethereum_network: 4844-devnet-5
     ethereum_role: consensus
-    consensus_client: lodestar
-    execution_client: ethereumjs
-    ethereum_instance: ethereumjs-lodestar-001
+    consensus_client: prysm
+    execution_client: geth
+    ethereum_instance: geth-prysm-001
 
   resources:
     requests:
@@ -112,23 +106,23 @@ ethereumjs-lodestar-001-con:
   - sh
   - -ac
   - >
-    beacon
-        --paramsFile=/data/testnet_spec/config.yaml
-        --genesisStateFile=/data/testnet_spec/genesis.ssz
-        --bootnodes="$(tr '\n' ',' < /data/testnet_spec/bootstrap_nodes.txt)"
-        --network.connectToDiscv5Bootnodes
-        --rest.port=4000
-        --execution.urls=http://ethereumjs-lodestar-001-exe:8551
-        --rest
-        --rest.address=0.0.0.0
-        --rest.cors="*"
-        --enr.ip=$(POD_IP)
-        --metrics
-        --rest.namespace *
-        --enr.udp 9000
-        --metrics.port=8080
-        --eth1.depositContractDeployBlock=0
-        --jwt-secret="/data/jwt.hex"
+    exec /app/cmd/beacon-chain/beacon-chain
+    --accept-terms-of-use=true
+    --datadir=/data
+    --p2p-host-ip=$(POD_IP)
+    --p2p-tcp-port=13000
+    --p2p-udp-port=13000
+    --rpc-host=0.0.0.0
+    --rpc-port=4000
+    --jwt-secret=/data/jwt.hex
+    --grpc-gateway-host=0.0.0.0
+    --grpc-gateway-port=3500
+    --monitoring-host=0.0.0.0
+    --monitoring-port=8080
+    --bootstrap-node="enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
+    --genesis-state=/data/testnet_spec/genesis.ssz
+    --chain-config-file=/data/testnet_spec/config.yaml
+    --execution-endpoint=http://geth-prysm-001-exe:8551
 
   initContainers:
   - name: init-genesis

@@ -23,12 +23,12 @@ version: 0.0.1
 # It is recommended to use it with quotes.
 appVersion: "0.0.1"
 
-# dependencies:
-# - name: lodestar
-#   repository: https://ethpandaops.github.io/ethereum-helm-charts
-#   version: 1.0.1
-#   alias: ethereumjs-lodestar-001-con
-# - name: ethereumjs
-#   repository: https://ethpandaops.github.io/ethereum-helm-charts
-#   version: 1.0.1
-#   alias: ethereumjs-lodestar-001-exe
+dependencies:
+- name: prysm
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 1.0.1
+  alias: geth-prysm-001-con
+- name: geth
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 1.0.1
+  alias: geth-prysm-001-exe
