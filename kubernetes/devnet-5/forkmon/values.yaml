@@ -13,45 +13,38 @@ forkmon:
             pathType: Prefix
   endpoints:
   # Prysm
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+  - addr: https://rpc.prysm-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: prysm-ethereumjs-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-    name: prysm-nethermind-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-5.ethpandaops.io
-    name: prysm-erigon-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
-    name: prysm-geth-1
-    kind: "rpc"
-  # Lighthouse
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
-    name: lighthouse-ethereumjs-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-    name: lighthouse-nethermind-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-5.ethpandaops.io
-    name: lighthouse-erigon-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
-    name: lighthouse-geth-1
-    kind: "rpc"
-  # Lodestar
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
-    name: lodestar-ethereumjs-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-    name: lodestar-nethermind-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.4844-devnet-5.ethpandaops.io
-    name: lodestar-erigon-1
-    kind: "rpc"
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
-    name: lodestar-geth-1
-    kind: "rpc"
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: prysm-nethermind-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: prysm-erigon-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: prysm-geth-1
+  # # Lighthouse
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lighthouse-ethereumjs-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lighthouse-nethermind-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lighthouse-erigon-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lighthouse-geth-1
+  # # Lodestar
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lodestar-ethereumjs-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lodestar-nethermind-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lodestar-erigon-1
+  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
+  #   name: lodestar-geth-1
 
   thirdparty_endpoints: []
+
+  apikeys:
+    username: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets-node_ingress.username}>"
+    password: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets-node_ingress.password}>"
 
   config: |
     # How often to reload data from the nodes
@@ -78,7 +71,8 @@ forkmon:
     [[clients]]
       url = {{ .addr | quote }}
       name = {{ .name | quote }}
-      kind = {{ .kind | quote }}
+      kind = "rpc"
+      auth_headers = ["{{ $.Values.apikeys.username }}":"{{ $.Values.apikeys.password }}"]
     {{- end }}
     # Third party client configuration doesn't require url
     # Kind can vary between infura, alchemy or etherscan
