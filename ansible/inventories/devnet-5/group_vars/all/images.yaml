@@ -3,12 +3,12 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-fa9c263
   lodestar: g11tech/lodestar:blobs-2467
   nimbus: statusim/nimbus-eth2:amd64-latest # needs update
-  prysm: ethpandaops/prysm:eip4844-9c0c3f5
+  prysm: ethpandaops/prysm:eip4844-651ceeb
   teku: ethpandaops/teku:4844-interop-297d15c # needs update
   # Execution layer clients
   besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
-  geth: ethpandaops/geth:mdehoog-eip4844-47cf187
-  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-2d1be62
+  geth: ethpandaops/geth:mdehoog-eip4844-7d7c642
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-6ba1117
   ethereumjs: g11tech/ethereumjs:blobs-b6b63
   nethermind: nethermindeth/nethermind:eip-4844-v5
 
