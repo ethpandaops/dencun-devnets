@@ -26,10 +26,11 @@ testnet-homepage:
     ## General information
     ### Key split
     ```
-    0-9000 - EthPandaOps
-    9000-9500 - EthPandsOps
-    9500 - 10000 - Client Teams (50 per team) - Contact EF DevOps if you want to run a validator!
+    0-1000 - EthPandaOps
     ```
+
+    ## Network Spec
+    https://hackmd.io/@inphi/HJZo4vQGn#
 
     ## Ansible setup
     https://github.com/ethpandaops/4844-testnet
