@@ -1,7 +1,7 @@
-geth-prysm-001-exe:
-  fullnameOverride: geth-prysm-001-exe
+erigon-prysm-001-exe:
+  fullnameOverride: erigon-prysm-001-exe
   image:
-    repository: ethpandaops/geth
+    repository: ethpandaops/erigon
     tag: roberto-bayardo-eip-4844-6ba1117
 
   podLabels:
@@ -10,8 +10,8 @@ geth-prysm-001-exe:
     ethereum_network: 4844-devnet-5
     ethereum_role: execution
     consensus_client: prysm
-    execution_client: geth
-    ethereum_instance: geth-prysm-001
+    execution_client: erigon
+    ethereum_instance: erigon-prysm-001
 
   resources:
     requests:
@@ -39,7 +39,7 @@ geth-prysm-001-exe:
 
   initContainers:
   - name: init-genesis
-    image: ethpandaops/geth:mdehoog-eip4844-20d3ce8
+    image: ethpandaops/erigon:roberto-bayardo-eip-4844-6ba1117
     imagePullPolicy: IfNotPresent
     securityContext:
       runAsNonRoot: false
@@ -56,7 +56,7 @@ geth-prysm-001-exe:
           wget -O /data/bootnodes.txt $BOOTNODE_URI;
           apk update && apk add jq;
           cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
-          geth init --datadir /data /data/genesis.json;
+          erigon init --datadir /data /data/genesis.json;
           touch /data/genesis_init_done;
           echo "genesis init done";
         else
@@ -67,8 +67,8 @@ geth-prysm-001-exe:
       - name: storage
         mountPath: "/data"
 
-geth-prysm-001-con:
-  fullnameOverride: geth-prysm-001-con
+erigon-prysm-001-con:
+  fullnameOverride: erigon-prysm-001-con
 
   image:
     repository: ethpandaops/prysm
@@ -83,8 +83,8 @@ geth-prysm-001-con:
     ethereum_network: 4844-devnet-5
     ethereum_role: consensus
     consensus_client: prysm
-    execution_client: geth
-    ethereum_instance: geth-prysm-001
+    execution_client: erigon
+    ethereum_instance: erigon-prysm-001
 
   resources:
     requests:
@@ -122,7 +122,7 @@ geth-prysm-001-con:
     --bootstrap-node="enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
     --genesis-state=/data/testnet_spec/genesis.ssz
     --chain-config-file=/data/testnet_spec/config.yaml
-    --execution-endpoint=http://geth-prysm-001-exe:8551
+    --execution-endpoint=http://erigon-prysm-001-exe:8551
 
   initContainers:
   - name: init-genesis
