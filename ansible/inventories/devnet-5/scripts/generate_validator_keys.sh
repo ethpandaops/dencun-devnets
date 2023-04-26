@@ -46,4 +46,13 @@ function prep_group {
   done
 }
 
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "lodestar-ethereumjs" 200      # 600
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "lodestar-ethereumjs" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lodestar-nethermind" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "lodestar-erigon" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lighthouse-ethereumjs" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "lighthouse-nethermind" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-erigon" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-ethereumjs" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "prysm-nethermind" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 8 1 "prysm-erigon" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "extra" 100

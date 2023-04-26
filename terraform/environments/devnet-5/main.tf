@@ -50,7 +50,7 @@ variable "digitalocean_project_name" {
 
 variable "digitalocean_ssh_key_name" {
   type    = string
-  default = "shared-devops-eth2"
+  default = "barnabasbusa"
 }
 
 variable "digitalocean_vpcs" {
@@ -76,7 +76,6 @@ variable "digitalocean_vm_groups" {
       id = "lighthouse-geth"
       vms = {
         //"1" = {  }
-        //"2" = {  }
       },
     },
     {
@@ -94,13 +93,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        //"1" = {  }
+        "1" = {}
       },
     },
     {
       id = "lighthouse-erigon"
       vms = {
-        //"1" = {  }
+        "1" = {}
       },
     },
     // Prysm combos
@@ -108,9 +107,6 @@ variable "digitalocean_vm_groups" {
       id = "prysm-geth"
       vms = {
         //"1" = {  }
-        //"2" = {  }
-        //"3" = {  }
-        //"4" = {  }
       },
     },
     {
@@ -122,26 +118,26 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-nethermind"
       vms = {
-        //"1" = { size = "s-8vcpu-16gb-amd" }
+        "1" = {}
       },
     },
     {
       id = "prysm-ethereumjs"
       vms = {
-        //"1" = {  }
+        "1" = {}
       },
     },
     {
       id = "prysm-erigon"
       vms = {
-        //"1" = {  }
+        "1" = {}
       },
     },
     // Lodestar combos
     {
       id = "lodestar-geth"
       vms = {
-        "1" = {}
+       //"1" = {}
       }
     },
     {
@@ -160,8 +156,6 @@ variable "digitalocean_vm_groups" {
       id = "lodestar-ethereumjs"
       vms = {
         "1" = {}
-        "2" = {}
-        "3" = {}
       }
     },
     {
