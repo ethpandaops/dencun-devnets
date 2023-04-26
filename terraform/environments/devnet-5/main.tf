@@ -137,7 +137,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-geth"
       vms = {
-       //"1" = {}
+        //"1" = {}
       }
     },
     {
