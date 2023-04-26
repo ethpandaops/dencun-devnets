@@ -68,7 +68,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "bootnode"
       vms = {
-        "1" = {  }
+        "1" = {}
       }
     },
     // Lighthouse combos
@@ -88,7 +88,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = { }
+        "1" = {}
       },
     },
     {
@@ -141,7 +141,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-geth"
       vms = {
-        "1" = {  }
+        "1" = {}
       }
     },
     {
@@ -153,21 +153,21 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = {  }
+        "1" = {}
       }
     },
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = {  }
-        "2" = {  }
-        "3" = {  }
+        "1" = {}
+        "2" = {}
+        "3" = {}
       }
     },
     {
       id = "lodestar-erigon"
       vms = {
-        "1" = {  }
+        "1" = {}
       }
     },
     // Nimbus combos
