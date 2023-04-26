@@ -1,5 +1,5 @@
 apiVersion: v2
-name: eip4844-devnet-4
+name: eip4844-devnet-5
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
