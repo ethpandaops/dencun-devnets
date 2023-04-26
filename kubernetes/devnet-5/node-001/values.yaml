@@ -2,7 +2,7 @@ geth-prysm-001-exe:
   fullnameOverride: geth-prysm-001-exe
   image:
     repository: ethpandaops/geth
-    tag: mdehoog-eip4844-20d3ce8
+    tag: roberto-bayardo-eip-4844-6ba1117
 
   podLabels:
     network: 4844-devnet-5
@@ -72,7 +72,7 @@ geth-prysm-001-con:
 
   image:
     repository: ethpandaops/prysm
-    tag: eip4844-1-08a910e
+    tag: eip4844-651ceeb
     pullPolicy: Always
 
   mode: "beacon"

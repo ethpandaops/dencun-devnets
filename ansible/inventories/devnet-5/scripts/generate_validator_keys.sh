@@ -46,13 +46,13 @@ function prep_group {
   done
 }
 
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "lodestar-ethereumjs" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lodestar-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "lodestar-erigon" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lighthouse-ethereumjs" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "lighthouse-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-erigon" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-ethereumjs" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "prysm-nethermind" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 8 1 "prysm-erigon" 100
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "extra" 100
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "lodestar-ethereumjs" 100 # 0 - 99
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lodestar-nethermind" 100 # 100 - 199
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "lodestar-erigon" 100 # 200 - 299
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lighthouse-ethereumjs" 100 # 300 - 399
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "lighthouse-nethermind" 100 # 400 - 499
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-erigon" 100 # 500 - 599
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-ethereumjs" 100 # 600 - 699
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "prysm-nethermind" 100 # 700 - 799
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 8 1 "prysm-erigon" 100 # 800 - 899
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "extra" 100 # 900 - 999
