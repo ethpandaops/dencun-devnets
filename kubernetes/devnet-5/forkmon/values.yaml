@@ -42,6 +42,9 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.4844-devnet-5.ethpandaops.io
     name: lodestar-erigon-1
     kind: "rpc"
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-geth-1
+    kind: "rpc"
 
   thirdparty_endpoints: []
 

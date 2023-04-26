@@ -137,7 +137,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-geth"
       vms = {
-        //"1" = {}
+        "1" = {tags="no_validator_keys"}
       }
     },
     {
@@ -442,6 +442,7 @@ resource "local_file" "ansible_inventory" {
           for key, server in digitalocean_droplet.main : "do.${key}" => {
             ip       = "${server.ipv4_address}"
             group    = split(".", key)[0]
+            tags     = "${server.tags}"
             hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
             cloud    = "digitalocean"
             region   = "${server.region}"

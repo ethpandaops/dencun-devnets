@@ -5,7 +5,11 @@ ethereum_network_name=${ethereum_network_name}
 [${replace(gid, "-", "_")}]
 %{ for key, host in hosts ~}
 %{ if host.group == gid ~}
+%{ if contains(host.tags, "no_validator_keys") ~}
+${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region} ethereum_node_cl_validator_enabled=false
+%{ else ~}
 ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region}
+%{ endif ~}
 %{ endif ~}
 %{ endfor ~}
 
