@@ -1,0 +1,150 @@
+testnet-homepage:
+  fullnameOverride: homepage
+
+  replicas: 1
+
+  image:
+    pullPolicy: Always
+    repository: ethpandaops/ethereum-testnet-homepage
+
+  resources:
+    requests:
+      cpu: 33m
+      memory: 64Mi
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: 4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customMarkdown: |-
+    ## General information
+    ### Key split
+    ```
+
+    0-1000 - EthPandaOps
+    ```
+
+    ## Network Spec
+    https://hackmd.io/@inphi/HJZo4vQGn#
+
+    ## Ansible setup
+    https://github.com/ethpandaops/4844-testnet
+
+    ## Client versions
+    https://notes.ethereum.org/@samcm/eip4844-devnet-5
+
+    enode for execution clients:
+    ```sh
+    - "enode://2c697b4ee37a63ee5b5663511121125574a12eaf306ac9f532e4a163729157cbff7ea155eabde89dcc877aae476ad4f8e2f20192d05de9115053d839d958f073@188.166.69.205:30303"
+    - "enode://e349436a6cb618c0d10c25b120eddbab8d7b1f2ffb176fb17e534e79f4e24092fccf42077c1d72e7244f342c7147b325417ef00a637f478bd1426ad38fe99e81@159.223.217.81:30303"
+    ```
+
+    enr for consensus clients:
+    ```sh
+    - "enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
+    - "enr:-MS4QDPBabaTc8ieXJbi0XmIIwwNODQbUX4vn5EiDn1SJ9RWHr6GwMFOivD2NmFfB8xnX4aKtL13ngbK6RcYUydmCTMJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDGtzSqUEhEBf__________gmlkgnY0gmlwhLymRc2Jc2VjcDI1NmsxoQJibuRb1qr76OpfSNMxPXjh8ZmSgGIB6vdHiBpgFnKgt4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
+    - "enr:-Ly4QPkqu4tkU1g1J6d4SNO0zoSmjcsR3lFBRRmN4vziZfzNZJI4etFAOH86S_CQAwD4OYUFojJxUqVlb1w45kIVp38Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDGtzSqUEhEBf__________gmlkgnY0gmlwhJ_f2VGJc2VjcDI1NmsxoQK2YhW-8TXvOoUiBJyGtn0Dg64FZyOXPUNFXMaam6uuq4hzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+    ```
+
+
+
+    ## Genesis configuration
+    ### Execution layer clients
+    ```sh
+    https://config.4844-devnet-5.ethpandaops.io/el/bootnodes
+    https://config.4844-devnet-5.ethpandaops.io/el/genesis.json
+    https://config.4844-devnet-5.ethpandaops.io/el/chainspec.json
+    ```
+    ### Consensus layer clients
+    ```sh
+    https://config.4844-devnet-5.ethpandaops.io/cl/bootnodes
+    https://config.4844-devnet-5.ethpandaops.io/cl/config.yaml
+    https://config.4844-devnet-5.ethpandaops.io/cl/genesis.ssz
+    https://config.4844-devnet-5.ethpandaops.io/cl/deploy_block.txt
+    https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract.txt
+    https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract_block.txt
+    ```
+    
+
+
+
+  customArgs:
+    - -b
+    - https://4844-devnet-5.ethpandaops.io
+
+  config:
+    baseURL: https://4844-devnet-5.ethpandaops.io
+    languageCode: en-us
+    title: 4844-devnet-5
+    theme: PaperMod
+    markup:
+      highlight:
+        codeFences: true
+        guessSyntax: true
+        lineNos: false
+        style: monokai
+    params:
+      disableThemeToggle: true
+      defaultTheme: dark
+      ethereum:
+        faucetUrl: https://faucet.4844-devnet-5.ethpandaops.io
+        faucet2Url: https://faucet-2.4844-devnet-5.ethpandaops.io
+        rpcUrl: https://rpc.4844-devnet-5.ethpandaops.io
+        explorerUrl: https://explorer.4844-devnet-5.ethpandaops.io
+        forkmonUrl: https://forkmon.4844-devnet-5.ethpandaops.io
+        beaconexplorerUrl: https://beaconchain.4844-devnet-5.ethpandaops.io
+        checkpointSyncUrl: https://checkpoint-sync.4844-devnet-5.ethpandaops.io
+        blobscanUrl: https://blobscan.4844-devnet-5.ethpandaops.io
+        ethstatsUrl: https://ethstats.4844-devnet-5.ethpandaops.io
+        chainName: "4844-devnet-5"
+        chainId: "4844001004"
+        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-5
+      metamask:
+        enabled: true
+      logo:
+        enabled: false
+        url: https://i.imgur.com/M0gEdpw.png
+      assets:
+        favicon: https://i.imgur.com/M0gEdpw.png
+        favicon16x16: https://i.imgur.com/M0gEdpw.png
+        favicon32x32: https://i.imgur.com/M0gEdpw.png
+        apple_touch_icon: https://i.imgur.com/M0gEdpw.png
+        safari_pinned_tab: https://i.imgur.com/M0gEdpw.png
+
+      links:
+      - name: "Testnet Spec"
+        dataLookup: github
+      - name: "JSON RPC"
+        dataLookup: rpcUrl
+      - name: "Explorer"
+        dataLookup: explorerUrl
+      # - name: "Beaconchain explorer"
+      #   dataLookup: beaconexplorerUrl
+      # - name: "Transaction explorer"
+      #   dataLookup: explorerUrl
+      # - name: "Checkpoint Sync"
+      #   dataLookup: checkpointSyncUrl
+      - name: "Faucet 1"
+        dataLookup: faucetUrl
+      - name: "Faucet 2"
+        dataLookup: faucet2Url  
+      - name: "Forkmon"
+        dataLookup: forkmonUrl
+      - name: "Blobscan"
+        dataLookup: blobscanUrl
+      - name: "Ethstats"
+        dataLookup: ethstatsUrl
+    menu:
+      main:
+        - identifier: ethereum-website
+          name: ethereum.org
+          url: https://ethereum.org
+          weight: 30
+    disableKinds: ["taxonomy", "taxonomyTerm"]
+    copyright: "This page is "

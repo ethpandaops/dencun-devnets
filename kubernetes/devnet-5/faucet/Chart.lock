@@ -1,0 +1,6 @@
+dependencies:
+- name: fauceth
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.2.2
+digest: sha256:89042085e3ec61d8824dbcc17c48a476aa32c94a49e99989c6d5e4f76abc85e6
+generated: "2023-01-26T11:09:52.483929+01:00"

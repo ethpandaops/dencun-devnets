@@ -1,0 +1,17 @@
+default_ethereum_client_images:
+  # Consensus layer clients
+  lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-fa9c263
+  lodestar: g11tech/lodestar:blobs-2467
+  nimbus: statusim/nimbus-eth2:amd64-latest # needs update
+  prysm: ethpandaops/prysm:eip4844-651ceeb
+  teku: ethpandaops/teku:4844-interop-297d15c # needs update
+  # Execution layer clients
+  besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
+  geth: ethpandaops/geth:mdehoog-eip4844-7d7c642
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-6ba1117
+  ethereumjs: g11tech/ethereumjs:blobs-b6b63
+  nethermind: nethermindeth/nethermind:eip-4844-v5
+
+default_tooling_images:
+  xatu_sentry: ethpandaops/xatu:0.0.31
+  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.20.0
