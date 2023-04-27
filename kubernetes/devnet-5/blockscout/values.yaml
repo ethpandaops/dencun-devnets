@@ -71,8 +71,8 @@ blockscout:
       - sh
       - -ace
       - >
-        GENESIS_URI=https://config.4844-devnet-5.ethpandaops.io/el/genesis.json;
-        wget --user-agent="Mozilla" -O /config-update/genesis.json $GENESIS_URI;
+        GENESIS_URI=https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/genesis.json;
+        wget -O /config-update/genesis.json $GENESIS_URI;
         echo "got genesis";
       volumeMounts:
         - name: config-update
