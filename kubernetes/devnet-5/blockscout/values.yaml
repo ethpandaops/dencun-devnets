@@ -71,9 +71,8 @@ blockscout:
       - sh
       - -ace
       - >
-        apk add curl
-        GENESIS_URI=https://config.4844-devnet-5.ethpandaops.io/genesis.json;
-        curl -o /config-update/genesis.json $GENESIS_URI;
+        GENESIS_URI=https://config.4844-devnet-5.ethpandaops.io/el/genesis.json;
+        wget -O /config-update/genesis.json $GENESIS_URI;
         echo "got genesis";
       volumeMounts:
         - name: config-update
