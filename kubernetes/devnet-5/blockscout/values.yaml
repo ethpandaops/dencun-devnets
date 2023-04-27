@@ -6,10 +6,9 @@ blockscout:
       cpu: 3000m
       memory: 5Gi
 
-  image:
+  image: 
     repository: blockscout/blockscout
-    tag: sha256:939a6bea1afd33c3c55807ad2ca4c1e412dcbc065459d6bca2b071992af9ecf9
-
+    tag: "latest@sha256:939a6bea1afd33c3c55807ad2ca4c1e412dcbc065459d6bca2b071992af9ecf9"
   ingress:
     enabled: true
 
