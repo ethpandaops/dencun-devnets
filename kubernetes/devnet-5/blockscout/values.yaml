@@ -72,7 +72,7 @@ blockscout:
       - -ace
       - >
         GENESIS_URI=https://config.4844-devnet-5.ethpandaops.io/el/genesis.json;
-        wget -O /config-update/genesis.json $GENESIS_URI;
+        wget --user-agent="Mozilla" -O /config-update/genesis.json $GENESIS_URI;
         echo "got genesis";
       volumeMounts:
         - name: config-update
