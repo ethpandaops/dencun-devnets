@@ -23,7 +23,7 @@ geth-prysm-001-exe:
 
   p2pNodePort:
     enabled: true
-    port: 31220
+    port: 33221
 
   persistence:
     enabled: true
@@ -35,7 +35,6 @@ geth-prysm-001-exe:
   - --ws.api="eth,net,engine,web3,txpool"
   - --http.api="eth,net,engine,web3,txpool"
   - --syncmode=full
-  - --port=30303
   - --gcmode archive
 
   initContainers:
