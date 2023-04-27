@@ -22,8 +22,8 @@ rpc-proxy:
             pathType: Prefix
 
   args:
-    - --url=http://geth-prysm-001-exe:8545
-    - --wsurl=http://geth-prysm-001-exe:8546
+    - --url=http://services-4844-devnet-5-node-001-execution:8545
+    - --wsurl=ws://services-4844-devnet-5-node-001-execution:8546
     - --rpm=10000
 
   config: |
