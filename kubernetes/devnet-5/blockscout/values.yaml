@@ -43,8 +43,8 @@ blockscout:
     DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/blockscout
     SECRET_KEY_BASE: RMgI4C1HSkxsEjdhtGMfwAHfyT6CKWXOgzCboJflfSm4jeAlic52io05KB6mqzc5
     ETHEREUM_JSONRPC_VARIANT: geth
-    ETHEREUM_JSONRPC_HTTP_URL: http://services-4844-devnet-5-node-001-execution-0:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://services-4844-devnet-5-node-001-execution-0:8546
+    ETHEREUM_JSONRPC_HTTP_URL: http://services-4844-devnet-5-node-001-execution:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://services-4844-devnet-5-node-001-execution:8546
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-5
     BLOCK_TRANSFORMER: base
