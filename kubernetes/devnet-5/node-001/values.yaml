@@ -1,5 +1,4 @@
-geth-prysm-001:
-  fullnameOverride: geth-prysm-001
+geth-prysm:
   global:
     main:
       network: 4844-devnet-5
@@ -10,6 +9,7 @@ geth-prysm-001:
       enabled: false
   #Geth
   geth:
+    nameOverride: geth-prysm
     enabled: true
     image:
       repository: ethpandaops/geth
@@ -73,6 +73,7 @@ geth-prysm-001:
           mountPath: "/data"
   # Prysm
   prysm:
+    nameOverride: prysm-geth
     enabled: true
     image:
       repository: ethpandaops/prysm
