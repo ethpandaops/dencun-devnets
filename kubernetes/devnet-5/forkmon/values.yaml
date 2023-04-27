@@ -1,6 +1,8 @@
 forkmon:
   fullnameOverride: forkmon
-
+  image: 
+    repository: holiman/nodemonitor
+    tag: latest@sha256:5cd609761065b8b1d7d6e91cc11725df94188d939378ef3aa97fbf68fe006374
   ingress:
     enabled: true
 
@@ -11,40 +13,37 @@ forkmon:
         paths:
           - path: /
             pathType: Prefix
+  network: 4844-devnet-5
   endpoints:
   # Prysm
-  - addr: https://rpc.prysm-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: prysm-ethereumjs-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: prysm-nethermind-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: prysm-erigon-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: prysm-geth-1
-  # # Lighthouse
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lighthouse-ethereumjs-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lighthouse-nethermind-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lighthouse-erigon-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lighthouse-geth-1
-  # # Lodestar
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lodestar-ethereumjs-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lodestar-nethermind-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lodestar-erigon-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
-  #   name: lodestar-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+    name: prysm-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-5.ethpandaops.io
+    name: prysm-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: prysm-geth-1
+  # Lighthouse
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-geth-1
+  # Lodestar
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-geth-1
 
   thirdparty_endpoints: []
-
-  apikeys:
-    username: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets-node_ingress.username}>"
-    password: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets-node_ingress.password}>"
 
   config: |
     # How often to reload data from the nodes
@@ -69,10 +68,9 @@ forkmon:
     # Local or non third party connection require rpc kind
     {{- range .Values.endpoints }}
     [[clients]]
-      url = {{ .addr | quote }}
+      url  = {{ .addr | quote }}
       name = {{ .name | quote }}
       kind = "rpc"
-      auth_headers = ["{{ $.Values.apikeys.username }}":"{{ $.Values.apikeys.password }}"]
     {{- end }}
     # Third party client configuration doesn't require url
     # Kind can vary between infura, alchemy or etherscan
