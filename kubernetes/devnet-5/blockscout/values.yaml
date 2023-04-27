@@ -82,6 +82,7 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
+    postgresqlDatabase: blockscout
     resources:
       requests:
         cpu: 3000m
