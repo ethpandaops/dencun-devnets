@@ -83,7 +83,9 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
-    image: postgres:14
+    image: 
+      repository: postgres
+      tag: 14
     resources:
       requests:
         cpu: 3000m
