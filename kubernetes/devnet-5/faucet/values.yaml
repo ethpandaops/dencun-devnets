@@ -46,7 +46,7 @@ fauceth:
         "chain": "4844Eth4",
         "icon": "ethereum",
         "rpc": [
-          "http://services-4844-devnet-5-node-001-execution:8545"
+          "http://geth-prysm-001:8545"
         ],
         "faucets": [],
         "nativeCurrency": {
