@@ -27,4 +27,4 @@ dependencies:
 - name: ethereum-node
   repository: https://ethpandaops.github.io/ethereum-helm-charts
   version: 0.0.1
-  alias: geth-prysm-001
+  alias: node-001
