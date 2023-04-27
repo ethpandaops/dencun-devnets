@@ -56,8 +56,8 @@ fauceth:
         },
         "infoURL": "https://ethereum.org",
         "shortName": "eth",
-        "chainId": 4844001004,
-        "networkId": 4844001004,
+        "chainId": 4844001005,
+        "networkId": 4844001005,
         "slip44": 60,
         "ens": {
           "registry":"0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
