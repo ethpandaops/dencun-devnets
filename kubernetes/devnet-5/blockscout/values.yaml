@@ -83,6 +83,8 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
+    image:
+      tag: 15-debian-11
     postgresqlDatabase: blockscout
     resources:
       requests:
