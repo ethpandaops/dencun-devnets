@@ -5,22 +5,6 @@ geth-prysm-001:
       network: 4844-devnet-5
     checkpointSync:
       enabled: false
-    clientArgs:
-      network:
-        4844-devnet-5:
-          execution:
-            geth:
-              - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
-              - --networkid="$(cat /data/chainid.txt)"
-              - --ws.api="eth,net,engine,web3,txpool"
-              - --http.api="eth,net,engine,web3,txpool"
-              - --syncmode=full
-              - --gcmode archive
-          consensus:
-            prysm:
-              - --bootstrap-node="enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
-              - --genesis-state=/data/testnet_spec/genesis.ssz
-              - --chain-config-file=/data/testnet_spec/config.yaml
   #Geth
   geth:
     enabled: true
@@ -48,6 +32,13 @@ geth-prysm-001:
       limits:
         cpu: 3000m
         memory: 7Gi
+    extraArgs:
+      - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
+      - --networkid="$(cat /data/chainid.txt)"
+      - --ws.api="eth,net,engine,web3,txpool"
+      - --http.api="eth,net,engine,web3,txpool"
+      - --syncmode=full
+      - --gcmode archive
     initContainers:
     - name: init-genesis
       image: ethpandaops/geth:mdehoog-eip4844-7d7c642
@@ -106,6 +97,10 @@ geth-prysm-001:
     persistence:
       enabled: true
       size: 50Gi
+    extraArgs:
+      - --bootstrap-node="enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
+      - --genesis-state=/data/testnet_spec/genesis.ssz
+      - --chain-config-file=/data/testnet_spec/config.yaml
     initContainers:
     - name: init-genesis
       image: alpine:latest
