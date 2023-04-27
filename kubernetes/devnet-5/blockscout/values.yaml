@@ -7,8 +7,8 @@ blockscout:
       memory: 5Gi
 
   image:
-    repository: blockscout/blockscout
-    tag: latest
+    repository: skylenet/blockscout
+    tag: v4.0.0-beta
 
   ingress:
     enabled: true
