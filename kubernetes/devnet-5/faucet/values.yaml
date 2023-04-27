@@ -1,6 +1,3 @@
-network: 4844-devnet-5
-chainid: 4844001005
-
 fauceth:
   fullnameOverride: fauceth
 
@@ -22,8 +19,8 @@ fauceth:
   secretEnv:
     APP_AMOUNT: "32080000000000000000" # 32.08 ETH
     APP_IMAGEURL: "https://i.imgur.com/M0gEdpw.png"
-    APP_TITLE: "{{ tpl .Values.network }} Faucet"
-    APP_CHAINS: "{{ tpl .Values.chainid }}"
+    APP_TITLE: "4844-devnet-5 Faucet"
+    APP_CHAINS: "4844001005"
     APP_LOGGING: "VERBOSE"
     APP_ETHKEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_private_key}>"
     HCAPTCHA_SECRET: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.secret_key}>"
@@ -45,7 +42,7 @@ fauceth:
     - >
       echo '
       [{
-        "name": "{{ tpl .Values.network }}",
+        "name": "4844-devnet-5",
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
@@ -59,8 +56,8 @@ fauceth:
         },
         "infoURL": "https://ethereum.org",
         "shortName": "eth",
-        "chainId": {{ tpl .Values.chainid }},
-        "networkId": {{ tpl .Values.chainid }},
+        "chainId": 4844001005,
+        "networkId": 4844001005,
         "slip44": 60,
         "ens": {
           "registry":"0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
