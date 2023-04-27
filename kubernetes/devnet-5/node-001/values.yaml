@@ -29,7 +29,7 @@ geth-prysm-001:
       tag: mdehoog-eip4844-7d7c642
     p2pNodePort:
       enabled: true
-      port: 33221
+      port: 31888
     persistence:
       enabled: true
       size: 50Gi
