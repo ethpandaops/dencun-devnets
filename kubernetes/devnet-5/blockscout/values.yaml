@@ -7,8 +7,8 @@ blockscout:
       memory: 5Gi
 
   image:
-    repository: skylenet/blockscout
-    tag: v4.0.0-beta
+    repository: blockscout/blockscout
+    tag: latest
 
   ingress:
     enabled: true
@@ -83,6 +83,7 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
+    image: postgres:14
     resources:
       requests:
         cpu: 3000m
@@ -93,5 +94,5 @@ blockscout:
         enabled: true
     persistence:
       enabled: true
-      size: 100Gi
+      size: 50Gi
       storageClass: "do-block-storage"
