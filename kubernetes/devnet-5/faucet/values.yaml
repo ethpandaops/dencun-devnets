@@ -11,7 +11,7 @@ fauceth:
     className: ingress-nginx-public
 
     hosts:
-      - host: faucet.{{ tpl .Values.network }}.ethpandaops.io
+      - host: faucet.4844-devnet-5.ethpandaops.io
         paths:
           - path: /
             pathType: Prefix
