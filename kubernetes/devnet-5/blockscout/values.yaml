@@ -9,6 +9,7 @@ blockscout:
   image: 
     repository: blockscout/blockscout
     tag: "latest"
+    pullPolicy: Always
   ingress:
     enabled: true
 
