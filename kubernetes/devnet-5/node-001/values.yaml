@@ -102,7 +102,7 @@ node-001:
       enabled: true
       size: 50Gi
     extraArgs:
-      - --execution-endpoint={{ tpl .Values.global.main.engineEndpoint . }}
+      - --execution-endpoint=http://geth-prysm-001:8551
       - --bootstrap-node="enr:-Iq4QAw-ZQb0IiosZgDDcK5ehLs1XmwT0BWU1E1W3ZnhlAAwAE3I46dgCsCbeB5QUwcpDmpFfveTfKF7-tiIg0KWGjqGAYXoIfe6gmlkgnY0gmlwhKEjXcqJc2VjcDI1NmsxoQN4HpB2GMFY2MzwO9hGFjqRG47OX4hGDliAG-mJNWkEr4N1ZHCCIyk"
       - --bootstrap-node="enr:-MS4QDPpPzkDJ65iCq9dthJZ5p49OljTrtbHN_D3f97T-BKjNMdd2MQi4Vu7N--dmotiLZDgiw8BnrdDxkd_ICgvneIHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCzMmyVQEhEBQEAAAAAAAAAgmlkgnY0gmlwhIbRx2aJc2VjcDI1NmsxoQJoQoV-vbiuItOSCsczcQ9vvL_IoaNaslVeqUpnyxP0jYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
       - --bootstrap-node="enr:-Ly4QAncaUrjSVfGXB1hve34TtNOMUNKzL_QFD3c1kgbrh6raYEbXFfojLIRi_0cR29HsARtxVmNWFmXrDLwK1IwmZ0Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCzMmyVQEhEBQEAAAAAAAAAgmlkgnY0gmlwhIbRV56Jc2VjcDI1NmsxoQMQ_2uv2pI_3AWzLFpb65WCPrcdLbktj0mjqdn-oHIU3YhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
