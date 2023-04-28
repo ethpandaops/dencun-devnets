@@ -26,7 +26,6 @@ testnet-homepage:
     ## General information
     ### Key split
     ```
-
     0-1000 - EthPandaOps
     ```
 
@@ -40,37 +39,25 @@ testnet-homepage:
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-5/group_vars/all/images.yaml
 
     enode for execution clients:
-    ```sh
-    - enode://304ca79ed7ae81492d4c9e5513bebbfd2b113751b85b54821e5be176e56190159a25c227ceaffef1e02772642ec1f514724687a06001487091e15429049a4bb0@134.209.199.102:30303
-    ```
-
+    https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
+   
     enr for consensus clients:
-    ```sh
-    - "enr:-MS4QBEfqmQ7zLz7EuRC8xvAgbvuy5Cn0VrBVU27U6Rtq5nzPg1W2gyahsvCSie68A1gCyLamhK1BhOpxw8oDfiTNiEJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpA9CJoRUEhEBf__________gmlkgnY0gmlwhIbRx2aJc2VjcDI1NmsxoQJoQoV-vbiuItOSCsczcQ9vvL_IoaNaslVeqUpnyxP0jYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
-    ```
-
+    https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/boot_enr.txt
 
 
     ## Genesis configuration
     ### Execution layer clients
-    ```sh
-    https://config.4844-devnet-5.ethpandaops.io/el/bootnodes
-    https://config.4844-devnet-5.ethpandaops.io/el/genesis.json
-    https://config.4844-devnet-5.ethpandaops.io/el/chainspec.json
-    ```
-    ### Consensus layer clients
-    ```sh
-    https://config.4844-devnet-5.ethpandaops.io/cl/bootnodes
-    https://config.4844-devnet-5.ethpandaops.io/cl/config.yaml
-    https://config.4844-devnet-5.ethpandaops.io/cl/genesis.ssz
-    https://config.4844-devnet-5.ethpandaops.io/cl/deploy_block.txt
-    https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract.txt
-    https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract_block.txt
-    ```
+    - https://config.4844-devnet-5.ethpandaops.io/el/genesis.json
+    - https://config.4844-devnet-5.ethpandaops.io/el/chainspec.json
     
-
-
-
+    ### Consensus layer clients
+    - https://config.4844-devnet-5.ethpandaops.io/cl/config.yaml
+    - https://config.4844-devnet-5.ethpandaops.io/cl/genesis.ssz
+    - https://config.4844-devnet-5.ethpandaops.io/cl/deploy_block.txt
+    - https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract.txt
+    - https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract_block.txt
+    
+    
   customArgs:
     - -b
     - https://4844-devnet-5.ethpandaops.io
@@ -123,8 +110,6 @@ testnet-homepage:
         dataLookup: explorerUrl
       # - name: "Beaconchain explorer"
       #   dataLookup: beaconexplorerUrl
-      # - name: "Transaction explorer"
-      #   dataLookup: explorerUrl
       # - name: "Checkpoint Sync"
       #   dataLookup: checkpointSyncUrl
       - name: "Faucet 1"
