@@ -38,11 +38,11 @@ testnet-homepage:
     ## Client versions
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-5/group_vars/all/images.yaml
 
-    enode for execution clients:
-    https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
+    ENODE for execution clients:
+    - https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
    
-    enr for consensus clients:
-    https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/boot_enr.txt
+    ENR for consensus clients:
+    - https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-5/boot_enr.txt
 
 
     ## Genesis configuration
