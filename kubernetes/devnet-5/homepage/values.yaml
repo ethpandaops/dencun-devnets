@@ -37,7 +37,7 @@ testnet-homepage:
     https://github.com/ethpandaops/4844-testnet
 
     ## Client versions
-    https://notes.ethereum.org/@samcm/eip4844-devnet-5
+    https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-5/group_vars/all/images.yaml
 
     enode for execution clients:
     ```sh
