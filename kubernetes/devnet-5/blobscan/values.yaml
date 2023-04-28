@@ -2,7 +2,8 @@ blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
   image:
-    tag: sha-1dc7529
+    repository: blossomlabs/blobscan
+    tag: next
 
   extraEnv:
     - name: MONGODB_URI
