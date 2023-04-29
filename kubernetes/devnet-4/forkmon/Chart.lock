@@ -1,6 +1,0 @@
-dependencies:
-- name: forkmon
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.3
-digest: sha256:3630b24259fb4cc691c53fec26b978021ad12c43f4d4037969c1301a4f417a94
-generated: "2023-01-26T11:09:59.546452+01:00"

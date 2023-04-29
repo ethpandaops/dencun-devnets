@@ -21,7 +21,7 @@ terraform {
     endpoint                    = "https://fra1.digitaloceanspaces.com"
     region                      = "us-east-1"
     bucket                      = "merge-testnets"
-    key                         = "infrastructure/4844-devnet-5/terraform.tfstate"
+    key                         = "infrastructure/4844-devnet-4/terraform.tfstate"
   }
 }
 
@@ -35,12 +35,13 @@ variable "cloudflare_api_token" {
   description = "Cloudflare API Token"
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //                                        VARIABLES
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "ethereum_network" {
   type    = string
-  default = "4844-devnet-5"
+  default = "4844-devnet-4"
 }
 
 variable "digitalocean_project_name" {
@@ -50,14 +51,14 @@ variable "digitalocean_project_name" {
 
 variable "digitalocean_ssh_key_name" {
   type    = string
-  default = "barnabasbusa"
+  default = "rafael"
 }
 
 variable "digitalocean_vpcs" {
   type = map(any)
   default = {
     "ams3" = {
-      ip_range = "10.48.46.0/24"
+      ip_range = "10.48.45.0/24"
     }
   }
 }
@@ -68,162 +69,166 @@ variable "digitalocean_vm_groups" {
     {
       id = "bootnode"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     // Lighthouse combos
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { tags = "no_validator_keys" }
+        "1" = { size = "s-4vcpu-8gb-amd" }
+        "2" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "lighthouse-besu"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = {}
+        "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "lighthouse-erigon"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     // Prysm combos
     {
       id = "prysm-geth"
       vms = {
-        "1" = { tags = "no_validator_keys" }
+        "1" = { size = "s-4vcpu-8gb-amd" }
+        "2" = { size = "s-4vcpu-8gb-amd" }
+        "3" = { size = "s-4vcpu-8gb-amd" }
+        "4" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "prysm-besu"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "prysm-nethermind"
       vms = {
-        "1" = {}
+        "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
     {
       id = "prysm-ethereumjs"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "prysm-erigon"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     // Lodestar combos
     {
       id = "lodestar-geth"
       vms = {
-        "1" = { tags = "no_validator_keys" }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "lodestar-besu"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = {}
+        "1" = { size = "s-8vcpu-16gb-amd" }
       }
     },
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "lodestar-erigon"
       vms = {
-        "1" = {}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     // Nimbus combos
     {
       id = "nimbus-geth"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "nimbus-besu"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "nimbus-nethermind"
       vms = {
-        //"1" = { }
+        "1" = { size = "s-8vcpu-16gb-amd" }
       }
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "nimbus-erigon"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     // Teku combos
     {
       id = "teku-geth"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "teku-besu"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        //"1" = { }
+        "1" = { size = "s-8vcpu-16gb-amd" }
       }
     },
     {
       id = "teku-ethereumjs"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     {
       id = "teku-erigon"
       vms = {
-        //"1" = {  }
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
   ]
@@ -236,7 +241,7 @@ variable "digitalocean_vm_groups" {
 
 locals {
   digitalocean_default_region = "ams3"
-  digitalocean_default_size   = "s-4vcpu-8gb-amd"
+  digitalocean_default_size   = "s-1vcpu-2gb-amd"
   digitalocean_default_image  = "debian-11-x64"
   digitalocean_global_tags = [
     "Owner:Devops",
@@ -442,7 +447,6 @@ resource "local_file" "ansible_inventory" {
           for key, server in digitalocean_droplet.main : "do.${key}" => {
             ip       = "${server.ipv4_address}"
             group    = split(".", key)[0]
-            tags     = "${server.tags}"
             hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
             cloud    = "digitalocean"
             region   = "${server.region}"
@@ -451,5 +455,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "../../../ansible/inventories/devnet-5/inventory.ini"
+  filename = "inventory.ini"
 }

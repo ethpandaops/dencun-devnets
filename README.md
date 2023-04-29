@@ -14,9 +14,9 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status   | Network    | Links   | Ansible                                                      | Terraform | Kubernetes
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟡 Deprecated | [devnet-4](https://4844-devnet-4.ethpandaops.io/)   | [Network config](network-configs/devnet-4) / [Inventory](https://bootnode-1.srv.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | [🔗](kubernetes/devnet-4)
+ 🔴 Off | [devnet-4](https://4844-devnet-4.ethpandaops.io/)   | [Network config](network-configs/devnet-4) / [Inventory](https://bootnode-1.srv.4844-devnet-4.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-4) | [🔗](terraform/environments/devnet-4) | [🔗](kubernetes/devnet-4)
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢 Live | [devnet-5](https://4844-devnet-5.ethpandaops.io/)   | [Network config](network-configs/devnet-5) / [Inventory](https://bootnode-1.srv.4844-devnet-5.ethpandaops.io/meta/api/v1/inventory.json)     | [🔗](ansible/inventories/devnet-5) | [🔗](terraform/environments/devnet-4) | [🔗](kubernetes/devnet-4)
+ 🟢 Live | [devnet-5](https://4844-devnet-5.ethpandaops.io/)   | [Network config](network-configs/devnet-5) / [Inventory](ansible/inventories/devnet-5/inventory.ini)     | [🔗](ansible/inventories/devnet-5) | [🔗](terraform/environments/devnet-5) | [🔗](kubernetes/devnet-5)
 
 # Development
 ## Version management for tools

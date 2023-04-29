@@ -21,18 +21,26 @@ terraform {
     endpoint                    = "https://fra1.digitaloceanspaces.com"
     region                      = "us-east-1"
     bucket                      = "merge-testnets"
-    key                         = "infrastructure/4844-devnet-4/terraform.tfstate"
+    key                         = "infrastructure/4844-devnet-5/terraform.tfstate"
   }
 }
 
-provider "cloudflare" {}
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
+
+variable "cloudflare_api_token" {
+  type        = string
+  sensitive   = true
+  description = "Cloudflare API Token"
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //                                        VARIABLES
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "ethereum_network" {
   type    = string
-  default = "4844-devnet-4"
+  default = "4844-devnet-5"
 }
 
 variable "digitalocean_project_name" {
@@ -42,14 +50,14 @@ variable "digitalocean_project_name" {
 
 variable "digitalocean_ssh_key_name" {
   type    = string
-  default = "rafael"
+  default = "barnabasbusa"
 }
 
 variable "digitalocean_vpcs" {
   type = map(any)
   default = {
     "ams3" = {
-      ip_range = "10.48.45.0/24"
+      ip_range = "10.48.46.0/24"
     }
   }
 }
@@ -60,166 +68,162 @@ variable "digitalocean_vm_groups" {
     {
       id = "bootnode"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       }
     },
     // Lighthouse combos
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
-        "2" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-besu"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       },
     },
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = { size = "s-8vcpu-16gb-amd" }
+        "1" = {}
       },
     },
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       },
     },
     {
       id = "lighthouse-erigon"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       },
     },
     // Prysm combos
     {
       id = "prysm-geth"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
-        "2" = { size = "s-4vcpu-8gb-amd" }
-        "3" = { size = "s-4vcpu-8gb-amd" }
-        "4" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "prysm-besu"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       },
     },
     {
       id = "prysm-nethermind"
       vms = {
-        "1" = { size = "s-8vcpu-16gb-amd" }
+        "1" = {}
       },
     },
     {
       id = "prysm-ethereumjs"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       },
     },
     {
       id = "prysm-erigon"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       },
     },
     // Lodestar combos
     {
       id = "lodestar-geth"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "lodestar-besu"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       },
     },
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = { size = "s-8vcpu-16gb-amd" }
+        "1" = {}
       }
     },
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       }
     },
     {
       id = "lodestar-erigon"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        "1" = {}
       }
     },
     // Nimbus combos
     {
       id = "nimbus-geth"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
     {
       id = "nimbus-besu"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       },
     },
     {
       id = "nimbus-nethermind"
       vms = {
-        "1" = { size = "s-8vcpu-16gb-amd" }
+        //"1" = { }
       }
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
     {
       id = "nimbus-erigon"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
     // Teku combos
     {
       id = "teku-geth"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
     {
       id = "teku-besu"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        "1" = { size = "s-8vcpu-16gb-amd" }
+        //"1" = { }
       }
     },
     {
       id = "teku-ethereumjs"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
     {
       id = "teku-erigon"
       vms = {
-        "1" = { size = "s-4vcpu-8gb-amd" }
+        //"1" = {  }
       }
     },
   ]
@@ -232,7 +236,7 @@ variable "digitalocean_vm_groups" {
 
 locals {
   digitalocean_default_region = "ams3"
-  digitalocean_default_size   = "s-1vcpu-2gb-amd"
+  digitalocean_default_size   = "s-4vcpu-8gb-amd"
   digitalocean_default_image  = "debian-11-x64"
   digitalocean_global_tags = [
     "Owner:Devops",
@@ -361,6 +365,13 @@ resource "digitalocean_firewall" "main" {
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
+  // Inbound rule for beaconchain explorer
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "8080"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
+
   // Allow all outbound traffic
   outbound_rule {
     protocol              = "tcp"
@@ -422,6 +433,16 @@ resource "cloudflare_record" "server_record_beacon" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "beaconchain_record" {
+  zone_id = data.cloudflare_zone.default.id
+  name    = "beaconchain.${var.ethereum_network}"
+  type    = "A"
+  value   = digitalocean_droplet.main["lighthouse-erigon.1"].ipv4_address
+  proxied = true
+  ttl     = 1
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //                          GENERATED FILES AND OUTPUTS
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -438,6 +459,7 @@ resource "local_file" "ansible_inventory" {
           for key, server in digitalocean_droplet.main : "do.${key}" => {
             ip       = "${server.ipv4_address}"
             group    = split(".", key)[0]
+            tags     = "${server.tags}"
             hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
             cloud    = "digitalocean"
             region   = "${server.region}"
@@ -446,5 +468,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "inventory.ini"
+  filename = "../../../ansible/inventories/devnet-5/inventory.ini"
 }

@@ -1,6 +1,0 @@
-dependencies:
-- name: rpc-proxy
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.1
-digest: sha256:83e0b68af72fa4673fb94ca2e03f944423710e41ac03ae20c3581b6812c3dec8
-generated: "2023-01-26T11:10:23.411075+01:00"
