@@ -74,5 +74,6 @@
 - hosts: beaconchain_explorer
   become: true
   roles:
-    - role: ../../../ansible-collection-general/roles/beaconchain_explorer_aio/
+    # - role: ../../../ansible-collection-general/roles/beaconchain_explorer_aio/
+    - role: ethpandaops.general.beaconchain_explorer_aio
       tags: [beaconchain_explorer]
