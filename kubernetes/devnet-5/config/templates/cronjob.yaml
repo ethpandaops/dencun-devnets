@@ -16,7 +16,8 @@ spec:
             - /bin/sh
             - -c
             - >
-              apk update && apk add --no-cache curl jq;
+              apk update -q && apk add -q --no-cache curl jq;
+              which jq;
               curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' \
               -H "Content-Type: application/json"  -X POST \
               https://rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io | \
