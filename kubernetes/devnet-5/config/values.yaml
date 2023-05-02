@@ -10,9 +10,11 @@ nginxlogin:
 
 ## Config controls the files that are served by the `config.` subdomain.
 
-local:
+locals:
   - path: /enr.txt
+    upstream: enr.txt
   - path: /enode.txt
+    upstream: enode.txt
 config:
   enabled: true
   files:
