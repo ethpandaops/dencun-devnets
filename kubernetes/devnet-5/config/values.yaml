@@ -6,7 +6,7 @@ chainId: 4844001005
 domain: 4844-devnet-5.ethpandaops.io
 
 nginxlogin:
-  combined: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.nodeingress.combined}>"
+  combined: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>"
 
 ## Config controls the files that are served by the `config.` subdomain.
 config:
