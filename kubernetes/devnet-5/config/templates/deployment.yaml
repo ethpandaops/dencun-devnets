@@ -32,11 +32,7 @@ spec:
               ansible all -i /config/inventory.ini --list-hosts > /config/hosts.txt;
               echo "Created hosts.txt";
               cat /config/hosts.txt;
-              # create empty enode/enr files to start
-              null > /config/enode.txt;
-              null > /config/enr.txt;
-              # make call to each node to get enode and enr and write to file
-              while read host; do echo "Making request to ${host}..."; curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json"  -X POST "https://rpc.${host}.srv.4844-devnet-5.ethpandaops.io" | jq -r '.result.enode' >> /config/enode.txt; curl -s -u $COMBINED https://bn.${host}.srv.4844-devnet-5.ethpandaops.io/eth/v1/node/identity | jq -r .'data.enr' >> /config/enr.txt; done < /config/hosts.txt;
+              while read host; do echo "Making request to ${host}..."; curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json"  -X POST "https://rpc.${host}.srv.4844-devnet-5.ethpandaops.io" | jq -r '.result.enode' >> /config/enode.txt; curl -s -u $COMBINED https://bn.${host}.srv.4844-devnet-5.ethpandaops.io/eth/v1/node/identity | jq -r .'data.enr' >> /config/enr.txt; done < /config/hosts.txt
               echo "Wrote enode to /config/enode.txt";
               echo "Wrote enr to /config/enr.txt";
           volumeMounts:
