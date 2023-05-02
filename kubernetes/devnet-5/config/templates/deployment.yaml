@@ -21,7 +21,7 @@ spec:
             - /bin/sh
             - -c
             - >
-              apk update -q && apk add -q --no-cache curl jq ansible;
+              apk update -q && apk add -q --no-cache curl jq ansible
               curl -s https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/ansible/inventories/devnet-5/inventory.ini > /config/inventory.ini
               ansible all -i /config/inventory.ini --list-hosts > /config/hosts.txt
               while read host; do echo "Making request to ${host}..."; curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json"  -X POST "https://rpc.${host}.srv.4844-devnet-5.ethpandaops.io" | jq -r '.result.enode' >> /config/enode.txt; curl -s -u $COMBINED https://bn.${host}.srv.4844-devnet-5.ethpandaops.io/eth/v1/node/identity | jq -r .'data.enr' >> /config/enr.txt; done < /config/hosts.txt
