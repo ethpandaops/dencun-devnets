@@ -70,3 +70,9 @@
   roles:
     - role: eth_inventory_web
       tags: [eth_inventory_web]
+
+- hosts: beaconchain_explorer
+  become: true
+  roles:
+    - role: ../../../ansible-collection-general/roles/beaconchain_explorer_aio/
+      tags: [beaconchain_explorer]

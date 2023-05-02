@@ -26,7 +26,7 @@ nethermind_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 nethermind_container_command_extra_args:
   - --Init.ChainSpecPath=/network-config/chainspec.json
-  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug
+  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
   - --Discovery.Bootnodes={{ ethereum_el_bootnode }}
   - --Init.IsMining=false
   - --Pruning.Mode=None
