@@ -9,19 +9,16 @@ spec:
       template:
         spec:
           containers:
-          - name: enode
+          - name: enode-enr
             image: alpine:latest
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
             - -c
             - >
-              apk update -q && apk add -q --no-cache curl jq
-              /usr/bin/jq .result.enode > /config/enode.txt << EOF
-              $(curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' \
-                -H "Content-Type: application/json"  -X POST \
-                https://rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io)
-              EOF
+              apk update -q && apk add -q --no-cache curl jq;
+              curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json"  -X POST https://rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io | jq -r '.result.enode' > /config/enode.txt;
+              curl -s -u $COMBINED https://bn.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io/eth/v1/node/identity | jq -r .'data.enr' > /config/enr.txt;
             volumeMounts:
               - name: config
                 mountPath: /config
