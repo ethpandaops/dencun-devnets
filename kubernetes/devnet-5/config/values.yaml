@@ -12,7 +12,7 @@ nginxlogin:
 
 local:
   - path: /enr.txt
-  - path: /boot_enr.txt
+  - path: /enode.txt
 config:
   enabled: true
   files:
