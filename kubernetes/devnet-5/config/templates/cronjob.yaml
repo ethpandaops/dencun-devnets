@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: enode
-            image: badouralix/curl-jq:latest
+            image: badouralix/curl-jq
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
