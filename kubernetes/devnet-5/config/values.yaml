@@ -1,5 +1,5 @@
 # Find All + Replace all instances of these values in this entire folder to swap to a different network
-network: 4844-devnet-5
+network: devnet-5
 chainId: 4844001005
 
 # Actual values (change these too)
@@ -9,20 +9,17 @@ nginxlogin:
   combined: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>"
 
 ## Config controls the files that are served by the `config.` subdomain.
+
+local:
+  - path: /enr.txt
+  - path: /boot_enr.txt
 config:
   enabled: true
-
   files:
     # Support all files as they appear in the github repo
     - path: /besu.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/besu.json
-    - path: /boot_enr.txt
-      upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/boot_enr.txt
-    - path: /bootstrap_nodes.txt
-      upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootstrap_nodes.txt
     - path: /chainspec.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/chainspec.json
@@ -52,9 +49,6 @@ config:
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/parseBeaconState.json
 
     # Execution Layer specific redirects
-    - path: /el/bootnodes
-      upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
     - path: /el/besu.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/besu.json
@@ -66,9 +60,6 @@ config:
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/genesis.json
     
     # Consensus Layer specific redirects
-    - path: /cl/bootnodes
-      upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootstrap_nodes.txt
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/config.yaml
