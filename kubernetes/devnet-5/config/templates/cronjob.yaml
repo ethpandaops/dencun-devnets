@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: enode-job
 spec:
-  schedule: "* * * * *"
+  schedule: "1 * * * *"
   jobTemplate:
     spec:
       template:
@@ -16,12 +16,12 @@ spec:
             - /bin/sh
             - -c
             - >
-              apk update -q && apk add -q --no-cache curl jq;
-              which curl;
-              curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' \
-              -H "Content-Type: application/json"  -X POST \
-              https://rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io | \
-              /usr/bin/jq .result.enode > /config/enode.txt;
+              apk update -q && apk add -q --no-cache curl jq
+              /usr/bin/jq .result.enode > /config/enode.txt << EOF
+              $(curl -s -u $COMBINED --data '{"method":"admin_nodeInfo","params":[],"id":1,"jsonrpc":"2.0"}' \
+                -H "Content-Type: application/json"  -X POST \
+                https://rpc.prysm-nethermind-1.srv.4844-devnet-5.ethpandaops.io)
+              EOF
             volumeMounts:
               - name: config
                 mountPath: /config
