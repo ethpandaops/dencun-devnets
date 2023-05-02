@@ -81,7 +81,7 @@ testnet-homepage:
         rpcUrl: https://rpc.4844-devnet-5.ethpandaops.io
         explorerUrl: https://explorer.4844-devnet-5.ethpandaops.io
         forkmonUrl: https://forkmon.4844-devnet-5.ethpandaops.io
-        beaconexplorerUrl: https://beaconchain.4844-devnet-5.ethpandaops.io
+        beaconexplorerUrl: http://134.209.87.158:8080/
         checkpointSyncUrl: https://checkpoint-sync.4844-devnet-5.ethpandaops.io
         blobscanUrl: https://blobscan.4844-devnet-5.ethpandaops.io
         ethstatsUrl: https://ethstats.4844-devnet-5.ethpandaops.io
@@ -105,10 +105,12 @@ testnet-homepage:
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl
-      - name: "Explorer"
+      - name: "Explorer (not working)"
         dataLookup: explorerUrl
-      # - name: "Beaconchain explorer"
-      #   dataLookup: beaconexplorerUrl
+      - name: "Beaconchain explorer"
+        dataLookup: beaconexplorerUrl
+      - name: "Blobscan (not working)"
+        dataLookup: blobscanUrl
       # - name: "Checkpoint Sync"
       #   dataLookup: checkpointSyncUrl
       - name: "Faucet 1"
@@ -117,8 +119,6 @@ testnet-homepage:
         dataLookup: faucet2Url  
       - name: "Forkmon"
         dataLookup: forkmonUrl
-      - name: "Blobscan"
-        dataLookup: blobscanUrl
       - name: "Ethstats"
         dataLookup: ethstatsUrl
     menu:
