@@ -1,49 +1,49 @@
-blobscan-indexer:
-  fullnameOverride: blobscan-indexer
+# blobscan-indexer:
+#   fullnameOverride: blobscan-indexer
 
-  image:
-    repository: blossomlabs/blobscan
-    tag: next
+#   image:
+#     repository: blossomlabs/blobscan
+#     tag: next
 
-  extraEnv:
-    - name: MONGODB_URI
-      value: mongodb://root:root@blobscan-mongodb:27017
-    - name: MONGODB_DB
-      value: blobscan
-    - name: EXECUTION_NODE_URL
-      value: http://geth-prysm-001:8545
-    - name: BEACON_NODE_RPC
-      value: http://prysm-geth-001:4000
+#   extraEnv:
+#     - name: MONGODB_URI
+#       value: mongodb://root:root@blobscan-mongodb:27017
+#     - name: MONGODB_DB
+#       value: blobscan
+#     - name: EXECUTION_NODE_URL
+#       value: http://geth-prysm-001:8545
+#     - name: BEACON_NODE_RPC
+#       value: http://prysm-geth-001:4000
 
-blobscan:
-  fullnameOverride: blobscan
+# blobscan:
+#   fullnameOverride: blobscan
 
-  extraEnv:
-    - name: MONGODB_URI
-      value: mongodb://root:root@blobscan-mongodb:27017
-    - name: MONGODB_DB
-      value: blobscan
+#   extraEnv:
+#     - name: MONGODB_URI
+#       value: mongodb://root:root@blobscan-mongodb:27017
+#     - name: MONGODB_DB
+#       value: blobscan
 
-  ingress:
-    enabled: true
+#   ingress:
+#     enabled: true
 
-    className: ingress-nginx-public
+#     className: ingress-nginx-public
 
-    hosts:
-      - host: blobscan.4844-devnet-5.ethpandaops.io
-        paths:
-          - path: /
-            pathType: Prefix
+#     hosts:
+#       - host: blobscan.4844-devnet-5.ethpandaops.io
+#         paths:
+#           - path: /
+#             pathType: Prefix
 
-blobscan-mongodb:
-  fullnameOverride: blobscan-mongodb
+# blobscan-mongodb:
+#   fullnameOverride: blobscan-mongodb
 
-  architecture: standalone
+#   architecture: standalone
 
-  auth:
-    rootUser: root
-    rootPassword: root
+#   auth:
+#     rootUser: root
+#     rootPassword: root
 
-  persistence:
-    enabled: true
-    size: 50Gi
+#   persistence:
+#     enabled: true
+#     size: 50Gi

@@ -23,14 +23,14 @@ version: 0.0.1
 # It is recommended to use it with quotes.
 appVersion: "0.0.1"
 
-dependencies:
-- name: mongodb
-  repository: https://charts.bitnami.com/bitnami
-  version: 13.9.4
-  alias: blobscan-mongodb
-- name: blobscan
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
-- name: blobscan-indexer
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
+# dependencies:
+# - name: mongodb
+#   repository: https://charts.bitnami.com/bitnami
+#   version: 13.9.4
+#   alias: blobscan-mongodb
+# - name: blobscan
+#   repository: https://ethpandaops.github.io/ethereum-helm-charts
+#   version: 0.1.0
+# - name: blobscan-indexer
+#   repository: https://ethpandaops.github.io/ethereum-helm-charts
+#   version: 0.1.0
