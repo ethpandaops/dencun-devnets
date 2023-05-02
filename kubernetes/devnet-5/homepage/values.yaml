@@ -83,7 +83,7 @@ testnet-homepage:
         forkmonUrl: https://forkmon.4844-devnet-5.ethpandaops.io
         beaconexplorerUrl: http://134.209.87.158:8080/
         checkpointSyncUrl: https://checkpoint-sync.4844-devnet-5.ethpandaops.io
-        blobscanUrl: https://blobscan.4844-devnet-5.ethpandaops.io
+        blobscanUrl: https://blobscan.com
         ethstatsUrl: https://ethstats.4844-devnet-5.ethpandaops.io
         chainName: "4844-devnet-5"
         chainId: "4844001005"
