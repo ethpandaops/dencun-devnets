@@ -109,7 +109,7 @@ testnet-homepage:
         dataLookup: explorerUrl
       - name: "Beaconchain explorer"
         dataLookup: beaconexplorerUrl
-      - name: "Blobscan (not working)"
+      - name: "Blobscan"
         dataLookup: blobscanUrl
       # - name: "Checkpoint Sync"
       #   dataLookup: checkpointSyncUrl
