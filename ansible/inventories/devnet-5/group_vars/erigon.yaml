@@ -23,3 +23,4 @@ erigon_container_command_extra_args:
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 erigon_init_custom_network: true
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
+erigon_container_pull: true

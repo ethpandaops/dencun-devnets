@@ -25,4 +25,4 @@ ethereumjs_container_command_extra_args:
   - --maxPeers=75
   - --isSingleNode=true
   - --logLevel=debug
-
+ethereumjs_container_pull: true

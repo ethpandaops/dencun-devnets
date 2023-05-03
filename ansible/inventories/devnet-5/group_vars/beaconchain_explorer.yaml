@@ -9,7 +9,7 @@ beaconchain_explorer_aio_url_geth: http://{{ beaconchain_explorer_remote_ethereu
 beaconchain_explorer_aio_sql_init_file_url: https://raw.githubusercontent.com/gobitfly/eth2-beaconchain-explorer/master/db/migrations/20230330131622_init_database.sql
 beaconchain_explorer_aio_cleanup_all: false
 beaconchain_explorer_aio_bigtable_external_enabled: false 
-beaconchain_explorer_aio_network: "{{ docker_network_name }}"
+beaconchain_explorer_aio_networks: ["{{ docker_network_name }}", "beaconchain-explorer-aio_default"]
 beaconchain_frontend_config: |
   # All config options can be found in here: https://github.com/gobitfly/eth2-beaconchain-explorer/blob/master/types/config.go
   chain:
