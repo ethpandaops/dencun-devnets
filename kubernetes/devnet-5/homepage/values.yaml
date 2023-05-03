@@ -44,6 +44,9 @@ testnet-homepage:
     ENR for consensus clients:
     - http://config.4844-devnet-5.ethpandaops.io/enr.txt
 
+    Discovery address:
+    - http://config.4844-devnet-5.ethpandaops.io/discovery.txt
+
     ## Genesis configuration
     ### Execution layer clients
     - https://config.4844-devnet-5.ethpandaops.io/el/genesis.json
