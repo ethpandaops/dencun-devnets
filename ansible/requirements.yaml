@@ -15,9 +15,6 @@ roles:
     version: 5.2.5 # Don't update this. Newer versions contain a bug.
   - name: robertdebock.fail2ban
     version: "4.2.3"
-  - src: nickhammond.logrotate
-    version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
-
 
 collections:
   - name: ansible.posix
