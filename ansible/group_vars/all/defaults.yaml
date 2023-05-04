@@ -22,19 +22,6 @@ fail2ban_logtarget: /var/log/fail2ban.log
 fail2ban_maxretry: 10
 fail2ban_bantime: 600
 
-# role: nickhammond.logrotate
-logrotate_scripts:
-  - name: docker-containers
-    path: /var/lib/docker/containers/*/*.log
-    options:
-      - daily
-      - size 20M
-      - rotate 4
-      - missingok
-      - copytruncate
-      - nodateext
-      - maxage 5
-
 # role: ethpandaops.general.docker_network
 docker_network_name: shared
 docker_networks_shared:
