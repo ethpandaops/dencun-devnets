@@ -18,8 +18,6 @@
       tags: [init-server, docker_cleanup]
     - role: ethpandaops.general.docker_network
       tags: [init-server, docker_network]
-    - role: nickhammond.logrotate
-      tags: [init-server, logrotate]
     - role: ethpandaops.general.node_exporter
       tags: [init-server, node_exporter]
     - role: ethpandaops.general.prometheus
