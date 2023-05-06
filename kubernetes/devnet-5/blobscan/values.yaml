@@ -1,0 +1,69 @@
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+
+  image:
+    repository: blossomlabs/blobscan
+    tag: next
+
+  extraEnv:
+    - name: SECRET_KEY
+      value: supersecret
+    - name: EXECUTION_NODE_URL
+      value: http://geth-prysm-001:8545
+    - name: BEACON_NODE_RPC
+      value: http://prysm-geth-001:4000
+    - name: BLOBSCAN_API_ENDPOINT
+      value: http://blobscan-api
+
+blobscan-web:
+  fullnameOverride: blobscan-web
+
+  extraEnv:
+    - name: DATABASE_URL
+      value: postgresql://blobscan:s3cr3t@blobscan-postgres:5432/blobscan_dev?schema=public
+    - name: NEXTAUTH_URL
+      value: http://localhost:3000
+    - name: NEXTAUTH_SECRET
+      value: supersecret
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: blobscan.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+blobscan-api:
+  fullnameOverride: blobscan-api
+
+  extraEnv:
+    - name: BLOBSCAN_API_PORT
+      value: 3001
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: blobscan-api.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+postgres:
+  fullnameOverride: blobscan-postgres
+
+  architecture: standalone
+
+  auth:
+    rootUser: root
+    rootPassword: root
+
+  persistence:
+    enabled: true
+    size: 50Gi
