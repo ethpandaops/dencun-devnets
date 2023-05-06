@@ -61,9 +61,11 @@ postgres:
   architecture: standalone
 
   auth:
-    rootUser: root
-    rootPassword: root
+    username: blobscan
+    password: s3cr3t
+    database: blobscan_dev
 
-  persistence:
-    enabled: true
-    size: 50Gi
+  primary:
+    persistence:
+      enabled: true
+      size: 50Gi
