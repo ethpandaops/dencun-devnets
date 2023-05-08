@@ -5,9 +5,8 @@ tx_fuzz_container_command:
   - spam
   - --no-al
   - --rpc={{ tx_fuzz_rpc_url }}
-  - --sk={{ tx_fuzz_private_key }}
+  - --sk={{ tx_fuzz_privkey }}
   - --txcount=1
 
 tx_fuzz_rpc_url: http://geth:8545
-tx_fuzz_private_key: "{{ tx_fuzz_privkey }}"
 tx_fuzz_container_networks: "{{ docker_networks_shared }}"
