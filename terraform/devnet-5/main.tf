@@ -168,7 +168,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "nimbus-geth"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       }
     },
     {
@@ -180,19 +180,19 @@ variable "digitalocean_vm_groups" {
     {
       id = "nimbus-nethermind"
       vms = {
-        //"1" = { }
+        "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "nimbus-erigon"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       }
     },
     // Teku combos
@@ -468,5 +468,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "../../../ansible/inventories/devnet-5/inventory.ini"
+  filename = "../../ansible/inventories/devnet-5/inventory.ini"
 }

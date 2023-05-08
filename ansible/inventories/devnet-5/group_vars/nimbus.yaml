@@ -4,6 +4,7 @@ bootstrap_default_user_authorized_keys_github_team_cl:
   - tersec
   - etan-status
   - arnetheduck
+  - henridf
 
 # role: validator_keys
 validator_keys_sync_files:
@@ -26,13 +27,32 @@ nimbus_container_volumes:
   - "{{ nimbus_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 
+nimbus_container_command:
+  - --non-interactive=true
+  - --data-dir=/data
+  - --log-level=INFO
+  - --listen-address=0.0.0.0
+  - --udp-port={{ nimbus_ports_p2p_udp }}
+  - --tcp-port={{ nimbus_ports_p2p_tcp }}
+  - --nat=extip:{{ ansible_host }}
+  - --enr-auto-update=false
+  - --rest
+  - --rest-port={{ nimbus_ports_http_beacon }}
+  - --rest-address=0.0.0.0
+  - --rest-allow-origin=*
+  - --web3-url={{ nimbus_execution_engine_endpoint }}
+  - --jwt-secret=/execution-auth.jwt
+  - --metrics
+  - --metrics-port={{ nimbus_ports_metrics }}
+  - --metrics-address=0.0.0.0
+
 nimbus_container_command_extra_args: >-
   {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
 nimbus_container_command_extra_simple_args:
   - --network=/network-config
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
-  - --log-level=INFO
+  - --log-level=DEBUG
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 nimbus_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
