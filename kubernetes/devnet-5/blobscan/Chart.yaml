@@ -24,15 +24,12 @@ version: 0.0.2
 appVersion: "0.0.1"
 
 dependencies:
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 14
 - name: blobscan
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  repository: https://blobscan.github.io/blobscan-helm-charts
   version: 0.2.0
 - name: blobscan-api
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  repository: https://blobscan.github.io/blobscan-helm-charts
   version: 0.2.0
 - name: blobscan-indexer
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  repository: https://blobscan.github.io/blobscan-helm-charts
   version: 0.2.0

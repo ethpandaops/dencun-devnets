@@ -1,12 +1,12 @@
 dependencies:
-- name: mongodb
-  repository: https://charts.bitnami.com/bitnami
-  version: 13.9.4
 - name: blobscan
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.0
+- name: blobscan-api
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.0
 - name: blobscan-indexer
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
-digest: sha256:c332fdd5bbf664832ca6ff82856e38355d3c66a93458d7a1d6251e5d07a6fab6
-generated: "2023-04-19T12:28:55.822879507Z"
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.0
+digest: sha256:d84a025ec1448ce7bc9bb6bb94d3f2e5c04e35761c67470e6454666ee12d6a94
+generated: "2023-05-14T13:06:08.691993076+02:00"
