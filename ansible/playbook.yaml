@@ -74,3 +74,9 @@
   roles:
     - role: ethpandaops.general.beaconchain_explorer_aio
       tags: [beaconchain_explorer]
+
+- hosts: tx_fuzz
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz]
