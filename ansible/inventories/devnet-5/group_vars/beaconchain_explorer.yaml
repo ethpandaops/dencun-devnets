@@ -2,7 +2,7 @@
 
 beaconchain_explorer_remote_ethereum_node: "erigon"
 beaconchain_explorer_remote_consensus_node: "lighthouse"
-beaconchain_explorer_aio_docker_image_default: gobitfly/eth2-beaconchain-explorer:v1.20.0
+beaconchain_explorer_aio_docker_image_default: guybrush/eth-explorer:4844-1
 beaconchain_explorer_aio_url_erigon: http://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
 beaconchain_explorer_aio_url_erigon_ws: ws://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
 beaconchain_explorer_aio_url_geth: http://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
