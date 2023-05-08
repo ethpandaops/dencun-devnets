@@ -1,6 +1,9 @@
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lodestar-ethereumjs-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lodestar-geth-1']['ethereum_node_fact_cl_enr'] }}"
+
 
 ethereum_el_bootnode: "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
 

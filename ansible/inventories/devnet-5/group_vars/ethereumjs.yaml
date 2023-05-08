@@ -21,7 +21,7 @@ ethereumjs_container_volumes:
 ethereumjs_container_command_extra_args:
   - --gethGenesis=/network-config/genesis.json
   - --bootnodes={{ ethereum_el_bootnode }}
-  - --syncMode=full
+  - --sync=full
   - --maxPeers=75
   - --isSingleNode=true
   - --logLevel=debug

@@ -18,7 +18,7 @@ erigon_container_command_extra_args:
   - --ws
   - --prune=htc
   - --networkid={{ ethereum_network_id }}
-  - --externalcl
+  - --db.size.limit=100GB
   - --bootnodes={{ ethereum_el_bootnode }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 erigon_init_custom_network: true

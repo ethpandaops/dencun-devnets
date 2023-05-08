@@ -15,6 +15,10 @@ forkmon:
             pathType: Prefix
   network: 4844-devnet-5
   endpoints:
+  # Rpc
+  - addr: http://geth-prysm-001:8545
+    name: rpc-geth-prysm
+
   # Prysm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: prysm-ethereumjs-1

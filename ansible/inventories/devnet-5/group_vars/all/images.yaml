@@ -8,8 +8,8 @@ default_ethereum_client_images:
   # Execution layer clients
   besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
   geth: ethpandaops/geth:mdehoog-eip4844-7d7c642
-  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-6ba1117
-  ethereumjs: g11tech/ethereumjs:blobs-b6b63
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844
+  ethereumjs: ethpandaops/ethereumjs:g11tech-fix-vmhead-corruption-9ffac67
   nethermind: nethermindeth/nethermind:eip-4844-v5
 
 default_tooling_images:
