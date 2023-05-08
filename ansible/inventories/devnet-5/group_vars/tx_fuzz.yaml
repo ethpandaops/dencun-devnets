@@ -4,9 +4,8 @@ tx_fuzz_container_image: "{{ default_tooling_images.tx_fuzz }}"
 tx_fuzz_container_command:
   - spam
   - --no-al
-  - --rpc={{ tx_fuzz_rpc_url }}
+  - --rpc=http://geth:8545
   - --sk={{ tx_fuzz_privkey }}
   - --txcount=1
 
-tx_fuzz_rpc_url: http://geth:8545
 tx_fuzz_container_networks: "{{ docker_networks_shared }}"
