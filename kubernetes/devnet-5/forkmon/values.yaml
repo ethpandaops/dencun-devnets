@@ -46,6 +46,15 @@ forkmon:
     name: lodestar-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
     name: lodestar-geth-1
+  # Nimbus
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
+    name: nimbus-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+    name: nimbus-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-erigon-1.srv.4844-devnet-5.ethpandaops.io
+    name: nimbus-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-geth-1.srv.4844-devnet-5.ethpandaops.io
+    name: nimbus-geth-1
 
   thirdparty_endpoints: []
 
