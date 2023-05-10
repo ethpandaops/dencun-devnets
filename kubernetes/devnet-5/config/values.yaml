@@ -5,18 +5,6 @@ chainId: 4844001005
 # Actual values (change these too)
 domain: 4844-devnet-5.ethpandaops.io
 
-nginxlogin:
-  combined: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>"
-
-## Config controls the files that are served by the `config.` subdomain.
-
-locals:
-  - path: /enr.txt
-    upstream: enr.txt
-  - path: /enode.txt
-    upstream: enode.txt
-  - path: /discovery.txt
-    upstream: discovery.txt
 config:
   enabled: true
   files:
@@ -33,7 +21,7 @@ config:
     - path: /deploy_block.txt
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/deploy_block.txt
-    - path: /deposit_contract.txt 
+    - path: /deposit_contract.txt
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/deposit_contract.txt
     - path: /deposit_contract_block.txt
@@ -62,7 +50,7 @@ config:
     - path: /el/genesis.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/genesis.json
-    
+
     # Consensus Layer specific redirects
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
@@ -79,3 +67,8 @@ config:
     - path: /cl/deposit_contract_block.txt
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/deposit_contract_block.txt
+
+    # Ansible generated ethereum nodes inventory
+    - path: /api/v1/nodes/inventory
+      upstream: bootnode-1.srv.4844-devnet-5.ethpandaops.io
+      target: /meta/api/v1/inventory.json
