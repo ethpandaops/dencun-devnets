@@ -46,7 +46,7 @@ testnet-homepage:
     # Getting execution layer client enodes
     curl -s https://config.4844-devnet-5.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode'
     # Getting conseus layer client ENRs
-    curl -s https://bootnode-1.srv.4844-devnet-5.ethpandaops.io/meta/api/v1/inventory.json | jq -r '.ethereum_pairs[] | .consensus.enr'
+    curl -s https://config.4844-devnet-5.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr'
     ```
 
     ## Genesis configuration
