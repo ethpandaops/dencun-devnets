@@ -1,14 +1,22 @@
 {{- if .Values.config.enabled }}
+{{- $uniqueUpstreams := dict }}
+{{- range .Values.config.files }}
+{{- $uniqueUpstreams = set $uniqueUpstreams .upstream "" }}
+{{- end }}
+
+{{- range keys $uniqueUpstreams }}
+---
 kind: Service
 apiVersion: v1
 metadata:
-  name: github-external
+  name: external-{{ . | replace "." "-" | lower | trunc 63 }}
 spec:
   type: ExternalName
-  externalName: raw.githubusercontent.com
+  externalName: {{ . }}
+{{- end }}
 
----
 {{- range .Values.config.files }}
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -28,45 +36,8 @@ spec:
         pathType: Exact
         backend:
           service:
-            name: github-external
+            name: external-{{ .upstream | replace "." "-" | lower | trunc 63 }}
             port:
               number: 443
----
 {{- end }}
-{{- end }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-web-service
-spec:
-  ports:
-  - name: http
-    port: 80
-    targetPort: 80
-  selector:
-    app: nginx-web
----
-{{- range .Values.locals }}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-config-{{ .path | replace "/" "-" | replace "." "-" | replace "_" "-" | lower }}
-  annotations:
-    kubernetes.io/ingress.class: ingress-nginx-public
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-spec:
-  rules:
-  - host: "config.{{ $.Values.domain }}"
-    http:
-      paths:
-      - path: {{ .path }}
-        pathType: Exact
-        backend:
-          service: 
-            name: nginx-web-service
-            port:
-              number: 80
----
 {{- end }}
