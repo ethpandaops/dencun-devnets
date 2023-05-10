@@ -1,4 +1,5 @@
-ethereum_cl_bootnode: "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+ethereum_cl_bootnodes:
+  - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
 
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
@@ -45,6 +46,7 @@ lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
   #- --logLevel=debug
+  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
   - --nat=true
 
