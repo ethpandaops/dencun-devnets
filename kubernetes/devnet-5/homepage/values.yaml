@@ -38,7 +38,7 @@ testnet-homepage:
     ## Client versions
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-5/group_vars/all/images.yaml
 
-    ## Ethereum node inventory (ENRs / Enodes / PeerIds)
+    ## Ethereum node inventory
     - https://config.4844-devnet-5.ethpandaops.io/api/v1/nodes/inventory
 
     Some examples on how to filter specific data from the node inventory:
