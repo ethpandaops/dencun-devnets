@@ -38,28 +38,30 @@ testnet-homepage:
     ## Client versions
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-5/group_vars/all/images.yaml
 
-    ENODE for execution clients:
-    - http://config.4844-devnet-5.ethpandaops.io/enode.txt
-   
-    ENR for consensus clients:
-    - http://config.4844-devnet-5.ethpandaops.io/enr.txt
+    ## Ethereum node inventory (ENRs / Enodes / PeerIds)
+    - https://config.4844-devnet-5.ethpandaops.io/api/v1/nodes/inventory
 
-    Discovery address:
-    - http://config.4844-devnet-5.ethpandaops.io/discovery.txt
+    Some examples on how to filter specific data from the node inventory:
+    ```sh
+    # Getting execution layer client enodes
+    curl -s https://config.4844-devnet-5.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode'
+    # Getting conseus layer client ENRs
+    curl -s https://bootnode-1.srv.4844-devnet-5.ethpandaops.io/meta/api/v1/inventory.json | jq -r '.ethereum_pairs[] | .consensus.enr'
+    ```
 
     ## Genesis configuration
     ### Execution layer clients
     - https://config.4844-devnet-5.ethpandaops.io/el/genesis.json
     - https://config.4844-devnet-5.ethpandaops.io/el/chainspec.json
-    
+
     ### Consensus layer clients
     - https://config.4844-devnet-5.ethpandaops.io/cl/config.yaml
     - https://config.4844-devnet-5.ethpandaops.io/cl/genesis.ssz
     - https://config.4844-devnet-5.ethpandaops.io/cl/deploy_block.txt
     - https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract.txt
     - https://config.4844-devnet-5.ethpandaops.io/cl/deposit_contract_block.txt
-    
-    
+
+
   customArgs:
     - -b
     - https://4844-devnet-5.ethpandaops.io
@@ -119,7 +121,7 @@ testnet-homepage:
       - name: "Faucet 1"
         dataLookup: faucetUrl
       - name: "Faucet 2"
-        dataLookup: faucet2Url  
+        dataLookup: faucet2Url
       - name: "Forkmon"
         dataLookup: forkmonUrl
       - name: "Ethstats"
