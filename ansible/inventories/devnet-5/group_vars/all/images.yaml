@@ -1,16 +1,16 @@
 default_ethereum_client_images:
   # Consensus layer clients
   lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-fa9c263
-  lodestar: g11tech/lodestar:blobs-2467
+  lodestar: g11tech/lodestar@sha256:f81469af3494fd9af86e8dabfa767b6e24863c6bfb9b791afb2c78a002b499d8 # tag:blobs-2467
   nimbus: ethpandaops/nimbus:henridf-eip4844-devnet # needs update
   prysm: ethpandaops/prysm:eip4844-8efb57c
   teku: ethpandaops/teku:4844-interop-297d15c # needs update
   # Execution layer clients
   besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
   geth: ethpandaops/geth:mdehoog-eip4844-a0cb931
-  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-52afcb4
   ethereumjs: ethpandaops/ethereumjs:fix-passing-versionedhashes-2f114e4
-  nethermind: nethermindeth/nethermind:eip-4844-v5
+  nethermind: nethermindeth/nethermind@sha256:de0e61c6e5e35c5f44453b308dd656db877fe9bcbc049fc7f5c56b08e2a22f8e # tag:eip-4844-v5
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.31
