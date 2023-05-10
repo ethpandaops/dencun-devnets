@@ -21,6 +21,9 @@ fail2ban_loglevel: INFO
 fail2ban_logtarget: /var/log/fail2ban.log
 fail2ban_maxretry: 10
 fail2ban_bantime: 600
+fail2ban_ignoreips:
+  - "127.0.0.1/8 ::1"
+  - "{{ lookup('ansible.builtin.url', 'http://ifconfig.me/ip', split_lines=False) }}/32" # Avoid banning ourself
 
 # role: ethpandaops.general.docker_network
 docker_network_name: shared
