@@ -40,4 +40,3 @@ nimbus_container_command_extra_bootnode_args: >-
 nimbus_validator_datadir: /data/nimbus-validator
 nimbus_container_validator_volumes:
   - "{{ nimbus_validator_datadir }}:/validator-data"
-nimbus_container_pull: true

@@ -35,4 +35,3 @@ nethermind_container_command_extra_args:
   - --EthStats.Name={{ inventory_hostname }}
   - --EthStats.Secret={{ ethstats_secret }}
   - --EthStats.Server=wss://{{ ethstats_url }}/api/
-nethermind_container_pull: true

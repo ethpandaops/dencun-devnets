@@ -53,4 +53,3 @@ prysm_validator_container_entrypoint:
 prysm_validator_container_command_extra_args:
   - --chain-config-file=/network-config/config.yaml
 prysm_validator_datadir: /data/prysm-validator
-prysm_container_pull: true
