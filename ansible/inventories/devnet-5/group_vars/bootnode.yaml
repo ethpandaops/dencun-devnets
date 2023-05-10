@@ -26,8 +26,10 @@ ethereumjs_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 ethereumjs_container_command_extra_args:
   - --gethGenesis=/network-config/genesis.json
-  - --syncMode=full
+  - --sync=full
   - --maxPeers=75
+  - --isSingleNode=true
+  - --logLevel=debug
 
 # role: ethpandaops.general.lodestar
 lodestar_container_image: "{{ default_ethereum_client_images.lodestar }}"
