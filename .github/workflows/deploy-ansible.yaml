@@ -16,7 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - name: Lint
+      - name: Install ansible role/collection dependencies
+        working-directory: ./ansible
+        run: ./install_dependencies.sh
+      - name: Deploy
         working-directory: ./ansible
         run: >
           ansible all -m ping

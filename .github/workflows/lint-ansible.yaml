@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
+      - name: Install ansible role/collection dependencies
+        working-directory: ./ansible
+        run: ./install_dependencies.sh
       - name: Lint
         working-directory: ./ansible
         run: >
