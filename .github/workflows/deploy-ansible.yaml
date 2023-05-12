@@ -1,0 +1,34 @@
+name: Ansible deploy
+on:
+  push:
+    branches:
+      - skylenet/ansible-ci
+    paths:
+      - 'ansible/**'
+      - '.tool-versions'
+    inputs:
+      network_name:
+        type: choice
+        required: true
+        default: devnet-5
+      options:
+        - devnet-5
+      runs_on:
+        description: The runner to use
+        type: choice
+        required: true
+        default: services-medium-cpu
+        options:
+        #- ubuntu-latest
+        - services-medium-cpu
+
+jobs:
+  ansible-deploy:
+    runs-on: ${{ inputs.runs_on }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install-deps
+      - name: Lint
+        working-directory: ./ansible
+        run: >
+          ansible all -m ping
