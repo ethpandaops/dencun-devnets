@@ -4,7 +4,7 @@ on:
     paths:
       - 'ansible/**'
       - '.tool-versions'
-      - '.github/actions/install-deps.yaml'
+      - '.github/actions/**'
       - '.github/workflows/lint-ansible.yaml'
   push:
     branches:
@@ -12,15 +12,14 @@ on:
     paths:
       - 'ansible/**'
       - '.tool-versions'
-      - '.github/actions/install-deps.yaml'
+      - '.github/actions/**'
       - '.github/workflows/lint-ansible.yaml'
 
 jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/install-deps
+      - uses: ./.github/actions/setup
       - name: Lint
         working-directory: ./ansible
         run: >

@@ -4,7 +4,7 @@ on:
     paths:
       - 'kubernetes/**'
       - '.tool-versions'
-      - '.github/actions/install-deps.yaml'
+      - '.github/actions/**'
       - '.github/workflows/lint-helm.yaml'
   push:
     branches:
@@ -12,15 +12,14 @@ on:
     paths:
       - 'kubernetes/**'
       - '.tool-versions'
-      - '.github/actions/install-deps.yaml'
+      - '.github/actions/**'
       - '.github/workflows/lint-helm.yaml'
 
 jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/install-deps
+      - uses: ./.github/actions/setup
       - name: Lint
         run: >
           helm lint kubernetes/*/*
