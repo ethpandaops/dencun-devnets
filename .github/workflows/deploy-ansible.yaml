@@ -1,4 +1,6 @@
 name: Ansible deploy
+env:
+  SOPS_AGE_KEY: ${{ secrets.AGE_KEY }}
 on:
   push:
     branches:
