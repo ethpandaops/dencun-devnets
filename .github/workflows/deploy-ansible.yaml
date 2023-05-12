@@ -14,6 +14,7 @@ jobs:
   job:
     runs-on: services-medium-cpu
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
       - name: Lint
         working-directory: ./ansible
