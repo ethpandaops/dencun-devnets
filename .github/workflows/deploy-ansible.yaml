@@ -6,6 +6,9 @@ on:
     paths:
       - 'ansible/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/deploy-ansible.yaml'
+
 
 jobs:
   ansible-deploy:

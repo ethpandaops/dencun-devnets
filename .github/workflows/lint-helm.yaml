@@ -4,12 +4,16 @@ on:
     paths:
       - 'kubernetes/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-helm.yaml'
   push:
     branches:
       - master
     paths:
       - 'kubernetes/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-helm.yaml'
 
 jobs:
   job:

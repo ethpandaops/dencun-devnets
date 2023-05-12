@@ -4,12 +4,16 @@ on:
     paths:
       - 'terraform/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-terraform.yaml'
   push:
     branches:
       - master
     paths:
       - 'terraform/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-terraform.yaml'
 
 jobs:
   job:

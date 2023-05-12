@@ -4,12 +4,16 @@ on:
     paths:
       - 'ansible/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-ansible.yaml'
   push:
     branches:
       - master
     paths:
       - 'ansible/**'
       - '.tool-versions'
+      - '.github/actions/install-deps.yaml'
+      - '.github/workflows/lint-ansible.yaml'
 
 jobs:
   job:
