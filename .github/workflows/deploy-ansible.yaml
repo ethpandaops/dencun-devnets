@@ -6,25 +6,10 @@ on:
     paths:
       - 'ansible/**'
       - '.tool-versions'
-    inputs:
-      network_name:
-        type: choice
-        required: true
-        default: devnet-5
-      options:
-        - devnet-5
-      runs_on:
-        description: The runner to use
-        type: choice
-        required: true
-        default: services-medium-cpu
-        options:
-        #- ubuntu-latest
-        - services-medium-cpu
 
 jobs:
   ansible-deploy:
-    runs-on: ${{ inputs.runs_on }}
+    runs-on: services-medium-cpu
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install-deps
