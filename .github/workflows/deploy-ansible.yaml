@@ -9,7 +9,6 @@ on:
       - '.github/actions/**'
       - '.github/workflows/deploy-ansible.yaml'
 
-
 jobs:
   job:
     runs-on: services-medium-cpu
@@ -19,6 +18,15 @@ jobs:
       - name: Install ansible role/collection dependencies
         working-directory: ./ansible
         run: ./install_dependencies.sh
+      - name: Read SSH known hosts
+        id: getversion
+        run: echo "known_hosts=$(cat ./ansible/inventories/devnet-5/known_hosts.txt)" >> $GITHUB_OUTPUT
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ steps.getversion.outputs.known_hosts }}
       - name: Deploy
         working-directory: ./ansible
         run: >

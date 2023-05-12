@@ -1,0 +1,15 @@
+- hosts: all
+  connection: local
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Update known hosts
+      ansible.builtin.known_hosts:
+        path: "{{ inventory_dir }}/known_hosts.txt"
+        key: "{{ lookup('pipe', 'ssh-keyscan -trsa ' + ansible_host) }}"
+        name: "{{ ansible_host }}"
+        state: present
+      when: lookup('config', 'DEFAULT_REMOTE_PORT') | string == "None"
+      #with_items: "{{ hostvars | dict2items }}"
+      delegate_to: 127.0.0.1
