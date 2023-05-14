@@ -6,25 +6,13 @@ blobscan-indexer:
     tag: next
 
   extraEnv:
-    - name: SECRET_KEY
-      value: supersecret
     - name: EXECUTION_NODE_URL
       value: http://geth-prysm-001:8545
     - name: BEACON_NODE_RPC
       value: http://prysm-geth-001:4000
-    - name: BLOBSCAN_API_ENDPOINT
-      value: http://blobscan-api
 
 blobscan-web:
   fullnameOverride: blobscan-web
-
-  extraEnv:
-    - name: DATABASE_URL
-      value: postgresql://blobscan:s3cr3t@blobscan-postgres:5432/blobscan_dev?schema=public
-    - name: NEXTAUTH_URL
-      value: http://localhost:3000
-    - name: NEXTAUTH_SECRET
-      value: supersecret
 
   ingress:
     enabled: true
@@ -40,10 +28,6 @@ blobscan-web:
 blobscan-api:
   fullnameOverride: blobscan-api
 
-  extraEnv:
-    - name: BLOBSCAN_API_PORT
-      value: 3001
-
   ingress:
     enabled: true
 
@@ -54,18 +38,3 @@ blobscan-api:
         paths:
           - path: /
             pathType: Prefix
-
-postgres:
-  fullnameOverride: blobscan-postgres
-
-  architecture: standalone
-
-  auth:
-    username: blobscan
-    password: s3cr3t
-    database: blobscan_dev
-
-  primary:
-    persistence:
-      enabled: true
-      size: 50Gi
