@@ -2,6 +2,7 @@ name: Ansible deploy
 concurrency: ethereum-devnet-5
 env:
   SOPS_AGE_KEY: ${{ secrets.AGE_KEY }}
+  ANSIBLE_FORCE_COLOR: "true"
 on:
   push:
     branches:
