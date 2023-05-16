@@ -44,6 +44,7 @@
     - role: eth_testnet_config
       tags: [ethereum, eth_testnet_config]
     - role: validator_keys
+      when: ethereum_node_cl_validator_enabled
       tags: [ethereum, validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]

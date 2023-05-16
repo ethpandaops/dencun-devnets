@@ -12,6 +12,12 @@ config:
     - path: /besu.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/besu.json
+    - path: /bootnode.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
+    - path: /bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootstrap_nodes.txt
     - path: /chainspec.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/chainspec.json
@@ -41,6 +47,9 @@ config:
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/parseBeaconState.json
 
     # Execution Layer specific redirects
+    - path: /el/bootnodes
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootnode.txt
     - path: /el/besu.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/besu.json
@@ -52,6 +61,9 @@ config:
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/genesis.json
 
     # Consensus Layer specific redirects
+    - path: /cl/bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/bootstrap_nodes.txt
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-5/config.yaml
