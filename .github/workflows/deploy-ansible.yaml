@@ -1,4 +1,5 @@
 name: Ansible deploy
+concurrency: ethereum-devnet-5
 env:
   SOPS_AGE_KEY: ${{ secrets.AGE_KEY }}
 on:
