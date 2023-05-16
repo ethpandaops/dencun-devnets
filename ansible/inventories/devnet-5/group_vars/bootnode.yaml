@@ -1,5 +1,6 @@
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_cl_enr'] }}"
 
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
