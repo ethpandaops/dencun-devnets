@@ -33,6 +33,10 @@ jobs:
         working-directory: ./ansible
         run: >
           ansible all -m ping
+      - name: Get ethereum nodes facts
+        working-directory: ./ansible
+        run: >
+          ansible-playbook playbook.yaml -t ethereum_node_fact_discovery
       - name: Update ethereum nodes
         working-directory: ./ansible
         run: >
