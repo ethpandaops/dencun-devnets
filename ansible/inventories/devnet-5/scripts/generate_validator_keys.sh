@@ -8,8 +8,9 @@ fi
 
 
 OUTPUT_DIR=../files/validator_keys
+mkdir -p $OUTPUT_DIR
 PRYSM_WALLET_PASSWORD="prysm"
-echo $PRYSM_WALLET_PASSWORD > ../files/validator_keys/prysm_wallet_pass.txt
+echo $PRYSM_WALLET_PASSWORD > $OUTPUT_DIR/prysm_wallet_pass.txt
 function prep_group {
   let group_base=$1
   validators_source_mnemonic="$2"
