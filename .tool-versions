@@ -3,4 +3,4 @@ ansible-lint 6.15.0
 helm 3.11.3
 shellcheck 0.9.0
 sops 3.7.3
-terraform 1.4.5
+terraform 1.4.6
