@@ -15,8 +15,7 @@ node-001:
       repository: ethpandaops/geth
       tag: mdehoog-eip4844-7d7c642
     p2pNodePort:
-      enabled: true
-      port: 31888
+      enabled: false
     persistence:
       enabled: true
       size: 50Gi
