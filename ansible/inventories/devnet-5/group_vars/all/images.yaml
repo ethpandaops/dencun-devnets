@@ -6,7 +6,7 @@ default_ethereum_client_images:
   prysm: ethpandaops/prysm:eip4844-8efb57c
   teku: ethpandaops/teku:4844-interop-297d15c # needs update
   # Execution layer clients
-  besu: ethpandaops/besu:eip-4844-interop-17a4928 # needs update
+  besu: robocopsgonemad/besu:4844-devnet-5-29f6e15
   geth: ethpandaops/geth:mdehoog-eip4844-a0cb931
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-52afcb4
   ethereumjs: ethpandaops/ethereumjs:fix-passing-versionedhashes-2f114e4
