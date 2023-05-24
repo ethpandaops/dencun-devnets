@@ -40,6 +40,8 @@ node-001:
       - --ws.api="eth,net,engine,web3,txpool"
       - --http.api="eth,net,engine,web3,txpool"
       - --ethstats=rpc-geth-prysm:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-5.ethpandaops.io
+      - --checkpoint-sync-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+      - --genesis-beacon-api-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
       - --syncmode=full
       - --gcmode archive
     initContainers:
