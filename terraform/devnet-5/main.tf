@@ -99,7 +99,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-erigon"
       vms = {
-        "1" = {size = "s-8vcpu-16gb-amd"}
+        "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
     // Prysm combos
