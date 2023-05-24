@@ -22,6 +22,7 @@ nimbus_checkpoint_sync_enabled: true
 nimbus_checkpoint_container_command_extra_args:
   - --trusted-node-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
   - --network=/network-config
+  - --backfill=false
 nimbus_checkpoint_autoremove_enabled: true
 
 nimbus_container_image: "{{ default_ethereum_client_images.nimbus }}"
@@ -40,6 +41,7 @@ nimbus_container_command_extra_simple_args:
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level=DEBUG
+  - --light-client-data-serve=false
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 nimbus_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}

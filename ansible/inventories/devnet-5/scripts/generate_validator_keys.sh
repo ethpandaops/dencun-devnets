@@ -46,14 +46,14 @@ function prep_group {
     --as-json-list=true > "$OUTPUT_DIR/$naming_prefix-$node_index/change_operations.json"
   done
 }
-
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "lodestar-ethereumjs" 100 # 0 - 99
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "lodestar-nethermind" 100 # 100 - 199
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "lodestar-erigon" 100 # 200 - 299
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "lighthouse-ethereumjs" 100 # 300 - 399
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 4 1 "lighthouse-nethermind" 100 # 400 - 499
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 1 "lighthouse-erigon" 100 # 500 - 599
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 1 "prysm-ethereumjs" 100 # 600 - 699
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 1 "prysm-nethermind" 100 # 700 - 799
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 8 1 "prysm-erigon" 100 # 800 - 899
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "extra" 100 # 900 - 999 also used on lodestar-ethereumjs for now
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "exited" 1000 # 0 - 999 - EXITED KEYS
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 1 "lodestar-ethereumjs" 100 # 0 - 99
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 1 "lodestar-nethermind" 100 # 100 - 199
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 1 "lodestar-geth" 100 # 200 - 299
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 13 1 "lighthouse-ethereumjs" 100 # 300 - 399
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "nimbus-nethermind" 100 # 400 - 499
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 1 "lighthouse-erigon" 100 # 500 - 599
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 16 1 "prysm-ethereumjs" 100 # 600 - 699
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 17 1 "prysm-nethermind" 100 # 700 - 799
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 1 "prysm-geth" 100 # 800 - 899
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 19 1 "nimbus-geth" 100 # 900 - 999 also used on lodestar-ethereumjs for now
