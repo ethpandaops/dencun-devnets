@@ -81,7 +81,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-besu"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
@@ -99,7 +99,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-erigon"
       vms = {
-        "1" = {}
+        "1" = {size = "s-8vcpu-16gb-amd"}
       },
     },
     // Prysm combos
@@ -112,7 +112,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-besu"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
@@ -143,7 +143,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-besu"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
@@ -174,7 +174,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "nimbus-besu"
       vms = {
-        //"1" = {  }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {

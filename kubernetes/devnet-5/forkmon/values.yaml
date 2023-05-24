@@ -28,6 +28,8 @@ forkmon:
     name: prysm-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-5.ethpandaops.io
     name: prysm-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-5.ethpandaops.io
+    name: prysm-besu-1
   # Lighthouse
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: lighthouse-ethereumjs-1
@@ -37,6 +39,8 @@ forkmon:
     name: lighthouse-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-5.ethpandaops.io
     name: lighthouse-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-devnet-5.ethpandaops.io
+    name: lighthouse-besu-1
   # Lodestar
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: lodestar-ethereumjs-1
@@ -46,6 +50,8 @@ forkmon:
     name: lodestar-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.4844-devnet-5.ethpandaops.io
     name: lodestar-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-besu-1.srv.4844-devnet-5.ethpandaops.io
+    name: lodestar-besu-1
   # Nimbus
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-ethereumjs-1.srv.4844-devnet-5.ethpandaops.io
     name: nimbus-ethereumjs-1
@@ -55,6 +61,8 @@ forkmon:
     name: nimbus-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-geth-1.srv.4844-devnet-5.ethpandaops.io
     name: nimbus-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.srv.4844-devnet-5.ethpandaops.io
+    name: nimbus-besu-1
 
   thirdparty_endpoints: []
 
