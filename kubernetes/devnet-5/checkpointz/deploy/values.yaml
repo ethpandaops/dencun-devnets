@@ -1,0 +1,51 @@
+checkpointz:
+  replicas: 1
+
+  image:
+    tag: 0.14.1
+
+  resources:
+    requests:
+      cpu: 64m
+      memory: 256Mi
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+
+    hosts:
+      - host: checkpoint-sync.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+    tls:
+    - hosts:
+      - checkpoint-sync.4844-devnet-5.ethpandaops.io
+      secretName: 4844-devnet-5-checkpoint-sync-tls
+
+  config:
+    global:
+      listenAddr: ":5555"
+      logging: "info" # panic,fatal,warm,info,debug,trace
+      metricsAddr: ":9090"
+
+    checkpointz:
+      mode: full
+      caches:
+        blocks:
+          max_items: 100
+        states:
+          max_items: 5
+      historical_epoch_count: 20
+
+    beacon:
+      upstreams:
+      - name: beacon
+        address: http://prysm-geth-001:5052
+        dataProvider: true
+      - name: beacon
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io

@@ -116,8 +116,8 @@ testnet-homepage:
         dataLookup: beaconexplorerUrl
       - name: "Blobscan"
         dataLookup: blobscanUrl
-      # - name: "Checkpoint Sync"
-      #   dataLookup: checkpointSyncUrl
+      - name: "Checkpoint Sync"
+        dataLookup: checkpointSyncUrl
       - name: "Faucet 1"
         dataLookup: faucetUrl
       - name: "Faucet 2"

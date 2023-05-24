@@ -1,0 +1,12 @@
+namespace: eip4844-devnet-5
+
+argocd:
+  project: default
+
+  syncOptions: Prune=false
+
+plugin:
+  env:
+    HELM_OPTIONAL_VALUES_FILES: values.yaml
+    HELM_ARGS: ""
+    HELM_VALUES: ""
