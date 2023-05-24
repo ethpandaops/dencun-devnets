@@ -1,4 +1,5 @@
 checkpointz:
+  fullnameOverride: checkpointz
   replicas: 1
 
   image:
@@ -44,8 +45,8 @@ checkpointz:
 
     beacon:
       upstreams:
-      - name: beacon
+      - name: rpc-beacon
         address: http://prysm-geth-001:5052
         dataProvider: true
-      - name: beacon
+      - name: lighthouse-nethermind-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
