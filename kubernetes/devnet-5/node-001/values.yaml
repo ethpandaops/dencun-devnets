@@ -103,7 +103,8 @@ node-001:
       size: 50Gi
     extraArgs:
       - --execution-endpoint=http://geth-prysm-001:8551
-      - --bootstrap-node="$(tr '\n' ',' < /data/bootstrap_nodes.txt)"
+      - --bootstrap-node="enr:-MS4QNniJVWuufNOv8ZPxH_4RlhIXGRB_WR_J6XBcXFxK996FPkEioighZn_c7SeFxmEwB1d-2Qzie9VPNxpYEV9UGAHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpA9CJoRUEhEBf__________gmlkgnY0gmlwhIbRx2aJc2VjcDI1NmsxoQJ32yFmNoE8TO2msFqv5yLsCj9N5TmsJ2n1Wrx6MP_SpIhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
+      - --bootstrap-node="enr:-LK4QL3lno6EotFdfbQw2fumLrWvpVoDOvGqkSu1ufc1yf4Dd5_5HZlAwsBxP_gF-aLw6YlfgkESN3eijYzuQuREkFEBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpA9CJoRUEhEBf__________gmlkgnY0gmlwhM69aVSJc2VjcDI1NmsxoQOawusuuVerCsk7fVU8KPVxUmxaQs4_xdYLBb9Fje_PGYN0Y3CCIyiDdWRwgiMo"
       - --checkpoint-sync-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
       - --genesis-beacon-api-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
       - --genesis-state=/data/testnet_spec/genesis.ssz
