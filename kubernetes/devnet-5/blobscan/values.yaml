@@ -26,6 +26,10 @@ blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
   extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
     - name: EXECUTION_NODE_URL
       value: http://geth-prysm-001:8545
     - name: BEACON_NODE_RPC
