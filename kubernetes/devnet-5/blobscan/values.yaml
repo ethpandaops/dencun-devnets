@@ -4,6 +4,7 @@ blobscan:
     auth:
       username: postgres
       password: postgres
+      postgresPassword: postgres
 
 
     fullnameOverride: blobscan-blobscandb
