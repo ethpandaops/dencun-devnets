@@ -3,24 +3,24 @@ blobscan:
   blobscandb:
     fullnameOverride: blobscan-blobscandb
     enabled: true
-      auth:
-        postgresPassword: postgres
-        username: postgres
-        password: postgres
-        database: blobscan
-      image:
-        registry: docker.io
-        repository: bitnami/postgresql
-        tag: 14.8.0
-      pullPolicy: IfNotPresent
-      persistence:
-        enabled: true
-        size: 8Gi
-      # -- How to init the PSQL DB
-      # @default -- See `values.yaml`
-      initdbScripts:
-        init_01.sql: |
-          CREATE DATABASE blobscan;
+    auth:
+      postgresPassword: postgres
+      username: postgres
+      password: postgres
+      database: blobscan
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 14.8.0
+    pullPolicy: IfNotPresent
+    persistence:
+      enabled: true
+      size: 8Gi
+    # -- How to init the PSQL DB
+    # @default -- See `values.yaml`
+    initdbScripts:
+      init_01.sql: |
+        CREATE DATABASE blobscan;
 
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
