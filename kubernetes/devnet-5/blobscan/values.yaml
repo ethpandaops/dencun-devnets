@@ -1,0 +1,40 @@
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+
+  image:
+    repository: blossomlabs/blobscan
+    tag: next
+
+  extraEnv:
+    - name: EXECUTION_NODE_URL
+      value: http://geth-prysm-001:8545
+    - name: BEACON_NODE_RPC
+      value: http://prysm-geth-001:4000
+
+blobscan-web:
+  fullnameOverride: blobscan-web
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: blobscan.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+blobscan-api:
+  fullnameOverride: blobscan-api
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: blobscan-api.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
