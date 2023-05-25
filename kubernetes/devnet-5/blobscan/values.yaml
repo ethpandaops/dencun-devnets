@@ -1,6 +1,11 @@
 blobscan:
   fullnameOverride: blobscan
   blobscandb:
+    auth:
+      username: postgres
+      password: postgres
+
+
     fullnameOverride: blobscan-blobscandb
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
