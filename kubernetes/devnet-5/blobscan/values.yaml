@@ -1,3 +1,6 @@
+blobscan:
+  fullnameOverride: blobscan
+
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
