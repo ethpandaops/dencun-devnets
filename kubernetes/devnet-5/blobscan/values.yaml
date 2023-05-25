@@ -1,26 +1,20 @@
 blobscan:
   fullnameOverride: blobscan
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.4844-devnet-5.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
   blobscandb:
     fullnameOverride: blobscan-blobscandb
-    enabled: true
-    auth:
-      postgresPassword: postgres
-      username: postgres
-      password: postgres
-      database: blobscan
-    image:
-      registry: docker.io
-      repository: bitnami/postgresql
-      tag: 14.8.0
-    pullPolicy: IfNotPresent
-    persistence:
-      enabled: true
-      size: 8Gi
-    # -- How to init the PSQL DB
-    # @default -- See `values.yaml`
-    initdbScripts:
-      init_01.sql: |
-        CREATE DATABASE blobscan;
 
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
@@ -35,30 +29,19 @@ blobscan-indexer:
     - name: BEACON_NODE_RPC
       value: http://prysm-geth-001:5052
 
-blobscan-web:
-  fullnameOverride: blobscan-web
-
-  ingress:
-    enabled: true
-
-    className: ingress-nginx-public
-
-    hosts:
-      - host: blobscan.4844-devnet-5.ethpandaops.io
-        paths:
-          - path: /
-            pathType: Prefix
-
+# Blobscan API
 blobscan-api:
   fullnameOverride: blobscan-api
-
   ingress:
     enabled: true
-
     className: ingress-nginx-public
-
     hosts:
       - host: blobscan-api.4844-devnet-5.ethpandaops.io
         paths:
           - path: /
             pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001
