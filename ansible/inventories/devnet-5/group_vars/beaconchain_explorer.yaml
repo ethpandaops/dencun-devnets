@@ -75,10 +75,10 @@ beaconchain_frontend_config: |
         privateKey: "key-11111111111111111111111111111111"
     csrfAuthKey: '1111111111111111111111111111111111111111111111111111111111111111'
   indexer:
-    #indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
+    indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
     #updateAllEpochStatistics: true
     #fixCanonOnStartup: true
-    fullIndexOnStartup: true
+    #fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
       host: "{{ beaconchain_explorer_remote_consensus_node }}"
@@ -153,10 +153,10 @@ beaconchain_explorer_aio_config: |
     csrfAuthKey: '1111111111111111111111111111111111111111111111111111111111111111'
   indexer:
     enabled: true
-    #indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
+    indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
     #updateAllEpochStatistics: true
     #fixCanonOnStartup: true
-    fullIndexOnStartup: true
+    #fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
       host: "{{ beaconchain_explorer_remote_consensus_node }}"

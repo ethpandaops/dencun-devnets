@@ -56,4 +56,4 @@ prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 1 "lighthouse-erigon" 100 # 500 - 599
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 16 1 "prysm-ethereumjs" 100 # 600 - 699
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 17 1 "prysm-nethermind" 100 # 700 - 799
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 1 "prysm-geth" 100 # 800 - 899
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 19 1 "nimbus-geth" 100 # 900 - 999 also used on lodestar-ethereumjs for now
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 19 1 "nimbus-geth" 100 # 900 - 999

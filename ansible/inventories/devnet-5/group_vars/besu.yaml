@@ -8,7 +8,8 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - siladu
   - pinges
   - jframe
-
+  - macfarla
+  
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: besu
 
@@ -24,7 +25,7 @@ besu_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 besu_container_command_extra_args:
   - --genesis-file=/network-config/besu.json
-  - --bootnodes={{ ethereum_el_bootnode }}
+  - --bootnodes={{ ethereum_el_bootnode | join(',')}}
   - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
   - --sync-mode=FULL
   - --data-storage-format=BONSAI

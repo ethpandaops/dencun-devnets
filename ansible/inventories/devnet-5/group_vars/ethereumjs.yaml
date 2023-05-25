@@ -21,7 +21,7 @@ ethereumjs_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 ethereumjs_container_command_extra_args:
   - --gethGenesis=/network-config/genesis.json
-  - --bootnodes={{ ethereum_el_bootnode }}
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --sync=full
   - --maxPeers=75
   - --isSingleNode=true
