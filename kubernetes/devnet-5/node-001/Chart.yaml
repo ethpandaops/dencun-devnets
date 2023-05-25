@@ -26,5 +26,5 @@ appVersion: "0.0.1"
 dependencies:
 - name: ethereum-node
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.0.3
+  version: 0.0.5
   alias: node-001
