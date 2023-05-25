@@ -7,6 +7,6 @@ dependencies:
   version: 0.2.3
 - name: blobscan-indexer
   repository: https://blobscan.github.io/blobscan-helm-charts
-  version: 0.2.3
-digest: sha256:a9b79e7892aebc8d36ae3aff2c2a5807a3520e9f3f33a79ad22d766e7cf6518e
-generated: "2023-05-25T17:03:05.726484+02:00"
+  version: 0.2.4
+digest: sha256:0adc4600da3397f100319686d1739dd051cbb1683fe9bbd96ebf6f12bfcce220
+generated: "2023-05-25T17:20:57.517345+02:00"
