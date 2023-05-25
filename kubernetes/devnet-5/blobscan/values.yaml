@@ -26,8 +26,8 @@ blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
   image:
-    repository: blossomlabs/blobscan
-    tag: next
+    repository: blossomlabs/blobscan-indexer
+    tag: master
 
   extraEnv:
     - name: EXECUTION_NODE_URL
