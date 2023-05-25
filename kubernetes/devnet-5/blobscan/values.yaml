@@ -1,6 +1,7 @@
 blobscan:
   fullnameOverride: blobscan
-
+  postgresql:
+    fullnameOverride: blobscan-blobscandb
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
