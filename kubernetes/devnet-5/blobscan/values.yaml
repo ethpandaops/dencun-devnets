@@ -33,7 +33,7 @@ blobscan-indexer:
     - name: EXECUTION_NODE_URL
       value: http://geth-prysm-001:8545
     - name: BEACON_NODE_RPC
-      value: http://prysm-geth-001:4000
+      value: http://prysm-geth-001:5052
 
 blobscan-web:
   fullnameOverride: blobscan-web
