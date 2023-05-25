@@ -25,10 +25,6 @@ blobscan:
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
 
-  image:
-    repository: blossomlabs/blobscan-indexer
-    tag: master
-
   extraEnv:
     - name: EXECUTION_NODE_URL
       value: http://geth-prysm-001:8545
