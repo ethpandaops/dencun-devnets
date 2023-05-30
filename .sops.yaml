@@ -4,6 +4,7 @@
 # pgp:'B9F81F327CF5346860E85269D7AF98F214C59E4E' # https://keybase.io/bbusa
 # pgp:'0600D41E1313E31016F7C55BF597BC0C5F22D1A2' # https://keybase.io/savid
 
+# age: age1hcthyar6ujws8nmycmvh46f4luptqdxgf90z2a3ducedwmfvzedq7veutp # ci-runner
 
 creation_rules:
   - pgp: >-
@@ -12,3 +13,5 @@ creation_rules:
       D1002590180DE371BCB455EAEFCD4ACD0B4D3F6E,
       B9F81F327CF5346860E85269D7AF98F214C59E4E,
       0600D41E1313E31016F7C55BF597BC0C5F22D1A2
+    age: >-
+      age1hcthyar6ujws8nmycmvh46f4luptqdxgf90z2a3ducedwmfvzedq7veutp
