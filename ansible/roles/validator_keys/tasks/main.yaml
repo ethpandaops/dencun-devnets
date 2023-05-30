@@ -26,13 +26,14 @@
       ansible.posix.synchronize:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
-      loop: "{{ validator_keys_sync_files }}" 
+      loop: "{{ validator_keys_sync_files }}"
 
 - name: Copy change bls key change file
   when: not validator_bls_change_file.stat.exists
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{item.owner}}"
-    group: "{{item.group}}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "0644"
   loop: "{{ validator_bls_sync_files }}"

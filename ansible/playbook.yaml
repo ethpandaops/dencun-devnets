@@ -46,7 +46,6 @@
     - role: validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]
-          #- role: ../../../ansible-collection-general/roles/ethereum_node
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
