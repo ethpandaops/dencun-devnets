@@ -1,0 +1,3 @@
+default_ethereum_client_images:
+  ethereumjs: g11tech/ethereumjs:fix-exec
+  lodestar: g11tech/lodestar@sha256:f81469af3494fd9af86e8dabfa767b6e24863c6bfb9b791afb2c78a002b499d8
