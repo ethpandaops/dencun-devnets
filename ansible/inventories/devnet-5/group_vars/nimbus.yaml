@@ -13,6 +13,12 @@ validator_keys_sync_files:
   - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/secrets/"
     dest: "{{ nimbus_validator_datadir }}/secrets/"
 
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ nimbus_validator_datadir }}/change_operations.json"
+    owner: nimbus
+    group: nimbus
+
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: nimbus
 

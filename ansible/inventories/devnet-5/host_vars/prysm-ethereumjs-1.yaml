@@ -1,0 +1,3 @@
+default_ethereum_client_images:
+  ethereumjs: ethpandaops/ethereumjs:just_before_ssz_rlp-3f2cd73
+  prysm: ethpandaops/prysm:eip4844-8efb57c

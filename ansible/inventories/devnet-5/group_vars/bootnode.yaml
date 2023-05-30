@@ -47,6 +47,7 @@ lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
   #- --logLevel=debug
+  - --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
   - --nat=true
