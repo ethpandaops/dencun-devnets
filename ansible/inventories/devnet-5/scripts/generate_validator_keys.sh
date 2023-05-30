@@ -51,9 +51,9 @@ prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 1 "lodestar-ethereumjs" 100 # 0 - 99
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 1 "lodestar-nethermind" 100 # 100 - 199
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 1 "lodestar-geth" 100 # 200 - 299
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 13 1 "lighthouse-ethereumjs" 100 # 300 - 399
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "nimbus-nethermind" 100 # 400 - 499
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "lodestar-erigon" 100 # 400 - 499
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 1 "lighthouse-erigon" 100 # 500 - 599
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 16 1 "prysm-ethereumjs" 100 # 600 - 699
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 17 1 "prysm-nethermind" 100 # 700 - 799
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 1 "prysm-geth" 100 # 800 - 899
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 19 1 "nimbus-geth" 100 # 900 - 999
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 19 1 "prysm-erigon" 100 # 900 - 999

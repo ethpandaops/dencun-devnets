@@ -13,6 +13,11 @@ validator_keys_sync_files:
   - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/teku-secrets/"
     dest: "{{ teku_validator_datadir }}/secrets/"
 
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ teku_validator_datadir }}/change_operations.json"
+    owner: teku
+    group: teku
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: teku
 
@@ -38,6 +43,7 @@ teku_container_command_extra_args:
   - --Xee-version=kilnv2
   - --Xlog-include-p2p-warnings-enabled
   - --Xmetrics-block-timing-tracking-enabled
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --Xprogressive-balances-mode=USED
   - --Xtrusted-setup=/network-config/trusted_setup.txt
 teku_validator_container_volumes:

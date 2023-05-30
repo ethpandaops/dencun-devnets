@@ -1,0 +1,2 @@
+lighthouse_container_pull: true
+geth_container_pull: true

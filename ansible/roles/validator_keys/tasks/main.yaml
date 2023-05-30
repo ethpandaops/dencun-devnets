@@ -6,10 +6,15 @@
 - name: Check if dir exists
   ansible.builtin.stat:
     path: "{{ validator_keys_sync_files[0].dest }}"
-  register: validataor_keys_dir_0
+  register: validator_keys_dir_0
+
+- name: Check if change_operations.json exists
+  ansible.builtin.stat:
+    path: "{{ validator_bls_sync_files[0].dest }}"
+  register: validator_bls_change_file
 
 - name: Copy key directories
-  when: not validataor_keys_dir_0.stat.exists
+  when: not validator_keys_dir_0.stat.exists
   block:
     - name: Create dest dir
       ansible.builtin.file:
@@ -21,4 +26,13 @@
       ansible.posix.synchronize:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
-      loop: "{{ validator_keys_sync_files }}"
+      loop: "{{ validator_keys_sync_files }}" 
+
+- name: Copy change bls key change file
+  when: not validator_bls_change_file.stat.exists
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{item.owner}}"
+    group: "{{item.group}}"
+  loop: "{{ validator_bls_sync_files }}"
