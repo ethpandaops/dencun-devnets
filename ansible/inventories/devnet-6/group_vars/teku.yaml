@@ -43,9 +43,10 @@ teku_container_command_extra_args:
   - --Xee-version=kilnv2
   - --Xlog-include-p2p-warnings-enabled
   - --metrics-block-timing-tracking-enabled
-  - --Xprogressive-balances-mode=USED
   - --Xtrusted-setup=/network-config/trusted_setup.txt
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_validator_datadir: /data/teku-validator
+
+teku_container_pull: true
