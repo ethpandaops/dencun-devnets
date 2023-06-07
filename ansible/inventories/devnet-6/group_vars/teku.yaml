@@ -42,8 +42,7 @@ teku_container_command_extra_args:
   - --logging=info
   - --Xee-version=kilnv2
   - --Xlog-include-p2p-warnings-enabled
-  - --Xmetrics-block-timing-tracking-enabled
-  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+  - --metrics-block-timing-tracking-enabled
   - --Xprogressive-balances-mode=USED
   - --Xtrusted-setup=/network-config/trusted_setup.txt
 teku_validator_container_volumes:
