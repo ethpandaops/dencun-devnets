@@ -72,69 +72,69 @@ variable "digitalocean_vm_groups" {
     {
       id = "bootnode"
       vms = {
-        "1" = {size = "s-4vcpu-8gb-amd"}
+        "1" = { size = "s-4vcpu-8gb-amd" }
       }
     },
     // Lighthouse combos
     {
       id = "lighthouse-geth"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-besu"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-nethermind"
       vms = {
-       # "1" = {}
+        # "1" = {}
       },
     },
     {
       id = "lighthouse-ethereumjs"
       vms = {
-      #  "1" = {}
+        #  "1" = {}
       },
     },
     {
       id = "lighthouse-erigon"
       vms = {
-      # "1" = { size = "s-8vcpu-16gb-amd" }
+        # "1" = { size = "s-8vcpu-16gb-amd" }
       },
     },
     // Prysm combos
     {
       id = "prysm-geth"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "prysm-besu"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "prysm-nethermind"
       vms = {
-      #  "1" = {}
+        #  "1" = {}
       },
     },
     {
       id = "prysm-ethereumjs"
       vms = {
-      #  "1" = {}
+        #  "1" = {}
       },
     },
     {
       id = "prysm-erigon"
       vms = {
-      #  "1" = {}
+        #  "1" = {}
       },
     },
     // Lodestar combos
@@ -147,7 +147,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-besu"
       vms = {
-        "1" = { }
+        "1" = {}
       },
     },
     {
@@ -165,38 +165,38 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-erigon"
       vms = {
-      #  "1" = {}
+        #  "1" = {}
       }
     },
     // Nimbus combos
     {
       id = "nimbus-geth"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "nimbus-besu"
       vms = {
-      #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "nimbus-nethermind"
       vms = {
-       # "1" = { tags = "no_validator_keys" }
+        # "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-       # "1" = { tags = "no_validator_keys" }
+        # "1" = { tags = "no_validator_keys" }
       }
     },
     {
       id = "nimbus-erigon"
       vms = {
-       # "1" = { tags = "no_validator_keys" }
+        # "1" = { tags = "no_validator_keys" }
       }
     },
     // Teku combos
@@ -209,19 +209,19 @@ variable "digitalocean_vm_groups" {
     {
       id = "teku-besu"
       vms = {
-        "1" = { }
+        "1" = {}
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        "1" = { }
+        "1" = {}
       }
     },
     {
       id = "teku-ethereumjs"
       vms = {
-        "1" = { }
+        "1" = {}
       }
     },
     {

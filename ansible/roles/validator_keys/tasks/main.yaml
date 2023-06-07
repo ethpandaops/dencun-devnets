@@ -8,10 +8,10 @@
     path: "{{ validator_keys_sync_files[0].dest }}"
   register: validator_keys_dir_0
 
-- name: Check if change_operations.json exists
-  ansible.builtin.stat:
-    path: "{{ validator_bls_sync_files[0].dest }}"
-  register: validator_bls_change_file
+# - name: Check if change_operations.json exists
+#   ansible.builtin.stat:
+#     path: "{{ validator_bls_sync_files[0].dest }}"
+#   register: validator_bls_change_file
 
 - name: Copy key directories
   when: not validator_keys_dir_0.stat.exists
@@ -28,12 +28,12 @@
         dest: "{{ item.dest }}"
       loop: "{{ validator_keys_sync_files }}"
 
-- name: Copy change bls key change file
-  when: not validator_bls_change_file.stat.exists
-  ansible.builtin.copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "0644"
-  loop: "{{ validator_bls_sync_files }}"
+# - name: Copy change bls key change file
+#   when: not validator_bls_change_file.stat.exists
+#   ansible.builtin.copy:
+#     src: "{{ item.src }}"
+#     dest: "{{ item.dest }}"
+#     owner: "{{ item.owner }}"
+#     group: "{{ item.group }}"
+#     mode: "0644"
+#   loop: "{{ validator_bls_sync_files }}"
