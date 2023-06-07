@@ -1,0 +1,11 @@
+tx_fuzz_container_image: "{{ default_tooling_images.tx_fuzz }}"
+
+
+tx_fuzz_container_command:
+  - spam
+  - --no-al
+  - --rpc=http://geth:8545
+  - --sk={{ tx_fuzz_privkey }}
+  - --txcount=1
+
+tx_fuzz_container_networks: "{{ docker_networks_shared }}"

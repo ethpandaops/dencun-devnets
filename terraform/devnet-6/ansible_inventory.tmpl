@@ -1,0 +1,114 @@
+[all:vars]
+ethereum_network_name=${ethereum_network_name}
+
+%{ for gid, group in groups ~}
+[${replace(gid, "-", "_")}]
+%{ for key, host in hosts ~}
+%{ if host.group == gid ~}
+%{ if contains(host.tags, "no_validator_keys") ~}
+${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region} ethereum_node_cl_validator_enabled=false
+%{ else ~}
+${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region}
+%{ endif ~}
+%{ endif ~}
+%{ endfor ~}
+
+%{ endfor ~}
+
+# Consensus client groups
+
+[lighthouse:children]
+lighthouse_besu
+lighthouse_erigon
+lighthouse_ethereumjs
+lighthouse_geth
+lighthouse_nethermind
+
+[prysm:children]
+prysm_besu
+prysm_erigon
+prysm_ethereumjs
+prysm_geth
+prysm_nethermind
+
+[lodestar:children]
+lodestar_besu
+lodestar_erigon
+lodestar_ethereumjs
+lodestar_geth
+lodestar_nethermind
+
+[nimbus:children]
+nimbus_besu
+nimbus_erigon
+nimbus_ethereumjs
+nimbus_geth
+nimbus_nethermind
+
+
+[teku:children]
+teku_besu
+teku_erigon
+teku_ethereumjs
+teku_geth
+teku_nethermind
+
+# Execution client groups
+
+[geth:children]
+lighthouse_geth
+lodestar_geth
+nimbus_geth
+prysm_geth
+teku_geth
+
+[besu:children]
+lighthouse_besu
+lodestar_besu
+nimbus_besu
+prysm_besu
+teku_besu
+
+[nethermind:children]
+lighthouse_nethermind
+lodestar_nethermind
+nimbus_nethermind
+prysm_nethermind
+teku_nethermind
+
+[ethereumjs:children]
+lighthouse_ethereumjs
+lodestar_ethereumjs
+nimbus_ethereumjs
+prysm_ethereumjs
+teku_ethereumjs
+
+[erigon:children]
+lighthouse_erigon
+lodestar_erigon
+nimbus_erigon
+prysm_erigon
+teku_erigon
+
+# Global groups
+
+[consensus_node:children]
+lighthouse
+lodestar
+nimbus
+prysm
+teku
+
+[execution_node:children]
+besu
+erigon
+ethereumjs
+geth
+nethermind
+
+[ethereum_node:children]
+consensus_node
+execution_node
+
+#[beaconchain_explorer:children]
+#lighthouse_erigon

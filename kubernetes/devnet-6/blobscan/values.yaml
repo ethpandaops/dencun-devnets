@@ -1,0 +1,47 @@
+blobscan:
+  fullnameOverride: blobscan
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+
+  extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
+    - name: EXECUTION_NODE_RPC
+      value: http://geth-prysm-001:8545
+    - name: BEACON_NODE_RPC
+      value: http://prysm-geth-001:5052
+
+# Blobscan API
+blobscan-api:
+  fullnameOverride: blobscan-api
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan-api.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001

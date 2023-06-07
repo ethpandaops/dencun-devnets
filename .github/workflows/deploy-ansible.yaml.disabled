@@ -1,0 +1,49 @@
+name: Ansible deploy
+concurrency: ethereum-devnet-5
+env:
+  SOPS_AGE_KEY: ${{ secrets.AGE_KEY }}
+  ANSIBLE_FORCE_COLOR: "true"
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'ansible/**'
+      - '.tool-versions'
+      - '.github/actions/**'
+      - '.github/workflows/deploy-ansible.yaml'
+
+jobs:
+  job:
+    runs-on: services-medium-cpu
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+      - name: Install ansible role/collection dependencies
+        working-directory: ./ansible
+        run: ./install_dependencies.sh
+      - name: Read SSH known hosts
+        id: getversion
+        run: echo "known_hosts=$(cat ./ansible/inventories/devnet-5/known_hosts.txt)" >> $GITHUB_OUTPUT
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ steps.getversion.outputs.known_hosts }}
+      - name: Connectivity check
+        working-directory: ./ansible
+        run: >
+          ansible all -m ping
+      - name: Get ethereum nodes facts
+        working-directory: ./ansible
+        run: >
+          ansible-playbook playbook.yaml -t ethereum_node_fact_discovery
+      - name: Update ethereum nodes
+        working-directory: ./ansible
+        run: >
+          ansible-playbook playbook.yaml -t ethereum_node -e "batch_count=1"
+      - name: Update ethereum web inventory
+        working-directory: ./ansible
+        run: >
+          ansible-playbook playbook.yaml -t eth_inventory_web -l bootnode

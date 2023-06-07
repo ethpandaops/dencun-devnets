@@ -1,0 +1,107 @@
+#  ░██████╗░██╗░░░░░░█████╗░██████╗░░█████╗░██╗░░░░░  ██╗░░░██╗░█████╗░██████╗░░██████╗
+#  ██╔════╝░██║░░░░░██╔══██╗██╔══██╗██╔══██╗██║░░░░░  ██║░░░██║██╔══██╗██╔══██╗██╔════╝
+#  ██║░░██╗░██║░░░░░██║░░██║██████╦╝███████║██║░░░░░  ╚██╗░██╔╝███████║██████╔╝╚█████╗░
+#  ██║░░╚██╗██║░░░░░██║░░██║██╔══██╗██╔══██║██║░░░░░  ░╚████╔╝░██╔══██║██╔══██╗░╚═══██╗
+#  ╚██████╔╝███████╗╚█████╔╝██████╦╝██║░░██║███████╗  ░░╚██╔╝░░██║░░██║██║░░██║██████╔╝
+#  ░╚═════╝░╚══════╝░╚════╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
+
+server_fqdn: "{{ inventory_hostname }}.srv.{{ ethereum_network_name }}.ethpandaops.io"
+
+ethereum_network_id: >-
+  {{ (lookup('file', eth_testnet_config_local_dir_src + '/genesis.json') | from_json).config.chainId }}
+ethereum_network_deposit_contract: >-
+  {{ lookup('file', eth_testnet_config_local_dir_src + '/deposit_contract.txt') }}
+ethereum_network_deposit_contract_block: >-
+  {{ lookup('file', eth_testnet_config_local_dir_src + '/deposit_contract_block.txt') }}
+
+ethereum_node_rcp_hostname: "rpc.{{ server_fqdn }}"
+ethereum_node_beacon_hostname: "bn.{{ server_fqdn }}"
+
+ethstats_url: "ethstats.{{ ethereum_network_name }}.ethpandaops.io"
+ethstats_secret: "{{ secret_ethstats }}"
+
+
+#  ██████╗░░█████╗░██╗░░░░░███████╗  ██╗░░░██╗░█████╗░██████╗░░██████╗
+#  ██╔══██╗██╔══██╗██║░░░░░██╔════╝  ██║░░░██║██╔══██╗██╔══██╗██╔════╝
+#  ██████╔╝██║░░██║██║░░░░░█████╗░░  ╚██╗░██╔╝███████║██████╔╝╚█████╗░
+#  ██╔══██╗██║░░██║██║░░░░░██╔══╝░░  ░╚████╔╝░██╔══██║██╔══██╗░╚═══██╗
+#  ██║░░██║╚█████╔╝███████╗███████╗  ░░╚██╔╝░░██║░░██║██║░░██║██████╔╝
+#  ╚═╝░░╚═╝░╚════╝░╚══════╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
+
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_plain:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbboxOo0jyL3DNxqZ6UTEnZPEzPDPnujEYaClqNWSLWkphczHKAnJPkrwbAWB4JbJKjsAJ5kn53f10KPnUyZvJ5Jn8Rpf7RM7+56MYaBg84gVoA2KeIYxUa7h8neY7J61Galp0c6cOK+hp1lPsoiBSdCW/Rtbv6ALCcVe+4+uCW5FRoJcNRJfGRLRnjh1pw57HQw9O55mf319s4rVUq4umznQ0CciEx3rVMtXf4xjIZDZAhNpGaBh8AtHauaMZCOGociAIquYYqoSQnnmnOBiduRa5OkvGZomgybNQivlYboDeF6sQ71KVzRXSI+mxCYbSp246lqSdQtQsjFA54NYl/qWgAql0uqCqsZidW+XBjquyItRl2Rfzzy5Fk/gMOAJXHQYp4POfgFbqtxjWpfnuOKqW/1IGWcIt2g016effUqGgj/oePX0g+duFdszSKK773rJBySgafFF6XWNqagrLmE4LUGC+6P3oxzYTSFGeUVA21OayL+K40XPpJti5zns= # devops-eth2-shared"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWh9NW66VD4BPKETNyZeZrGN1f7G6dkihW3eAc7cbJPFQGIpnWc2tGq5o13vWW+SoCh16nkYM2oak+PJQxXYTiQnrMJSmSFd7E0DmdcoKadGJEnfosrH++aOZf/eVLe5q3E9NQFVSdOPo1MCRRTuZxPkuMxS6QikW3otWrA3F2vFgmYyki3Cy8huQzHKUZGicividYcUSFTydR2L0oWUNve3FyqMQQQPnfaJ1RvrkeGtdhRSAxa6L0jzgRK7fjpUyhKOofr7kCKARGELRRiB9QikRAoHU2/D/2jtJjKlTCJxArzXyDF2IcQCco+5Oe9x4c7Xch32dbscJSmjaAvsxRnu7GEFCS7b6kKGvwcoq5vJzvp3RBBR7Mosxv6pcM/q7Z4RhXOFVFFiPVl1dqkqSPkUrHwg8LtWOxC+GAl36vxhHLdDEV/RhbSAzO6SfYEWYGH1w7u4oiy2XAT2cNCO0j0tSHS5chX+d7TzwAbBE2HuPL84GVGHZG875hmiE+Dok= # github-actions-ci"
+bootstrap_default_user_authorized_keys_github_all:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+  - Inphi
+bootstrap_default_user_authorized_keys_github: >
+  {{
+    (bootstrap_default_user_authorized_keys_github_all | default([])) +
+    (bootstrap_default_user_authorized_keys_github_team_el | default([])) +
+    (bootstrap_default_user_authorized_keys_github_team_cl | default([]))
+  }}
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_metrics_exporter_enabled: true
+ethereum_node_xatu_sentry_enabled: true
+ethereum_node_cl_validator_enabled: true
+ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
+ethereum_node_cl_ports_p2p_tcp: 9000
+ethereum_node_cl_ports_p2p_udp: 9000
+ethereum_node_cl_ports_http_beacon: 5052
+ethereum_node_cl_ports_metrics: 5054
+ethereum_node_el_ports_p2p_tcp: 30303
+ethereum_node_el_ports_p2p_udp: 30303
+ethereum_node_el_ports_http_rpc: 8545
+ethereum_node_el_ports_engine: 8551
+ethereum_node_el_ports_metrics: 6060
+
+# role: ethpandaops.general.xatu_sentry
+xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
+xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
+xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
+xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
+xatu_sentry_config_network_name_override: "{{ ethereum_network_name }}"
+
+# role: ethpandaops.general.ethereum_metrics_exporter
+ethereum_metrics_exporter_container_image: "{{ default_tooling_images.ethereum_metrics_exporter }}"
+
+# role: eth_testnet_config
+eth_testnet_config_dir: /data/ethereum-network-config
+eth_testnet_config_local_dir_enabled: true
+eth_testnet_config_local_dir_src: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}/"
+
+# role: gen_basic_auth_nginx
+gen_basic_auth_nginx_name: "{{ secret_nginx_shared_basic_auth.name }}"
+gen_basic_auth_nginx_password: "{{ secret_nginx_shared_basic_auth.password }}"
+
+# role: ethpandaops.general.docker_nginx_proxy
+docker_nginx_proxy_container_name: nginx-proxy
+docker_nginx_proxy_default_email: "certs@ethpandaops.io"
+docker_nginx_proxy_docker_gen_container_name: nginx-proxy-gen
+docker_nginx_proxy_docker_gen_container_env:
+  RESOLVERS: "1.1.1.1"
+docker_nginx_proxy_acme_companion_container_name: nginx-proxy-acme
+docker_nginx_proxy_acme_companion_container_env:
+  DEFAULT_EMAIL: "{{ docker_nginx_proxy_default_email }}"
+  NGINX_PROXY_CONTAINER: "{{ docker_nginx_proxy_container_name }}"
+  NGINX_DOCKER_GEN_CONTAINER: "{{ docker_nginx_proxy_docker_gen_container_name }}"
+  ACME_CA_URI: https://acme.zerossl.com/v2/DV90
+  ACME_EAB_KID: "{{ secret_zerossl.ACME_EAB_KID }}"
+  ACME_EAB_HMAC_KEY: "{{ secret_zerossl.ACME_EAB_HMAC_KEY }}"
+docker_nginx_proxy_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_docker_gen_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_acme_companion_container_networks: "{{ docker_networks_shared }}"
+docker_nginx_proxy_datadir: /opt/nginx-proxy
+docker_nginx_proxy_container_volumes:
+  - "{{ docker_nginx_proxy_datadir }}/conf:/etc/nginx/conf.d"
+  - "{{ docker_nginx_proxy_datadir }}/vhost:/etc/nginx/vhost.d"
+  - "{{ docker_nginx_proxy_datadir }}/certs:/etc/nginx/certs:ro"
+  - html:/usr/share/nginx/html
+  - "{{ docker_nginx_proxy_datadir }}/htpasswd:/etc/nginx/htpasswd:ro"
