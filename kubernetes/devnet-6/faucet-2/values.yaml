@@ -1,0 +1,25 @@
+eth-faucet:
+  fullnameOverride: faucet-2
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: faucet-2.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  secretEnv:
+    PRIVATE_KEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_2_private_key}>"
+
+  extraEnv:
+    - name: WEB3_PROVIDER
+      value: "http://geth-prysm-001:8545"
+  
+  args:
+    - -faucet.amount=33
+    - -faucet.name=4844-devnet-6
+    - -proxycount=2

@@ -1,0 +1,100 @@
+blockscout:
+  fullnameOverride: blockscout
+
+  resources:
+    requests:
+      cpu: 3000m
+      memory: 5Gi
+
+  image: 
+    repository: blockscout/blockscout
+    tag: "latest"
+    pullPolicy: Always
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: explorer.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+  customCommand:
+  - /bin/sh
+  - -ace
+  - >
+    bin/blockscout eval "Elixir.Explorer.ReleaseTasks.create_and_migrate()"; exec bin/blockscout start;
+
+  config:
+    MIX_ENV: prod
+    COIN: ETH
+    PORT: "4000"
+    LOGO: /images/ethereum_logo.svg
+    LOGO_FOOTER: /images/ethereum_logo.svg
+    DISABLE_EXCHANGE_RATES: "true"
+    DISABLE_KNOWN_TOKENS: "true"
+    SHOW_PRICE_CHART: "false"
+    ENABLE_1559_SUPPORT: "true"
+    DISABLE_READ_API: "false"
+    DISABLE_WRITE_API: "true"
+    ENABLE_TXS_STATS: "true"
+    ECTO_USE_SSL: "false"
+    SHOW_TXS_CHART: "true"
+    DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/blockscout
+    SECRET_KEY_BASE: RMgI4C1HSkxsEjdhtGMfwAHfyT6CKWXOgzCboJflfSm4jeAlic52io05KB6mqzc5
+    ETHEREUM_JSONRPC_VARIANT: geth
+    ETHEREUM_JSONRPC_HTTP_URL: http://geth-prysm-001:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://geth-prysm-001:8546
+    NETWORK: Ethereum
+    SUBNETWORK: 4844-devnet-6
+    BLOCK_TRANSFORMER: base
+    POOL_SIZE: "15"
+    CHAIN_SPEC_PATH: /config-update/genesis.json
+
+  extraVolumes:
+    - name: config-update
+      emptyDir: {}
+
+  extraVolumeMounts:
+    - name: config-update
+      mountPath: "/config-update"
+
+  initContainers:
+    - name: init-config
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+      - sh
+      - -ace
+      - >
+        GENESIS_URI=https://raw.githubusercontent.com/ethpandaops/4844-testnet/master/network-configs/devnet-6/genesis.json;
+        wget -O /config-update/genesis.json $GENESIS_URI;
+        echo "got genesis";
+      volumeMounts:
+        - name: config-update
+          mountPath: /config-update
+
+  serviceMonitor:
+    enabled: true
+
+  postgresql:
+    fullnameOverride: blockscout-postgresql
+    image:
+      tag: 15-debian-11
+    postgresqlDatabase: blockscout
+    resources:
+      requests:
+        cpu: 3000m
+        memory: 5Gi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    persistence:
+      enabled: true
+      size: 50Gi
+      storageClass: "do-block-storage"

@@ -1,0 +1,62 @@
+rpc-proxy:
+  fullnameOverride: rpc-proxy
+
+  replicas: 2
+
+  resources:
+    requests:
+      cpu: 32m
+      memory: 64Mi
+  ingress:
+    enabled: true
+
+    annotations:
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: rpc.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  args:
+    - --url=http://geth-prysm-001:8545
+    - --wsurl=ws://geth-prysm-001:8546
+    - --rpm=10000
+
+  config: |
+    Allow = [
+      "eth_blockNumber",
+      "eth_call",
+      "eth_chainId",
+      "eth_estimateGas",
+      "eth_feeHistory",
+      "eth_gasPrice",
+      "eth_getBalance",
+      "eth_getBlockByHash",
+      "eth_getBlockByNumber",
+      "eth_getBlockTransactionCountByHash",
+      "eth_getBlockTransactionCountByNumber",
+      "eth_getCode",
+      "eth_getFilterChanges",
+      "eth_getLogs",
+      "eth_getStorageAt",
+      "eth_getTransactionByBlockHashAndIndex",
+      "eth_getTransactionByBlockNumberAndIndex",
+      "eth_getTransactionByHash",
+      "eth_getTransactionCount",
+      "eth_getTransactionReceipt",
+      "eth_newBlockFilter",
+      "eth_newPendingTransactionFilter",
+      "eth_sendRawTransaction",
+      "eth_subscribe",
+      "eth_syncing",
+      "eth_uninstallFilter",
+      "eth_unsubscribe",
+      "net_listening",
+      "net_version",
+      "rpc_modules",
+      "web3_clientVersion",
+    ]
