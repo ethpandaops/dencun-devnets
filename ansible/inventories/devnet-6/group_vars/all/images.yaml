@@ -6,7 +6,7 @@ default_ethereum_client_images:
   prysm: ethpandaops/prysm:eip4844-8efb57c # needs update
   teku: consensys/teku:develop # needs update
   # Execution layer clients
-  besu: robocopsgonemad/besu:4844-devnet6 # updated ready to go
+  besu: ethpandaops/besu:devnet-6-904d001 # updated ready to go
   geth: ethpandaops/geth:devnet-6-f4da587 # updated ready to go
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
   ethereumjs: g11tech/ethereumjs:devnet6-32aaac # updated ready to go
