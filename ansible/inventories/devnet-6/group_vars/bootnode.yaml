@@ -50,6 +50,7 @@ lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
   #- --logLevel=debug
+  - --rest.namespace=*
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
   - --nat=true
