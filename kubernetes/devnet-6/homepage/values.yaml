@@ -86,12 +86,13 @@ testnet-homepage:
         rpcUrl: https://rpc.4844-devnet-6.ethpandaops.io
         explorerUrl: https://explorer.4844-devnet-6.ethpandaops.io
         forkmonUrl: https://forkmon.4844-devnet-6.ethpandaops.io
-        beaconexplorerUrl: http://134.209.87.158:8080/
+        beaconexplorerUrl: "-"
         checkpointSyncUrl: https://checkpoint-sync.4844-devnet-6.ethpandaops.io
         blobscanUrl: https://blobscan.com
+        blobscanethpandaUrl: https://blobscan.4844-devnet-6.ethpandaops.io
         ethstatsUrl: https://ethstats.4844-devnet-6.ethpandaops.io
         chainName: "4844-devnet-6"
-        chainId: "4844001005"
+        chainId: "4844001006"
         github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-6
       metamask:
         enabled: true
@@ -110,12 +111,14 @@ testnet-homepage:
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl
-      - name: "Explorer (not working)"
+      - name: "Explorer"
         dataLookup: explorerUrl
-      - name: "Beaconchain explorer"
-        dataLookup: beaconexplorerUrl
+      - name: "Beaconchain explorer (not working)"
+        dataLookup: "beaconexplorerUrl"
       - name: "Blobscan"
         dataLookup: blobscanUrl
+      - name: "Blobscan ethpanda edition"
+        url: blobscanethpandaUrl
       - name: "Checkpoint Sync"
         dataLookup: checkpointSyncUrl
       - name: "Faucet 1"
