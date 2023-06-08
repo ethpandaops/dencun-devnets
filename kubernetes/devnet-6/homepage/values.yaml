@@ -127,7 +127,7 @@ testnet-homepage:
       - name: "Blobscan"
         dataLookup: blobscanUrl
       - name: "Blobscan ethpanda edition"
-        url: blobscanethpandaUrl
+        dataLookup: blobscanethpandaUrl
       - name: "Checkpoint Sync"
         dataLookup: checkpointSyncUrl
       - name: "Faucet 1"
