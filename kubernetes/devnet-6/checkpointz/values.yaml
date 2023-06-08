@@ -46,7 +46,7 @@ checkpointz:
     beacon:
       upstreams:
       - name: rpc-beacon
-        address: http://prysm-geth-001:5052
+        address: http://lodestar-nethermind-001:5052
         dataProvider: true
-      - name: lighthouse-nethermind-1
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+      - name: bootnode
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-6.ethpandaops.io

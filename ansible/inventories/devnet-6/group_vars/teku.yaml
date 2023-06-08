@@ -40,9 +40,9 @@ teku_container_command_extra_args:
   - --data-storage-mode=PRUNE
   - --validators-graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --logging=info
-  - --Xee-version=kilnv2
   - --Xlog-include-p2p-warnings-enabled
   - --metrics-block-timing-tracking-enabled
+  - --Xmetrics-blob-sidecars-storage-enabled=true
   - --Xtrusted-setup=/network-config/trusted_setup.txt
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"

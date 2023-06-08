@@ -43,9 +43,9 @@ blockscout:
     SHOW_TXS_CHART: "true"
     DATABASE_URL: postgresql://postgres:postgres@blockscout-postgresql:5432/blockscout
     SECRET_KEY_BASE: RMgI4C1HSkxsEjdhtGMfwAHfyT6CKWXOgzCboJflfSm4jeAlic52io05KB6mqzc5
-    ETHEREUM_JSONRPC_VARIANT: geth
-    ETHEREUM_JSONRPC_HTTP_URL: http://geth-prysm-001:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://geth-prysm-001:8546
+    ETHEREUM_JSONRPC_VARIANT: nethermind
+    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8546
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-6
     BLOCK_TRANSFORMER: base

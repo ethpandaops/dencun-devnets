@@ -45,6 +45,12 @@ config:
     - path: /parseBeaconState.json
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-6/parseBeaconState.json
+    - path: /trusted_setup.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-6/trusted_setup.txt
+    - path: /trusted_setup.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-6/trusted_setup.json
 
     # Execution Layer specific redirects
     - path: /el/bootnodes
