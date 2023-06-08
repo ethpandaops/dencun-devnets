@@ -58,7 +58,7 @@ node-001:
         - >
           BOOTNODE_URI=https://config.4844-devnet-6.ethpandaops.io/el/bootnodes;
           GENESIS_URI=https://config.4844-devnet-6.ethpandaops.io/el/chainspec.json;
-          TRUSTED_SETUP_URI=https://config.4844-devnet-6.ethpandaops.io/el/trusted_setup.txt;
+          TRUSTED_SETUP_URI=https://config.4844-devnet-6.ethpandaops.io/trusted_setup.txt;
           if ! [ -f /data/genesis_init_done ];
           then
             wget -O /data/genesis.json $GENESIS_URI;
@@ -106,7 +106,7 @@ node-001:
       enabled: true
       size: 50Gi
     extraArgs:
-      - --execution-endpoint=http://nethermind-lodestar-001:8551
+      - --execution.urls=http://nethermind-lodestar-001:8551
       - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-6.ethpandaops.io
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
