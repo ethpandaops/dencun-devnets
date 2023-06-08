@@ -112,6 +112,7 @@ node-001:
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
       - --bootnodes="enr:-MS4QAJpvAJFBUZ2SdWXhw_eOOD43YYur7bk0wonV4C5dBYMAqN67AuMW6VG5iMzxcYblzMKcPGlBPL6NACimDJJJ5IJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDEP0jPUEhEBv__________gmlkgnY0gmlwhEDhR0eJc2VjcDI1NmsxoQO2Oy1oWO1nxDDm3tz2nrDv37kBHQsSzyZM9lkfB3qDNYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
+      - --bootnodes="enr:-MS4QEUFryPTKRvoDFTh7ATOsXzlXMIPsSfaQ8RnzSOCvHbpUktubH0l7v9HlVogorDDLpRHnVoc7SxRnOgJcN-ijXwHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDEP0jPUEhEBv__________gmlkgnY0gmlwhEDhR0eJc2VjcDI1NmsxoQPwOJrlE5LEkKSZl4mrfRkr3htZQs2hR2axAX6FXlpU_ohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
     initContainers:
     - name: init-genesis
       image: alpine:latest
