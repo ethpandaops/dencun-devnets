@@ -26,7 +26,16 @@ testnet-homepage:
     ## General information
     ### Key split
     ```
-    0-1000 - EthPandaOps
+    384 total validators
+    0 lodestar-nethermind bootnode
+    64 lodestar-ethereumjs-1
+    64 lodestar-nethermind-1
+    0 lodestar-geth-1
+    64 lodestar-besu-1
+    64 teku-ethereumjs-1
+    64 teku-nethermind-1
+    0 teku-geth-1
+    64 teku-besu-1
     ```
 
     ## Network Spec
