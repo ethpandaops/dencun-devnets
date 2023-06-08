@@ -35,7 +35,7 @@ node-001:
         cpu: 3000m
         memory: 7Gi
     extraArgs:
-      - --Discovery.Bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
+      - --Discovery.Bootnodes="enode://f5c4a7b3b0d4b16853ff82e76732c9f61f13d3ce376d45af5a3de6cdff0305b1ee29c12a9ca885e4ccdf79fefc5a3eeb6ecb1fbd4b0473b4b2b8ef55cc07fb11@64.225.71.71:30303?discport=30303"
       - --Init.ChainSpecPath=/data/genesis.json
       - --config=none.cfg
       - --Init.IsMining=false
