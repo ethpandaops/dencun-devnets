@@ -33,17 +33,17 @@ forkmon:
   #   name: prysm-geth-1
   # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-6.ethpandaops.io
   #   name: prysm-besu-1
-  # # Lighthouse
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-6.ethpandaops.io
-  #   name: lighthouse-ethereumjs-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-6.ethpandaops.io
-  #   name: lighthouse-nethermind-1
+  # Lighthouse
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-6.ethpandaops.io
+    name: lighthouse-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+    name: lighthouse-nethermind-1
   # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.4844-devnet-6.ethpandaops.io
   #   name: lighthouse-erigon-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-6.ethpandaops.io
-  #   name: lighthouse-geth-1
-  # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-devnet-6.ethpandaops.io
-  #   name: lighthouse-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.4844-devnet-6.ethpandaops.io
+    name: lighthouse-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-devnet-6.ethpandaops.io
+    name: lighthouse-besu-1
   # Lodestar
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.4844-devnet-6.ethpandaops.io
     name: lodestar-ethereumjs-1

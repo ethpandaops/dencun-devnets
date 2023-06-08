@@ -1,15 +1,15 @@
 default_ethereum_client_images:
   # Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:realbigsean-devnetv5-48e169c # needs update
+  lighthouse: ethpandaops/lighthouse:devnet6-8da95ac # needs update
   lodestar: g11tech/lodestar:devnet6-789f5 # updated ready to go
   nimbus: ethpandaops/nimbus:henridf-eip4844-devnet-5e6d6d6 # needs update
   prysm: ethpandaops/prysm:eip4844-8efb57c # needs update
   teku: consensys/teku:develop # needs update
   # Execution layer clients
   besu: ethpandaops/besu:devnet-6-7f801f9 # updated ready to go
-  geth: ethpandaops/geth:devnet-6-f4da587 # updated ready to go
+  geth: ethpandaops/geth:4844-devnet-6-42d3923 # updated ready to go
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
-  ethereumjs: g11tech/ethereumjs:devnet6-9b2af # updated ready to go
+  ethereumjs: g11tech/ethereumjs:devnet6-14788 # updated ready to go
   nethermind: nethermindeth/nethermind:eip-4844-v6 # updated ready to go
 
 default_tooling_images:
