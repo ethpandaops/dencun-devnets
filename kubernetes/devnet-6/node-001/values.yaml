@@ -107,7 +107,7 @@ node-001:
       size: 50Gi
     extraArgs:
       - --execution.urls=http://nethermind-lodestar-001:8551
-      - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-6.ethpandaops.io/eth/v1/beacon/headers/finalized
+      - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-6.ethpandaops.io
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
