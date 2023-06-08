@@ -18,6 +18,9 @@ forkmon:
   # Rpc
   - addr: http://nethermind-lodestar-001:8545
     name: rpc-nethermind-lodestar
+  # Bootnode
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.bootnode-1.srv.4844-devnet-6.ethpandaops.io
+    name: bootnode-1
 
   # # Prysm
   # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-6.ethpandaops.io
