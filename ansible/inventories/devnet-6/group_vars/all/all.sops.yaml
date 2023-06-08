@@ -12,6 +12,7 @@ secret_xatu_sentry:
     server_address: ENC[AES256_GCM,data:1ZzqPJR2ahKnEf79n5lJG+s8kWjPLNnj4pfC9Bep,iv:c+BAgvsoj0D1GP3X7W2KAw+vpE2jf/K8pFiMnxaYd2A=,tag:5OeZLGNhaACttaRIRvMNYA==,type:str]
     user: ENC[AES256_GCM,data:6Rl/PXMHqw==,iv:gHXmk6tie0m6usKO6v9kwBI3BW0Kjj04wuMiijQYVbg=,tag:qjLt4uzXQ2s3j+xvEGlYFQ==,type:str]
     password: ENC[AES256_GCM,data:OS2+lJUB6wGGcxoOIdscp/FvxqiynlJ/OpQ33Q02HG7cSB00,iv:g07056FBT+360Ao41fZO429FUzpG/Woy8Y1AR+yeQBo=,tag:gcw0gHLgOJLIj3C/xSoH+Q==,type:str]
+secret_genesis_mnemonic: ENC[AES256_GCM,data:uPBapxrXMaxnTxvskrq8GF93WbvTOjxt1jzQH3p69zgNgOSwTSLELYla1d7O8GluvDPTgZyt97WjaJG2QEI6QeTF8pGCcFkXusFxbqmtbvxQN43t3jwEICAzWRnLApDxhWdS0Cav9YtDiysipuYzgDcRR9vNs+qJMIUP2hw4W6zmB+yNHrZwpOfkzqRvU1NkbG2QrguiPzE=,iv:A8oeDqGVlYsHRme1wr1eMKixp0+87rgn7UUQRPAJ24o=,tag:B8ZVKSYwyhAxIsjnlZdjNA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -27,8 +28,8 @@ sops:
             dFZDejhrMko0MjRuaVNuYUJOa0crNjQKRM72kWtKAoxGX/zoKBJCjJg95zddp+d8
             ONGYG3CY2619H7eba9y1F+2gawsBRH9rVbdHjsF01Pma6ivRQA3PAQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-04-20T10:48:36Z"
-    mac: ENC[AES256_GCM,data:DwfMEV8ne79MPWlOSDFga52fFmjbItQ/QQnzfdrzYKYJL/xPdylfetoa3zN+PY4jAUNzbmIhh4g7t/pH/GBnfZOoYfwzy3CBRar6PUDGD0Ih3eQyL3FetnzKzgqgtxpHdDFVK/qP9J6kToO4lYthntY+/vFmjIKy9nnkFFA0S64=,iv:ODbL4zFoOi/akI1nJk6eHS/VHWXZqETMFSfMrA93kJM=,tag:MOyu/YZ5g3h8AG4XPL2a8Q==,type:str]
+    lastmodified: "2023-06-08T14:57:52Z"
+    mac: ENC[AES256_GCM,data:g5RmscRYkYz8eXK7h4jrjRImKRqiqTtxmTJQK3KWSWgF4zHnZcZg/XmAQSFI9Gp5m+Zo9GkANIasWYEVnBoQi0qWTvEYy+SZxdWKEy6KlxmDROVOBwiVO+3Q3NISHAwMTLacL/bHtW4spLDrOLJ9y63lrXy/2bf/LnbFUKq0AtY=,iv:E4Bg6WXONI16QqMoROnowrWjii8Cv8gmp+cbqxfDOVo=,tag:1dt4pjv+r4hYoeQiAcPtUA==,type:str]
     pgp:
         - created_at: "2023-05-12T15:03:59Z"
           enc: |-

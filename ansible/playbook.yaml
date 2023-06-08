@@ -1,3 +1,8 @@
+- hosts: localhost
+  roles:
+    - role: ethpandaops.general.ethereum_genesis
+      tags: [ethereum_genesis]
+
 - import_playbook: ethpandaops.general.bootstrap_server
   tags: [init-server, bootstrap]
 

@@ -28,6 +28,47 @@ ethstats_secret: "{{ secret_ethstats }}"
 #  ██║░░██║╚█████╔╝███████╗███████╗  ░░╚██╔╝░░██║░░██║██║░░██║██████╔╝
 #  ╚═╝░░╚═╝░╚════╝░╚══════╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
+# role: ethpandaops.general.ethereum_genesis
+ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
+ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}"
+ethereum_genesis_timestamp: "{{ lookup('ansible.builtin.pipe', '{{ ethereum_genesis_timestamp_relative_cmd[ansible_system] }}') }}"
+ethereum_genesis_timestamp_relative_cmd:
+  Linux: "date +%s -d '+45 minutes'"
+  Darwin: "date -v +45m +%s"
+ethereum_genesis_mnemonic: "{{ secret_genesis_mnemonic }}"
+ethereum_genesis_generator_config_files:
+  cl/config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/master/config-example/cl/config.yaml', split_lines=false) }}" # noqa yaml[line-length]
+  cl/mnemonics.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/master/config-example/cl/mnemonics.yaml', split_lines=false) }}" # noqa yaml[line-length]
+  el/genesis-config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/master/config-example/el/genesis-config.yaml', split_lines=false) }}" # noqa yaml[line-length]
+  values.env: |-
+    export CHAIN_ID="{{ ethereum_genesis_chain_id }}"
+    export DEPOSIT_CONTRACT_ADDRESS="0x6f22fFbC56eFF051aECF839396DD1eD9aD6BBA9D"
+    export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
+    export CL_EXEC_BLOCK="0"
+    export DEPOSIT_CONTRACT_BLOCK="0x0000000000000000000000000000000000000000000000000000000000000000"
+    export NUMBER_OF_VALIDATORS=384
+    export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
+    export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
+    export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
+    export CAPELLA_FORK_VERSION="0x40{{ ethereum_genesis_fork_version_suffix }}"
+    export CAPELLA_FORK_EPOCH="1"
+    export DENEB_FORK_VERSION="0x50{{ ethereum_genesis_fork_version_suffix }}"
+    export DENEB_FORK_EPOCH="2"
+    export WITHDRAWAL_TYPE="0x00"
+    export WITHDRAWAL_ADDRESS={{ ethereum_genesis_validator_bls_change_execution_address }}
+    export BEACON_STATIC_ENR=""
+    export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
+    export GENESIS_DELAY=60
+ethereum_genesis_validator_keys_output_dir: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys"
+ethereum_genesis_validator_bls_change_execution_address: "{{ ethereum_node_cl_validator_fee_recipient }}"
+ethereum_genesis_validator_keyranges:
+  lodestar-ethereumjs-1: { start:   0, end: 64 }
+  lodestar-nethermind-1: { start:  64, end: 128 }
+  lodestar-besu-1:       { start: 128, end: 192 }
+  teku-ethereumjs-1:     { start: 192, end: 256 }
+  teku-nethermind-1:     { start: 256, end: 320 }
+  teku-besu-1:           { start: 320, end: 384 }
+
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_plain:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbboxOo0jyL3DNxqZ6UTEnZPEzPDPnujEYaClqNWSLWkphczHKAnJPkrwbAWB4JbJKjsAJ5kn53f10KPnUyZvJ5Jn8Rpf7RM7+56MYaBg84gVoA2KeIYxUa7h8neY7J61Galp0c6cOK+hp1lPsoiBSdCW/Rtbv6ALCcVe+4+uCW5FRoJcNRJfGRLRnjh1pw57HQw9O55mf319s4rVUq4umznQ0CciEx3rVMtXf4xjIZDZAhNpGaBh8AtHauaMZCOGociAIquYYqoSQnnmnOBiduRa5OkvGZomgybNQivlYboDeF6sQ71KVzRXSI+mxCYbSp246lqSdQtQsjFA54NYl/qWgAql0uqCqsZidW+XBjquyItRl2Rfzzy5Fk/gMOAJXHQYp4POfgFbqtxjWpfnuOKqW/1IGWcIt2g016effUqGgj/oePX0g+duFdszSKK773rJBySgafFF6XWNqagrLmE4LUGC+6P3oxzYTSFGeUVA21OayL+K40XPpJti5zns= # devops-eth2-shared"
@@ -75,7 +116,7 @@ ethereum_metrics_exporter_container_image: "{{ default_tooling_images.ethereum_m
 # role: eth_testnet_config
 eth_testnet_config_dir: /data/ethereum-network-config
 eth_testnet_config_local_dir_enabled: true
-eth_testnet_config_local_dir_src: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}/"
+eth_testnet_config_local_dir_src: "{{ ethereum_genesis_generator_output_dir }}/"
 
 # role: gen_basic_auth_nginx
 gen_basic_auth_nginx_name: "{{ secret_nginx_shared_basic_auth.name }}"
