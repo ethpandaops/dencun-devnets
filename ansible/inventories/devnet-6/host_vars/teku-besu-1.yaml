@@ -1,3 +1,16 @@
+teku_container_image: consensys/teku:develop
+besu_container_image: ethpandaops/besu:4844-devnet-5b
+
+besu_container_command_extra_args:
+  - --genesis-file=/network-config/besu.json
+  - --bootnodes={{ ethereum_el_bootnodes | join(',')}}
+  - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
+  - --sync-mode=FULL
+  - --data-storage-format=BONSAI
+  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
+  - --kzg-trusted-setup=/network-config/trusted_setup.txt
+  - --Xfilter-on-enr-fork-id=true
+
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
   - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
