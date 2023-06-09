@@ -61,13 +61,16 @@ ethereum_genesis_generator_config_files:
     export GENESIS_DELAY=60
 ethereum_genesis_validator_keys_output_dir: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys"
 ethereum_genesis_validator_bls_change_execution_address: "{{ ethereum_node_cl_validator_fee_recipient }}"
-ethereum_genesis_validator_keyranges:
-  lodestar-ethereumjs-1: { start:   0, end: 64 }
-  lodestar-nethermind-1: { start:  64, end: 128 }
-  lodestar-besu-1:       { start: 128, end: 192 }
-  teku-ethereumjs-1:     { start: 192, end: 256 }
-  teku-nethermind-1:     { start: 256, end: 320 }
-  teku-besu-1:           { start: 320, end: 384 }
+ethereum_genesis_validator_keyranges: >-
+  {%- set ns = namespace() -%}
+  {%- set ns.ethereum_genesis_validator_keyranges = {} -%}
+  {%- for host in groups['all'] -%}
+  {%-   if hostvars[host].validator_start is defined and hostvars[host].validator_end is defined -%}
+  {%-      set v = {'start':hostvars[host].validator_start, 'end': hostvars[host].validator_end } -%}
+  {%-     set _ = ns.ethereum_genesis_validator_keyranges.update({host: v}) -%}
+  {%-   endif -%}
+  {%- endfor -%}
+  {{ ns.ethereum_genesis_validator_keyranges }}
 
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_plain:
