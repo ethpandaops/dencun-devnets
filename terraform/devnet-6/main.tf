@@ -79,13 +79,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       },
     },
     {
       id = "lighthouse-besu"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       },
     },
     {
@@ -110,13 +110,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "prysm-geth"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       },
     },
     {
       id = "prysm-besu"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       },
     },
     {
@@ -141,25 +141,25 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-geth"
       vms = {
-        "1" = { tags = "no_validator_keys" }
+        "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     {
       id = "lodestar-besu"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=128 validator_end=192" }
       },
     },
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=64 validator_end=128" }
       }
     },
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=0 validator_end=64" }
       }
     },
     {
@@ -172,56 +172,56 @@ variable "digitalocean_vm_groups" {
     {
       id = "nimbus-geth"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     {
       id = "nimbus-besu"
       vms = {
-        #  "1" = { tags = "no_validator_keys" }
+        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       },
     },
     {
       id = "nimbus-nethermind"
       vms = {
-        # "1" = { tags = "no_validator_keys" }
+        # "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-        # "1" = { tags = "no_validator_keys" }
+        # "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     {
       id = "nimbus-erigon"
       vms = {
-        # "1" = { tags = "no_validator_keys" }
+        # "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     // Teku combos
     {
       id = "teku-geth"
       vms = {
-        "1" = { tags = "no_validator_keys" }
+        "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
       }
     },
     {
       id = "teku-besu"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=320 validator_end=384" }
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=256 validator_end=320" }
       }
     },
     {
       id = "teku-ethereumjs"
       vms = {
-        "1" = {}
+        "1" = { ansible_vars : "validator_start=192 validator_end=256" }
       }
     },
     {
@@ -467,6 +467,11 @@ resource "local_file" "ansible_inventory" {
             hostname = "${split(".", key)[0]}-${split(".", key)[1]}"
             cloud    = "digitalocean"
             region   = "${server.region}"
+            ansible_vars = try(
+              var.digitalocean_vm_groups[
+                index([for v in var.digitalocean_vm_groups : v.id], split(".", key)[0])
+              ].vms[split(".", key)[1]].ansible_vars
+            , null)
           }
         }
       )
