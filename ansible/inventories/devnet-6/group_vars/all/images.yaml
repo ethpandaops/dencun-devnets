@@ -7,7 +7,7 @@ default_ethereum_client_images:
   teku: consensys/teku:develop # needs update
   # Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b # updated ready to go
-  geth: ethpandaops/geth:4844-devnet-6-42d3923 # updated ready to go
+  geth: ethpandaops/geth:4844-devnet-6 # updated ready to go
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
   ethereumjs: g11tech/ethereumjs:devnet6-14788 # updated ready to go
   nethermind: nethermindeth/nethermind:eip-4844-v6 # updated ready to go
