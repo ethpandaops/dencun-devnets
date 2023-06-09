@@ -5,10 +5,7 @@ ethereum_network_name=${ethereum_network_name}
 [${replace(gid, "-", "_")}]
 %{ for key, host in hosts ~}
 %{ if host.group == gid ~}
-${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region}
-%{~ if host.ansible_vars != null ~}
- ${trim(host.ansible_vars,"\"")}
-%{~ endif ~}
+${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region} %{ if host.ansible_vars != null }${trim(host.ansible_vars,"")}%{ endif }
 %{ endif ~}
 %{ endfor ~}
 
