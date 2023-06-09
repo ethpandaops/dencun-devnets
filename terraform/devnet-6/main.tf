@@ -79,25 +79,25 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-besu"
       vms = {
-        #  "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-nethermind"
       vms = {
-        # "1" = {}
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        #  "1" = {}
+        "1" = { tags = "no_validator_keys" }
       },
     },
     {

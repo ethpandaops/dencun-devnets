@@ -32,3 +32,5 @@ besu_container_command_extra_args:
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
   - --kzg-trusted-setup=/network-config/trusted_setup.txt
   - --Xfilter-on-enr-fork-id=true
+
+besu_container_pull: true
