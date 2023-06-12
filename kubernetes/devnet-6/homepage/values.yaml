@@ -95,8 +95,8 @@ testnet-homepage:
         rpcUrl: https://rpc.4844-devnet-6.ethpandaops.io
         explorerUrl: https://explorer.4844-devnet-6.ethpandaops.io
         forkmonUrl: https://forkmon.4844-devnet-6.ethpandaops.io
-        beaconexplorerUrl: "-"
-        checkpointSyncUrl: https://checkpoint-sync.4844-devnet-6.ethpandaops.io
+        beaconexplorerUrl: "WIP"
+        checkpointSyncUrl: "WIP"
         blobscanUrl: https://blobscan.com
         blobscanethpandaUrl: https://blobscan.4844-devnet-6.ethpandaops.io
         ethstatsUrl: https://ethstats.4844-devnet-6.ethpandaops.io
