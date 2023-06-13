@@ -10,7 +10,7 @@ default_ethereum_client_images:
   geth: ethpandaops/geth:4844-devnet-6 # updated ready to go
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
   ethereumjs: g11tech/ethereumjs:devnet6-14788 # updated ready to go
-  nethermind: nethermindeth/nethermind:eip-4844-v6 # updated ready to go
+  nethermind: nethermindeth/nethermind:eip-4844-v6-36 # updated ready to go
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.60
