@@ -62,6 +62,7 @@
             - /data/lodestar
             - /data/lodestar-validator
             - /data/nimbus
+            - /data/nimbus-validator
             - /data/prysm
             - /data/prysm-validator
             - /data/teku
