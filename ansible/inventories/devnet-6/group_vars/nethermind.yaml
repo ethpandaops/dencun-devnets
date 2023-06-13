@@ -36,3 +36,4 @@ nethermind_container_command_extra_args:
   - --EthStats.Secret={{ ethstats_secret }}
   - --EthStats.Server=wss://{{ ethstats_url }}/api/
   #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
+nethermind_container_pull: true
