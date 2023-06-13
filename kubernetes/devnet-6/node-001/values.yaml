@@ -56,15 +56,14 @@ node-001:
         - sh
         - -ace
         - >
-          BOOTNODE_URI=https://config.4844-devnet-6.ethpandaops.io/el/bootnodes;
           GENESIS_URI=https://config.4844-devnet-6.ethpandaops.io/el/chainspec.json;
           TRUSTED_SETUP_URI=https://config.4844-devnet-6.ethpandaops.io/trusted_setup.txt;
           if ! [ -f /data/genesis_init_done ];
           then
+            apk update && apk add curl jq;
             wget -O /data/genesis.json $GENESIS_URI;
-            wget -O /data/bootnodes.txt $BOOTNODE_URI;
+            curl -s https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode' > /data/bootnodes.txt;
             wget -O /data/trusted_setup.txt $TRUSTED_SETUP_URI;
-            apk update && apk add jq;
             cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
             touch /data/genesis_init_done;
             echo "genesis init done";
