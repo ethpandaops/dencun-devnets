@@ -36,7 +36,7 @@ node-001:
         cpu: 3000m
         memory: 7Gi
     extraArgs:
-      - --Discovery.Bootnodes=enode://a59a013be831d84dfdf595392c2c505ed814374975155be26152fe235f2caa2b799f421055bd85a7ddb341f88f4913c68c5b641a95ed2b35ee5673bf6b341aa6@174.138.11.157:30303?discport=30303
+      - --Discovery.Bootnodes=enode://a59a013be831d84dfdf595392c2c505ed814374975155be26152fe235f2caa2b799f421055bd85a7ddb341f88f4913c68c5b641a95ed2b35ee5673bf6b341aa6@174.138.11.157:30303
       - --Init.ChainSpecPath=/data/genesis.json
       - --config=none.cfg
       - --Init.IsMining=false
