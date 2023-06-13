@@ -36,7 +36,7 @@ node-001:
         cpu: 3000m
         memory: 7Gi
     extraArgs:
-      - --Discovery.Bootnodes=enode://61a8406d3666255f1b7b25a571a3be9a4a8ab7a1c35c6390a4214bb8daf20be98a973ef2b768b980d4b7cf45567bf256b5a7ce9a4d0cd831195bd4a351f579d9@159.223.15.126:30303?discport=30303,enode://1158eeb681e28f62ee1d13b416c47fa49321ac595b98633240c7bfeccccff648518152f771905233c8ed91f357b61371590565f3a33a0cfc65e035e4687943b0@188.166.67.118:30303?discport=30303,enode://05e4816331f31794d1762fb53f24f2c45cfff4a0445a844e998be1d45166963a5360697f68e60b3dc4b977619375109c72409e3c43e269b0e63eccb13186cf70@68.183.11.58:30303,enode://61a8406d3666255f1b7b25a571a3be9a4a8ab7a1c35c6390a4214bb8daf20be98a973ef2b768b980d4b7cf45567bf256b5a7ce9a4d0cd831195bd4a351f579d9@159.223.15.126:30303?discport=30303
+      - --Discovery.Bootnodes=enode://a59a013be831d84dfdf595392c2c505ed814374975155be26152fe235f2caa2b799f421055bd85a7ddb341f88f4913c68c5b641a95ed2b35ee5673bf6b341aa6@174.138.11.157:30303?discport=30303
       - --Init.ChainSpecPath=/data/genesis.json
       - --config=none.cfg
       - --Init.IsMining=false
@@ -111,11 +111,7 @@ node-001:
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
-      - --bootnodes="enr:-MS4QMAxt36YvPsDMIjxryUSSMrvE0VEs-FwHcay7oFovtGfH8j6biRMa1j8gmxmdbhFfVxuLl9-kKCcU9ZdisnO72sHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhJ_fD36Jc2VjcDI1NmsxoQP89OmpU6V9zLTYgegDxYGxtTI_uoPcVHBX8ND2Ov-QhohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
-      - --bootnodes="enr:-Ly4QMwnWZl34KOOD2YWJVbEACwQslAQ3h4KllT5CAQ2Ru4FFh9_G3KkC5uG6s5UKn0FAdb20RroVRPkt6WhtixOjfoBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhLymQ3aJc2VjcDI1NmsxoQMiNS2Je4nOZx9sk2iZ0cg7fVeUjAaakXnePa-i8eKd7IhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
-      - --bootnodes="enr:-Ly4QMVgqYNxtVh66X2NRK57SvzRAgZv8hOeKz5e9NxVD0bmeRRNM1Vp23Tf5TcnxDQ8bHFM3DBCdw8qAotppxfL5AABh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhES3CzqJc2VjcDI1NmsxoQP77PITaD3XqD8s-4vdZmwj7BGD6BUEK0xeIOoHT7fFNohzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
-      - --bootnodes="enr:-Ly4QK_RJl6Y1YjWVYCmVFRCy8EetUCcEnpM401bYQR7eqlzQUojIMrJdC5-CdxyX-JCBzjrxaYNvCzYciupEIsJPN0Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhES3CzmJc2VjcDI1NmsxoQIntSoe-rpEbAVuhbJK6pUSOZmGN-f_LpZNaijVIsnU3ohzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
-      - --bootnodes="enr:-Ly4QK_m9YQDwqvqMBENe2wG7uWp1QQCN-nhoQ-l3fIXHUgfX0jR23DQYJz42TKmvE-EqbKi7CTJQ9VH_z2w5jDMzG4Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhKRawU6Jc2VjcDI1NmsxoQMU56H7PAW6MqItjzanFZoZdVVNvUcoThQ7SNZ1BbdxGohzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+      - --bootnodes="enr:-MS4QNMu1Ljihi9fMyu-BOQNBIZ5QaeUkgO-auXCeoCsINmpX7ptQVNJkHDSD7fwOEgBhwXar5T7F9K9aJF5SIKgLhAHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhK6KC52Jc2VjcDI1NmsxoQKbV7S4xSzZyg-5dayCpicR8iYyOz1aPHM0yPZaj-ioSohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
     initContainers:
     - name: init-genesis
       image: alpine:latest
