@@ -25,87 +25,27 @@ testnet-homepage:
   customMarkdown: |-
     ## General information
     ### Key split
-    ```
-    "ethereum_genesis_validator_keyranges": 
-    "lighthouse-besu-1": 
-    "end": 924
-    "start": 900
-
-    "lighthouse-ethereumjs-1": 
-    "end": 1324
-    "start": 1125
-
-    "lighthouse-geth-1": 
-    "end": 1349
-    "start": 1325
-
-    "lighthouse-nethermind-1": 
-    "end": 1124
-    "start": 925
-
-    "lodestar-besu-1": 
-    "end": 24
-    "start": 0
-
-    "lodestar-ethereumjs-1": 
-    "end": 424
-    "start": 225
-
-    "lodestar-geth-1": 
-    "end": 449
-    "start": 425
-
-    "lodestar-nethermind-1": 
-    "end": 224
-    "start": 25
-
-    "nimbus-besu-1": 
-    "end": 1374
-    "start": 1350
-
-    "nimbus-ethereumjs-1": 
-    "end": 1424
-    "start": 1400
-
-    "nimbus-geth-1": 
-    "end": 1449
-    "start": 1425
-
-    "nimbus-nethermind-1": 
-    "end": 1399
-    "start": 1375
-
-    "prysm-besu-1": 
-    "end": 1474
-    "start": 1450
-
-    "prysm-ethereumjs-1": 
-    "end": 1524
-    "start": 1500
-
-    "prysm-geth-1": 
-    "end": 1549
-    "start": 1525
-
-    "prysm-nethermind-1": 
-    "end": 1499
-    "start": 1475
-
-    "teku-besu-1": 
-    "end": 474
-    "start": 450
-
-    "teku-ethereumjs-1": 
-    "end": 874
-    "start": 675
-
-    "teku-geth-1": 
-    "end": 899
-    "start": 875
-
-    "teku-nethermind-1": 
-    "end": 674
-    "start": 475
+    ```yaml
+    0-24: lodestar-besu-1
+    25-224: lodestar-nethermind-1
+    225-249: lodestar-ethereumjs-1
+    250-449: lodestar-geth-1
+    450-474: teku-besu-1
+    475-674: teku-nethermind-1
+    675-699: teku-ethereumjs-1
+    700-899: teku-geth-1
+    900-924: lighthouse-besu-1
+    925-1124: lighthouse-nethermind-1
+    1125-1149: lighthouse-ethereumjs-1
+    1150-1349: lighthouse-geth-1
+    1350-1374: nimbus-besu-1
+    1375-1399: nimbus-nethermind-1
+    1400-1424: nimbus-ethereumjs-1
+    1425-1449: nimbus-geth-1
+    1450-1474: prysm-besu-1
+    1475-1499: prysm-nethermind-1
+    1500-1524: prysm-ethereumjs-1
+    1525-1549: prysm-geth-1
     ```
 
     ## Network Spec
