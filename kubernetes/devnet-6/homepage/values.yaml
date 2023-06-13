@@ -101,7 +101,7 @@ testnet-homepage:
         blobscanethpandaUrl: https://blobscan.4844-devnet-6.ethpandaops.io
         ethstatsUrl: https://ethstats.4844-devnet-6.ethpandaops.io
         chainName: "4844-devnet-6"
-        chainId: "4844001006"
+        chainId: "7011893055"
         github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-6
       metamask:
         enabled: true
