@@ -1,8 +1,8 @@
 forkmon:
   fullnameOverride: forkmon
   image: 
-    repository: holiman/nodemonitor
-    tag: latest@sha256:5cd609761065b8b1d7d6e91cc11725df94188d939378ef3aa97fbf68fe006374
+    repository: skylenet/nodemonitor
+    tag: darkmode@sha256:84cb51d00aea5e226e7e32ccef298b03c1853afc42f5cbd291c4f5bffe3a6a7b
   ingress:
     enabled: true
 
