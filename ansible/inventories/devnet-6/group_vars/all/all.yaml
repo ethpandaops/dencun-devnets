@@ -34,7 +34,7 @@ ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_n
 ethereum_genesis_timestamp: "{{ lookup('ansible.builtin.pipe', '{{ ethereum_genesis_timestamp_relative_cmd[ansible_system] }}') }}"
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
-  Darwin: "date -v +45m +%s"
+  Darwin: "date -v +45M +%s"
 ethereum_genesis_mnemonic: "{{ secret_genesis_mnemonic }}"
 ethereum_genesis_generator_config_files:
   cl/config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/master/config-example/cl/config.yaml', split_lines=false) }}" # noqa yaml[line-length]
