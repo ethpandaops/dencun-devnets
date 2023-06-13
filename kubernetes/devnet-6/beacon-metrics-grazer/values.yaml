@@ -1,0 +1,38 @@
+beacon-metrics-gazer:
+  fullnameOverride: beacon-metrics-gazer
+  resources:
+    requests:
+      cpu: 68m
+      memory: 128Mi
+    limits:
+      cpu: 128m
+      memory: 256Mi
+
+  endpoint: http://lodestar-nethermind-001:5052
+  ranges: |
+    0-24: lodestar-besu-1
+    25-224: lodestar-nethermind-1
+    225-424: lodestar-ethereumjs-1
+    425-449: lodestar-geth-1
+    450-474: teku-besu-1
+    475-674: teku-nethermind-1
+    675-874: teku-ethereumjs-1
+    875-899: teku-geth-1
+    900-924: lighthouse-besu-1
+    925-1124: lighthouse-nethermind-1
+    1125-1324: lighthouse-ethereumjs-1
+    1325-1349: lighthouse-geth-1
+    1350-1374: nimbus-besu-1
+    1375-1399: nimbus-nethermind-1
+    1400-1424: nimbus-ethereumjs-1
+    1425-1449: nimbus-geth-1
+    1450-1474: prysm-besu-1
+    1475-1499: prysm-nethermind-1
+    1500-1524: prysm-ethereumjs-1
+    1525-1549: prysm-geth-1
+
+  serviceMonitor:
+    enabled: true
+    labels:
+      vmagent: common
+      network: 4844-devnet-6
