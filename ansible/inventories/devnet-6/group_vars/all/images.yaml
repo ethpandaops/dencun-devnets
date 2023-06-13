@@ -1,6 +1,7 @@
 default_ethereum_client_images:
   # Consensus layer clients
   lighthouse: ethdreamer/lighthouse:devnet6 # needs update
+
   lodestar: g11tech/lodestar:devnet36-496a4 # updated ready to go devnet 6 - 36
   nimbus: ethpandaops/nimbus:devnet-6-36-47c7663 # updated ready to go devnet 6 - 36
   prysm: ethpandaops/prysm:eip4844-8efb57c # needs update
@@ -11,6 +12,7 @@ default_ethereum_client_images:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
   ethereumjs: g11tech/ethereumjs:devnet36-a86fe # updated ready to go devnet 6 - 36
   nethermind: nethermindeth/nethermind:eip-4844-v6-36 # updated ready to go devnet 6 - 36
+
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.60
