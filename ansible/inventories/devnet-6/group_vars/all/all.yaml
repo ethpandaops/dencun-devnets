@@ -30,11 +30,12 @@ ethstats_secret: "{{ secret_ethstats }}"
 
 # role: ethpandaops.general.ethereum_genesis
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
+ethereum_genesis_chain_id: 7011893055
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}"
 ethereum_genesis_timestamp: "{{ lookup('ansible.builtin.pipe', '{{ ethereum_genesis_timestamp_relative_cmd[ansible_system] }}') }}"
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
-  Darwin: "date -v +45M +%s"
+  Darwin: "date -v +30M +%s"
 ethereum_genesis_mnemonic: "{{ secret_genesis_mnemonic }}"
 ethereum_genesis_generator_config_files:
   cl/config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/master/config-example/cl/config.yaml', split_lines=false) }}" # noqa yaml[line-length]

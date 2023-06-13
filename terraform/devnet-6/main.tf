@@ -91,13 +91,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=225 validator_end=424" }
+        "1" = { ansible_vars : "validator_start=225 validator_end=249" }
       },
     },
     {
       id = "lodestar-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=425 validator_end=449" }
+        "1" = { ansible_vars : "validator_start=250 validator_end=449" }
       },
     },
     # Teku
@@ -116,13 +116,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "teku-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=675 validator_end=874" }
+        "1" = { ansible_vars : "validator_start=675 validator_end=699" }
       },
     },
     {
       id = "teku-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=875 validator_end=899" }
+        "1" = { ansible_vars : "validator_start=700 validator_end=899" }
       },
     },
     # Lighthouse
@@ -141,13 +141,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=1125 validator_end=1324" }
+        "1" = { ansible_vars : "validator_start=1125 validator_end=1149" }
       },
     },
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=1325 validator_end=1349" }
+        "1" = { ansible_vars : "validator_start=1150 validator_end=1349" }
       },
     },
     # Nimbus

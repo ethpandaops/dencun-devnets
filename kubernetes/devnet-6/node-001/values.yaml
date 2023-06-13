@@ -36,7 +36,7 @@ node-001:
         cpu: 3000m
         memory: 7Gi
     extraArgs:
-      - --Discovery.Bootnodes=enode://a59a013be831d84dfdf595392c2c505ed814374975155be26152fe235f2caa2b799f421055bd85a7ddb341f88f4913c68c5b641a95ed2b35ee5673bf6b341aa6@174.138.11.157:30303
+      - --Discovery.Bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
       - --Init.ChainSpecPath=/data/genesis.json
       - --config=none.cfg
       - --Init.IsMining=false
@@ -111,7 +111,7 @@ node-001:
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
-      - --bootnodes="enr:-MS4QNMu1Ljihi9fMyu-BOQNBIZ5QaeUkgO-auXCeoCsINmpX7ptQVNJkHDSD7fwOEgBhwXar5T7F9K9aJF5SIKgLhAHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhK6KC52Jc2VjcDI1NmsxoQKbV7S4xSzZyg-5dayCpicR8iYyOz1aPHM0yPZaj-ioSohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
+      - --bootnodes="enr:-MS4QAUH5-r328rCWN4SbA4kPFgiYhJLz7FDVmxejp1N9_srQxKCDAWtWVYaYIdydk70NkRBPIDV1utXZWlP4sTnA7sHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCYvFY3QBFHiQEAAAAAAAAAgmlkgnY0gmlwhJ_fD36Jc2VjcDI1NmsxoQJcZxTKV9hbBTqLH3LEwO_jbIChxg_KKaXB-4q43Ng_XohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo"
     initContainers:
     - name: init-genesis
       image: alpine:latest

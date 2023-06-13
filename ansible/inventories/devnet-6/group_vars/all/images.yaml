@@ -1,7 +1,7 @@
 default_ethereum_client_images:
   # Consensus layer clients
   lighthouse: ethpandaops/lighthouse:devnet6 # updated ready to go devnet 6 - 36
-  lodestar: g11tech/lodestar:devnet36-496a4 # updated ready to go devnet 6 - 36
+  lodestar: g11tech/lodestar:devnet36-4f036 # updated ready to go devnet 6 - 36
   nimbus: ethpandaops/nimbus:devnet-6-36-47c7663 # updated ready to go devnet 6 - 36
   prysm: ethpandaops/prysm:eip4844-8efb57c # needs update
   teku: consensys/teku:develop # updated ready to go devnet 6 - 36
