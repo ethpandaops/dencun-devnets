@@ -79,125 +79,125 @@ variable "digitalocean_vm_groups" {
     {
       id = "lodestar-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=0 validator_end=24" }
+        "1" = { ansible_vars : "validator_start=0 validator_end=25" }
       },
     },
     {
       id = "lodestar-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=25 validator_end=224" }
+        "1" = { ansible_vars : "validator_start=25 validator_end=225" }
       },
     },
     {
       id = "lodestar-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=225 validator_end=249" }
+        "1" = { ansible_vars : "validator_start=225 validator_end=250" }
       },
     },
     {
       id = "lodestar-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=250 validator_end=449" }
+        "1" = { ansible_vars : "validator_start=250 validator_end=450" }
       },
     },
     # Teku
     {
       id = "teku-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=450 validator_end=474" }
+        "1" = { ansible_vars : "validator_start=450 validator_end=475" }
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=475 validator_end=674" }
+        "1" = { ansible_vars : "validator_start=475 validator_end=675" }
       },
     },
     {
       id = "teku-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=675 validator_end=699" }
+        "1" = { ansible_vars : "validator_start=675 validator_end=700" }
       },
     },
     {
       id = "teku-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=700 validator_end=899" }
+        "1" = { ansible_vars : "validator_start=700 validator_end=900" }
       },
     },
     # Lighthouse
     {
       id = "lighthouse-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=900 validator_end=924" }
+        "1" = { ansible_vars : "validator_start=900 validator_end=925" }
       },
     },
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=925 validator_end=1124" }
+        "1" = { ansible_vars : "validator_start=925 validator_end=1125" }
       },
     },
     {
       id = "lighthouse-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=1125 validator_end=1149" }
+        "1" = { ansible_vars : "validator_start=1125 validator_end=1150" }
       },
     },
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=1150 validator_end=1349" }
+        "1" = { ansible_vars : "validator_start=1150 validator_end=1350" }
       },
     },
     # Nimbus
     {
       id = "nimbus-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=1350 validator_end=1374" }
+        "1" = { ansible_vars : "validator_start=1350 validator_end=1375" }
       },
     },
     {
       id = "nimbus-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=1375 validator_end=1399" }
+        "1" = { ansible_vars : "validator_start=1375 validator_end=1400" }
       },
     },
     {
       id = "nimbus-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=1400 validator_end=1424" }
+        "1" = { ansible_vars : "validator_start=1400 validator_end=1425" }
       },
     },
     {
       id = "nimbus-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=1425 validator_end=1449" }
+        "1" = { ansible_vars : "validator_start=1425 validator_end=1450" }
       },
     },
     # Prysm
     {
       id = "prysm-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=1450 validator_end=1474" }
+        "1" = { ansible_vars : "validator_start=1450 validator_end=1475" }
       },
     },
     {
       id = "prysm-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=1475 validator_end=1499" }
+        "1" = { ansible_vars : "validator_start=1475 validator_end=1500" }
       },
     },
     {
       id = "prysm-ethereumjs"
       vms = {
-        "1" = { ansible_vars : "validator_start=1500 validator_end=1524" }
+        "1" = { ansible_vars : "validator_start=1500 validator_end=1525" }
       },
     },
     {
       id = "prysm-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=1525 validator_end=1549" }
+        "1" = { ansible_vars : "validator_start=1525 validator_end=1550" }
       },
     },
   ]
