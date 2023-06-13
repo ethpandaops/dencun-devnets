@@ -9,7 +9,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:devnet6-67cf22e # updated ready to go devnet 6 - 36 maybe
   geth: ethpandaops/geth:devnet6-36 # updated ready to go devnet 6 - 36
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
-  ethereumjs: g11tech/ethereumjs:devnet36-a86fe # updated ready to go devnet 6 - 36
+  ethereumjs: g11tech/ethereumjs:devnet36-9a8ffe # updated ready to go devnet 6 - 36
   nethermind: nethermindeth/nethermind:eip-4844-v6-36 # updated ready to go devnet 6 - 36
 
 
