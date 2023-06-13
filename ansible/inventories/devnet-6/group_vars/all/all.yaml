@@ -106,6 +106,10 @@ ethereum_node_el_ports_http_rpc: 8545
 ethereum_node_el_ports_engine: 8551
 ethereum_node_el_ports_metrics: 6060
 
+ethereum_node_json_rpc_snooper_engine_enabled: true
+ethereum_node_json_rpc_snooper_engine_port: 8561
+ethereum_node_json_rpc_snooper_engine_name: "snooper-engine"
+
 # role: ethpandaops.general.xatu_sentry
 xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
 xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
