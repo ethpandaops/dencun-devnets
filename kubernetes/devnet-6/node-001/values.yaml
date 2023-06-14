@@ -123,7 +123,7 @@ node-001:
         - sh
         - -ace
         - >
-          apk add jq curl;
+          apk add jq curl sed;
           DEPOSIT_CONTRACT_URI=https://config.4844-devnet-6.ethpandaops.io/deposit_contract.txt;
           DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt;
           DEPLOY_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deploy_block.txt;
@@ -144,9 +144,8 @@ node-001:
           else
             echo "genesis exists. skipping...";
           fi;
-          cat /data/bootnodes.txt;
-          "(tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g')" > /data/bootnodes.txt;
-          cat /data/bootnodes.txt;
+          "(tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g')" > /data/bootnodes2.txt;
+          mv /data/bootnodes2.txt /data/bootnodes.txt;
           echo "bootnode init done: $(cat /data/bootnodes.txt)";
       volumeMounts:
         - name: storage
