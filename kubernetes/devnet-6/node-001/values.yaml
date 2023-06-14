@@ -144,7 +144,7 @@ node-001:
           else
             echo "genesis exists. skipping...";
           fi;
-          "(tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g')" > /data/bootnodes2.txt;
+          (tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g') > /data/bootnodes2.txt;
           mv /data/bootnodes2.txt /data/bootnodes.txt;
           echo "bootnode init done: $(cat /data/bootnodes.txt)";
       volumeMounts:
