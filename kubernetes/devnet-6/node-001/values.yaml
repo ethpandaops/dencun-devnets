@@ -111,7 +111,7 @@ node-001:
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
-      - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
+      - --bootnodes="$(cat /data/bootnodes.txt)"
     initContainers:
     - name: init-genesis
       image: alpine:latest
@@ -144,7 +144,8 @@ node-001:
           else
             echo "genesis exists. skipping...";
           fi;
-          echo "bootnode init done: $(cat /data/testnet_spec/bootstrap_nodes.txt)";
+          "$(tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g')" > /data/bootnodes.txt;
+          echo "bootnode init done: $(cat /data/bootnodes.txt)";
       volumeMounts:
         - name: storage
           mountPath: "/data"
