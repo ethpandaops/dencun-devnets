@@ -28,7 +28,7 @@ blockscout:
     SHOW_TXS_CHART: "true"
     ETHEREUM_JSONRPC_VARIANT: nethermind
     ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8546
+    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8545
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-6
     BLOCK_TRANSFORMER: base
