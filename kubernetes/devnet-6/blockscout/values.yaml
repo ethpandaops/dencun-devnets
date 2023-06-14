@@ -1,6 +1,10 @@
 blockscout:
   fullnameOverride: blockscout
 
+  image:
+    repository: blockscout/blockscout
+    tag: master
+    
   resources:
     requests:
       cpu: 2000m
