@@ -63,6 +63,3 @@ blockscout:
 
   serviceMonitor:
     enabled: true
-
-  postgresql:
-    fullnameOverride: blockscout-postgresql
