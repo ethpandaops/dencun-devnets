@@ -75,13 +75,13 @@ node-001:
       volumeMounts:
         - name: storage
           mountPath: "/data"
-  # Prysm
+  # Lodestar
   lodestar:
     fullnameOverride: lodestar-nethermind-001
     enabled: true
     image:
       repository: g11tech/lodestar
-      tag: devnet6-789f5
+      tag: g11tech/lodestar:devnet36-4f036
       pullPolicy: Always
     mode: "beacon"
     podLabels:
@@ -111,7 +111,7 @@ node-001:
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
-      - --bootnodes="$(cat /data/bootnodes.txt)"
+      - --bootnodesFile=/data/bootnodes.txt
     initContainers:
     - name: init-genesis
       image: alpine:latest
