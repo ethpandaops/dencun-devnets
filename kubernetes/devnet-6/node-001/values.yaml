@@ -129,7 +129,7 @@ node-001:
           DEPLOY_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.4844-devnet-6.ethpandaops.io/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.4844-devnet-6.ethpandaops.io/cl/genesis.ssz;
-          BOOTNODE_URI=ttps://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr';
+          BOOTNODE_URI=https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr';
           TRUSTED_SETUP_URI=https://config.4844-devnet-6.ethpandaops.io/trusted_setup.txt;
           mkdir -p /data/testnet_spec;
           if ! [ -f /data/testnet_spec/genesis.ssz ];
@@ -140,6 +140,7 @@ node-001:
             wget -O /data/testnet_spec/config.yaml $GENESIS_CONFIG_URI;
             wget -O /data/testnet_spec/genesis.ssz $GENESIS_SSZ_URI;
             wget -O /data/bootnodes.txt $BOOTNODE_URI;
+            cat /data/bootnodes.txt
             wget -O /data/testnet_spec/trusted_setup.txt $TRUSTED_SETUP_URI;
             echo "genesis init done";
           else
