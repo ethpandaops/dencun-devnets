@@ -4,7 +4,7 @@ blockscout:
   image:
     repository: blockscout/blockscout
     tag: master
-    
+
   resources:
     requests:
       cpu: 2000m
@@ -33,6 +33,8 @@ blockscout:
     ETHEREUM_JSONRPC_VARIANT: nethermind
     ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
     ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-lodestar-001:8545
+    INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-6
     BLOCK_TRANSFORMER: base
