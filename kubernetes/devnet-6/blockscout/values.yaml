@@ -64,3 +64,9 @@ blockscout:
   serviceMonitor:
     enabled: true
 
+  postgresql:
+    fullnameOverride: blockscout-postgresql
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
