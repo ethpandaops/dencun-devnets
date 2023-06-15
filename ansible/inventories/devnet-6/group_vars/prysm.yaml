@@ -47,8 +47,8 @@ prysm_container_command_extra_simple_args:
   - --enable-debug-rpc-endpoints
   - --verbosity=debug
   - --subscribe-all-subnets
-  #- --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
-  #- --genesis-beacon-api-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
+  - --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+  - --genesis-beacon-api-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-6.ethpandaops.io
 prysm_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 
