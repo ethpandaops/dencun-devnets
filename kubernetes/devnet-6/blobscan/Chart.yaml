@@ -26,10 +26,10 @@ appVersion: "0.0.1"
 dependencies:
 - name: blobscan
   repository: https://blobscan.github.io/blobscan-helm-charts
-  version: 0.2.4
+  version: 0.2.5
 - name: blobscan-api
   repository: https://blobscan.github.io/blobscan-helm-charts
-  version: 0.2.3
+  version: 0.2.4
 - name: blobscan-indexer
   repository: https://blobscan.github.io/blobscan-helm-charts
   version: 0.2.5

@@ -24,9 +24,9 @@ blobscan-indexer:
       value: "supersecret"
     - name: BLOBSCAN_API_ENDPOINT
       value: "http://blobscan-api:3001"
-    - name: EXECUTION_NODE_RPC
+    - name: EXECUTION_NODE_ENDPOINT
       value: http://nethermind-lodestar-001:8545
-    - name: BEACON_NODE_RPC
+    - name: BEACON_NODE_ENDPOINT
       value: http://lodestar-nethermind-001:5052
 
 # Blobscan API
