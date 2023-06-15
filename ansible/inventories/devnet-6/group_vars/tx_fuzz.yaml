@@ -6,6 +6,6 @@ tx_fuzz_container_command:
   - --no-al
   - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
   - --sk={{ tx_fuzz_privkey }}
-  - --txcount=1
+  - --txcount=500
 
 tx_fuzz_container_networks: "{{ docker_networks_shared }}"
