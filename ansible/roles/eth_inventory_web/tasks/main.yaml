@@ -28,6 +28,16 @@
     mode: "0644"
   loop: "{{ eth_inventory_web_content }}"
 
+- name: Generate YAML from JSON files
+  ansible.builtin.copy:
+    content: "{{ item.content | to_nice_yaml(sort_keys=true, indent=2) }}"
+    dest: "{{ eth_inventory_web_dir }}/content/{{ item.file | replace('.json','.yaml') }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  loop: "{{ eth_inventory_web_content }}"
+  when: item.file is match('.*\.json$')
+
 # Run nginx container that serves the json file
 - name: Run nginx container
   community.general.docker_container:
