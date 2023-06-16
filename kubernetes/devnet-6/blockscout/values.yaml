@@ -9,6 +9,8 @@ blockscout:
     requests:
       cpu: 2000m
       memory: 2Gi
+    limit:
+      cpu: 2000m
 
   ingress:
     enabled: true
