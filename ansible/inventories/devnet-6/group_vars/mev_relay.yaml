@@ -1,0 +1,78 @@
+---
+mev_relay_cleanup_all: false
+
+mev_relay_user: mev_relay
+mev_relay_datadir: "/data/mev_relay"
+mev_relay_docker_network_name: shared
+mev_relay_docker_networks:
+  - name: "{{ mev_relay_docker_network_name }}"
+
+
+# ------------------------------------------------------------------
+# mev-relay-housekeeper
+mev_relay_housekeeper_enabled: true
+mev_relay_housekeeper_datadir: "{{ mev_relay_datadir }}/mev-relay-housekeeper"
+mev_relay_housekeeper_container_name: mev-relay-housekeeper
+mev_relay_housekeeper_container_image: flashbots/mev-boost-relay:latest
+mev_relay_housekeeper_container_env:
+  GENESIS_FORK_VERSION=0x10114789
+  GENESIS_VALIDATORS_ROOT=0xe32310bbbaf0924bdba0f7b673cbac6834a33700823df30dea3d1c6d63e63c9b
+  BELLATRIX_FORK_VERSION=0x30114789
+  CAPELLA_FORK_VERSION=0x40114789
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+mev_relay_housekeeper_container_pull: true
+mev_relay_housekeeper_container_command_extra_args:
+    - --network=custom
+    - --beacon-uris=http://lodestar:5052
+    - --redis-uri=mev-relay-redis:6379
+    - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+
+# ------------------------------------------------------------------
+# mev-relay-api
+mev_relay_api_enabled: true
+mev_relay_api_datadir: "{{ mev_relay_datadir }}/mev-relay-api"
+mev_relay_api_container_name: mev-relay-api
+mev_relay_api_container_image: flashbots/mev-boost-relay:latest
+mev_relay_api_container_env:
+  GENESIS_FORK_VERSION=0x10114789
+  GENESIS_VALIDATORS_ROOT=0xe32310bbbaf0924bdba0f7b673cbac6834a33700823df30dea3d1c6d63e63c9b
+  BELLATRIX_FORK_VERSION=0x30114789
+  CAPELLA_FORK_VERSION=0x40114789
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+  DISABLE_PAYLOAD_DATABASE_STORAGE=1
+mev_relay_api_container_ports: []
+mev_relay_api_container_pull: true
+mev_relay_api_container_networks: "{{ mev_relay_docker_networks }}"
+mev_relay_api_container_command_extra_args:
+  - --network=custom
+  - --beacon-uris=http://lodestar:5052
+  - --pprof
+  - --debug
+  - --redis-uri=mev-relay-redis:6379
+  - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+
+# ------------------------------------------------------------------
+# mev-relay-website
+mev_relay_website_enabled: true
+mev_relay_website_datadir: "{{ mev_relay_datadir }}/mev-relay-website"
+mev_relay_website_container_name: mev-relay-website
+mev_relay_website_container_image: flashbots/mev-boost-relay:latest
+mev_relay_website_container_env:
+  GENESIS_FORK_VERSION=0x10114789
+  GENESIS_VALIDATORS_ROOT=0xe32310bbbaf0924bdba0f7b673cbac6834a33700823df30dea3d1c6d63e63c9b
+  BELLATRIX_FORK_VERSION=0x30114789
+  CAPELLA_FORK_VERSION=0x40114789
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+  RELAY_URL=http://mev-relay-api:9062
+mev_relay_website_container_ports: []
+
+mev_relay_website_container_pull: true
+mev_relay_website_container_networks: "{{ mev_relay_docker_networks }}"
+mev_relay_website_container_command_extra_args:
+  - --network=custom
+  - --redis-uri=mev-relay-redis:6379
+  - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+  - --show-config-details

@@ -86,3 +86,9 @@
   roles:
     - role: ethpandaops.general.tx_fuzz
       tags: [tx_fuzz]
+
+- hosts: mev_relay
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_relay
+      tags: [mev_relay]
