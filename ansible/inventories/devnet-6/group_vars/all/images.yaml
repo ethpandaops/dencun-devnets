@@ -3,10 +3,10 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:devnet6-238fa10 # updated ready to go devnet 6 - 36
   lodestar: g11tech/lodestar:devnet36-4f036 # updated ready to go devnet 6 - 36
   nimbus: ethpandaops/nimbus:unstable # updated ready to go devnet 6 - 36
-  prysm: ethpandaops/prysm:eip4844-8efb57c # needs update
+  prysm: ethpandaops/prysm:deneb-devnet6-62dbc01 # updated ready to go devnet 6 - 36
   teku: consensys/teku:develop # updated ready to go devnet 6 - 36
   # Execution layer clients
-  besu: ethpandaops/besu:4844-devnet-5b-8163c37 # updated ready to go devnet 6 - 36 maybe
+  besu: ethpandaops/besu:devnet6-92afd51 # updated ready to go devnet 6 - 36 maybe
   geth: ethpandaops/geth:4844-devnet-6-0ee653a # updated ready to go devnet 6 - 36
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # needs update
   ethereumjs: g11tech/ethereumjs:devnet36-fd5be9 # updated ready to go devnet 6 - 36

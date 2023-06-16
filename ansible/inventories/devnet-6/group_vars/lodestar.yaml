@@ -42,7 +42,7 @@ lodestar_container_command_extra_args:
   - --network.connectToDiscv5Bootnodes
   - --nat=true
   #- --chain.trustedSetup=/network-config/trusted_setup.txt
-  - --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+  #- --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"

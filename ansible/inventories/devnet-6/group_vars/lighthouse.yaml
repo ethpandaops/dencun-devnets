@@ -41,7 +41,7 @@ lighthouse_container_command_extra_args:
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:512/10
   - --debug-level=debug
-  - --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+  #- --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
