@@ -26,4 +26,4 @@ appVersion: "0.0.1"
 dependencies:
 - name: eth-faucet
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
+  version: 0.1.1
