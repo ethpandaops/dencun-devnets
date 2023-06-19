@@ -1,6 +1,6 @@
 dependencies:
 - name: eth-faucet
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.0
-digest: sha256:bfb957c81146a2d4fc34dcc327275ac7c27205536756b0f3d1838cd272452e4b
-generated: "2023-02-09T18:05:52.644347+10:00"
+  version: 0.1.1
+digest: sha256:46df9c7287ad5b09692e140817d935bf61eaca845da2a9936574e1b772d2188d
+generated: "2023-06-19T18:18:31.938965063Z"
