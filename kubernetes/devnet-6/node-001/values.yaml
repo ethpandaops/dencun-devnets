@@ -112,7 +112,7 @@ node-001:
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
       - --bootnodesFile=/data/bootnodes.txt
-      - --rest.namespace=*
+      - --rest.namespace='*'
     initContainers:
     - name: init-genesis
       image: alpine:latest
