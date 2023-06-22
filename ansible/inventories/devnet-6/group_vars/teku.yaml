@@ -44,6 +44,9 @@ teku_container_command_extra_args:
   - --metrics-block-timing-tracking-enabled
   - --Xmetrics-blob-sidecars-storage-enabled=true
   - --Xtrusted-setup=/network-config/trusted_setup.txt
+  - --Xpeer-rate-limit=100000
+  - --Xpeer-request-limit=1000
+
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
