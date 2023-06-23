@@ -23,4 +23,4 @@ Status | Network | Links | Ansible | Terraform | Kubernetes | Validator ranges
 
 We're using [asdf](https://github.com/asdf-vm/asdf) to make sure that we all use the same versions across tools. Our repositories should contain versions defined in .tools-versions.
 
-You can then use [`./asdf-setup.sh`](./asdf-setup.sh) to install all dependencies.
+You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
