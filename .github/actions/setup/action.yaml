@@ -8,4 +8,4 @@ runs:
 
     - name: Install asdf tools
       shell: bash
-      run: ./asdf-setup.sh
+      run: ./setup.sh
