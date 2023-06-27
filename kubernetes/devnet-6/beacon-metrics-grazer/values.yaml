@@ -22,7 +22,7 @@ beacon-metrics-gazer:
     - /beacon-metrics-gazer
     - http://lodestar-nethermind-001:5052
     - --ranges-file
-    - /custom-data/ranges.yaml
+    - /custom-config/ranges.yaml
     - --port
     - "8080"
     - --address
