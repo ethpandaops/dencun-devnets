@@ -31,7 +31,7 @@
 - name: Generate YAML from JSON files
   ansible.builtin.copy:
     content: "{{ item.content | to_nice_yaml(sort_keys=true, indent=2) }}"
-    dest: "{{ eth_inventory_web_dir }}/content/{{ item.file | replace('.json','.yaml') }}"
+    dest: "{{ eth_inventory_web_dir }}/content/{{ item.file | replace('.json', '.yaml') }}"
     owner: "root"
     group: "root"
     mode: "0644"

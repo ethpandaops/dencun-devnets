@@ -86,3 +86,8 @@
   roles:
     - role: ethpandaops.general.tx_fuzz
       tags: [tx_fuzz]
+
+- hosts: localhost
+  roles:
+    - role: eth_post_network_setup
+      tags: [eth_post_network_setup]
