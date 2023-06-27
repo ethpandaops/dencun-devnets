@@ -7,7 +7,7 @@ node-001:
       beaconEndpoint: http://{{ .Release.Name }}-beacon:5052
     checkpointSync:
       enabled: false
-  #Geth
+  # Nethermind
   nethermind:
     fullnameOverride: nethermind-lodestar-001
     enabled: true

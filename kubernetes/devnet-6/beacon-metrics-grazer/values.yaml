@@ -1,9 +1,6 @@
 beacon-metrics-gazer:
   image:
-    # -- forkmon container image repository
     repository: dapplion/beacon-metrics-gazer
-    #repository: nginx
-    # -- forkmon container image tag
     tag: v0.1.3
 
   fullnameOverride: beacon-metrics-gazer
@@ -15,31 +12,44 @@ beacon-metrics-gazer:
       cpu: 128m
       memory: 256Mi
 
-  endpoint: http://lodestar-nethermind-001:5052
-  ranges: |
-    0-25: lodestar-besu-1
-    25-225: lodestar-nethermind-1
-    225-250: lodestar-ethereumjs-1
-    250-450: lodestar-geth-1
-    450-475: teku-besu-1
-    475-675: teku-nethermind-1
-    675-700: teku-ethereumjs-1
-    700-900: teku-geth-1
-    900-925: lighthouse-besu-1
-    925-1125: lighthouse-nethermind-1
-    1125-1150: lighthouse-ethereumjs-1
-    1150-1350: lighthouse-geth-1
-    1350-1375: nimbus-besu-1
-    1375-1400: nimbus-nethermind-1
-    1400-1425: nimbus-ethereumjs-1
-    1425-1450: nimbus-geth-1
-    1450-1475: prysm-besu-1
-    1475-1500: prysm-nethermind-1
-    1500-1525: prysm-ethereumjs-1
-    1525-1550: prysm-geth-1
-
   serviceMonitor:
     enabled: true
     labels:
       vmagent: common
       network: 4844-devnet-6
+
+  customCommand:
+    - /beacon-metrics-gazer
+    - http://lodestar-nethermind-001:5052
+    - --ranges-file
+    - /custom-data/ranges.yaml
+    - --port
+    - "8080"
+    - --address
+    - "0.0.0.0"
+
+  extraVolumes:
+    - name: custom-config
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: custom-config
+      mountPath: "/custom-config"
+
+  initContainers:
+  - name: init-config
+    image: alpine:latest
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+    command:
+      - sh
+      - -ace
+      - >
+        apk update && apk add curl yq;
+        curl -s https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/validator-ranges | yq '.ranges' -P > /custom-config/ranges.yaml;
+        echo "====== init done ======";
+        cat /custom-config/ranges.yaml;
+    volumeMounts:
+      - name: custom-config
+        mountPath: "/custom-config"
