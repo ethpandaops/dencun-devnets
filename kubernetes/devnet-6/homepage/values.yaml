@@ -32,7 +32,7 @@ testnet-homepage:
     ## Client versions
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-6/group_vars/all/images.yaml
 
-    ## Validator ranges
+    ## Validator ranges
     - https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/validator-ranges
 
     Some examples:
