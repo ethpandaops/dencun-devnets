@@ -1,0 +1,31 @@
+- name: "Run post network setup tasks"
+  vars:
+    ansible_connection: local
+  delegate_to: 127.0.0.1
+  run_once: true
+  become: false
+  block:
+  # Generate missing network config files
+  - name: Generate bootnode.txt for EL clients
+    ansible.builtin.copy:
+      content: |
+        {% for host in (groups['bootnode']) | sort %}
+        {{ hostvars[host]['ethereum_node_fact_el_enode'] }}
+        {% endfor %}
+      dest: "{{ ethereum_genesis_generator_output_dir }}/bootnode.txt"
+  - name: Generate "boot_enr.txt" for CL clients
+    ansible.builtin.copy:
+      content: |
+        {% for host in (groups['bootnode']) | sort %}
+        - {{ hostvars[host]['cl_bootnode_fact_enr'] }}
+        - {{ hostvars[host]['ethereum_node_fact_cl_enr'] }}
+        {% endfor %}
+      dest: "{{ ethereum_genesis_generator_output_dir }}/boot_enr.txt"
+  - name: Generate "bootstrap_nodes.txt" for CL clients
+    ansible.builtin.copy:
+      content: |
+        {% for host in (groups['bootnode']) | sort %}
+        {{ hostvars[host]['cl_bootnode_fact_enr'] }}
+        {{ hostvars[host]['ethereum_node_fact_cl_enr'] }}
+        {% endfor %}
+      dest: "{{ ethereum_genesis_generator_output_dir }}/bootstrap_nodes.txt"
