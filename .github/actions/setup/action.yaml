@@ -3,14 +3,9 @@ description: Install deps
 runs:
   using: composite
   steps:
-    - name: Set up python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
     - name: Install asdf
       uses: asdf-vm/actions/setup@v2
 
     - name: Install asdf tools
       shell: bash
-      run: ./asdf-setup.sh
+      run: ./setup.sh
