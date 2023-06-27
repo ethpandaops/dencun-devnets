@@ -90,3 +90,6 @@ config:
     - path: /api/v1/nodes/inventory
       upstream: bootnode-1.srv.4844-devnet-6.ethpandaops.io
       target: /meta/api/v1/inventory.json
+    - path: /api/v1/nodes/validator-ranges
+      upstream: bootnode-1.srv.4844-devnet-6.ethpandaops.io
+      target: /meta/api/v1/validator-ranges.json
