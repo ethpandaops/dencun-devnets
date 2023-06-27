@@ -47,7 +47,7 @@ beacon-metrics-gazer:
       - -ace
       - >
         apk update && apk add curl yq;
-        curl -s https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/validator-ranges | yq '.' -P > /custom-config/ranges.yaml;
+        curl -s https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/validator-ranges | yq '.ranges' -P > /custom-config/ranges.yaml;
         echo "====== init done ======";
         cat /custom-config/ranges.yaml;
     volumeMounts:
