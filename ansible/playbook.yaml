@@ -74,7 +74,7 @@
   become: true
   tasks:
     - name: Execute curl command
-      shell: 'curl -X \'PUT\' \'http://localhost:5052/teku/v1/admin/log_level\' -H \'accept: /\' -H \'Content-Type: application/json\' -d \'{\"level\": \"TRACE\", \"log_filter\": [\"tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker\", \"tech.pegasys.teku.statetransition.forkchoice.ForkChoice\", \"tech.pegasys.teku.statetransition.blobs\"]}\''
+      shell: curl -X 'PUT' 'http://localhost:5052/teku/v1/admin/log_level' -H 'accept: /' -H 'Content-Type: application/json' -d '{"level": "TRACE", "log_filter": ["tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker", "tech.pegasys.teku.statetransition.forkchoice.ForkChoice", "tech.pegasys.teku.statetransition.blobs"]}'
 
 - hosts: bootnode
   become: true
