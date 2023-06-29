@@ -70,11 +70,25 @@
           }}
 
 - hosts: teku
-  serial: "{{ batch_count | default('100%') }}"
+  serial:
+    - "{{ batch_count | default('100%') }}"
   become: true
   tasks:
-    - name: Execute curl command
-      shell: curl -X 'PUT' 'http://localhost:5052/teku/v1/admin/log_level' -H 'accept: /' -H 'Content-Type: application/json' -d '{"level": "TRACE", "log_filter": ["tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker", "tech.pegasys.teku.statetransition.forkchoice.ForkChoice", "tech.pegasys.teku.statetransition.blobs"]}'
+    - name: Toggle log level for blobs
+      ansible.builtin.uri:
+        url: http://localhost:5052/teku/v1/admin/log_level
+        method: PUT
+        headers:
+          accept: /
+          Content-Type: application/json
+        body_format: json
+        body:
+          level: "TRACE"
+          log_filter:
+            - "tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker"
+            - "tech.pegasys.teku.statetransition.forkchoice.ForkChoice"
+            - "tech.pegasys.teku.statetransition.blobs"
+
 
 - hosts: bootnode
   become: true
