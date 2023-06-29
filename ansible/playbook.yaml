@@ -69,7 +69,7 @@
               )
           }}
 
-- hosts: ethereum_node:teku
+- hosts: teku
   serial: "{{ batch_count | default('100%') }}"
   become: true
   tasks:
