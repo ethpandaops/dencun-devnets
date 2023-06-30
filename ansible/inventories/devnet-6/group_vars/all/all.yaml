@@ -156,9 +156,6 @@ docker_nginx_proxy_container_volumes:
   - "{{ docker_nginx_proxy_datadir }}/htpasswd:/etc/nginx/htpasswd:ro"
 
 # role: ethpandaops.general.vector
-vector_container_volumes:
-  - "{{ vector_datadir }}/vector.toml:/etc/vector/vector.toml:ro"
-  - "/var/run/docker.sock:/var/run/docker.sock:ro"
 vector_config: |
   [sources.in]
     type = "docker_logs"
@@ -174,10 +171,12 @@ vector_config: |
   [sinks.out]
     type = "loki"
     inputs = ["in"]
+    out_of_order_action = "accept"
     labels.forwarder = "vector"
     labels.instance = "{{ inventory_hostname }}"
     labels.network = "{{ ethereum_network_name }}"
     labels.testnet = "{{ ethereum_network_name }}"
+    labels.ingress_user = "{{ secret_loki.username }}"
     encoding.codec = "json"
     endpoint = "{{ secret_loki.endpoint }}"
     auth.strategy = "basic"
