@@ -81,7 +81,7 @@ node-001:
     enabled: true
     image:
       repository: g11tech/lodestar
-      tag: devnet36-4f036
+      tag: devnet36-6c23a8
       pullPolicy: Always
     mode: "beacon"
     podLabels:
