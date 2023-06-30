@@ -75,9 +75,11 @@
   become: true
   tasks:
     - name: Toggle log level for blobs
+      tags: [teku_logs]
       ansible.builtin.uri:
         url: http://localhost:5052/teku/v1/admin/log_level
         method: PUT
+        status_code: [200,204]
         headers:
           accept: /
           Content-Type: application/json
