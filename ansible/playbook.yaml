@@ -96,17 +96,17 @@
     - role: eth_inventory_web
       tags: [eth_inventory_web]
 
-- hosts: beaconchain_explorer
-  become: true
-  roles:
-    - role: ethpandaops.general.beaconchain_explorer_aio
-      tags: [beaconchain_explorer]
-
-- hosts: tx_fuzz
-  become: true
-  roles:
-    - role: ethpandaops.general.tx_fuzz
-      tags: [tx_fuzz]
+#- hosts: beaconchain_explorer
+#  become: true
+#  roles:
+#    - role: ethpandaops.general.beaconchain_explorer_aio
+#      tags: [beaconchain_explorer]
+#
+#- hosts: tx_fuzz
+#  become: true
+#  roles:
+#    - role: ethpandaops.general.tx_fuzz
+#      tags: [tx_fuzz]
 
 - hosts: localhost
   roles:
