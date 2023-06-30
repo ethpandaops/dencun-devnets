@@ -153,9 +153,11 @@ variable "digitalocean_vm_groups" {
     # Nimbus
     {
       id = "nimbus-geth"
+      vms = {},
     },
     {
       id = "nimbus-nethermind"
+      vms = {},
     },
   ]
 }
