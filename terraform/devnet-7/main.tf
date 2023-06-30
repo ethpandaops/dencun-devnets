@@ -153,15 +153,9 @@ variable "digitalocean_vm_groups" {
     # Nimbus
     {
       id = "nimbus-geth"
-      vms = {
-        "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
-      },
     },
     {
       id = "nimbus-nethermind"
-      vms = {
-        "1" = { ansible_vars : "ethereum_node_cl_validator_enabled=false" }
-      },
     },
   ]
 }
