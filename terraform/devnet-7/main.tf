@@ -125,6 +125,15 @@ variable "digitalocean_vm_groups" {
         "1" = { ansible_vars : "validator_start=260 validator_end=460" }
       },
     },
+    # Prysm
+    {
+      id  = "prysm-geth"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "prysm-nethermind"
+      vms = { "1" = {} },
+    },
     # Lighthouse
     {
       id = "lighthouse-besu"
@@ -153,11 +162,11 @@ variable "digitalocean_vm_groups" {
     # Nimbus
     {
       id  = "nimbus-geth"
-      vms = {},
+      vms = { "1" = {} },
     },
     {
       id  = "nimbus-nethermind"
-      vms = {},
+      vms = { "1" = {} },
     },
   ]
 }
