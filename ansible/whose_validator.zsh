@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-curl -s https://bootnode-1.srv.4844-devnet-6.ethpandaops.io/meta/api/v1/validator-ranges.json | jq .ranges | jq -r 'to_entries[] | "\(.key | split("-") | .[0]),\(.key | split("-") | .[1] | tonumber - 1),\(.value)"' > validator.csv
+curl -s https://bootnode-1.srv.4844-devnet-7.ethpandaops.io/meta/api/v1/validator-ranges.json | jq .ranges | jq -r 'to_entries[] | "\(.key | split("-") | .[0]),\(.key | split("-") | .[1] | tonumber - 1),\(.value)"' > validator.csv
 declare -A validators
 while IFS="," read -r low high whose
 do

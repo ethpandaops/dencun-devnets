@@ -1,0 +1,81 @@
+[all:vars]
+ethereum_network_name=${ethereum_network_name}
+
+%{ for gid, group in groups ~}
+[${replace(gid, "-", "_")}]
+%{ for key, host in hosts ~}
+%{ if host.group == gid ~}
+${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region} %{ if host.ansible_vars != null }${trim(host.ansible_vars,"")}%{ endif }
+%{ endif ~}
+%{ endfor ~}
+
+%{ endfor ~}
+
+# Consensus client groups
+
+[lighthouse:children]
+lighthouse_besu
+lighthouse_ethereumjs
+lighthouse_geth
+lighthouse_nethermind
+
+[lodestar:children]
+lodestar_besu
+lodestar_ethereumjs
+lodestar_geth
+lodestar_nethermind
+
+[nimbus:children]
+nimbus_geth
+nimbus_nethermind
+
+[teku:children]
+teku_besu
+teku_ethereumjs
+teku_geth
+teku_nethermind
+
+# Execution client groups
+
+[geth:children]
+lighthouse_geth
+lodestar_geth
+nimbus_geth
+teku_geth
+
+[besu:children]
+lighthouse_besu
+lodestar_besu
+teku_besu
+
+[nethermind:children]
+lighthouse_nethermind
+lodestar_nethermind
+nimbus_nethermind
+teku_nethermind
+
+[ethereumjs:children]
+lighthouse_ethereumjs
+lodestar_ethereumjs
+teku_ethereumjs
+
+# Global groups
+
+[consensus_node:children]
+lighthouse
+lodestar
+nimbus
+teku
+
+[execution_node:children]
+besu
+ethereumjs
+geth
+nethermind
+
+[ethereum_node:children]
+consensus_node
+execution_node
+
+#[beaconchain_explorer:children]
+#lighthouse_erigon

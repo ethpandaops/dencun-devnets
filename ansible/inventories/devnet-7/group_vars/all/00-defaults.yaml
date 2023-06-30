@@ -1,0 +1,43 @@
+ansible_user: devops
+ansible_python_interpreter: /usr/bin/python3
+
+######################################################
+##
+##          Role specific overwrites
+##
+######################################################
+
+# role: ethpandaops.general.bootstrap
+bootstrap_user: root
+bootstrap_default_user_authorized_keys_github:
+  - barnabasbusa
+  - parithosh
+  - samcm
+  - savid
+  - skylenet
+
+# role: robertdebock.fail2ban
+fail2ban_loglevel: INFO
+fail2ban_logtarget: /var/log/fail2ban.log
+fail2ban_maxretry: 10
+fail2ban_bantime: 600
+fail2ban_ignoreips:
+  - "127.0.0.1/8 ::1"
+  - "{{ lookup('ansible.builtin.url', 'http://ifconfig.me/ip', split_lines=False) }}/32" # Avoid banning ourself
+
+# role: ethpandaops.general.docker_network
+docker_network_name: shared
+docker_networks_shared:
+  - name: "{{ docker_network_name }}"
+
+# role: geerlingguy.docker
+docker_users:
+  - devops
+docker_daemon_options:
+  "log-driver": "json-file"
+  "log-opts":
+      "max-size": "250m"
+      "max-file": "2"
+
+# role: ethpandaops.general.prometheus
+prometheus_container_networks: "{{ docker_networks_shared }}"
