@@ -123,12 +123,12 @@ node-001:
         - sh
         - -ace
         - >
-          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-6.ethpandaops.io/deposit_contract.txt;
-          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt;
-          DEPLOY_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deploy_block.txt;
-          GENESIS_CONFIG_URI=https://config.4844-devnet-6.ethpandaops.io/cl/config.yaml;
-          GENESIS_SSZ_URI=https://config.4844-devnet-6.ethpandaops.io/cl/genesis.ssz;
-          BOOTNODE_URI=https://config.4844-devnet-6.ethpandaops.io/bootstrap_nodes.txt;
+          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-7.ethpandaops.io/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
+          BOOTNODE_URI=https://config.4844-devnet-7.ethpandaops.io/bootstrap_nodes.txt;
           mkdir -p /data/testnet_spec;
           if ! [ -f /data/testnet_spec/genesis.ssz ];
           then

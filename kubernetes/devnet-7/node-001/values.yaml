@@ -86,8 +86,8 @@ node-001:
     mode: "beacon"
     podLabels:
       network: 4844-devnet-7
-      testnet: 4844-devnet-6
-      ethereum_network: 4844-devnet-6
+      testnet: 4844-devnet-7
+      ethereum_network: 4844-devnet-7
       ethereum_role: consensus
       consensus_client: lodestar
       execution_client: nethermind
@@ -107,7 +107,7 @@ node-001:
       size: 50Gi
     extraArgs:
       - --execution.urls=http://nethermind-lodestar-001:8551
-      - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-6.ethpandaops.io
+      - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
@@ -125,13 +125,13 @@ node-001:
         - -ace
         - >
           apk add jq curl sed;
-          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-6.ethpandaops.io/deposit_contract.txt;
-          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt;
-          DEPLOY_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deploy_block.txt;
-          GENESIS_CONFIG_URI=https://config.4844-devnet-6.ethpandaops.io/cl/config.yaml;
-          GENESIS_SSZ_URI=https://config.4844-devnet-6.ethpandaops.io/cl/genesis.ssz;
-          curl -s https://config.4844-devnet-6.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/bootnodes.txt;
-          TRUSTED_SETUP_URI=https://config.4844-devnet-6.ethpandaops.io/trusted_setup.txt;
+          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-7.ethpandaops.io/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
+          curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/bootnodes.txt;
+          TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
           mkdir -p /data/testnet_spec;
           if ! [ -f /data/testnet_spec/genesis.ssz ];
           then

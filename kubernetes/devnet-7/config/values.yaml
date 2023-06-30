@@ -1,6 +1,6 @@
 # Find All + Replace all instances of these values in this entire folder to swap to a different network
 network: devnet-7
-chainId: 7011893055
+chainId: 7011893056
 
 # Actual values (change these too)
 domain: 4844-devnet-7.ethpandaops.io
@@ -84,12 +84,12 @@ config:
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/deposit_contract.txt
     - path: /cl/deposit_contract_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-6/deposit_contract_block.txt
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/deposit_contract_block.txt
 
     # Ansible generated ethereum nodes inventory
     - path: /api/v1/nodes/inventory
-      upstream: bootnode-1.srv.4844-devnet-6.ethpandaops.io
+      upstream: bootnode-1.srv.4844-devnet-7.ethpandaops.io
       target: /meta/api/v1/inventory.json
     - path: /api/v1/nodes/validator-ranges
-      upstream: bootnode-1.srv.4844-devnet-6.ethpandaops.io
+      upstream: bootnode-1.srv.4844-devnet-7.ethpandaops.io
       target: /meta/api/v1/validator-ranges.json

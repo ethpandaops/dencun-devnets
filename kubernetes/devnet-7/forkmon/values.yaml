@@ -75,7 +75,7 @@ forkmon:
   #   name: nimbus-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-geth-1.srv.4844-devnet-7.ethpandaops.io
     name: nimbus-geth-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.srv.4844-devnet-6.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.srv.4844-devnet-7.ethpandaops.io
     name: nimbus-besu-1
 
   thirdparty_endpoints: []

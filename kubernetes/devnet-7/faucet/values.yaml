@@ -20,7 +20,7 @@ fauceth:
     APP_AMOUNT: "32080000000000000000" # 32.08 ETH
     APP_IMAGEURL: "https://i.imgur.com/M0gEdpw.png"
     APP_TITLE: "4844-devnet-7 Faucet"
-    APP_CHAINS: "7011893055"
+    APP_CHAINS: "7011893056"
     APP_LOGGING: "VERBOSE"
     APP_ETHKEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_private_key}>"
     HCAPTCHA_SECRET: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.secret_key}>"
@@ -56,8 +56,8 @@ fauceth:
         },
         "infoURL": "https://ethereum.org",
         "shortName": "eth",
-        "chainId": 7011893055,
-        "networkId": 7011893055,
+        "chainId": 7011893056,
+        "networkId": 7011893056,
         "slip44": 60,
         "ens": {
           "registry":"0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"

@@ -24,7 +24,7 @@ testnet-homepage:
 
   customMarkdown: |-
     ## Network Spec
-    https://hackmd.io/@inphi/HJZo4vQGn#
+    https://notes.ethereum.org/@parithosh/devnet-7-specs
 
     ## Ansible setup
     https://github.com/ethpandaops/4844-testnet
@@ -64,18 +64,18 @@ testnet-homepage:
     - https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml
     - https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz
     - https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt
-    - https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract.txt
-    - https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt
+    - https://config.4844-devnet-7.ethpandaops.io/cl/deposit_contract.txt
+    - https://config.4844-devnet-7.ethpandaops.io/cl/deposit_contract_block.txt
 
 
   customArgs:
     - -b
-    - https://4844-devnet-6.ethpandaops.io
+    - https://4844-devnet-7.ethpandaops.io
 
   config:
-    baseURL: https://4844-devnet-6.ethpandaops.io
+    baseURL: https://4844-devnet-7.ethpandaops.io
     languageCode: en-us
-    title: 4844-devnet-6
+    title: 4844-devnet-7
     theme: PaperMod
     markup:
       highlight:
@@ -87,19 +87,19 @@ testnet-homepage:
       disableThemeToggle: true
       defaultTheme: dark
       ethereum:
-        faucetUrl: https://faucet.4844-devnet-6.ethpandaops.io
-        faucet2Url: https://faucet-2.4844-devnet-6.ethpandaops.io
-        rpcUrl: https://rpc.4844-devnet-6.ethpandaops.io
-        explorerUrl: https://explorer.4844-devnet-6.ethpandaops.io
-        forkmonUrl: https://forkmon.4844-devnet-6.ethpandaops.io
+        faucetUrl: https://faucet.4844-devnet-7.ethpandaops.io
+        faucet2Url: https://faucet-2.4844-devnet-7.ethpandaops.io
+        rpcUrl: https://rpc.4844-devnet-7.ethpandaops.io
+        explorerUrl: https://explorer.4844-devnet-7.ethpandaops.io
+        forkmonUrl: https://forkmon.4844-devnet-7.ethpandaops.io
         beaconexplorerUrl: "WIP"
         checkpointSyncUrl: "WIP"
         blobscanUrl: https://blobscan.com
-        blobscanethpandaUrl: https://blobscan.4844-devnet-6.ethpandaops.io
-        ethstatsUrl: https://ethstats.4844-devnet-6.ethpandaops.io
-        chainName: "4844-devnet-6"
-        chainId: "7011893055"
-        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-6
+        blobscanethpandaUrl: https://blobscan.4844-devnet-7.ethpandaops.io
+        ethstatsUrl: https://ethstats.4844-devnet-7.ethpandaops.io
+        chainName: "4844-devnet-7"
+        chainId: "7011893056"
+        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-7
       metamask:
         enabled: true
       logo:
@@ -142,4 +142,4 @@ testnet-homepage:
           url: https://ethereum.org
           weight: 30
     disableKinds: ["taxonomy", "taxonomyTerm"]
-    copyright: "This page is "
+    copyright: "Long live the surge"
