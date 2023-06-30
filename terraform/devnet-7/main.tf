@@ -145,18 +145,18 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
-    id = "lighthouse-ethereumjs"
-    vms = {
-      "1" = { ansible_vars : "validator_start=870 validator_end=880" }
+      id = "lighthouse-ethereumjs"
+      vms = {
+        "1" = { ansible_vars : "validator_start=870 validator_end=880" }
       },
     },
     # Nimbus
     {
-      id = "nimbus-geth"
+      id  = "nimbus-geth"
       vms = {},
     },
     {
-      id = "nimbus-nethermind"
+      id  = "nimbus-nethermind"
       vms = {},
     },
   ]
