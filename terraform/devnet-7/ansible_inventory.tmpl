@@ -35,6 +35,10 @@ teku_ethereumjs
 teku_geth
 teku_nethermind
 
+[prysm:children]
+prysm_geth
+prysm_nethermind
+
 # Execution client groups
 
 [geth:children]
@@ -42,6 +46,7 @@ lighthouse_geth
 lodestar_geth
 nimbus_geth
 teku_geth
+prysm_geth
 
 [besu:children]
 lighthouse_besu
@@ -53,6 +58,7 @@ lighthouse_nethermind
 lodestar_nethermind
 nimbus_nethermind
 teku_nethermind
+prysm_nethermind
 
 [ethereumjs:children]
 lighthouse_ethereumjs
@@ -66,6 +72,7 @@ lighthouse
 lodestar
 nimbus
 teku
+prysm
 
 [execution_node:children]
 besu
