@@ -27,6 +27,8 @@
       tags: [init-server, node_exporter]
     - role: ethpandaops.general.prometheus
       tags: [init-server, prometheus]
+    - role: ethpandaops.general.vector
+      tags: [init-server, vector]
 
 - hosts: bootnode
   become: true

@@ -154,3 +154,32 @@ docker_nginx_proxy_container_volumes:
   - "{{ docker_nginx_proxy_datadir }}/certs:/etc/nginx/certs:ro"
   - html:/usr/share/nginx/html
   - "{{ docker_nginx_proxy_datadir }}/htpasswd:/etc/nginx/htpasswd:ro"
+
+# role: ethpandaops.general.vector
+vector_container_volumes:
+  - "{{ vector_datadir }}/vector.toml:/etc/vector/vector.toml:ro"
+  - "/var/run/docker.sock:/var/run/docker.sock:ro"
+vector_config: |
+  [sources.in]
+    type = "docker_logs"
+    exclude_containers = [
+      "{{ vector_container_name }}",
+      "ethereum-metrics-exporter",
+      "nginx-proxy",
+      "node_exporter",
+      "prometheus",
+      "snooper-",
+    ]
+
+  [sinks.out]
+    type = "loki"
+    inputs = ["in"]
+    labels.forwarder = "vector"
+    labels.instance = "{{ inventory_hostname }}"
+    labels.network = "{{ ethereum_network_name }}"
+    labels.testnet = "{{ ethereum_network_name }}"
+    encoding.codec = "json"
+    endpoint = "{{ secret_loki.endpoint }}"
+    auth.strategy = "basic"
+    auth.user = "{{ secret_loki.username }}"
+    auth.password = "{{ secret_loki.password }}"
