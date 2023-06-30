@@ -1,0 +1,145 @@
+testnet-homepage:
+  fullnameOverride: homepage
+
+  replicas: 1
+
+  image:
+    pullPolicy: Always
+    repository: ethpandaops/ethereum-testnet-homepage
+
+  resources:
+    requests:
+      cpu: 33m
+      memory: 64Mi
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: 4844-devnet-7.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customMarkdown: |-
+    ## Network Spec
+    https://hackmd.io/@inphi/HJZo4vQGn#
+
+    ## Ansible setup
+    https://github.com/ethpandaops/4844-testnet
+
+    ## Client versions
+    https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/devnet-7/group_vars/all/images.yaml
+
+    ## Validator ranges
+    - https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/validator-ranges
+
+    Some examples:
+    ```sh
+    ## Pretty print in YAML format
+    curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/validator-ranges \
+      | yq '.ranges' -P
+    ```
+
+    ## Ethereum node inventory
+    - https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory
+
+    Some examples on how to filter specific data from the node inventory:
+    ```sh
+    # Getting execution layer client enodes
+    curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory \
+      | jq -r '.ethereum_pairs[] | .execution.enode'
+    # Getting conseus layer client ENRs
+    curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory \
+      | jq -r '.ethereum_pairs[] | .consensus.enr'
+    ```
+
+    ## Genesis configuration
+    ### Execution layer clients
+    - https://config.4844-devnet-7.ethpandaops.io/el/genesis.json
+    - https://config.4844-devnet-7.ethpandaops.io/el/chainspec.json
+
+    ### Consensus layer clients
+    - https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml
+    - https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz
+    - https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt
+    - https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract.txt
+    - https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt
+
+
+  customArgs:
+    - -b
+    - https://4844-devnet-6.ethpandaops.io
+
+  config:
+    baseURL: https://4844-devnet-6.ethpandaops.io
+    languageCode: en-us
+    title: 4844-devnet-6
+    theme: PaperMod
+    markup:
+      highlight:
+        codeFences: true
+        guessSyntax: true
+        lineNos: false
+        style: monokai
+    params:
+      disableThemeToggle: true
+      defaultTheme: dark
+      ethereum:
+        faucetUrl: https://faucet.4844-devnet-6.ethpandaops.io
+        faucet2Url: https://faucet-2.4844-devnet-6.ethpandaops.io
+        rpcUrl: https://rpc.4844-devnet-6.ethpandaops.io
+        explorerUrl: https://explorer.4844-devnet-6.ethpandaops.io
+        forkmonUrl: https://forkmon.4844-devnet-6.ethpandaops.io
+        beaconexplorerUrl: "WIP"
+        checkpointSyncUrl: "WIP"
+        blobscanUrl: https://blobscan.com
+        blobscanethpandaUrl: https://blobscan.4844-devnet-6.ethpandaops.io
+        ethstatsUrl: https://ethstats.4844-devnet-6.ethpandaops.io
+        chainName: "4844-devnet-6"
+        chainId: "7011893055"
+        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/devnet-6
+      metamask:
+        enabled: true
+      logo:
+        enabled: false
+        url: https://i.imgur.com/M0gEdpw.png
+      assets:
+        favicon: https://i.imgur.com/M0gEdpw.png
+        favicon16x16: https://i.imgur.com/M0gEdpw.png
+        favicon32x32: https://i.imgur.com/M0gEdpw.png
+        apple_touch_icon: https://i.imgur.com/M0gEdpw.png
+        safari_pinned_tab: https://i.imgur.com/M0gEdpw.png
+
+      links:
+      - name: "Testnet Spec"
+        dataLookup: github
+      - name: "JSON RPC"
+        dataLookup: rpcUrl
+      - name: "Explorer"
+        dataLookup: explorerUrl
+      - name: "Beaconchain explorer (not working)"
+        dataLookup: "beaconexplorerUrl"
+      - name: "Blobscan"
+        dataLookup: blobscanUrl
+      - name: "Blobscan ethpanda edition"
+        dataLookup: blobscanethpandaUrl
+      - name: "Checkpoint Sync"
+        dataLookup: checkpointSyncUrl
+      - name: "Faucet 1"
+        dataLookup: faucetUrl
+      - name: "Faucet 2"
+        dataLookup: faucet2Url
+      - name: "Forkmon"
+        dataLookup: forkmonUrl
+      - name: "Ethstats"
+        dataLookup: ethstatsUrl
+    menu:
+      main:
+        - identifier: ethereum-website
+          name: ethereum.org
+          url: https://ethereum.org
+          weight: 30
+    disableKinds: ["taxonomy", "taxonomyTerm"]
+    copyright: "This page is "

@@ -1,0 +1,148 @@
+node-001:
+  global:
+    main:
+      network: 4844-devnet-7
+      engineEndpoint: http://{{ .Release.Name }}-execution:8551
+      rpcEndpoint: http://{{ .Release.Name }}-execution:8545
+      beaconEndpoint: http://{{ .Release.Name }}-beacon:5052
+    checkpointSync:
+      enabled: false
+  #Geth
+  geth:
+    fullnameOverride: geth-prysm-001
+    enabled: true
+    image:
+      repository: ethpandaops/geth
+      tag: mdehoog-eip4844-7d7c642
+    p2pNodePort:
+      enabled: false
+    persistence:
+      enabled: true
+      size: 50Gi
+    podLabels:
+      network: 4844-devnet-7
+      testnet: 4844-devnet-7
+      ethereum_network: 4844-devnet-7
+      ethereum_role: execution
+      consensus_client: prysm
+      execution_client: geth
+      ethereum_instance: geth-prysm-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    extraArgs:
+      - --bootnodes="$(tr '\n' ',' < /data/bootnodes.txt)"
+      - --networkid="$(cat /data/chainid.txt)"
+      - --ws.api="eth,net,engine,web3,txpool"
+      - --http.api="eth,net,engine,web3,txpool"
+      - --ethstats=rpc-geth-prysm:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
+      - --syncmode=full
+      - --gcmode archive
+    initContainers:
+    - name: init-genesis
+      image: ethpandaops/geth:mdehoog-eip4844-7d7c642
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          BOOTNODE_URI=https://config.4844-devnet-7.ethpandaops.io/el/bootnodes;
+          GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/genesis.json;
+          if ! [ -f /data/genesis_init_done ];
+          then
+            wget -O /data/genesis.json $GENESIS_URI;
+            wget -O /data/bootnodes.txt $BOOTNODE_URI;
+            apk update && apk add jq;
+            cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
+            geth init --datadir /data /data/genesis.json;
+            touch /data/genesis_init_done;
+            echo "genesis init done";
+          else
+            echo "genesis is already initialized";
+          fi;
+          echo "bootnode init done: $(cat /data/bootnodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
+  # Prysm
+  prysm:
+    fullnameOverride: prysm-geth-001
+    enabled: true
+    image:
+      repository: ethpandaops/prysm
+      tag: eip4844-8efb57c
+      pullPolicy: Always
+    mode: "beacon"
+    podLabels:
+      network: 4844-devnet-7
+      testnet: 4844-devnet-7
+      ethereum_network: 4844-devnet-7
+      ethereum_role: consensus
+      consensus_client: prysm
+      execution_client: geth
+      ethereum_instance: geth-prysm-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    p2pNodePort:
+      enabled: false
+      startsAt: 31004
+    persistence:
+      enabled: true
+      size: 50Gi
+    extraArgs:
+      - --execution-endpoint=http://geth-prysm-001:8551
+      - --bootstrap-node=enr:-Iq4QDaIjg-Io_OamJKGZEGPE8smXZwH3gBgo-gk6zmUhu7zTBvYQeY8kqT19ShPxH8NhnqvEghDT2AK5O1fONZoRl-GAYe88F5ngmlkgnY0gmlwhIbRx2aJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
+      - --bootstrap-node=enr:-MS4QDPpPzkDJ65iCq9dthJZ5p49OljTrtbHN_D3f97T-BKjNMdd2MQi4Vu7N--dmotiLZDgiw8BnrdDxkd_ICgvneIHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCzMmyVQEhEBQEAAAAAAAAAgmlkgnY0gmlwhIbRx2aJc2VjcDI1NmsxoQJoQoV-vbiuItOSCsczcQ9vvL_IoaNaslVeqUpnyxP0jYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+      - --bootstrap-node=enr:-Ly4QPqkwlBtT6BGXXbYZXKl8pyv9Jzd7-lNM2RCOM8WL8DIASUmdRIlp9MwMfFslyPMELep_nrr2ZyfqgZZOy9YIAgBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpA9CJoRUEhEBf__________gmlkgnY0gmlwhKRc3oOJc2VjcDI1NmsxoQIQb5M49vcG1Tap_URM0-vQTcxK-HARi0rR50AETaAh34hzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
+      - --bootstrap-node=enr:-L64QKNwxu2NsoQN8_snkxkMJPoC7rj_fHd__6_KNOiWa9DVVb0Y15nv09pCSW86w8ViTuq9IsUseqMDFoQo2rKJ_cKCAcWHYXR0bmV0c4j__________4RldGgykD0ImhFQSEQF__________-CaWSCdjSCaXCEhtHFfolzZWNwMjU2azGhA7_iA8nSvyuJwS-WLrk3ehcs4gBBuCoo3E-g_KWHT90iiHN5bmNuZXRzD4N0Y3CCIyiDdWRwgiMo
+      - --checkpoint-sync-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+      - --genesis-beacon-api-url=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+      - --genesis-state=/data/testnet_spec/genesis.ssz
+      - --chain-config-file=/data/testnet_spec/config.yaml
+      - --min-sync-peers=1
+    initContainers:
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-6.ethpandaops.io/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.4844-devnet-6.ethpandaops.io/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.4844-devnet-6.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.4844-devnet-6.ethpandaops.io/cl/genesis.ssz;
+          BOOTNODE_URI=https://config.4844-devnet-6.ethpandaops.io/bootstrap_nodes.txt;
+          mkdir -p /data/testnet_spec;
+          if ! [ -f /data/testnet_spec/genesis.ssz ];
+          then
+            wget -O /data/testnet_spec/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/testnet_spec/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/testnet_spec/deploy_block.txt $DEPLOY_BLOCK_URI;
+            wget -O /data/testnet_spec/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/testnet_spec/genesis.ssz $GENESIS_SSZ_URI;
+            wget -O /data/testnet_spec/bootstrap_nodes.txt $BOOTNODE_URI;
+            echo "genesis init done";
+          else
+            echo "genesis exists. skipping...";
+          fi;
+          echo "bootnode init done: $(cat /data/testnet_spec/bootstrap_nodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
