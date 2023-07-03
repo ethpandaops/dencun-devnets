@@ -19,7 +19,7 @@ blobscan:
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
   image:
-    tag: devnet5
+    tag: latest
   extraEnv:
     - name: SECRET_KEY
       value: "supersecret"
