@@ -33,3 +33,7 @@ dependencies:
 - name: blobscan-indexer
   repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer"
   version: 0.2.7
+- name: postgresql
+  version: "12.6.0"
+  repository: "https://charts.bitnami.com/bitnami"
+  alias: blobscandb
