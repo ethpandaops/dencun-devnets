@@ -38,7 +38,7 @@ blobscan-indexer:
     args: ["-scheme", "http"]
     volumeMounts:
       - name: storage
-        mountPath: /data
+        mountPath: /storage
   
   extraVolumes:
     - name: storage
