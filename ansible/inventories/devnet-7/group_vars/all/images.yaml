@@ -1,6 +1,6 @@
 default_ethereum_client_images:
   # Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:deneb-free-blobs-4a79328 # updated ready to go devnet 7 - 3/6 blobs
+  lighthouse: ethpandaops/lighthouse:boxed-blobs-d534ac0 # updated ready to go devnet 7 - 3/6 blobs
   lodestar: g11tech/lodestar:devnet36-6c23a8 # updated ready to go devnet 7 - 3/6 blobs
   nimbus: ethpandaops/nimbus:unstable-b626649 # updated ready to go devnet 7 - 3/6 blobs
   prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # updated ready to go devnet 7 - 3/6 blobs
