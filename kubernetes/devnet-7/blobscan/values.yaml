@@ -37,11 +37,11 @@ blobscan-indexer:
     volumeMounts:
       - name: storage
         mountPath: /storage
+    ports:
+      - name: fake-gcs-server
+        containerPort: 4443
+        protocol: TCP
 
-  extraPodPorts:
-    - name: fake-gcs-server
-      containerPort: 4443
-      protocol: TCP
   extraVolumes:
     - name: storage
       emptyDir: {}
