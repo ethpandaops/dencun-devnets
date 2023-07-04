@@ -27,6 +27,11 @@ dependencies:
 - name: blobscan
   repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan"
   version: 0.2.5
+- name: postgresql
+  version: "12.5.1"
+  repository: "https://charts.bitnami.com/bitnami"
+  alias: blobscandb
+  condition: postgresql.enabled
 - name: blobscan-api
   repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-api"
   version: 0.2.4
