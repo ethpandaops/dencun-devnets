@@ -31,8 +31,10 @@ blobscan-indexer:
       value: http://lodestar-nethermind-001:5052
   
   # Fake google cloud server
-  initContainer:
+  initContainers:
+  - name: fake-gcs-server
     image: fsouza/fake-gcs-server
+    imagePullPolicy: IfNotPresent
     command: ["-scheme", "http"]
     volumeMounts:
       - name: storage
