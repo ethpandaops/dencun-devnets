@@ -8,8 +8,5 @@ dependencies:
 - name: blobscan-indexer
   repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer
   version: 0.2.7
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 12.6.0
-digest: sha256:58523fab13ce8847a23cbc7588bfaa524f0a5e3a46d09225cf5f757c48420032
-generated: "2023-07-04T12:50:49.665428+02:00"
+digest: sha256:d2f1cdbb2a3e0a9309c5f9506c3e4408223a7e2d44df6ba554d78b23130f8f03
+generated: "2023-07-04T13:04:30.103+02:00"
