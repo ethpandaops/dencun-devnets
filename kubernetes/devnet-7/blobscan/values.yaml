@@ -38,7 +38,7 @@ blobscan-indexer:
       - name: storage
         mountPath: /storage
 
-  extraPorts:
+  extraPodPorts:
     - name: fake-gcs-server
       containerPort: 4443
       protocol: TCP
