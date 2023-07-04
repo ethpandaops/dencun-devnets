@@ -13,6 +13,9 @@ blobscan:
                 name: blobscan
                 port:
                   number: 3000
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+  
   # Fake GCS server
   extraContainers:
   - name: fake-gcs-server
@@ -30,9 +33,6 @@ blobscan:
   extraVolumes:
     - name: storage
       emptyDir: {}
-
-  blobscandb:
-    fullnameOverride: blobscan-blobscandb
 
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
