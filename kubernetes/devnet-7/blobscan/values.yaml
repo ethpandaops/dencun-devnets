@@ -35,7 +35,7 @@ blobscan-indexer:
   - name: fake-gcs-server
     image: fsouza/fake-gcs-server
     imagePullPolicy: IfNotPresent
-    command: ["-scheme", "http"]
+    args: ["-scheme", "http"]
     volumeMounts:
       - name: storage
         mountPath: /storage
