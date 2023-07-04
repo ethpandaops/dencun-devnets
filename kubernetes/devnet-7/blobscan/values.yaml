@@ -13,21 +13,6 @@ blobscan:
                 name: blobscan
                 port:
                   number: 3000
-  blobscandb:
-    fullnameOverride: blobscan-blobscandb
-
-blobscan-indexer:
-  fullnameOverride: blobscan-indexer
-  extraEnv:
-    - name: SECRET_KEY
-      value: "supersecret"
-    - name: BLOBSCAN_API_ENDPOINT
-      value: "http://blobscan-api:3001"
-    - name: EXECUTION_NODE_ENDPOINT
-      value: http://nethermind-lodestar-001:8545
-    - name: BEACON_NODE_ENDPOINT
-      value: http://lodestar-nethermind-001:5052
-  
   # Fake GCS server
   extraContainers:
   - name: fake-gcs-server
@@ -45,6 +30,21 @@ blobscan-indexer:
   extraVolumes:
     - name: storage
       emptyDir: {}
+
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+  extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
+    - name: EXECUTION_NODE_ENDPOINT
+      value: http://nethermind-lodestar-001:8545
+    - name: BEACON_NODE_ENDPOINT
+      value: http://lodestar-nethermind-001:5052
 
 # Blobscan API
 blobscan-api:

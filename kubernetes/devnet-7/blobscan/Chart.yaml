@@ -25,10 +25,10 @@ appVersion: "0.0.1"
 
 dependencies:
 - name: blobscan
-  repository: https://blobscan.github.io/blobscan-helm-charts
+  repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan"
   version: 0.2.5
 - name: blobscan-api
-  repository: https://blobscan.github.io/blobscan-helm-charts
+  repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-api"
   version: 0.2.4
 - name: blobscan-indexer
   repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer"

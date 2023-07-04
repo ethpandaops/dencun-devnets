@@ -1,12 +1,12 @@
 dependencies:
 - name: blobscan
-  repository: https://blobscan.github.io/blobscan-helm-charts
+  repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan
   version: 0.2.5
 - name: blobscan-api
-  repository: https://blobscan.github.io/blobscan-helm-charts
+  repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-api
   version: 0.2.4
 - name: blobscan-indexer
   repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer
   version: 0.2.6
-digest: sha256:093b22def8c0f2754378fb3b3f18195c63a1e3f53045919132d2f015ed1ea3a2
-generated: "2023-07-04T11:45:49.690342+02:00"
+digest: sha256:4b252e8925cb2a961c024d47f4c7a8dded8309d2ff47c12cd37d480efae60362
+generated: "2023-07-04T12:20:55.074147+02:00"
