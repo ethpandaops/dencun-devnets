@@ -18,8 +18,6 @@ blobscan:
 
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
-  image:
-    tag: latest
   extraEnv:
     - name: SECRET_KEY
       value: "supersecret"
@@ -30,8 +28,8 @@ blobscan-indexer:
     - name: BEACON_NODE_ENDPOINT
       value: http://lodestar-nethermind-001:5052
   
-  # Fake google cloud server
-  initContainers:
+  # Fake GCS server
+  extraContainers:
   - name: fake-gcs-server
     image: fsouza/fake-gcs-server
     imagePullPolicy: IfNotPresent
@@ -39,7 +37,11 @@ blobscan-indexer:
     volumeMounts:
       - name: storage
         mountPath: /storage
-  
+
+  extraPorts:
+    - name: fake-gcs-server
+      containerPort: 4443
+      protocol: TCP
   extraVolumes:
     - name: storage
       emptyDir: {}
