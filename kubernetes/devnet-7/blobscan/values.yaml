@@ -29,6 +29,18 @@ blobscan-indexer:
       value: http://nethermind-lodestar-001:8545
     - name: BEACON_NODE_ENDPOINT
       value: http://lodestar-nethermind-001:5052
+  
+  # Fake google cloud server
+  initContainer:
+    image: fsouza/fake-gcs-server
+    command: ["-scheme", "http"]
+    volumeMounts:
+      - name: storage
+        mountPath: /storage
+  
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
 
 # Blobscan API
 blobscan-api:
