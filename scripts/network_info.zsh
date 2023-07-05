@@ -5,6 +5,7 @@ domain="ethpandaops.io"
 prefix="4844"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
 sops_password=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.password')
+sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_genesis_mnemonic')
 
 # Helper function to display available options
 print_usage() {
@@ -33,6 +34,7 @@ print_usage() {
   echo "  get_beacon                    Get the beacon of the network"
   echo "  get_inventory                 Get the inventory of the network"
   echo "  fork_choice                   Get the fork choice of the network"
+  echo "  help                          Print this help message"
   echo
 }
 
@@ -198,7 +200,22 @@ for arg in "${command[@]}"; do
       # Get the fork choice of the network
       curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
       ;;
+    "send_blob")
+      # Get a private key from a mnemonic
+      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+      echo "Private key: $privatekey"
+      if [[ -z "${command[2]}" ]]; then
+        # sending only one blob
+        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain 1 "$privatekey" 0x000000000000000000000000000000000000f1c1
+        exit;
+      else
+        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
+        exit;
+      fi
+      #Send a blob to the network
+      # send only one blob
 
+      ;;
 
     "help")
       print_usage "${command[@]}"
