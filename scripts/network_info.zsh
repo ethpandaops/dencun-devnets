@@ -34,6 +34,7 @@ print_usage() {
   echo "  get_beacon                    Get the beacon of the network"
   echo "  get_inventory                 Get the inventory of the network"
   echo "  fork_choice                   Get the fork choice of the network"
+  echo "  send_blob                     Send a blob to the network"
   echo "  help                          Print this help message"
   echo
 }
