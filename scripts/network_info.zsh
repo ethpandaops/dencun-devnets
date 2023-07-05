@@ -1,9 +1,4 @@
 #!/bin/zsh
-# This script is used to find out latest or specific block/slot info
-
-# Ensure that you have the basic auth in your environment as follows:
-# export ETH_BASIC_AUTH="user:password"
-
 node="lighthouse-nethermind-1"
 network="devnet-7"
 domain="ethpandaops.io"
