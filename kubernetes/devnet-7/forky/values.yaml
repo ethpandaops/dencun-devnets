@@ -36,7 +36,7 @@ forky:
           spec:
             seconds_per_slot: 12
             slots_per_epoch: 32
-            genesis_time: 1688126400
+            genesis_time: 1688126460
       sources:
         # Prysm
         - name: "prysm-nethermind-1"
