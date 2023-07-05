@@ -19,7 +19,7 @@ forky:
   config:
     listen_addr: ":5555"
     pprof_addr: ":6060"
-    log_level: "info"
+    log_level: "debug"
     metrics:
       addr: ":9090"
       enabled: true
