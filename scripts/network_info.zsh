@@ -196,7 +196,7 @@ for arg in "${command[@]}"; do
       ;;
     "fork_choice")
       # Get the fork choice of the network
-      curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/debug/fork_choice | jq .
+      curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
       ;;
 
 
