@@ -2,6 +2,7 @@
   ansible.builtin.template:
     src: Chart.yaml.j2
     dest: "{{ default_dir }}/{{ chart_item.key | replace('_', '-') }}/Chart.yaml"
+    mode: "0644"
   loop: "{{ helm_charts | dict2items }}"
   loop_control:
     loop_var: chart_item
@@ -16,4 +17,5 @@
   ansible.builtin.copy:
     src: ".helmignore"
     dest: "{{ default_dir }}/{{ item.key | replace('_', '-') }}/.helmignore"
+    mode: "0644"
   loop: "{{ helm_charts | dict2items }}"

@@ -1,6 +1,6 @@
 helm_charts:
   beacon_metrics_gazer: 0.1.3
-  blobscan: 
+  blobscan:
     blobscan: 0.2.6
     blobscan_api: 0.2.5
     blobscan_indexer: 0.2.7
