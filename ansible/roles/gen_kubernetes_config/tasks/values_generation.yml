@@ -1,0 +1,7 @@
+- name: Generate Chart.yaml
+  ansible.builtin.template:
+    src: "{{ chart_item.key | replace('_', '-') }}.yaml.j2"
+    dest: "{{ default_dir }}/{{ chart_item.key | replace('_', '-') }}/values.yaml"
+  loop: "{{ helm_charts | dict2items }}"
+  loop_control:
+    loop_var: chart_item

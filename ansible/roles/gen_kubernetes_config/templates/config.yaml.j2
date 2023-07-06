@@ -1,0 +1,97 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Find All + Replace all instances of these values in this entire folder to swap to a different network
+network: {{ ethereum_network_name | replace('4844-', '') }}
+chainId: {{ ethereum_genesis_chain_id }}
+
+# Actual values (change these too)
+domain: {{ ethereum_network_name }}.ethpandaops.io
+
+config:
+  enabled: true
+  files:
+    # Support all files as they appear in the github repo
+    - path: /besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/besu.json
+    - path: /bootnode.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootnode.txt
+    - path: /bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.txt
+    - path: /chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/chainspec.json
+    - path: /config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/config.yaml
+    - path: /deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deploy_block.txt
+    - path: /deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract.txt
+    - path: /deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block.txt
+    - path: /deposit_contract_block_hash.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block_hash.txt
+    - path: /genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.json
+    - path: /genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.ssz
+    - path: /parseBeaconState.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/parseBeaconState.json
+    - path: /trusted_setup.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/trusted_setup.txt
+    - path: /trusted_setup.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/trusted_setup.json
+
+    # Execution Layer specific redirects
+    - path: /el/bootnodes
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootnode.txt
+    - path: /el/besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/besu.json
+    - path: /el/chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/chainspec.json
+    - path: /el/genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.json
+
+    # Consensus Layer specific redirects
+    - path: /cl/bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.txt
+    - path: /cl/config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/config.yaml
+    - path: /cl/genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.ssz
+    - path: /cl/deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deploy_block.txt
+    - path: /cl/deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract.txt
+    - path: /cl/deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block.txt
+
+    # Ansible generated ethereum nodes inventory
+    - path: /api/v1/nodes/inventory
+      upstream: bootnode-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+      target: /meta/api/v1/inventory.json
+    - path: /api/v1/nodes/validator-ranges
+      upstream: bootnode-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+      target: /meta/api/v1/validator-ranges.json
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

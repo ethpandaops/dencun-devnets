@@ -1,3 +1,4 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 checkpointz:
   fullnameOverride: checkpointz
   replicas: 1
@@ -50,3 +51,4 @@ checkpointz:
         dataProvider: true
       - name: bootnode
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

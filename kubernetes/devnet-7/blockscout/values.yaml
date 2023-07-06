@@ -1,3 +1,4 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 blockscout:
   fullnameOverride: blockscout
 
@@ -71,3 +72,4 @@ blockscout:
 
   serviceMonitor:
     enabled: true
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

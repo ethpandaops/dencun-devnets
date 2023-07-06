@@ -1,0 +1,20 @@
+helm_charts:
+  beacon_metrics_gazer: 0.1.3
+  blobscan: 
+    blobscan: 0.2.6
+    blobscan_api: 0.2.5
+    blobscan_indexer: 0.2.7
+  blockscout: 0.2.0
+  config: 0.0.1
+  checkpointz: 0.1.3
+  ethstats: 0.1.4
+  eth_faucet: 0.1.1
+  fauceth: 0.2.3
+  forkmon: 0.1.4
+  forky: 0.1.1
+  testnet_homepage: 0.2.2
+  ethereum_node: 0.0.7
+  rpc_proxy: 0.1.2
+
+el: nethermind
+cl: lodestar

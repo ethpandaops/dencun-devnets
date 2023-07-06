@@ -1,3 +1,4 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 blobscan:
   fullnameOverride: blobscan
   ingress:
@@ -66,3 +67,4 @@ blobscan-api:
   extraVolumes:
     - name: storage
       emptyDir: {}
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

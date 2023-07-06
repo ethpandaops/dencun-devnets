@@ -1,0 +1,8 @@
+- name: directory generation
+  ansible.builtin.import_tasks: directory_generation.yml
+
+- name: generate chart.yaml files
+  ansible.builtin.import_tasks: chart_generation.yml
+
+- name: generate values.yaml files
+  ansible.builtin.import_tasks: values_generation.yml

@@ -1,3 +1,4 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 ethstats:
   fullnameOverride: ethstats
 
@@ -26,3 +27,4 @@ ethstats:
     limits:
       memory: 512Mi
       cpu: 200m
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

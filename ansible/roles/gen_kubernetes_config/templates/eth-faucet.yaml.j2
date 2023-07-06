@@ -1,0 +1,27 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+eth-faucet:
+  fullnameOverride: faucet-2
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: faucet-2.{{ ethereum_network_name }}.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  secretEnv:
+    PRIVATE_KEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_2_private_key}>"
+
+  extraEnv:
+    - name: WEB3_PROVIDER
+      value: "http://nethermind-lodestar-001:8545"
+  
+  args:
+    - -faucet.amount=33
+    - -faucet.name={{ ethereum_network_name }}
+    - -proxycount=2
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

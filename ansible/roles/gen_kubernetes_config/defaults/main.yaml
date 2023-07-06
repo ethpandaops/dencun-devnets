@@ -1,0 +1,1 @@
+default_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}

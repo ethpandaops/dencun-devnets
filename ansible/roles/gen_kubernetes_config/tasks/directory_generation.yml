@@ -1,0 +1,5 @@
+- name: Create directories for Chart.yaml
+  file:
+    path: "{{ default_dir }}/{{ item.key | replace('_', '-') }}"
+    state: directory
+  loop: "{{ helm_charts | dict2items }}"

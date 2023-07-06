@@ -1,35 +1,18 @@
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 apiVersion: v2
-name: eip4844-devnet-5
+name: blobscan
 description: A Helm chart for Kubernetes
-
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.0.2
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
-# It is recommended to use it with quotes.
-appVersion: "0.0.1"
-
+version: 0.1.0
+appVersion: "{'blobscan': '0.2.6', 'blobscan_api': '0.2.5', 'blobscan_indexer': '0.2.7'}"
 dependencies:
-- name: blobscan
-  repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan"
-  version: 0.2.6
-- name: blobscan-api
-  repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-api"
-  version: 0.2.5
-- name: blobscan-indexer
-  repository: "file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer"
-  version: 0.2.7
+  - name: blobscan
+    repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan #This will need to be changed to the actual repo
+    version: 0.2.6
+  - name: blobscan-api
+    repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-api #This will need to be changed to the actual repo
+    version: 0.2.5
+  - name: blobscan-indexer
+    repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/blobscan-indexer #This will need to be changed to the actual repo
+    version: 0.2.7
+# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

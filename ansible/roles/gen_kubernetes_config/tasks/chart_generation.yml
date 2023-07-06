@@ -1,0 +1,19 @@
+- name: Generate Chart.yaml
+  ansible.builtin.template:
+    src: Chart.yaml.j2
+    dest: "{{ default_dir }}/{{ chart_item.key | replace('_', '-') }}/Chart.yaml"
+  loop: "{{ helm_charts | dict2items }}"
+  loop_control:
+    loop_var: chart_item
+
+- name: Run helm dependency build
+  ansible.builtin.command: helm dependency build "{{ default_dir }}/{{ item.key | replace('_', '-') }}"
+  loop: "{{ helm_charts | dict2items }}"
+  loop_control:
+    loop_var: item
+
+- name: Copy the helm ignore file
+  ansible.builtin.copy:
+    src: ".helmignore"
+    dest: "{{ default_dir }}/{{ item.key | replace('_', '-') }}/.helmignore"
+  loop: "{{ helm_charts | dict2items }}"
