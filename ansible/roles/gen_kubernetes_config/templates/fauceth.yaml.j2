@@ -16,7 +16,7 @@ fauceth:
             pathType: Prefix
 
   secretEnv:
-    APP_AMOUNT: "32080000000000000000" # 32.08 ETH
+    APP_AMOUNT: "100080000000000000000" # 32.08 ETH
     APP_IMAGEURL: "https://i.imgur.com/M0gEdpw.png"
     APP_TITLE: "{{ ethereum_network_name }} Faucet"
     APP_CHAINS: "{{ ethereum_genesis_chain_id }}"
@@ -45,7 +45,7 @@ fauceth:
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
-          "http://nethermind-lodestar-001:8545"
+          "{{ default_el_endpoint }}"
         ],
         "faucets": [],
         "nativeCurrency": {

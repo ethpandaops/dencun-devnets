@@ -2,6 +2,9 @@
 eth-faucet:
   fullnameOverride: faucet-2
 
+  image:
+    repository: chainflag/eth-fauceth
+    tag: latest
   ingress:
     enabled: true
 
@@ -21,7 +24,7 @@ eth-faucet:
       value: "http://nethermind-lodestar-001:8545"
   
   args:
-    - -faucet.amount=33
+    - -faucet.amount=100
     - -faucet.name=4844-devnet-7
     - -proxycount=2
 # ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

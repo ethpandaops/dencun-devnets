@@ -2,6 +2,9 @@
 eth-faucet:
   fullnameOverride: faucet-2
 
+  image:
+    repository: {{ default_tooling_images.eth_fauceth.split(':') | first }}
+    tag: {{ default_tooling_images.eth_fauceth.split(':') | last}}
   ingress:
     enabled: true
 
@@ -18,10 +21,10 @@ eth-faucet:
 
   extraEnv:
     - name: WEB3_PROVIDER
-      value: "http://nethermind-lodestar-001:8545"
+      value: "{{ default_el_endpoint }}"
   
   args:
-    - -faucet.amount=33
+    - -faucet.amount=100
     - -faucet.name={{ ethereum_network_name }}
     - -proxycount=2
 # ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
