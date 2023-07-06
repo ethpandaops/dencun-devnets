@@ -3,8 +3,8 @@ forky:
   fullnameOverride: forky
   replicas: 1
   image:
-    repository: ethpandaops/forky
-    tag: 0.0.34-debian
+    repository: {{ default_tooling_images.forky.split(':') | first }}
+    tag: {{ default_tooling_images.forky.split(':') | last }}
   resources:
     requests:
       cpu: 256m

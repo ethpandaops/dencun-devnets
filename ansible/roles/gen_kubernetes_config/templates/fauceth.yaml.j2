@@ -1,11 +1,9 @@
 # ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
 fauceth:
   fullnameOverride: fauceth
-
   image:
-    repository: skylenet/fauceth
-    tag: fix_fee_estimation
-
+    repository: {{ default_tooling_images.fauceth.split(':') | first }}
+    tag: {{ default_tooling_images.fauceth.split(':') | last}}
   ingress:
     enabled: true
 

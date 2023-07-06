@@ -4,7 +4,8 @@ checkpointz:
   replicas: 1
 
   image:
-    tag: 0.15.0
+    repository: {{ default_tooling_images.checkpointz.split(':') | first }}
+    tag: {{ default_tooling_images.checkpointz.split(':') | last }}
 
   resources:
     requests:
@@ -47,8 +48,11 @@ checkpointz:
     beacon:
       upstreams:
       - name: rpc-beacon
-        address: http://lodestar-nethermind-001:5052
+        address: {{ default_cl_endpoint }}
         dataProvider: true
-      - name: bootnode
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets..node_ingress.combined}>@bn.bootnode-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+{% for host in (groups['all']) | sort %}
+      - name: {{ hostvars[host]['inventory_hostname'] }}
+      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ ethereum_network_name }}.ethpandaops.io
+        dataProvider: true
+{% endfor %}
 # ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

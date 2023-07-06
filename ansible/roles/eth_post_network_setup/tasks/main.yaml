@@ -9,24 +9,24 @@
     - name: Generate bootnode.txt for EL clients
       ansible.builtin.copy:
         content: |
-          {% for host in (groups['bootnode']) | sort %}
+          {% for host in (groups['all']) | sort %}
           {{ hostvars[host]['ethereum_node_fact_el_enode'] }}
           {% endfor %}
         dest: "{{ ethereum_genesis_generator_output_dir }}/bootnode.txt"
         mode: "0644"
-    - name: Generate "boot_enr.txt" for CL clients
+    - name: Generate "boot_enr.yaml" for CL clients
       ansible.builtin.copy:
         content: |
-          {% for host in (groups['bootnode']) | sort %}
+          {% for host in (groups['all']) | sort %}
           - {{ hostvars[host]['cl_bootnode_fact_enr'] }}
           - {{ hostvars[host]['ethereum_node_fact_cl_enr'] }}
           {% endfor %}
-        dest: "{{ ethereum_genesis_generator_output_dir }}/boot_enr.txt"
+        dest: "{{ ethereum_genesis_generator_output_dir }}/boot_enr.yaml"
         mode: "0644"
     - name: Generate "bootstrap_nodes.txt" for CL clients
       ansible.builtin.copy:
         content: |
-          {% for host in (groups['bootnode']) | sort %}
+          {% for host in (groups['all']) | sort %}
           {{ hostvars[host]['cl_bootnode_fact_enr'] }}
           {{ hostvars[host]['ethereum_node_fact_cl_enr'] }}
           {% endfor %}

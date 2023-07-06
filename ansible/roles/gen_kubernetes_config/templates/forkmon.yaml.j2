@@ -2,8 +2,8 @@
 forkmon:
   fullnameOverride: forkmon
   image:
-    repository: skylenet/nodemonitor
-    tag: darkmode@sha256:84cb51d00aea5e226e7e32ccef298b03c1853afc42f5cbd291c4f5bffe3a6a7b
+    repository: {{ default_tooling_images.forkmon.split(':') | first }}
+    tag: {{ default_tooling_images.forkmon.split(':') | last }}
   ingress:
     enabled: true
 
@@ -17,8 +17,8 @@ forkmon:
   network: {{ ethereum_network_name }}
   endpoints:
   # Rpc
-  - addr: http://nethermind-lodestar-001:8545
-    name: rpc-nethermind-lodestar
+  - addr: {{ default_el_endpoint }}
+    name: rpc
 {% for host in (groups['all']) | sort %}
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ ethereum_network_name }}.ethpandaops.io
     name: {{ hostvars[host]['inventory_hostname'] }}

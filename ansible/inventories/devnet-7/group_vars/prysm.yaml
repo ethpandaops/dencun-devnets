@@ -32,15 +32,16 @@ prysm_container_env:
 prysm_container_volumes:
   - "{{ prysm_datadir }}:/data"
   - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
 prysm_container_entrypoint:
   - /app/cmd/beacon-chain/beacon-chain
 prysm_container_command_extra_args: >-
   {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args }}
 prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
-  - --chain-config-file=/network-config/config.yaml
-  - --genesis-state=/network-config/genesis.ssz
+  - --chain-config-file=/data/network-config/config.yaml
+  - --genesis-state=/data/network-config/genesis.ssz
+  - --bootstrap-node=/data/network-config/boot_enr.yaml
   - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --min-sync-peers=1
   - --pprof
@@ -49,16 +50,16 @@ prysm_container_command_extra_simple_args:
   - --subscribe-all-subnets
   #- --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
   #- --genesis-beacon-api-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
-prysm_container_command_extra_bootnode_args: >-
-  {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+# prysm_container_command_extra_bootnode_args: >-
+#   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 
 prysm_validator_container_image: "{{ prysm_container_image }}"
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
-  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
 prysm_validator_container_entrypoint:
   - /app/cmd/validator/validator
 prysm_validator_container_command_extra_args:
-  - --chain-config-file=/network-config/config.yaml
+  - --chain-config-file=/data/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 prysm_validator_datadir: /data/prysm-validator

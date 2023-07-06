@@ -5,8 +5,8 @@ testnet-homepage:
   replicas: 1
 
   image:
-    pullPolicy: Always
-    repository: ethpandaops/ethereum-testnet-homepage
+    repository: {{ default_tooling_images.homepage.split(':') | first  }}
+    tag: {{ default_tooling_images.homepage.split(':') | last  }}
 
   resources:
     requests:
@@ -25,7 +25,7 @@ testnet-homepage:
 
   customMarkdown: |-
     ## Network Spec
-    https://notes.ethereum.org/@parithosh/{{ ethereum_network_name  | replace('4844-', '')}}-specs
+    https://notes.ethereum.org/@ethpandaops/{{ ethereum_network_name  | replace('4844-', '')}}-specs
 
     ## Ansible setup
     https://github.com/ethpandaops/4844-testnet

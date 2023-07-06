@@ -24,7 +24,7 @@ rpc-proxy:
 
   args:
     - --url=http://nethermind-lodestar-001:8545
-    - --wsurl=ws://nethermind-lodestar-001:8546
+    - --wsurl=ws://nethermind-lodestar-001:8545
     - --rpm=10000
 
   config: |

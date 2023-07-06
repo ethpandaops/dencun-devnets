@@ -1,1 +1,5 @@
 default_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
+default_cl_endpoint: "http://{{ cl + '-' + el + '-001:5052' }}"
+default_el_endpoint: "http://{{ el + '-' + cl + '-001:8545' }}"
+default_el_ws_endpoint: "ws://{{ el + '-' + cl + '-001:8545' }}"
+default_el_auth_endpoint: "http://{{ el + '-' + cl + '-001:8551' }}"

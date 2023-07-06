@@ -17,12 +17,12 @@ ethereumjs_container_env:
 ethereumjs_container_volumes:
   - "{{ ethereumjs_datadir }}:/data"
   - "{{ ethereumjs_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
 ethereumjs_container_command_extra_args:
-  - --gethGenesis=/network-config/genesis.json
+  - --gethGenesis=/data/network-config/genesis.json
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --sync=full
   - --maxPeers=75
   - --isSingleNode=true
   - --logLevel=debug
-  #- --trustedSetup=/network-config/trusted_setup.txt
+  #- --trustedSetup=/data/network-config/trusted_setup.txt

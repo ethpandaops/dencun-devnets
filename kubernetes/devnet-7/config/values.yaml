@@ -70,7 +70,10 @@ config:
     # Consensus Layer specific redirects
     - path: /cl/bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/bootstrap_nodes.txt
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/bootstrap_nodes.
+    - path: /cl/boot_enr.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/boot_enr.yaml
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/config.yaml

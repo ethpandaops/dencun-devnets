@@ -36,7 +36,7 @@ ethereum-node:
         cpu: 3000m
         memory: 7Gi
     extraArgs:
-      - --Init.ChainSpecPath=/network-config/chainspec.json
+      - --Init.ChainSpecPath=/data/network-config/chainspec.json
       - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
       - --Discovery.Bootnodes="$(tr '\n' ',' < /data/ethereum-network-config/bootnode.txt)"
       - --Init.IsMining=false
@@ -60,19 +60,21 @@ ethereum-node:
         - >
           GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/chainspec.json;
           TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
-          if ! [ -f /data/genesis_init_done ];
+          BOOTNODES=https://config.4844-devnet-7.ethpandaops.io/el/bootnode.txt;
+          mkdir -p /data/network-config;
+          wget -O /data/network-config/bootnode.txt $BOOTNODES;
+          if ! [ -f /data/network-config/genesis_init_done ];
           then
             apk update && apk add curl jq;
-            wget -O /data/genesis.json $GENESIS_URI;
-            curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode' > /data/ethereum-network-config/bootnode.txt;
-            wget -O /data/trusted_setup.txt $TRUSTED_SETUP_URI;
-            cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
-            touch /data/genesis_init_done;
+            wget -O /data/network-config/genesis.json $GENESIS_URI;
+            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+            cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
+            touch /data/network-config/genesis_init_done;
             echo "genesis init done";
           else
             echo "genesis is already initialized";
           fi;
-          echo "bootnode init done: $(cat /data/ethereum-network-config/bootnode.txt)";
+          echo "bootnode init done: $(cat /data/network-config/bootnode.txt)";
       volumeMounts:
         - name: storage
           mountPath: "/data"
@@ -106,10 +108,10 @@ ethereum-node:
       enabled: true
       size: 50Gi
     extraArgs:
-      - --paramsFile=/network-config/config.yaml
-      - --genesisStateFile=/network-config/genesis.ssz
+      - --paramsFile=/data/network-config/config.yaml
+      - --genesisStateFile=/data/network-config/genesis.ssz
       - --rest.namespace="*"
-      - --bootnodes=/data/ethereum-network-config/boot_enr.txt
+      - --bootnodes=/data/network-config/boot_enr.txt
       - --network.connectToDiscv5Bootnodes
       - --nat=true
     initContainers:
@@ -129,24 +131,23 @@ ethereum-node:
           DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
-          curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/bootnodes.txt;
+          BOOTNODES=https://config.4844-devnet-7.ethpandaops.io/cl/boot_enr.yaml;
           TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
-          if ! [ -f /data/testnet_spec/genesis.ssz ];
+          mkdir -p /data/network-config;
+          wget -O /data/network-config/boot_enr.yaml $BOOTNODES;
+          if ! [ -f /data/network-config/genesis.ssz ];
           then
-            wget -O /data/testnet_spec/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
-            wget -O /data/testnet_spec/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
-            wget -O /data/testnet_spec/deploy_block.txt $DEPLOY_BLOCK_URI;
-            wget -O /data/testnet_spec/config.yaml $GENESIS_CONFIG_URI;
-            wget -O /data/testnet_spec/genesis.ssz $GENESIS_SSZ_URI;
-            wget -O /data/testnet_spec/trusted_setup.txt $TRUSTED_SETUP_URI;
+            wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/network-config/deploy_block.txt $DEPLOY_BLOCK_URI;
+            wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
+            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
             echo "genesis init done";
           else
             echo "genesis exists. skipping...";
           fi;
-          (tr '\n' ',' < /data/bootnodes.txt | sed 's/[^,]*/"&"/g') > /data/bootnodes2.txt;
-          mv /data/bootnodes2.txt /data/ethereum-network-config/boot_enr.txt;
-          echo "bootnode init done: $(cat /data/ethereum-network-config/boot_enr.txt)";
+          echo "bootnode init done: $(cat /data/network-config/boot_enr.txt)";
       volumeMounts:
         - name: storage
           mountPath: "/data"

@@ -3,8 +3,8 @@ ethstats:
   fullnameOverride: ethstats
 
   image:
-    repository: skylenet/ethstats-server
-    tag: poa-no-geoip
+    repository: {{ default_tooling_images.ethstats.split(':') | first }}
+    tag: {{ default_tooling_images.ethstats.split(':') | last }}
 
   ingress:
     enabled: true

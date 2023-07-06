@@ -1,4 +1,4 @@
-- name: Generate Chart.yaml
+- name: Generate values files
   ansible.builtin.template:
     src: "{{ chart_item.key | replace('_', '-') }}.yaml.j2"
     dest: "{{ default_dir }}/{{ chart_item.key | replace('_', '-') }}/values.yaml"

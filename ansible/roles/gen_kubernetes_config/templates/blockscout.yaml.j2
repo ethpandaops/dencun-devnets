@@ -3,8 +3,8 @@ blockscout:
   fullnameOverride: blockscout
 
   image:
-    repository: blockscout/blockscout
-    tag: master
+    repository: {{ default_tooling_images.blockscout.split(':') | first }}
+    tag: {{ default_tooling_images.blockscout.split(':') | last }}
 
   resources:
     requests:
@@ -33,17 +33,20 @@ blockscout:
     ENABLE_TXS_STATS: "true"
     ECTO_USE_SSL: "false"
     SHOW_TXS_CHART: "true"
-    ETHEREUM_JSONRPC_VARIANT: nethermind
-    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8545
-    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_VARIANT: "{{ el }}"
+    ETHEREUM_JSONRPC_HTTP_URL: {{ default_el_endpoint }}
+    ETHEREUM_JSONRPC_WS_URL: {{ default_el_ws_endpoint }}}
+    ETHEREUM_JSONRPC_TRACE_URL: {{ default_el_endpoint }}
     INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
     NETWORK: Ethereum
     SUBNETWORK: {{ ethereum_network_name }}
     BLOCK_TRANSFORMER: base
     POOL_SIZE: "15"
+{% if el == 'nethermind' %}
     CHAIN_SPEC_PATH: /config-update/chainspec.json
-
+{% elif el == 'geth' %}
+    CHAIN_SPEC_PATH: /config-update/genesis.json
+{% endif %}
   extraVolumes:
     - name: config-update
       emptyDir: {}
@@ -63,8 +66,11 @@ blockscout:
       - sh
       - -ace
       - >
-        GENESIS_URI=https://config.{{ ethereum_network_name }}.ethpandaops.io/el/chainspec.json;
-        wget -O /config-update/chainspec.json $GENESIS_URI;
+        CHAINSPEC=https://config.{{ ethereum_network_name }}.ethpandaops.io/el/chainspec.json;
+        GENESIS=https://config.{{ ethereum_network_name }}.ethpandaops.io/el/genesis.json;
+        mkdir -p /config-update;
+        wget -O /config-update/genesis.json $GENESIS;
+        wget -O /config-update/chainspec.json $CHAINSPEC;
         echo "got genesis";
       volumeMounts:
         - name: config-update
