@@ -95,6 +95,7 @@ bootstrap_default_user_authorized_keys_github: >
   }}
 
 # role: ethpandaops.general.ethereum_node
+ethereum_node_images_always_pull: true
 ethereum_node_metrics_exporter_enabled: true
 ethereum_node_xatu_sentry_enabled: false
 ethereum_node_cl_validator_enabled: "{{ validator_start is defined and validator_end is defined }}"
