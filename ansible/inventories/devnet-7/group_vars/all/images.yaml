@@ -4,10 +4,10 @@ default_ethereum_client_images:
   lodestar: g11tech/lodestar:devnet36-6c23a8 # updated ready to go devnet 7 - 3/6 blobs
   nimbus: ethpandaops/nimbus:unstable-b626649 # updated ready to go devnet 7 - 3/6 blobs
   prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # updated ready to go devnet 7 - 3/6 blobs
-  teku: consensys/teku:develop # updated ready to go devnet 7 - 3/6 blobs
+  teku: consensys/teku:23.6.1  # updated ready to go devnet 7 - 3/6 blobs
   # Execution layer clients
-  besu: ethpandaops/besu:4844-devnet-5b-7a26a4c # updated ready to go devnet 7 - 3/6 blobs
-  geth: ethpandaops/geth:4844-devnet-6-990e113 # updated ready to go devnet 7 - 3/6 blobs
+  besu: ethpandaops/besu:4844-devnet-5b-7a9fb20 # updated ready to go devnet 7 - 3/6 blobs
+  geth: ethpandaops/geth:4844-devnet-6-e03b5ad # updated ready to go devnet 7 - 3/6 blobs
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # Not ready
   ethereumjs: ethpandaops/ethereumjs:6b8d9f4e3032d9bd04e8fafe020887f4aef29ccb # updated ready to go devnet 7 - 3/6 blobs
   nethermind: nethermindeth/nethermind:eip-4844-v6-36 # updated ready to go devnet 7 - 3/6 blobs
