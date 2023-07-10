@@ -10,6 +10,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - g11tech
   - cbermudez97
   - flcl42
+  - jflo
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: nethermind
