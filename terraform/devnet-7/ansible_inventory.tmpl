@@ -13,80 +13,39 @@ ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host
 
 # Consensus client groups
 
-[lighthouse:children]
-lighthouse_besu
-lighthouse_ethereumjs
-lighthouse_geth
-lighthouse_nethermind
-
-[lodestar:children]
-lodestar_besu
-lodestar_ethereumjs
-lodestar_geth
-lodestar_nethermind
-
-[nimbus:children]
-nimbus_besu
-nimbus_ethereumjs
-nimbus_geth
-nimbus_nethermind
-
-[teku:children]
-teku_besu
-teku_ethereumjs
-teku_geth
-teku_nethermind
-
-[prysm:children]
-prysm_besu
-prysm_ethereumjs
-prysm_geth
-prysm_nethermind
+%{ for cl in ["lighthouse", "lodestar", "nimbus", "teku", "prysm"] ~}
+[${cl}:children]
+%{ for gid, group in groups ~}
+%{ if split("-", gid)[0] == "${cl}" ~}
+${replace(gid, "-", "_")}
+%{ endif ~}
+%{ endfor ~}
+%{ endfor ~}
 
 # Execution client groups
 
-[geth:children]
-lighthouse_geth
-lodestar_geth
-nimbus_geth
-teku_geth
-prysm_geth
-
-[besu:children]
-lighthouse_besu
-lodestar_besu
-teku_besu
-prysm_besu
-nimbus_besu
-
-[nethermind:children]
-lighthouse_nethermind
-lodestar_nethermind
-nimbus_nethermind
-teku_nethermind
-prysm_nethermind
-
-[ethereumjs:children]
-lighthouse_ethereumjs
-lodestar_ethereumjs
-teku_ethereumjs
-nimbus_ethereumjs
-prysm_ethereumjs
+%{ for el in ["besu", "ethereumjs", "geth", "nethermind", "erigon"] ~}
+[${el}:children]
+%{ for gid, group in groups ~}
+%{ if split("-", gid)[0] != "bootnode" ~}
+%{ if split("-", gid)[1] == "${el}" ~}
+${replace(gid, "-", "_")}
+%{ endif ~}
+%{ endif ~}
+%{ endfor ~}
+%{ endfor ~}
 
 # Global groups
 
 [consensus_node:children]
-lighthouse
-lodestar
-nimbus
-teku
-prysm
+%{ for x,y in merge( { for gid, group in groups : split("-", gid)[0] => true... if split("-", gid)[0] != "bootnode" } )   ~}
+${x}
+%{ endfor ~}
 
 [execution_node:children]
-besu
-ethereumjs
-geth
-nethermind
+%{ for x,y in merge( { for gid, group in groups : split("-", gid)[1] => true... if split("-", gid)[0] != "bootnode" } )   ~}
+${x}
+%{ endfor ~}
 
 [ethereum_node:children]
 consensus_node
