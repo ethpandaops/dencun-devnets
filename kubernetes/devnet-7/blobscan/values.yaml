@@ -58,9 +58,9 @@ blobscan-api:
                 port:
                   number: 3001
 
-  # #   # Fake GCS server
+  #   # Fake GCS server
   # extraContainers:
-  # - name: fake-gcs-server-api
+  # - name: fake-gcs-server
   #   image: fsouza/fake-gcs-server
   #   imagePullPolicy: IfNotPresent
   #   args: ["-scheme", "http"]
