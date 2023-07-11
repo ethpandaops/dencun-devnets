@@ -12,7 +12,6 @@ ${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host
 %{ endfor ~}
 
 # Consensus client groups
-%{ for gid, group in groups ~}
 
 [lighthouse:children]
 lighthouse_besu
