@@ -38,7 +38,7 @@ lighthouse_container_volumes:
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
-  - --testnet-dir=/data/network-config
+  - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:512/10
   - --debug-level=debug
@@ -47,7 +47,7 @@ lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_validator_container_command_extra_args:
-  - --testnet-dir=/data/network-config
+  - --testnet-dir=/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lighthouse_validator_datadir: /data/lighthouse-validator
 lighthouse_container_pull: true
