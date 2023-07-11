@@ -24,7 +24,7 @@ forkmon:
 
   # Prysm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
-   name: prysm-ethereumjs-1
+    name: prysm-ethereumjs-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.4844-devnet-7.ethpandaops.io
     name: prysm-nethermind-1
   # - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.4844-devnet-7.ethpandaops.io
