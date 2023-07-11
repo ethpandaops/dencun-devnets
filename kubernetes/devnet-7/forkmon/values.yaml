@@ -32,7 +32,7 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-devnet-7.ethpandaops.io
     name: prysm-geth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
-    name: prysm-geth-1
+    name: prysm-besu-1
   
 #  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
   #  name: prysm-besu-1
