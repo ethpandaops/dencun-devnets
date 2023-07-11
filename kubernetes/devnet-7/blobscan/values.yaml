@@ -18,6 +18,8 @@ blobscan:
                 name: blobscan
                 port:
                   number: 3000
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
   
 blobscan-indexer:
   image:
