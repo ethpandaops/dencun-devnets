@@ -18,6 +18,26 @@ blobscan:
                 name: blobscan
                 port:
                   number: 3000
+  extraContainers:
+  - name: fake-gcs-server-blobscan
+    image: fsouza/fake-gcs-server
+    imagePullPolicy: IfNotPresent
+    args: ["-scheme", "http"]
+    volumeMounts:
+      - name: storage
+        mountPath: /storage
+    ports:
+      - name: fake-gcs-server
+        containerPort: 4443
+        protocol: TCP
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
   blobscandb:
     fullnameOverride: blobscan-blobscandb
   
@@ -37,6 +57,27 @@ blobscan-indexer:
       value: http://nethermind-lodestar-001:8545
     - name: BEACON_NODE_ENDPOINT
       value: http://lodestar-nethermind-001:5052
+
+  extraContainers:
+  - name: fake-gcs-server-indexer
+    image: fsouza/fake-gcs-server
+    imagePullPolicy: IfNotPresent
+    args: ["-scheme", "http"]
+    volumeMounts:
+      - name: storage
+        mountPath: /storage
+    ports:
+      - name: fake-gcs-server
+        containerPort: 4443
+        protocol: TCP
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
 
 # Blobscan API
 blobscan-api:
@@ -61,23 +102,23 @@ blobscan-api:
                   number: 3001
 
   #   # Fake GCS server
-  # extraContainers:
-  # - name: fake-gcs-server
-  #   image: fsouza/fake-gcs-server
-  #   imagePullPolicy: IfNotPresent
-  #   args: ["-scheme", "http"]
-  #   volumeMounts:
-  #     - name: storage
-  #       mountPath: /storage
-  #   ports:
-  #     - name: fake-gcs-server
-  #       containerPort: 4443
-  #       protocol: TCP
-  # extraPorts:
-  #   - name: fake-gcs-server
-  #     port: 4443
-  #     protocol: TCP
-  #     targetPort: 4443
-  # extraVolumes:
-  #   - name: storage
-  #     emptyDir: {}
+  extraContainers:
+  - name: fake-gcs-server-api
+    image: fsouza/fake-gcs-server
+    imagePullPolicy: IfNotPresent
+    args: ["-scheme", "http"]
+    volumeMounts:
+      - name: storage
+        mountPath: /storage
+    ports:
+      - name: fake-gcs-server
+        containerPort: 4443
+        protocol: TCP
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}

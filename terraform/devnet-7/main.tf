@@ -134,6 +134,14 @@ variable "digitalocean_vm_groups" {
       id  = "prysm-nethermind"
       vms = { "1" = {} },
     },
+    {
+      id  = "prysm-besu"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "prysm-ethereumjs"
+      vms = { "1" = {} },
+    },
     # Lighthouse
     {
       id = "lighthouse-besu"
@@ -166,6 +174,14 @@ variable "digitalocean_vm_groups" {
     },
     {
       id  = "nimbus-nethermind"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "nimbus-besu"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "nimbus-ethereumjs"
       vms = { "1" = {} },
     },
   ]
