@@ -32,20 +32,20 @@ lodestar_container_env:
 lodestar_container_volumes:
   - "{{ lodestar_datadir }}:/data"
   - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_container_command_extra_args:
-  - --paramsFile=/data/network-config/config.yaml
-  - --genesisStateFile=/data/network-config/genesis.ssz
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
   - --rest.namespace="*"
-  - --bootnodes=/data/network-config/boot_enr.txt
+  - --bootnodes=/network-config/boot_enr.txt
   - --network.connectToDiscv5Bootnodes
   - --nat=true
-  #- --chain.trustedSetup=/data/network-config/trusted_setup.txt
+  #- --chain.trustedSetup=/network-config/trusted_setup.txt
   #- --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_validator_container_command_extra_args:
-  - --paramsFile=/data/network-config/config.yaml
+  - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lodestar_validator_datadir: /data/lodestar-validator

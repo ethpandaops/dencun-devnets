@@ -17,7 +17,7 @@ geth_container_env:
 geth_container_volumes:
   - "{{ geth_datadir }}:/data"
   - "{{ geth_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro" 
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 geth_container_command_extra_args:
   - --http.api=eth,net,web3,debug,admin
   - --http.vhosts=*

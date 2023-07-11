@@ -1,6 +1,6 @@
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
- 
+
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
 eth_inventory_web_container_env:
@@ -36,9 +36,9 @@ nethermind_container_env:
 nethermind_container_volumes:
   - "{{ nethermind_datadir }}:/data"
   - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/data/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
 nethermind_container_command_extra_args:
-  - --Init.ChainSpecPath=/data/data/network-config/chainspec.json
+  - --Init.ChainSpecPath=/data/network-config/chainspec.json
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
   - --Init.IsMining=false
   - --Pruning.Mode=None
@@ -65,16 +65,16 @@ lodestar_container_env:
 lodestar_container_volumes:
   - "{{ lodestar_datadir }}:/data"
   - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_container_command_extra_args:
-  - --paramsFile=/data/network-config/config.yaml
-  - --genesisStateFile=/data/network-config/genesis.ssz
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
   #- --logLevel=debug
   - --rest.namespace=*
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
   - --nat=true
-  #- --chain.trustedSetup=/data/network-config/trusted_setup.txt
+  #- --chain.trustedSetup=/network-config/trusted_setup.txt
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write

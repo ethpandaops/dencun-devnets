@@ -36,7 +36,7 @@ lighthouse_container_env:
 lighthouse_container_volumes:
   - "{{ lighthouse_datadir }}:/data"
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
   - --testnet-dir=/data/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
@@ -45,7 +45,7 @@ lighthouse_container_command_extra_args:
   #- --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"
-  - "{{ eth_testnet_config_dir }}:/data/network-config:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_validator_container_command_extra_args:
   - --testnet-dir=/data/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
