@@ -41,7 +41,6 @@ prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
   - --genesis-state=/network-config/genesis.ssz
-  - --bootstrap-node=/network-config/boot_enr.yaml
   - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --min-sync-peers=1
   - --pprof
@@ -50,8 +49,8 @@ prysm_container_command_extra_simple_args:
   - --subscribe-all-subnets
   #- --checkpoint-sync-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
   #- --genesis-beacon-api-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
-# prysm_container_command_extra_bootnode_args: >-
-#   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+ prysm_container_command_extra_bootnode_args: >-
+   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 
 prysm_validator_container_image: "{{ prysm_container_image }}"
 prysm_validator_container_volumes:
