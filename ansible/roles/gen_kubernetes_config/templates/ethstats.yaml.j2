@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# {{ ansible_managed }}
+
 ethstats:
   fullnameOverride: ethstats
 
@@ -19,7 +20,7 @@ ethstats:
 
   secretEnv:
     WS_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>"
-  
+
   resources:
     requests:
       memory: 256Mi
@@ -27,4 +28,3 @@ ethstats:
     limits:
       memory: 512Mi
       cpu: 200m
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

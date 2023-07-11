@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# {{ ansible_managed }}
+
 # Find All + Replace all instances of these values in this entire folder to swap to a different network
 network: {{ ethereum_network_name | replace('4844-', '') }}
 chainId: {{ ethereum_genesis_chain_id }}
@@ -97,4 +98,3 @@ config:
     - path: /api/v1/nodes/validator-ranges
       upstream: bootnode-1.srv.{{ ethereum_network_name }}.ethpandaops.io
       target: /meta/api/v1/validator-ranges.json
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

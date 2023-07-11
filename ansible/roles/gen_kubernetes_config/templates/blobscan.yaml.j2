@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# {{ ansible_managed }}
+
 blobscan:
   fullnameOverride: blobscan
   ingress:
@@ -16,7 +17,7 @@ blobscan:
                   number: 3000
   blobscandb:
     fullnameOverride: blobscan-blobscandb
-  
+
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
   extraEnv:
@@ -67,4 +68,3 @@ blobscan-api:
   extraVolumes:
     - name: storage
       emptyDir: {}
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

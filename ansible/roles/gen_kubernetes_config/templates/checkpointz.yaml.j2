@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# {{ ansible_managed }}
+
 checkpointz:
   fullnameOverride: checkpointz
   replicas: 1
@@ -55,4 +56,3 @@ checkpointz:
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ ethereum_network_name }}.ethpandaops.io
         dataProvider: true
 {% endfor %}
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

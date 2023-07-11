@@ -1,4 +1,7 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+#
+# {{ ansible_managed }}
+#
+
 beacon-metrics-gazer:
   image:
     repository: {{ default_tooling_images.beacon_metrics_gazer.split(':') | first }}
@@ -53,4 +56,3 @@ beacon-metrics-gazer:
     volumeMounts:
       - name: custom-config
         mountPath: "/custom-config"
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
