@@ -34,8 +34,6 @@ forkmon:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
     name: prysm-besu-1
   
-#  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
-  #  name: prysm-besu-1
   # Lighthouse
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
     name: lighthouse-ethereumjs-1
