@@ -36,8 +36,8 @@ lodestar_container_volumes:
 lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
+  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --rest.namespace="*"
-  - --bootnodes=/network-config/boot_enr.txt
   - --network.connectToDiscv5Bootnodes
   - --nat=true
   #- --chain.trustedSetup=/network-config/trusted_setup.txt
