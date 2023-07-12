@@ -10,32 +10,33 @@ sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/al
 # Helper function to display available options
 print_usage() {
   echo "Usage:"
-  echo "  ./network_info.zsh [command]"
+  echo "  ./run.zsh [command]"
   echo
   echo "Available commands:"
-  echo "  genesis                       Get the genesis block"
-  echo "  validators                    Get the validator ranges"
-  echo "  latest_root                   Get the latest root"
-  echo "  latest_slot                   Get the latest slot"
-  echo "  latest_slot_verbose           Get the latest slot with verbose output"
-  echo "  latest_block                  Get the latest block"
-  echo "  finalized_epoch               Get the finalized epoch"
-  echo "  finalized_slot                Get the finalized slot"
-  echo "  finalized_slot_verbose        Get the finalized slot with verbose output"
-  echo "  finalized_slot_exec_payload   Get the finalized slot execution payload"
-  echo "  epoch_summary                 Get the epoch summary"
-  echo "  get_slot_for_blob             Get the slot for a given blob"
-  echo "  get_slot_for_blob_verbose     Get the slot for a given blob with verbose output"
-  echo "  whose_validator_for_slot      Get the validator for a given slot"
-  echo "  get_enrs                      Get the ENRs of the network"
-  echo "  get_enodes                    Get the enodes of the network"
-  echo "  get_peerid                    Get the peerid of the network"
-  echo "  get_rpc                       Get the rpc of the network"
-  echo "  get_beacon                    Get the beacon of the network"
-  echo "  get_inventory                 Get the inventory of the network"
-  echo "  fork_choice                   Get the fork choice of the network"
-  echo "  send_blob                     Send a blob to the network"
-  echo "  help                          Print this help message"
+  echo "  genesis                           Get the genesis block"
+  echo "  validators                        Get the validator ranges"
+  echo "  latest_root                       Get the latest root"
+  echo "  latest_slot                       Get the latest slot"
+  echo "  latest_slot_verbose               Get the latest slot with verbose output"
+  echo "  latest_block                      Get the latest block"
+  echo "  finalized_epoch                   Get the finalized epoch"
+  echo "  finalized_slot                    Get the finalized slot"
+  echo "  finalized_slot_verbose            Get the finalized slot with verbose output"
+  echo "  finalized_slot_exec_payload       Get the finalized slot execution payload"
+  echo "  epoch_summary n                   Get the epoch summary for epoch n [default current - 1 epoch]"
+  echo "  get_slot_for_blob txhash          Get the slot for a given blob given txhash, or send blob now"
+  echo "  get_slot_for_blob_verbose txhash  Get the slot for a given blob with verbose output given txhash, or send blob now"
+  echo "  whose_validator_for_slot n        Get the validator for a given slot "n" - mandatory argument"
+  echo "  get_enrs                          Get the ENRs of the network"
+  echo "  get_enodes                        Get the enodes of the network"
+  echo "  get_peerid                        Get the peerid of the network"
+  echo "  get_rpc                           Get the rpc of the network"
+  echo "  get_beacon                        Get the beacon of the network"
+  echo "  get_inventory                     Get the inventory of the network"
+  echo "  fork_choice                       Get the fork choice of the network"
+  echo "  send_blob n                       Send "n" number of blob(s) to the network [default 1]"
+  echo "  deposit s e                       Deposit to the network from validator index start to end - mandatory argument"
+  echo "  help                              Print this help message"
   echo
 }
 
@@ -126,7 +127,21 @@ for arg in "${command[@]}"; do
     "get_slot_for_blob")
       # Get the slot for a given blob
       if [[ -z "${command[2]}" ]]; then
-        echo "Please provide a blob tx hash as the second argument"
+        echo "Please provide a blob tx hash as the second argument or send a blob now"
+        echo "Would you like to send a blob right now? (y/n)"
+        read -r response
+        if [[ $response == y ]]
+        then
+          echo "Sending single blob to the network"
+          blob_hash=$(${0} send_blob 1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+          echo "Waiting for blob to be included in a block (sleeping 30 seconds)"
+          sleep 30
+          ${0} get_slot_for_blob $blob_hash
+          exit;
+        else
+          echo "Exiting without sending a blob to the network"
+          exit;
+        fi
         exit;
       else
         blob=${command[2]}
@@ -140,7 +155,21 @@ for arg in "${command[@]}"; do
     "get_slot_for_blob_verbose")
       # Get the slot for a given blob
       if [[ -z "${command[2]}" ]]; then
-        echo "Please provide a blob tx hash as the second argument"
+        echo "Please provide a blob tx hash as the second argument or send a blob now"
+        echo "Would you like to send a blob right now? (y/n)"
+        read -r response
+        if [[ $response == y ]]
+        then
+          echo "Sending single blob to the network"
+          blob_hash=$(${0} send_blob 1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+          echo "Waiting for blob to be included in a block (sleeping 30 seconds)"
+          sleep 30
+          ${0} get_slot_for_blob_verbose $blob_hash
+          exit;
+        else
+          echo "Exiting without sending a blob to the network"
+          exit;
+        fi
         exit;
       else
         blob=${command[2]}
@@ -155,6 +184,7 @@ for arg in "${command[@]}"; do
       # Get validator for specific slot
       if [[ -z "${command[2]}" ]]; then
         echo "Please provide a slot number as the second argument"
+        echo "  Example: ${0} whose_validator_for_slot 100"
         exit;
       else
         slot=${command[2]}
@@ -204,7 +234,6 @@ for arg in "${command[@]}"; do
     "send_blob")
       # Get a private key from a mnemonic
       privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
-      echo "Private key: $privatekey"
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
         docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain 1 "$privatekey" 0x000000000000000000000000000000000000f1c1
@@ -213,9 +242,47 @@ for arg in "${command[@]}"; do
         docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
         exit;
       fi
-      #Send a blob to the network
-      # send only one blob
-
+      ;;
+      "deposit")
+      if [[ $# -ne 3 ]]; then
+        echo "Deposit calls for exactly 2 arguments!"
+        echo "  Usage: ${0} deposit startIndex endIndex"
+        echo "  Example: ${0} deposit 0 10"
+        exit;
+      else
+        deposit_path="m/44'/60'/0'/0/3"
+        privatekey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+        publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
+        fork_version=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.GENESIS_FORK_VERSION')
+        deposit_contract_address=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.DEPOSIT_CONTRACT_ADDRESS')
+        eth2-val-tools deposit-data --source-min=${command[2]} --source-max=${command[3]} --amount=32000000000 --fork-version=$fork_version --withdrawals-mnemonic="$sops_mnemonic" --validators-mnemonic="$sops_mnemonic" > deposits_$prefix-$network-${command[2]}_${command[3]}.txt
+        # ask if you want to deposit to the network
+        echo "Are you sure you want to make a deposit to the network for validators ${command[2]} to ${command[3]}? (y/n)"
+        read -r response
+        if [[ $response == "y" ]]; then
+          while read x; do
+            account_name="$(echo "$x" | jq '.account')"
+            pubkey="$(echo "$x" | jq '.pubkey')"
+            echo "Sending deposit for validator $account_name $pubkey"
+            ethereal beacon deposit \
+              --allow-unknown-contract=true \
+              --address="$deposit_contract_address" \
+              --connection=https://rpc.$prefix-$network.$domain \
+              --data="$x" \
+              --value="32000000000" \
+              --from="$publickey" \
+              --privatekey="$privatekey"
+            echo "Sent deposit for validator $account_name $pubkey"
+            sleep 2
+          done < deposits_$prefix-$network-${command[2]}_${command[3]}.txt
+        else
+          echo "Exiting without depositing to the network"
+          exit;
+        fi
+        echo
+        if 
+        exit;
+      fi
       ;;
 
     "help")

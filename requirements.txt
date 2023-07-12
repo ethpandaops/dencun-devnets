@@ -1,4 +1,4 @@
-ansible-lint==6.17.1
+ansible-lint==6.17.2
 ansible==8.1.0
 netaddr==0.8.0
 pip==23.1.2

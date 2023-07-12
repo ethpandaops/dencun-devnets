@@ -29,3 +29,6 @@ terraform.rc
 # Validator keys
 **/files/validator_keys/*
 network-configs/**/mnemonics.yaml
+
+# Deposit data
+deposits_*.txt
