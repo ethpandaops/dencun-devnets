@@ -128,7 +128,7 @@ variable "digitalocean_vm_groups" {
     # Prysm
     {
       id  = "prysm-geth"
-      vms = { "1" = {} },
+      vms = { "1" = { ansible_vars : "validator_start=880 validator_end=900" } },
     },
     {
       id  = "prysm-nethermind"
