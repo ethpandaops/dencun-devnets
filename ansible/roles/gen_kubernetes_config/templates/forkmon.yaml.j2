@@ -7,9 +7,7 @@ forkmon:
     tag: {{ default_tooling_images.forkmon.split(':') | last }}
   ingress:
     enabled: true
-
     className: ingress-nginx-public
-
     hosts:
       - host: forkmon.{{ ethereum_network_name }}.ethpandaops.io
         paths:
@@ -20,7 +18,7 @@ forkmon:
   # Rpc
   - addr: {{ default_el_endpoint }}
     name: rpc
-{% for host in (groups['all']) | sort %}
+{% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ ethereum_network_name }}.ethpandaops.io
     name: {{ hostvars[host]['inventory_hostname'] }}
 {% endfor %}

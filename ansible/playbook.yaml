@@ -115,4 +115,4 @@
     - role: eth_post_network_setup
       tags: [eth_post_network_setup]
     - role: gen_kubernetes_config
-      tags: [kubernetes]
+      tags: [gen_kubernetes_config]

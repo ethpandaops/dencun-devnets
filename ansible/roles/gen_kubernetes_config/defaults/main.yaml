@@ -1,5 +1,89 @@
-default_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
+gen_kubernetes_config_default_output_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
+
 default_cl_endpoint: "http://{{ cl + '-' + el + '-001:5052' }}"
 default_el_endpoint: "http://{{ el + '-' + cl + '-001:8545' }}"
 default_el_ws_endpoint: "ws://{{ el + '-' + cl + '-001:8545' }}"
 default_el_auth_endpoint: "http://{{ el + '-' + cl + '-001:8551' }}"
+
+
+gen_kubernetes_config_helm_charts:
+  config:
+    valuesTemplatePath: templates/config.yaml.j2
+  beacon-metrics-gazer:
+    valuesTemplatePath: templates/beacon-metrics-gazer.yaml.j2
+    dependencies:
+      - name: beacon-metrics-gazer
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.3
+  blobscan:
+    valuesTemplatePath: templates/blobscan.yaml.j2
+    dependencies:
+      - name: blobscan
+        repository: https://blobscan.github.io/blobscan-helm-charts/
+        version: 0.2.6
+      - name: blobscan-api
+        repository: https://blobscan.github.io/blobscan-helm-charts/
+        version: 0.2.5
+      - name: blobscan-indexer
+        repository: https://blobscan.github.io/blobscan-helm-charts/
+        version: 0.2.7
+  blockscout:
+    valuesTemplatePath: templates/beacon-metrics-gazer.yaml.j2
+    dependencies:
+      - name: blockscout
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.2.0
+  checkpointz:
+    valuesTemplatePath: templates/checkpointz.yaml.j2
+    dependencies:
+      - name: checkpointz
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.3
+  ethstats:
+    valuesTemplatePath: templates/ethstats.yaml.j2
+    dependencies:
+      - name: ethstats
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.4
+  eth-faucet:
+    valuesTemplatePath: templates/eth-faucet.yaml.j2
+    dependencies:
+      - name: eth-faucet
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.1
+  fauceth:
+    valuesTemplatePath: templates/fauceth.yaml.j2
+    dependencies:
+      - name: fauceth
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.2.3
+  forkmon:
+    valuesTemplatePath: templates/forkmon.yaml.j2
+    dependencies:
+      - name: forkmon
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.4
+  forky:
+    valuesTemplatePath: templates/forky.yaml.j2
+    dependencies:
+      - name: forky
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.1
+  testnet-homepage:
+    valuesTemplatePath: templates/testnet-homepage.yaml.j2
+    dependencies:
+      - name: testnet-homepage
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.2.2
+  #ethereum-node:
+  #  valuesTemplatePath: templates/ethereum-node.yaml.j2
+  #  dependencies:
+  #    - name: ethereum-node
+  #      repository: https://ethpandaops.github.io/ethereum-helm-charts
+  #      version: 0.0.7
+  rpc-proxy:
+    valuesTemplatePath: templates/rpc-proxy.yaml.j2
+    dependencies:
+      - name: rpc-proxy
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.2

@@ -1,22 +1,11 @@
 # {{ ansible_managed }}
 
 apiVersion: v2
-name: {{ chart_item.key | replace('_', '-') }}
+name: {{ item.key | replace('_', '-') }}
 description: A Helm chart for Kubernetes
 type: application
 version: 0.1.0
-appVersion: "{{ chart_item.value }}"
-{% if chart_item.key != 'config' %}
+{% if (item.value.dependencies is defined) and (item.value.dependencies | length) > 0 %}
 dependencies:
-{% if chart_item.key != 'blobscan' %}
-  - name: {{ chart_item.key | replace('_', '-') }}
-    repository: https://ethpandaops.github.io/ethereum-helm-charts
-    version: {{ chart_item.value }}
-{% else %}
-{% for subchart_key, subchart_value in chart_item.value.items() %}
-  - name: {{ subchart_key | replace('_', '-') }}
-    repository: file:///Users/bbusa/Documents/Ethereum.nosync/blobscan-helm-charts/charts/{{ subchart_key | replace('_', '-') }} #This will need to be changed to the actual repo
-    version: {{ subchart_value }}
-{% endfor %}
-{% endif %}
-{% endif %}
+  {{ item.value.dependencies | to_nice_yaml(indent=2) | indent(width=2) }}
+{%- endif -%}

@@ -1,0 +1,38 @@
+
+- name: Inform which chart is being processed
+  ansible.builtin.debug:
+    msg: "Generating '{{ item.key}}' with template '{{ item.value.valuesTemplatePath | default('') }}'"
+
+- name: Create directory
+  ansible.builtin.file:
+    path: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}"
+    state: directory
+    mode: "0755"
+
+- name: Generate Chart.yaml
+  ansible.builtin.template:
+    src: Chart.yaml.j2
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/Chart.yaml"
+    mode: "0644"
+
+# - name: Check if dependencies are required
+#   ansible.builtin.stat:
+#     path: "{{ gen_kubernetes_config_default_output_dir }}/{{ chart_item.key }}/charts/{{ chart_item.key | replace('_', '-') }}-{{ chart_item.value }}"
+#   register: dependencies_required
+
+
+# - name: Run helm dependency build
+#   ansible.builtin.command: helm dependency build "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}"
+#   when: dependencies_required and not (item.key | replace('_', '-') == item.value)
+
+- name: Copy the helm ignore file
+  ansible.builtin.copy:
+    src: ".helmignore"
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/.helmignore"
+    mode: "0644"
+
+- name: Generate values file
+  ansible.builtin.template:
+    src: "{{ item.value.valuesTemplatePath }}"
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/values.yaml"
+    mode: "0644"

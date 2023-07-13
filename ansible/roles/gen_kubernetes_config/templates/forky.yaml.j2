@@ -40,7 +40,7 @@ forky:
             slots_per_epoch: 32
             genesis_time: {{ ethereum_genesis_timestamp + ethereum_genesis_timedelay }}
       sources:
-{% for host in (groups['all']) | sort %}
+{% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
         - name: {{ hostvars[host]['inventory_hostname'] }}
           type: "beacon_node"
           config:

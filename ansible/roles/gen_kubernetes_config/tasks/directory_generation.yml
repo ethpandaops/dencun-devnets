@@ -1,6 +1,0 @@
-- name: Create directories for Chart.yaml
-  ansible.builtin.file:
-    path: "{{ default_dir }}/{{ item.key | replace('_', '-') }}"
-    state: directory
-    mode: "0755"
-  loop: "{{ helm_charts | dict2items }}"

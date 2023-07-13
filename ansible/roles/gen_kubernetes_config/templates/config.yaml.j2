@@ -1,10 +1,8 @@
 # {{ ansible_managed }}
 
-# Find All + Replace all instances of these values in this entire folder to swap to a different network
 network: {{ ethereum_network_name | replace('4844-', '') }}
 chainId: {{ ethereum_genesis_chain_id }}
 
-# Actual values (change these too)
 domain: {{ ethereum_network_name }}.ethpandaops.io
 
 config:
