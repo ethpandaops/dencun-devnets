@@ -19,6 +19,7 @@ print_usage() {
   echo "  latest_slot                       Get the latest slot"
   echo "  latest_slot_verbose               Get the latest slot with verbose output"
   echo "  latest_block                      Get the latest block"
+  echo "  get_block n                       Get the block number n [default latest]"
   echo "  finalized_epoch                   Get the finalized epoch"
   echo "  finalized_slot                    Get the finalized slot"
   echo "  finalized_slot_verbose            Get the finalized slot with verbose output"
@@ -82,6 +83,21 @@ for arg in "${command[@]}"; do
       # Get the latest block of the network
       latest_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["latest"], "id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq .)
       echo "Latest Block: $latest_block"
+      ;;
+    "get_block")
+      # Get a specific block of the network
+      if [[ -z "${command[2]}" ]]; then
+        echo "Please provide a block number as the second argument, or get the latest block"
+        echo "  Example: ${0} get_block 100"
+        ${0} latest_block
+        exit;
+      else
+        block=${command[2]}
+        hex_block=$(printf "%x\n" $block)
+        get_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["0x'${hex_block}'"], "id":0}' https://rpc.$prefix-$network.$domain | jq .)
+        echo "Block $block: $get_block"
+        exit;
+      fi
       ;;
     "finalized_epoch")
       # Get the finalized slot of the network
