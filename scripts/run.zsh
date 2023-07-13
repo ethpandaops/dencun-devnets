@@ -6,6 +6,9 @@ prefix="4844"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
 sops_password=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.password')
 sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_genesis_mnemonic')
+default_beacon_endpoint="${BEACON_ENDPOINT:-https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain}"
+default_rpc_endpoint="${RPC_ENDPOINT:-https://$sops_name:$sops_password@rpc.$node.srv.$prefix-$network.$domain}"
+default_bootnode_endpoint="${BOOTNODE_ENDPOINT:-https://bootnode-1.srv.$prefix-$network.$domain}"
 
 # Helper function to display available options
 print_usage() {
@@ -38,7 +41,13 @@ print_usage() {
   echo "  send_blob n                       Send "n" number of blob(s) to the network [default 1]"
   echo "  deposit s e                       Deposit to the network from validator index start to end - mandatory argument"
   echo "  help                              Print this help message"
-  echo
+  echo ""
+  echo " To use an alternative endpoint run the script by setting the environment variable:"
+  echo "    BEACON_ENDPOINT=https://bn.alternative.beacon.endpoint \\"
+  echo "    RPC_ENDPOINT=https://rpc.alternative.rpc.endpoint \\"
+  echo "    BOOTNODE_ENDPOINT=https://bootnode.alternative.endpoint \\"
+  echo "    ./run.zsh [command]"
+  echo 
 }
 
 # Store the command in an array
@@ -56,32 +65,32 @@ for arg in "${command[@]}"; do
   case $arg in
     "genesis")
       # Get the genesis block of the network
-      genesis=$(curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/beacon/genesis | jq .data)
+      genesis=$(curl -s $default_beacon_endpoint/eth/v1/beacon/genesis | jq .data)
       echo "Genesis Block: $genesis"
       ;;
     "validators")
       # Get the validators of the network
-      validators=$(curl -s https://bootnode-1.srv.$prefix-$network.$domain/meta/api/v1/validator-ranges.json | jq .ranges)
+      validators=$(curl -s $default_bootnode_endpoint/meta/api/v1/validator-ranges.json | jq .ranges)
       echo "Validator ranges: $validators"
       ;;
     "latest_root")
       # Get the latest root of the network
-      latest_root=$(curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/beacon/states/head/root | jq .data.root)
+      latest_root=$(curl -s $default_beacon_endpoint/eth/v1/beacon/states/head/root | jq .data.root)
       echo "Latest Root: $latest_root"
       ;;
     "latest_slot")
       # Get the latest slot of the network
-      latest_slot=$(curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/beacon/headers/head | jq .)
+      latest_slot=$(curl -s $default_beacon_endpoint/eth/v1/beacon/headers/head | jq .)
       echo "Latest Slot: $latest_slot"\
       ;;
     "latest_slot_verbose")
       # Get the latest slot of the network
-      latest_slot=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --verbose )
+      latest_slot=$(ethdo --connection=$default_beacon_endpoint block info --verbose )
       echo "Latest Slot: $latest_slot"
       ;;
     "latest_block")
       # Get the latest block of the network
-      latest_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["latest"], "id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq .)
+      latest_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["latest"], "id":0}' $default_rpc_endpoint | jq .)
       echo "Latest Block: $latest_block"
       ;;
     "get_block")
@@ -101,27 +110,27 @@ for arg in "${command[@]}"; do
       ;;
     "finalized_epoch")
       # Get the finalized slot of the network
-      finalized_epoch=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain chain status --verbose | awk '/Finalized epoch:/{print $NF}')
+      finalized_epoch=$(ethdo --connection=$default_beacon_endpoint chain status --verbose | awk '/Finalized epoch:/{print $NF}')
       echo "Finalized epoch: $finalized_epoch"
       ;;
     "finalized_slot")
       # Get the finalized slot of the network
-      finalized_epoch=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain chain status --verbose | awk '/Finalized epoch:/{print $NF}')
+      finalized_epoch=$(ethdo --connection=$default_beacon_endpoint chain status --verbose | awk '/Finalized epoch:/{print $NF}')
       finalized_slotnum=$((finalized_epoch * 32))
       echo "Finalized slot: $finalized_slotnum"
       ;;
     "finalized_slot_verbose")
       # Get the finalized slot of the network
-      finalized_epoch=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain chain status --verbose | awk '/Finalized epoch:/{print $NF}')
+      finalized_epoch=$(ethdo --connection=$default_beacon_endpoint chain status --verbose | awk '/Finalized epoch:/{print $NF}')
       finalized_slotnum=$((finalized_epoch * 32))
-      block_info=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --blockid $finalized_slotnum --verbose)
+      block_info=$(ethdo --connection=$default_beacon_endpoint block info --blockid $finalized_slotnum --verbose)
       echo "Finalized slot:\n$block_info"
       ;;
     "finalized_slot_exec_payload")
       # Get the finalized slot of the network
-      finalized_epoch=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain chain status --verbose | awk '/Finalized epoch:/{print $NF}')
+      finalized_epoch=$(ethdo --connection=$default_beacon_endpoint chain status --verbose | awk '/Finalized epoch:/{print $NF}')
       finalized_slotnum=$((finalized_epoch * 32))
-      block_info=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --blockid $finalized_slotnum --verbose)
+      block_info=$(ethdo --connection=$default_beacon_endpoint block info --blockid $finalized_slotnum --verbose)
       execution_payload=$(echo "$block_info" | awk '/Execution payload/ {flag=1; next} flag && /^[[:blank:]]+/ {print}')
       echo "Finalized slot exec payload:\n$execution_payload"
       ;;
@@ -129,13 +138,13 @@ for arg in "${command[@]}"; do
       # Get the epoch summary of the network
       #if second arg is not provided, get the current - 1 epoch, else query the specific epoch
       if [[ -z "${command[2]}" ]]; then
-        current_epoch=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain epoch summary | awk -F'[: ]' '/Epoch/{print $2}')
+        current_epoch=$(ethdo --connection=$default_beacon_endpoint epoch summary | awk -F'[: ]' '/Epoch/{print $2}')
         last_epoch=$((current_epoch - 1))
         echo "Last epoch: $last_epoch"
-        epoch_summary=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain epoch summary --epoch $last_epoch)
+        epoch_summary=$(ethdo --connection=$default_beacon_endpoint epoch summary --epoch $last_epoch)
         echo "Epoch Summary: $epoch_summary"
       else
-        epoch_summary=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain epoch summary --epoch ${command[2]})
+        epoch_summary=$(ethdo --connection=$default_beacon_endpoint epoch summary --epoch ${command[2]})
         echo "Epoch Summary: $epoch_summary"
         exit;
       fi
@@ -161,9 +170,9 @@ for arg in "${command[@]}"; do
         exit;
       else
         blob=${command[2]}
-        block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq -r .result.timestamp)
-        slot=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --block-time=$get_block_timestamp | awk '/Slot/{print $NF}')
+        block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $default_rpc_endpoint | jq .result.blockHash)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $default_rpc_endpoint | jq -r .result.timestamp)
+        slot=$(ethdo --connection=$default_beacon_endpoint block info --block-time=$get_block_timestamp | awk '/Slot/{print $NF}')
         echo "Slot for blob $blob: $slot"
         exit;
       fi
@@ -189,9 +198,9 @@ for arg in "${command[@]}"; do
         exit;
       else
         blob=${command[2]}
-        block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' https://$sops_name:$sops_password@rpc.$prefix-$network.$domain | jq -r .result.timestamp)
-        slot=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --block-time=$get_block_timestamp)
+        block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $default_rpc_endpoint | jq .result.blockHash)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $default_rpc_endpoint | jq -r .result.timestamp)
+        slot=$(ethdo --connection=$default_beacon_endpoint block info --block-time=$get_block_timestamp)
         echo "Slot for blob $blob: $slot"
         exit;
       fi
@@ -204,8 +213,8 @@ for arg in "${command[@]}"; do
         exit;
       else
         slot=${command[2]}
-        proposer_index=$(ethdo --connection=https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain block info --blockid=$slot --json | jq -r .message.proposer_index)
-        curl -s https://bootnode-1.srv.4844-devnet-7.ethpandaops.io/meta/api/v1/validator-ranges.json | jq .ranges | jq -r 'to_entries[] | "\(.key | split("-") | .[0]),\(.key | split("-") | .[1] | tonumber - 1),\(.value)"' > validator.csv
+        proposer_index=$(ethdo --connection=$default_beacon_endpoint block info --blockid=$slot --json | jq -r .message.proposer_index)
+        curl -s $default_bootnode_endpoint/meta/api/v1/validator-ranges.json | jq .ranges | jq -r 'to_entries[] | "\(.key | split("-") | .[0]),\(.key | split("-") | .[1] | tonumber - 1),\(.value)"' > validator.csv
         declare -A validators
         while IFS="," read -r low high whose
         do
@@ -245,7 +254,7 @@ for arg in "${command[@]}"; do
       ;;
     "fork_choice")
       # Get the fork choice of the network
-      curl -s https://$sops_name:$sops_password@bn.$node.srv.$prefix-$network.$domain/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
+      curl -s $default_beacon_endpoint/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
       ;;
     "send_blob")
       # Get a private key from a mnemonic
