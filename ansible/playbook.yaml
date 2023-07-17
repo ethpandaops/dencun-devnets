@@ -33,8 +33,8 @@
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-    - role: eth_testnet_config
-      tags: [ethereum, eth_testnet_config]
+    # - role: eth_testnet_config
+    #   tags: [ethereum, eth_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
