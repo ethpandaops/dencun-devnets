@@ -1,3 +1,5 @@
+teku_container_name: beacon
+
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_cl:
   - tbenr

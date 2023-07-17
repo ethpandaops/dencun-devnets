@@ -24,7 +24,7 @@ ethereum_node_cl: nimbus
 
 # role: ethpandaops.general.nimbus
 # Checkpointsync 
-nimbus_checkpoint_sync_enabled: false 
+nimbus_checkpoint_sync_enabled: true 
 nimbus_checkpoint_container_command_extra_args:
   - --trusted-node-url=https://sepolia.checkpoint-sync.ethpandaops.io
   - --network=sepolia
