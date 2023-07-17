@@ -40,7 +40,6 @@ nethermind_container_volumes:
 nethermind_container_command_extra_args:
   - --config=sepolia
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
-  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --Init.IsMining=false
   - --Pruning.Mode=None
   - --EthStats.Enabled=true
@@ -66,7 +65,6 @@ lighthouse_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
   - --network=sepolia
-  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --debug-level=debug
   - --checkpoint-sync-url=https://sepolia.checkpoint-sync.ethpandaops.io
 

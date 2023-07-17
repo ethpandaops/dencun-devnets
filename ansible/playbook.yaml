@@ -1,7 +1,7 @@
-- hosts: localhost
-  roles:
-    - role: ethpandaops.general.ethereum_genesis
-      tags: [ethereum_genesis]
+# - hosts: localhost
+#   roles:
+#     - role: ethpandaops.general.ethereum_genesis
+#       tags: [ethereum_genesis]
 
 - import_playbook: ethpandaops.general.bootstrap_server
   tags: [init-server, bootstrap]
@@ -46,8 +46,8 @@
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-    - role: eth_testnet_config
-      tags: [ethereum, eth_testnet_config]
+    # - role: eth_testnet_config
+    #   tags: [ethereum, eth_testnet_config]
     - role: validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]
