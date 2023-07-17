@@ -19,7 +19,7 @@
     - name: Generate "boot_enr.yaml" for CL clients
       ansible.builtin.copy:
         content: |
-          {% for host in (groups['ethereum_node'] + groups['bootnode']]) | sort | unique %}
+          {% for host in (groups['ethereum_node'] + groups['bootnode']) | sort | unique %}
           {% if hostvars[host]['cl_bootnode_fact_enr'] is defined %}
           - {{ hostvars[host]['cl_bootnode_fact_enr'] }}
           {% endif %}
@@ -32,7 +32,7 @@
     - name: Generate "bootstrap_nodes.txt" for CL clients
       ansible.builtin.copy:
         content: |
-          {% for host in (groups['ethereum_node'] + groups['bootnode']]) | sort | unique %}
+          {% for host in (groups['ethereum_node'] + groups['bootnode']) | sort | unique %}
           {% if hostvars[host]['cl_bootnode_fact_enr'] is defined %}
           {{ hostvars[host]['cl_bootnode_fact_enr'] }}
           {% endif %}
