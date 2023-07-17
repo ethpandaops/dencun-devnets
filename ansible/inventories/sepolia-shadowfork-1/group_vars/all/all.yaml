@@ -159,3 +159,6 @@ docker_nginx_proxy_container_volumes:
   - "{{ docker_nginx_proxy_datadir }}/certs:/etc/nginx/certs:ro"
   - html:/usr/share/nginx/html
   - "{{ docker_nginx_proxy_datadir }}/htpasswd:/etc/nginx/htpasswd:ro"
+
+ethereum_node_fact_discovery_el_enode_cmd:
+  ethereumjs: cat /data/ethereumjs/sepolia/rlpx
