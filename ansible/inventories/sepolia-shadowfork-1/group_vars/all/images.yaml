@@ -3,7 +3,7 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:boxed-blobs-d534ac0 # updated ready to go devnet 7 - 3/6 blobs
   lodestar: g11tech/lodestar:devnet36-6c23a8 # updated ready to go devnet 7 - 3/6 blobs
   nimbus: ethpandaops/nimbus:unstable-b626649 # updated ready to go devnet 7 - 3/6 blobs
-  prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # updated ready to go devnet 7 - 3/6 blobs
+  prysm: ethpandaops/prysm:v4.0.7 # NEEDS UPDATING
   teku: consensys/teku:23.6.1 # updated ready to go devnet 7 - 3/6 blobs
   # Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # updated ready to go devnet 7 - 3/6 blobs
