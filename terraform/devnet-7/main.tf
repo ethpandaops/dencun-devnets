@@ -345,6 +345,7 @@ resource "digitalocean_firewall" "main" {
     protocol              = "icmp"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
+  depends_on = [ digitalocean_droplet.main ]
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
