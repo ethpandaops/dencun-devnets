@@ -1,19 +1,17 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,fafc13c 2023/07/18 15:10
+
 node-001:
   global:
     main:
       network: 4844-devnet-7
-      engineEndpoint: http://{{ .Release.Name }}-execution:8551
-      rpcEndpoint: http://{{ .Release.Name }}-execution:8545
-      beaconEndpoint: http://{{ .Release.Name }}-beacon:5052
     checkpointSync:
       enabled: false
-  # Nethermind
   nethermind:
     fullnameOverride: nethermind-lodestar-001
     enabled: true
     image:
       repository: nethermindeth/nethermind
-      tag: eip-4844-v6-36
+      tag: devnet36-6c23a8
       pullPolicy: Always
     p2pNodePort:
       enabled: false
@@ -43,7 +41,7 @@ node-001:
       - --Pruning.Mode=None
       - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
       - --EthStats.Enabled=true
-      - --EthStats.Name=rpc-nethermind-lodestar
+      - --EthStats.Name=k8s-nethermind-lodestar-001
       - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
       - --EthStats.Server=wss://ethstats.4844-devnet-7.ethpandaops.io
     initContainers:
@@ -75,7 +73,7 @@ node-001:
       volumeMounts:
         - name: storage
           mountPath: "/data"
-  # Lodestar
+
   lodestar:
     fullnameOverride: lodestar-nethermind-001
     enabled: true
@@ -101,7 +99,6 @@ node-001:
         memory: 7Gi
     p2pNodePort:
       enabled: false
-      startsAt: 31004
     persistence:
       enabled: true
       size: 50Gi

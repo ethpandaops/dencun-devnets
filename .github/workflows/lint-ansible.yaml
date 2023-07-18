@@ -14,6 +14,8 @@ on:
       - '.tool-versions'
       - '.github/actions/**'
       - '.github/workflows/lint-ansible.yaml'
+env:
+  PY_COLORS: '1'
 
 jobs:
   job:
@@ -28,7 +30,6 @@ jobs:
         working-directory: ./ansible
         run: >
           ansible-lint playbook.yaml
-          --nocolor
           --exclude vendor
           --exclude '*.sops.yaml'
           --profile production

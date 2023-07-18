@@ -1,10 +1,11 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,c53c44d 2023/07/18 14:14
+
 blobscan:
+  fullnameOverride: blobscan
   image:
     repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
-
-  fullnameOverride: blobscan
   ingress:
     enabled: true
     className: ingress-nginx-public
@@ -20,14 +21,13 @@ blobscan:
                   number: 3000
   blobscandb:
     fullnameOverride: blobscan-blobscandb
-  
+
 blobscan-indexer:
+  fullnameOverride: blobscan-indexer
   image:
     repository: blossomlabs/blobscan-indexer
     tag: latest
     pullPolicy: Always
-
-  fullnameOverride: blobscan-indexer
   extraEnv:
     - name: SECRET_KEY
       value: "supersecret"
@@ -40,12 +40,11 @@ blobscan-indexer:
 
 # Blobscan API
 blobscan-api:
+  fullnameOverride: blobscan-api
   image:
     repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
-
-  fullnameOverride: blobscan-api
   ingress:
     enabled: true
     className: ingress-nginx-public
@@ -60,24 +59,25 @@ blobscan-api:
                 port:
                   number: 3001
 
-  #   # Fake GCS server
-  # extraContainers:
-  # - name: fake-gcs-server
-  #   image: fsouza/fake-gcs-server
-  #   imagePullPolicy: IfNotPresent
-  #   args: ["-scheme", "http"]
-  #   volumeMounts:
-  #     - name: storage
-  #       mountPath: /storage
-  #   ports:
-  #     - name: fake-gcs-server
-  #       containerPort: 4443
-  #       protocol: TCP
-  # extraPorts:
-  #   - name: fake-gcs-server
-  #     port: 4443
-  #     protocol: TCP
-  #     targetPort: 4443
-  # extraVolumes:
-  #   - name: storage
-  #     emptyDir: {}
+#    # Fake GCS server
+#  extraContainers:
+#  - name: fake-gcs-server
+#    image: fsouza/fake-gcs-server
+#    imagePullPolicy: IfNotPresent
+#    args: ["-scheme", "http"]
+#    volumeMounts:
+#      - name: storage
+#        mountPath: /storage
+#    ports:
+#      - name: fake-gcs-server
+#        containerPort: 4443
+#        protocol: TCP
+#  extraPorts:
+#    - name: fake-gcs-server
+#      port: 4443
+#      protocol: TCP
+#      targetPort: 4443
+#  extraVolumes:
+#    - name: storage
+#      emptyDir: {}
+#

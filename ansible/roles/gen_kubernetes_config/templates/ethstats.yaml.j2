@@ -1,0 +1,30 @@
+# {{ ansible_managed }}
+
+ethstats:
+  fullnameOverride: ethstats
+
+  image:
+    repository: {{ default_tooling_images.ethstats.split(':') | first }}
+    tag: {{ default_tooling_images.ethstats.split(':') | last }}
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: ethstats.{{ network_subdomain }}
+        paths:
+          - path: /
+            pathType: Prefix
+
+  secretEnv:
+    WS_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>"
+
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 200m

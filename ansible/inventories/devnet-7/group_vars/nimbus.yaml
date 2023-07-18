@@ -23,8 +23,8 @@ validator_bls_sync_files:
 ethereum_node_cl: nimbus
 
 # role: ethpandaops.general.nimbus
-# Checkpointsync 
-nimbus_checkpoint_sync_enabled: false 
+# Checkpointsync
+nimbus_checkpoint_sync_enabled: false
 nimbus_checkpoint_container_command_extra_args:
   - --trusted-node-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lighthouse-nethermind-1.srv.4844-devnet-5.ethpandaops.io
   - --network=/network-config

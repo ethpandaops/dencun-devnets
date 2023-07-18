@@ -16,3 +16,14 @@ default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.60
   ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.21.0
   tx_fuzz: ethpandaops/tx-fuzz:1.1.0
+  forkmon: skylenet/nodemonitor:darkmode
+  forky: ethpandaops/forky:0.0.34-debian
+  fauceth: skylenet/fauceth:fix_fee_estimation
+  ethstats: skylenet/ethstats-server:poa-no-geoip
+  homepage: ethpandaops/ethereum-testnet-homepage:latest
+  checkpointz: ethpandaops/checkpointz:0.15.0
+  blockscout: blockscout/blockscout:master
+  beacon_metrics_gazer: dapplion/beacon-metrics-gazer:v0.1.3
+  eth_fauceth: chainflag/eth-fauceth:latest
+  blobscan: blossomlabs/blobscan:latest
+  blobscan_indexer: blossomlabs/blobscan-indexer:latest
