@@ -18,7 +18,7 @@ rpc-proxy:
     className: ingress-nginx-public
 
     hosts:
-      - host: rpc.{{ ethereum_network_name }}.ethpandaops.io
+      - host: rpc.{{ network_subdomain }}
         paths:
           - path: /
             pathType: Prefix

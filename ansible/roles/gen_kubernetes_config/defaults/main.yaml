@@ -1,10 +1,17 @@
 gen_kubernetes_config_default_output_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
 
-default_cl_endpoint: "http://{{ cl + '-' + el + '-001:5052' }}"
-default_el_endpoint: "http://{{ el + '-' + cl + '-001:8545' }}"
-default_el_ws_endpoint: "ws://{{ el + '-' + cl + '-001:8545' }}"
-default_el_auth_endpoint: "http://{{ el + '-' + cl + '-001:8551' }}"
+default_cl_endpoint: >-
+  "http://{{ gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.el + '-001:5052' }}"
+default_el_endpoint: >-
+  "http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8545' }}"
+default_el_ws_endpoint: >-
+  "ws://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8545' }}"
+default_el_auth_endpoint: >-
+  "http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8551' }}"
 
+gen_kubernetes_config_ethereum_node:
+  el: nethermind
+  cl: lodestar
 
 gen_kubernetes_config_helm_charts:
   config:
@@ -28,7 +35,7 @@ gen_kubernetes_config_helm_charts:
         repository: https://blobscan.github.io/blobscan-helm-charts/
         version: 0.2.7
   blockscout:
-    valuesTemplatePath: templates/beacon-metrics-gazer.yaml.j2
+    valuesTemplatePath: templates/blockscout.yaml.j2
     dependencies:
       - name: blockscout
         repository: https://ethpandaops.github.io/ethereum-helm-charts
@@ -75,15 +82,15 @@ gen_kubernetes_config_helm_charts:
       - name: testnet-homepage
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.2.2
-  #ethereum-node:
-  #  valuesTemplatePath: templates/ethereum-node.yaml.j2
-  #  dependencies:
-  #    - name: ethereum-node
-  #      repository: https://ethpandaops.github.io/ethereum-helm-charts
-  #      version: 0.0.7
   rpc-proxy:
     valuesTemplatePath: templates/rpc-proxy.yaml.j2
     dependencies:
       - name: rpc-proxy
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.1.2
+  node-001:
+    valuesTemplatePath: templates/ethereum-node.yaml.j2
+    dependencies:
+      - name: ethereum-node
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.0.7

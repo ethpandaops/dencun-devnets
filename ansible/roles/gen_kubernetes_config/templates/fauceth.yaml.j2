@@ -11,7 +11,7 @@ fauceth:
     className: ingress-nginx-public
 
     hosts:
-      - host: faucet.{{ ethereum_network_name }}.ethpandaops.io
+      - host: faucet.{{ network_subdomain }}
         paths:
           - path: /
             pathType: Prefix

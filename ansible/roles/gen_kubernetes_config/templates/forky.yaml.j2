@@ -14,7 +14,7 @@ forky:
     enabled: true
     className: ingress-nginx-public
     hosts:
-      - host: forky.{{ ethereum_network_name }}.ethpandaops.io
+      - host: forky.{{ network_subdomain }}
         paths:
           - path: /
             pathType: Prefix
@@ -44,6 +44,6 @@ forky:
         - name: {{ hostvars[host]['inventory_hostname'] }}
           type: "beacon_node"
           config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ ethereum_network_name }}.ethpandaops.io
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
             polling_interval: "12s"
 {% endfor %}

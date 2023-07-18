@@ -1,4 +1,3 @@
-
 - name: Inform which chart is being processed
   ansible.builtin.debug:
     msg: "Generating '{{ item.key}}' with template '{{ item.value.valuesTemplatePath | default('') }}'"

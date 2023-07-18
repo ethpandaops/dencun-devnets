@@ -19,7 +19,7 @@ testnet-homepage:
     className: ingress-nginx-public
 
     hosts:
-      - host: {{ ethereum_network_name }}.ethpandaops.io
+      - host: {{ network_subdomain }}
         paths:
           - path: /
             pathType: Prefix
@@ -35,47 +35,47 @@ testnet-homepage:
     https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/{{ ethereum_network_name  | replace('4844-', '')}}/group_vars/all/images.yaml
 
     ## Validator ranges
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/api/v1/nodes/validator-ranges
+    - https://config.{{ network_subdomain }}/api/v1/nodes/validator-ranges
 
     Some examples:
     ```sh
     ## Pretty print in YAML format
-    curl -s https://config.{{ ethereum_network_name }}.ethpandaops.io/api/v1/nodes/validator-ranges \
+    curl -s https://config.{{ network_subdomain }}/api/v1/nodes/validator-ranges \
       | yq '.ranges' -P
     ```
 
     ## Ethereum node inventory
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/api/v1/nodes/inventory
+    - https://config.{{ network_subdomain }}/api/v1/nodes/inventory
 
     Some examples on how to filter specific data from the node inventory:
     ```sh
     # Getting execution layer client enodes
-    curl -s https://config.{{ ethereum_network_name }}.ethpandaops.io/api/v1/nodes/inventory \
+    curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory \
       | jq -r '.ethereum_pairs[] | .execution.enode'
     # Getting conseus layer client ENRs
-    curl -s https://config.{{ ethereum_network_name }}.ethpandaops.io/api/v1/nodes/inventory \
+    curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory \
       | jq -r '.ethereum_pairs[] | .consensus.enr'
     ```
 
     ## Genesis configuration
     ### Execution layer clients
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/el/genesis.json
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/el/chainspec.json
+    - https://config.{{ network_subdomain }}/el/genesis.json
+    - https://config.{{ network_subdomain }}/el/chainspec.json
 
     ### Consensus layer clients
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/cl/config.yaml
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/cl/genesis.ssz
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/cl/deploy_block.txt
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/cl/deposit_contract.txt
-    - https://config.{{ ethereum_network_name }}.ethpandaops.io/cl/deposit_contract_block.txt
+    - https://config.{{ network_subdomain }}/cl/config.yaml
+    - https://config.{{ network_subdomain }}/cl/genesis.ssz
+    - https://config.{{ network_subdomain }}/cl/deploy_block.txt
+    - https://config.{{ network_subdomain }}/cl/deposit_contract.txt
+    - https://config.{{ network_subdomain }}/cl/deposit_contract_block.txt
 
 
   customArgs:
     - -b
-    - https://{{ ethereum_network_name }}.ethpandaops.io
+    - https://{{ network_subdomain }}
 
   config:
-    baseURL: https://{{ ethereum_network_name }}.ethpandaops.io
+    baseURL: https://{{ network_subdomain }}
     languageCode: en-us
     title: {{ ethereum_network_name }}
     theme: PaperMod
@@ -89,16 +89,16 @@ testnet-homepage:
       disableThemeToggle: true
       defaultTheme: dark
       ethereum:
-        faucetUrl: https://faucet.{{ ethereum_network_name }}.ethpandaops.io
-        faucet2Url: https://faucet-2.{{ ethereum_network_name }}.ethpandaops.io
-        rpcUrl: https://rpc.{{ ethereum_network_name }}.ethpandaops.io
-        explorerUrl: https://explorer.{{ ethereum_network_name }}.ethpandaops.io
-        forkmonUrl: https://forkmon.{{ ethereum_network_name }}.ethpandaops.io
+        faucetUrl: https://faucet.{{ network_subdomain }}
+        faucet2Url: https://faucet-2.{{ network_subdomain }}
+        rpcUrl: https://rpc.{{ network_subdomain }}
+        explorerUrl: https://explorer.{{ network_subdomain }}
+        forkmonUrl: https://forkmon.{{ network_subdomain }}
         beaconexplorerUrl: "WIP"
         checkpointSyncUrl: "WIP"
         blobscanUrl: https://blobscan.com
-        blobscanethpandaUrl: https://blobscan.{{ ethereum_network_name }}.ethpandaops.io
-        ethstatsUrl: https://ethstats.{{ ethereum_network_name }}.ethpandaops.io
+        blobscanethpandaUrl: https://blobscan.{{ network_subdomain }}
+        ethstatsUrl: https://ethstats.{{ network_subdomain }}
         chainName: "{{ ethereum_network_name }}"
         chainId: "{{ ethereum_genesis_chain_id }}"
         github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/{{ ethereum_network_name  | replace('4844-', '')}}

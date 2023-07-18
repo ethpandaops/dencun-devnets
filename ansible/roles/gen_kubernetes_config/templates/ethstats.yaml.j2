@@ -13,7 +13,7 @@ ethstats:
     className: ingress-nginx-public
 
     hosts:
-      - host: ethstats.{{ ethereum_network_name }}.ethpandaops.io
+      - host: ethstats.{{ network_subdomain }}
         paths:
           - path: /
             pathType: Prefix
