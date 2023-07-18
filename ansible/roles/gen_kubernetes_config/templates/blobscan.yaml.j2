@@ -25,8 +25,8 @@ blobscan:
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
   image:
-    repository: {{ default_tooling_images.blobscan.split(':') | first }}
-    tag: {{ default_tooling_images.blobscan.split(':') | last }}
+    repository: {{ default_tooling_images.blobscan_indexer.split(':') | first }}
+    tag: {{ default_tooling_images.blobscan_indexer.split(':') | last }}
     pullPolicy: Always
   extraEnv:
     - name: SECRET_KEY

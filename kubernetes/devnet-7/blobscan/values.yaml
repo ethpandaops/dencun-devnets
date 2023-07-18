@@ -3,7 +3,7 @@
 blobscan:
   fullnameOverride: blobscan
   image:
-    repository: blossomlabs/blobscan-indexer
+    repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
   ingress:
@@ -42,7 +42,7 @@ blobscan-indexer:
 blobscan-api:
   fullnameOverride: blobscan-api
   image:
-    repository: blossomlabs/blobscan-indexer
+    repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
   ingress:

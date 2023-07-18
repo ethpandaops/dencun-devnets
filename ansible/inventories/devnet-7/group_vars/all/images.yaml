@@ -25,4 +25,5 @@ default_tooling_images:
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:v0.1.3
   eth_fauceth: chainflag/eth-fauceth:latest
-  blobscan: blossomlabs/blobscan-indexer:latest
+  blobscan: blossomlabs/blobscan:latest
+  blobscan_indexer: blossomlabs/blobscan-indexer:latest
