@@ -128,10 +128,18 @@ variable "digitalocean_vm_groups" {
     # Prysm
     {
       id  = "prysm-geth"
-      vms = { "1" = {} },
+      vms = { "1" = { ansible_vars : "validator_start=880 validator_end=900" } },
     },
     {
       id  = "prysm-nethermind"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "prysm-besu"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "prysm-ethereumjs"
       vms = { "1" = {} },
     },
     # Lighthouse
@@ -166,6 +174,14 @@ variable "digitalocean_vm_groups" {
     },
     {
       id  = "nimbus-nethermind"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "nimbus-besu"
+      vms = { "1" = {} },
+    },
+    {
+      id  = "nimbus-ethereumjs"
       vms = { "1" = {} },
     },
   ]
@@ -329,6 +345,7 @@ resource "digitalocean_firewall" "main" {
     protocol              = "icmp"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
+  depends_on = [digitalocean_droplet.main]
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
