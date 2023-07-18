@@ -58,25 +58,26 @@ blobscan-api:
                 name: blobscan-api
                 port:
                   number: 3001
-   # Fake GCS server
-  extraContainers:
-    - name: fake-gcs-server
-      image: fsouza/fake-gcs-server
-      imagePullPolicy: IfNotPresent
-      args: ["-scheme", "http"]
-      volumeMounts:
-        - name: storage
-          mountPath: /storage
-      ports:
-        - name: fake-gcs-server
-          containerPort: 4443
-          protocol: TCP
-    extraPorts:
-      - name: fake-gcs-server
-        port: 4443
-        protocol: TCP
-        targetPort: 4443
-    extraVolumes:
-      - name: storage
-        emptyDir: {}
 
+#    # Fake GCS server
+#  extraContainers:
+#  - name: fake-gcs-server
+#    image: fsouza/fake-gcs-server
+#    imagePullPolicy: IfNotPresent
+#    args: ["-scheme", "http"]
+#    volumeMounts:
+#      - name: storage
+#        mountPath: /storage
+#    ports:
+#      - name: fake-gcs-server
+#        containerPort: 4443
+#        protocol: TCP
+#  extraPorts:
+#    - name: fake-gcs-server
+#      port: 4443
+#      protocol: TCP
+#      targetPort: 4443
+#  extraVolumes:
+#    - name: storage
+#      emptyDir: {}
+#

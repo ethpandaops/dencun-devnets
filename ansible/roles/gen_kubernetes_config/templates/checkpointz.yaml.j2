@@ -53,6 +53,6 @@ checkpointz:
         dataProvider: true
 {% for host in (groups['all']) | sort %}
       - name: {{ hostvars[host]['inventory_hostname'] }}
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
         dataProvider: true
 {% endfor %}
