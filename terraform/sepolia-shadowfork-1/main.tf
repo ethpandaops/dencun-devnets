@@ -89,40 +89,28 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
-      id = "lodestar-ethereumjs"
-      vms = {
-        "1" = { ansible_vars : "validator_start=20 validator_end=30" }
-      },
-    },
-    {
       id = "lodestar-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=30 validator_end=40" }
+        "1" = { ansible_vars : "validator_start=20 validator_end=30" }
       },
     },
     # Teku
     {
       id = "teku-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=40 validator_end=50" }
+        "1" = { ansible_vars : "validator_start=30  validator_end=40" }
       },
     },
     {
       id = "teku-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=50 validator_end=250" }
-      },
-    },
-    {
-      id = "teku-ethereumjs"
-      vms = {
-        "1" = { ansible_vars : "validator_start=250 validator_end=260" }
+        "1" = { ansible_vars : "validator_start=40 validator_end=240" }
       },
     },
     {
       id = "teku-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=260 validator_end=460" }
+        "1" = { ansible_vars : "validator_start=240 validator_end=440" }
       },
     },
     # Prysm
@@ -138,15 +126,11 @@ variable "digitalocean_vm_groups" {
       id  = "prysm-besu"
       vms = { "1" = { ansible_vars : "validator_start=920 validator_end=940" } },
     },
-    {
-      id  = "prysm-ethereumjs"
-      vms = { "1" = {} },
-    },
     # Lighthouse
     {
       id = "lighthouse-besu"
       vms = {
-        "1" = { ansible_vars : "validator_start=460 validator_end=470" }
+        "1" = { ansible_vars : "validator_start=440 validator_end=470" }
       },
     },
     {
@@ -158,13 +142,7 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=670 validator_end=870" }
-      },
-    },
-    {
-      id = "lighthouse-ethereumjs"
-      vms = {
-        "1" = { ansible_vars : "validator_start=870 validator_end=880" }
+        "1" = { ansible_vars : "validator_start=670 validator_end=880" }
       },
     },
     # Nimbus
@@ -178,10 +156,6 @@ variable "digitalocean_vm_groups" {
     },
     {
       id  = "nimbus-besu"
-      vms = { "1" = {} },
-    },
-    {
-      id  = "nimbus-ethereumjs"
       vms = { "1" = {} },
     },
   ]
