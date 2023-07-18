@@ -14,21 +14,32 @@
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/Chart.yaml"
     mode: "0644"
 
-# - name: Check if dependencies are required
-#   ansible.builtin.stat:
-#     path: "{{ gen_kubernetes_config_default_output_dir }}/{{ chart_item.key }}/charts/{{ chart_item.key | replace('_', '-') }}-{{ chart_item.value }}"
-#   register: dependencies_required
-
-
-# - name: Run helm dependency build
-#   ansible.builtin.command: helm dependency build "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}"
-#   when: dependencies_required and not (item.key | replace('_', '-') == item.value)
-
 - name: Copy the helm ignore file
   ansible.builtin.copy:
     src: ".helmignore"
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/.helmignore"
     mode: "0644"
+
+- name: Check if dependencies should be updated
+  ansible.builtin.command:
+    cmd: >-
+      ls
+      {% for d in item.value.dependencies | default([]) %}
+      {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/charts/{{ d.name }}-{{ d.version }}.tgz
+      {% endfor %}
+  changed_when: false
+  failed_when: false
+  register: chart_needs_update
+
+- name: Run helm dependency update
+  ansible.builtin.command:
+    cmd: helm  dependency update {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
+  when: chart_needs_update.rc != 0
+
+- name: Run helm dependency build
+  ansible.builtin.command:
+    cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
+  when: chart_needs_update.rc != 0
 
 - name: Generate values file
   ansible.builtin.template:
