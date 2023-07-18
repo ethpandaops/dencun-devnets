@@ -1,0 +1,11 @@
+tx_fuzz_container_image: "{{ default_tooling_images.tx_fuzz }}"
+
+
+tx_fuzz_container_command:
+  - spam
+  - --no-al
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+  - --sk={{ tx_fuzz_privkey }}
+  - --txcount=500
+
+tx_fuzz_container_networks: "{{ docker_networks_shared }}"

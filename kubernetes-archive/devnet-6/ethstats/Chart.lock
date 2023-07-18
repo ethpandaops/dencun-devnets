@@ -1,0 +1,6 @@
+dependencies:
+- name: ethstats
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.1.4
+digest: sha256:06e814194091d86da856ff74b04c0a95111db59b8f42fbcf1b637f089df94e7f
+generated: "2023-06-19T18:18:38.062088388Z"
