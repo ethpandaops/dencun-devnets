@@ -72,12 +72,12 @@ blobscan-api:
         - name: fake-gcs-server
           containerPort: 4443
           protocol: TCP
-    extraPorts:
-      - name: fake-gcs-server
-        port: 4443
-        protocol: TCP
-        targetPort: 4443
-    extraVolumes:
-      - name: storage
-        emptyDir: {}
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
 

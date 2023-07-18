@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,c53c44d 2023/07/18 14:14
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,d1b766c 2023/07/18 16:41
 
 blobscan:
   fullnameOverride: blobscan
@@ -72,12 +72,12 @@ blobscan-api:
         - name: fake-gcs-server
           containerPort: 4443
           protocol: TCP
-    extraPorts:
-      - name: fake-gcs-server
-        port: 4443
-        protocol: TCP
-        targetPort: 4443
-    extraVolumes:
-      - name: storage
-        emptyDir: {}
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
 
