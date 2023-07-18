@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/beacon-metrics-gazer.yaml.j2,49f27d5 2023/07/18 13:12$
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/beacon-metrics-gazer.yaml.j2,49f27d5 2023/07/18 13:12
 
 beacon-metrics-gazer:
   image:

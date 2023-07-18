@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/Chart.yaml.j2,67551b8 2023/07/13 18:06$
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/Chart.yaml.j2,67551b8 2023/07/13 18:06
 
 apiVersion: v2
 name: faucet-2
