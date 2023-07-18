@@ -1,6 +1,6 @@
 - name: Inform which chart is being processed
   ansible.builtin.debug:
-    msg: "Generating '{{ item.key}}' with template '{{ item.value.valuesTemplatePath | default('') }}'"
+    msg: "Generating '{{ item.key }}' with template '{{ item.value.valuesTemplatePath | default('') }}'"
 
 - name: Create directory
   ansible.builtin.file:
@@ -32,12 +32,12 @@
   register: chart_needs_update
 
 - name: Run helm dependency update
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: helm  dependency update {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
 - name: Run helm dependency build
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
