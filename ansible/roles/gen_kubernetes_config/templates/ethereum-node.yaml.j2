@@ -73,28 +73,6 @@
             echo "genesis is already initialized";
           fi;
           echo "bootnode init done: $(cat /data/bootnodes.txt)";
-
-
-        - sh
-        - -ace
-        - >
-          GENESIS_URI=https://config.{{ network_subdomain }}/el/chainspec.json;
-          TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
-          BOOTNODES=https://config.{{ network_subdomain }}/el/bootnode.txt;
-          mkdir -p /data/network-config;
-          wget -O /data/network-config/bootnode.txt $BOOTNODES;
-          if ! [ -f /data/network-config/genesis_init_done ];
-          then
-            apk update && apk add curl jq;
-            wget -O /data/network-config/genesis.json $GENESIS_URI;
-            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
-            cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
-            touch /data/network-config/genesis_init_done;
-            echo "genesis init done";
-          else
-            echo "genesis is already initialized";
-          fi;
-          echo "bootnode init done: $(cat /data/network-config/bootnode.txt)";
       volumeMounts:
         - name: storage
           mountPath: "/data"

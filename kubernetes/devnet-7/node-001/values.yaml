@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,49f27d5 2023/07/18 13:12$
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,df3ecf8 2023/07/18 15:04$
 
 node-001:
   global:
@@ -70,28 +70,6 @@ node-001:
             echo "genesis is already initialized";
           fi;
           echo "bootnode init done: $(cat /data/bootnodes.txt)";
-
-
-        - sh
-        - -ace
-        - >
-          GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/chainspec.json;
-          TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
-          BOOTNODES=https://config.4844-devnet-7.ethpandaops.io/el/bootnode.txt;
-          mkdir -p /data/network-config;
-          wget -O /data/network-config/bootnode.txt $BOOTNODES;
-          if ! [ -f /data/network-config/genesis_init_done ];
-          then
-            apk update && apk add curl jq;
-            wget -O /data/network-config/genesis.json $GENESIS_URI;
-            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
-            cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
-            touch /data/network-config/genesis_init_done;
-            echo "genesis init done";
-          else
-            echo "genesis is already initialized";
-          fi;
-          echo "bootnode init done: $(cat /data/network-config/bootnode.txt)";
       volumeMounts:
         - name: storage
           mountPath: "/data"
