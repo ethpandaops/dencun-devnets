@@ -45,7 +45,7 @@ nimbus_container_volumes:
 nimbus_container_command_extra_args: >-
   {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
 nimbus_container_command_extra_simple_args:
-  - --network=sepolia
+  - --network=/network-config
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level=DEBUG
