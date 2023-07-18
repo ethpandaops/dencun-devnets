@@ -52,18 +52,18 @@ gen_kubernetes_config_helm_charts:
       - name: ethstats
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.1.4
-  eth-faucet:
-    valuesTemplatePath: templates/eth-faucet.yaml.j2
-    dependencies:
-      - name: eth-faucet
-        repository: https://ethpandaops.github.io/ethereum-helm-charts
-        version: 0.1.1
-  fauceth:
+  faucet:
     valuesTemplatePath: templates/fauceth.yaml.j2
     dependencies:
       - name: fauceth
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.2.3
+  faucet-2:
+    valuesTemplatePath: templates/eth-faucet.yaml.j2
+    dependencies:
+      - name: eth-faucet
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.1.1
   forkmon:
     valuesTemplatePath: templates/forkmon.yaml.j2
     dependencies:
@@ -76,13 +76,13 @@ gen_kubernetes_config_helm_charts:
       - name: forky
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.1.1
-  testnet-homepage:
+  homepage:
     valuesTemplatePath: templates/testnet-homepage.yaml.j2
     dependencies:
       - name: testnet-homepage
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.2.2
-  rpc-proxy:
+  rpc:
     valuesTemplatePath: templates/rpc-proxy.yaml.j2
     dependencies:
       - name: rpc-proxy

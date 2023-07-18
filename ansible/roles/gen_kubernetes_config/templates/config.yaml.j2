@@ -69,7 +69,7 @@ config:
     # Consensus Layer specific redirects
     - path: /cl/bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.
+      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.txt
     - path: /cl/boot_enr.yaml
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/boot_enr.yaml
