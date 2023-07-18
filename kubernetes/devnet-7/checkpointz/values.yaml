@@ -49,7 +49,7 @@ checkpointz:
     beacon:
       upstreams:
       - name: rpc-beacon
-        address: "http://lodestar-nethermind-001:5052"
+        address: http://lodestar-nethermind-001:5052
         dataProvider: true
       - name: bootnode-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io

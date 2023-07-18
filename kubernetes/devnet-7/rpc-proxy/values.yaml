@@ -24,8 +24,8 @@ rpc-proxy:
             pathType: Prefix
 
   args:
-    - --url="http://nethermind-lodestar-001:8545"
-    - --wsurl="ws://nethermind-lodestar-001:8545"
+    - --url=http://nethermind-lodestar-001:8545
+    - --wsurl=ws://nethermind-lodestar-001:8545
     - --rpm=10000
 
   config: |

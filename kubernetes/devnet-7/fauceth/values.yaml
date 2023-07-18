@@ -46,7 +46,7 @@ fauceth:
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
-          ""http://nethermind-lodestar-001:8545""
+          "http://nethermind-lodestar-001:8545"
         ],
         "faucets": [],
         "nativeCurrency": {

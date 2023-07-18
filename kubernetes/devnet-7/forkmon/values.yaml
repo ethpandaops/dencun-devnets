@@ -16,7 +16,7 @@ forkmon:
   network: 4844-devnet-7
   endpoints:
   # Rpc
-  - addr: "http://nethermind-lodestar-001:8545"
+  - addr: http://nethermind-lodestar-001:8545
     name: rpc
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.bootnode-1.srv.4844-devnet-7.ethpandaops.io
     name: bootnode-1
