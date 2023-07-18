@@ -1,9 +1,8 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
-# Find All + Replace all instances of these values in this entire folder to swap to a different network
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/config.yaml.j2,49f27d5 2023/07/18 13:12$
+
 network: devnet-7
 chainId: 7011893056
 
-# Actual values (change these too)
 domain: 4844-devnet-7.ethpandaops.io
 
 config:
@@ -97,4 +96,3 @@ config:
     - path: /api/v1/nodes/validator-ranges
       upstream: bootnode-1.srv.4844-devnet-7.ethpandaops.io
       target: /meta/api/v1/validator-ranges.json
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/testnet-homepage.yaml.j2,49f27d5 2023/07/18 13:12$
+
 testnet-homepage:
   fullnameOverride: homepage
 
@@ -144,5 +145,3 @@ testnet-homepage:
           weight: 30
     disableKinds: ["taxonomy", "taxonomyTerm"]
     copyright: "Long live the surge"
-
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

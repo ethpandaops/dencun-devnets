@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/rpc-proxy.yaml.j2,49f27d5 2023/07/18 13:12$
+
 rpc-proxy:
   fullnameOverride: rpc-proxy
 
@@ -23,8 +24,8 @@ rpc-proxy:
             pathType: Prefix
 
   args:
-    - --url=http://nethermind-lodestar-001:8545
-    - --wsurl=ws://nethermind-lodestar-001:8545
+    - --url="http://nethermind-lodestar-001:8545"
+    - --wsurl="ws://nethermind-lodestar-001:8545"
     - --rpm=10000
 
   config: |
@@ -61,4 +62,3 @@ rpc-proxy:
       "rpc_modules",
       "web3_clientVersion",
     ]
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

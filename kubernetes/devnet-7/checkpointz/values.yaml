@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,49f27d5 2023/07/18 13:12$
+
 checkpointz:
   fullnameOverride: checkpointz
   replicas: 1
@@ -48,7 +49,7 @@ checkpointz:
     beacon:
       upstreams:
       - name: rpc-beacon
-        address: http://lodestar-nethermind-001:5052
+        address: "http://lodestar-nethermind-001:5052"
         dataProvider: true
       - name: bootnode-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io
@@ -77,11 +78,23 @@ checkpointz:
       - name: lodestar-nethermind-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
+      - name: nimbus-besu-1
+      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-besu-1.srv.4844-devnet-7.ethpandaops.io
+        dataProvider: true
+      - name: nimbus-ethereumjs-1
+      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        dataProvider: true
       - name: nimbus-geth-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: nimbus-nethermind-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        dataProvider: true
+      - name: prysm-besu-1
+      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
+        dataProvider: true
+      - name: prysm-ethereumjs-1
+      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: prysm-geth-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-geth-1.srv.4844-devnet-7.ethpandaops.io
@@ -101,4 +114,3 @@ checkpointz:
       - name: teku-nethermind-1
       - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

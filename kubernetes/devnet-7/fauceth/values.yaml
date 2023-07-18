@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,49f27d5 2023/07/18 13:12$
+
 fauceth:
   fullnameOverride: fauceth
   image:
@@ -45,7 +46,7 @@ fauceth:
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
-          "http://nethermind-lodestar-001:8545"
+          ""http://nethermind-lodestar-001:8545""
         ],
         "faucets": [],
         "nativeCurrency": {
@@ -64,4 +65,3 @@ fauceth:
       }]
       ' > /config/chains.json;
       cat /config/chains.json;
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

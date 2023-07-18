@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/beacon-metrics-gazer.yaml.j2,49f27d5 2023/07/18 13:12$
+
 beacon-metrics-gazer:
   image:
     repository: dapplion/beacon-metrics-gazer
@@ -20,7 +21,7 @@ beacon-metrics-gazer:
 
   customCommand:
     - /beacon-metrics-gazer
-    - http://lodestar-nethermind-001:5052
+    - "http://lodestar-nethermind-001:5052"
     - --ranges-file
     - /custom-config/ranges.yaml
     - --port
@@ -53,4 +54,3 @@ beacon-metrics-gazer:
     volumeMounts:
       - name: custom-config
         mountPath: "/custom-config"
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY

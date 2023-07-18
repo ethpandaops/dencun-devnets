@@ -1,4 +1,5 @@
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forky.yaml.j2,49f27d5 2023/07/18 13:12$
+
 forky:
   fullnameOverride: forky
   replicas: 1
@@ -41,87 +42,106 @@ forky:
       sources:
         - name: bootnode-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lighthouse-besu-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-besu-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lighthouse-ethereumjs-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lighthouse-geth-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lighthouse-nethermind-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lodestar-besu-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-besu-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lodestar-ethereumjs-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lodestar-geth-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lodestar-nethermind-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-besu-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-besu-1.srv.4844-devnet-7.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: nimbus-geth-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: nimbus-nethermind-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+            polling_interval: "12s"
+        - name: prysm-besu-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
+            polling_interval: "12s"
+        - name: prysm-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: prysm-geth-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-geth-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: prysm-nethermind-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: teku-besu-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-besu-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: teku-ethereumjs-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: teku-geth-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: teku-nethermind-1
           type: "beacon_node"
-          config: 
+          config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
             polling_interval: "12s"
-# ANSIBLE GENERATED FILE - DO NOT EDIT MANUALLY
