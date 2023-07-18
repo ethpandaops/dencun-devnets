@@ -5,7 +5,7 @@ default_cl_endpoint: >-
 default_el_endpoint: >-
   http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8545' }}
 default_el_ws_endpoint: >-
-  ws://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8545' }}
+  ws://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8546' }}
 default_el_auth_endpoint: >-
   http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-001:8551' }}
 

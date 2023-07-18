@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/config.yaml.j2,49f27d5 2023/07/18 13:12$
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/config.yaml.j2,ed3449f 2023/07/18 14:24$
 
 network: devnet-7
 chainId: 7011893056
