@@ -1,6 +1,5 @@
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
- 
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
 eth_inventory_web_container_env:
@@ -42,9 +41,13 @@ nethermind_container_command_extra_args:
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
   - --Init.IsMining=false
   - --Pruning.Mode=None
-  - --EthStats.Enabled=true
   - --log=DEBUG
-
+# - --Init.ChainSpecPath=/network-config/chainspec.json
+#  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+#  - --Init.IsMining=false
+#  - --Pruning.Mode=None
+#  - --config=none.cfg
+#  - --log=DEBUG
 bootstrap_default_user_authorized_keys_github_team_cl:
   - dapplion
   - wemeetagain
@@ -66,8 +69,9 @@ lighthouse_container_volumes:
 lighthouse_container_command_extra_args:
   - --network=sepolia
   - --debug-level=debug
-  - --checkpoint-sync-url=https://sepolia.checkpoint-sync.ethpandaops.io
-
+#  - --testnet-dir=/network-config
+#  - --self-limiter=blob_sidecars_by_range:512/10
+#  - --debug-level=debug
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
 prometheus_remote_write_username: "{{ secret_prometheus_remote_write.username }}"

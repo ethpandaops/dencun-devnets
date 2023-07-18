@@ -36,13 +36,20 @@ lodestar_container_volumes:
   - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_container_command_extra_args:
-  - --paramsFile=/network-config/config.yaml
-  - --genesisStateFile=/network-config/genesis.ssz
+  - --network=sepolia
   - --rest.namespace=*
   #- --logLevel=debug
+  - --checkpointSyncUrl=https://sepolia.checkpoint-sync.ethpandaops.io
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --network.connectToDiscv5Bootnodes
   - --nat=true
+  #  - --paramsFile=/network-config/config.yaml
+     #  - --genesisStateFile=/network-config/genesis.ssz
+     #  - --rest.namespace=*
+     #  #- --logLevel=debug
+     #  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+     #  - --network.connectToDiscv5Bootnodes
+     #  - --nat=true
   #- --chain.trustedSetup=/network-config/trusted_setup.txt
   #- --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
 lodestar_validator_container_volumes:

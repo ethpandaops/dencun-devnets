@@ -41,14 +41,23 @@ prysm_container_command_extra_args: >-
   {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args }}
 prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
-  - --chain-config-file=/network-config/config.yaml
-  - --genesis-state=/network-config/genesis.ssz
-  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
+  - --sepolia
   - --min-sync-peers=1
   - --pprof
   - --enable-debug-rpc-endpoints
   - --verbosity=debug
   - --subscribe-all-subnets
+  - --checkpoint-sync-url=https://sepolia.checkpoint-sync.ethpandaops.io
+  - --genesis-beacon-api-url=https://sepolia.checkpoint-sync.ethpandaops.io
+#    - --grpc-gateway-corsdomain=*
+#    - --chain-config-file=/network-config/config.yaml
+#    - --genesis-state=/network-config/genesis.ssz
+#    - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
+#    - --min-sync-peers=1
+#    - --pprof
+#    - --enable-debug-rpc-endpoints
+#    - --verbosity=debug
+#    - --subscribe-all-subnets
 #  - --checkpoint-sync-url=
 #  - --genesis-beacon-api-url=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
 prysm_container_command_extra_bootnode_args: >-

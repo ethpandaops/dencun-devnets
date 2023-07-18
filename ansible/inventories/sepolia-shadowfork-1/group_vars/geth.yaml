@@ -22,7 +22,12 @@ geth_container_command_extra_args:
   - --sepolia
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 #  - --syncmode=full
-
+#  - --http.api=eth,net,web3,debug,admin
+#  - --http.vhosts=*
+#  - --networkid=11155111
+#  - --syncmode=full
+#  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+#  - --override.cancun=1689700140
 geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true

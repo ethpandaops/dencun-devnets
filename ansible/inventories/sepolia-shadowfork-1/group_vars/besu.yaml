@@ -31,7 +31,13 @@ besu_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnodes | join(',')}}
   - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
   - --data-storage-format=BONSAI
-
+#  - --genesis-file=/network-config/besu.json
+#  - --bootnodes={{ ethereum_el_bootnodes | join(',')}}
+#  - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
+#  - --sync-mode=FULL
+#  - --data-storage-format=BONSAI
+#  - --kzg-trusted-setup=/network-config/trusted_setup.txt
+#  - --Xfilter-on-enr-fork-id=true
 besu_container_pull: true
 
 besu_container_ports:
