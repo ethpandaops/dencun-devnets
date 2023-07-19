@@ -6,7 +6,8 @@ blockscout:
   image:
     repository: blockscout/blockscout
     tag: master
-
+  annotations:
+    promtail.io/ignore_pod: true
   resources:
     requests:
       cpu: 2000m

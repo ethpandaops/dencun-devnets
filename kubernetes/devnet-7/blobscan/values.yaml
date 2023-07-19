@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,30c5553 2023/07/18 16:45
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,ccd7c66 2023/07/19 09:23
 
 blobscan:
   fullnameOverride: blobscan
