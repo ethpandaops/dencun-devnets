@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-network: {{ ethereum_network_name | replace('4844-', '') }}
+network: {{ ethereum_network_name | replace('dencun-', '') }}
 chainId: {{ ethereum_genesis_chain_id }}
 
 domain: {{ network_subdomain }}
@@ -11,83 +11,83 @@ config:
     # Support all files as they appear in the github repo
     - path: /besu.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/besu.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/besu.json
     - path: /bootnode.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootnode.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/bootnode.txt
     - path: /bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/bootstrap_nodes.txt
     - path: /chainspec.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/chainspec.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/chainspec.json
     - path: /config.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/config.yaml
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/config.yaml
     - path: /deploy_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deploy_block.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deploy_block.txt
     - path: /deposit_contract.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deposit_contract.txt
     - path: /deposit_contract_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deposit_contract_block.txt
     - path: /deposit_contract_block_hash.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block_hash.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deposit_contract_block_hash.txt
     - path: /genesis.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/genesis.json
     - path: /genesis.ssz
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.ssz
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/genesis.ssz
     - path: /parseBeaconState.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/parseBeaconState.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/parseBeaconState.json
     - path: /trusted_setup.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/trusted_setup.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/trusted_setup.txt
     - path: /trusted_setup.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/trusted_setup.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/trusted_setup.json
 
     # Execution Layer specific redirects
     - path: /el/bootnodes
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootnode.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/bootnode.txt
     - path: /el/besu.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/besu.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/besu.json
     - path: /el/chainspec.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/chainspec.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/chainspec.json
     - path: /el/genesis.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.json
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/genesis.json
 
     # Consensus Layer specific redirects
     - path: /cl/bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/bootstrap_nodes.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/bootstrap_nodes.txt
     - path: /cl/boot_enr.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/boot_enr.yaml
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/boot_enr.yaml
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/config.yaml
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/config.yaml
     - path: /cl/genesis.ssz
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/genesis.ssz
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/genesis.ssz
     - path: /cl/deploy_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deploy_block.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deploy_block.txt
     - path: /cl/deposit_contract.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deposit_contract.txt
     - path: /cl/deposit_contract_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/4844-testnet/master/network-configs/{{ ethereum_network_name | replace('4844-', '') }}/deposit_contract_block.txt
+      target: /ethpandaops/dencun-testnet/master/network-configs/{{ ethereum_network_name | replace('dencun-', '') }}/deposit_contract_block.txt
 
     # Ansible generated ethereum nodes inventory
     - path: /api/v1/nodes/inventory

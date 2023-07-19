@@ -22,7 +22,7 @@ fauceth:
     APP_TITLE: "{{ ethereum_network_name }} Faucet"
     APP_CHAINS: "{{ ethereum_genesis_chain_id }}"
     APP_LOGGING: "VERBOSE"
-    APP_ETHKEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_private_key}>"
+    APP_ETHKEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.faucet_private_key}>"
     HCAPTCHA_SECRET: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.secret_key}>"
     HCAPTCHA_SITEKEY: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.site_key}>"
 
@@ -43,7 +43,7 @@ fauceth:
       echo '
       [{
         "name": "{{ ethereum_network_name }}",
-        "chain": "4844Eth",
+        "chain": "dencunEth",
         "icon": "ethereum",
         "rpc": [
           "{{ default_el_endpoint }}"

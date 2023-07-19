@@ -1,0 +1,92 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,f2d4ba4 2023/07/19 10:29
+
+blobscan:
+  fullnameOverride: blobscan
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+  image:
+    repository: blossomlabs/blobscan-indexer
+    tag: latest
+    pullPolicy: Always
+  extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
+    - name: EXECUTION_NODE_ENDPOINT
+      value: http://nethermind-teku-001:8545
+    - name: BEACON_NODE_ENDPOINT
+      value: http://teku-nethermind-001:5052
+
+# Blobscan API
+blobscan-api:
+  fullnameOverride: blobscan-api
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  ingress:
+    enabled: false
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan-api.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001
+
+  # Fake GCS server
+  extraContainers:
+    - name: fake-gcs-server
+      image: fsouza/fake-gcs-server
+      imagePullPolicy: IfNotPresent
+      args: ["-scheme", "http"]
+      volumeMounts:
+        - name: storage
+          mountPath: /storage
+      ports:
+        - name: fake-gcs-server
+          containerPort: 4443
+          protocol: TCP
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
+  extraEnv:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?ssl=false"
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_PORT
+      value: "3001"
+    - name: NODE_ENV
+      value: "development"
+

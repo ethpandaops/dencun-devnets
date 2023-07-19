@@ -1,0 +1,6 @@
+dependencies:
+- name: checkpointz
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.1.3
+digest: sha256:9eceb3eb5bb940e21ad6256c1258227069c421ccb29cae6c09005783826cece4
+generated: "2023-07-19T13:14:25.674589+02:00"

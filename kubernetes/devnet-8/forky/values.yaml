@@ -1,0 +1,42 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forky.yaml.j2,49f27d5 2023/07/18 13:12
+
+forky:
+  fullnameOverride: forky
+  replicas: 1
+  image:
+    repository: ethpandaops/forky
+    tag: 0.0.34-debian
+  resources:
+    requests:
+      cpu: 256m
+      memory: 512Mi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: forky.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+  config:
+    listen_addr: ":5555"
+    pprof_addr: ":6060"
+    log_level: "debug"
+    metrics:
+      addr: ":9090"
+      enabled: true
+    forky:
+      retention_period: "60m"
+      store:
+        type: memory
+      indexer:
+        dsn: "file::memory:?cache=shared"
+        driver_name: sqlite
+      ethereum:
+        network:
+          name: "dencun-devnet-8"
+          spec:
+            seconds_per_slot: 12
+            slots_per_epoch: 32
+            genesis_time: 1234567950
+      sources:

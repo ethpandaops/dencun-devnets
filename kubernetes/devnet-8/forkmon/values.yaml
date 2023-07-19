@@ -1,0 +1,35 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forkmon.yaml.j2,7fff5a7 2023/07/19 12:31
+
+forkmon:
+  fullnameOverride: forkmon
+  image:
+    repository: skylenet/nodemonitor
+    tag: darkmode
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: forkmon.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+  network: dencun-devnet-8
+  endpoints:
+  # Rpc
+  - addr: http://nethermind-teku-001:8545
+    name: rpc
+
+  config: |
+    # How often to reload data from the nodes
+    reload_interval = "10s"
+    # If specified, a http server will serve static content here
+    server_address = "0.0.0.0:{{ .Values.httpPort}}"
+    # Shown in the document title, if specified
+    chain_name="{{ .Values.network }}"
+    # Local or non third party connection require rpc kind
+    {{- range .Values.endpoints }}
+    [[clients]]
+      url  = {{ .addr | quote }}
+      name = {{ .name | quote }}
+      kind = "rpc"
+    {{- end }}

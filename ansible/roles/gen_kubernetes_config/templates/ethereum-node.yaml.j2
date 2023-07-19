@@ -43,7 +43,7 @@
       - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
       - --EthStats.Enabled=true
       - --EthStats.Name=k8s-{{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
-      - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+      - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>
       - --EthStats.Server=wss://ethstats.{{ network_subdomain }}
 {% endif %}
     initContainers:
@@ -109,12 +109,26 @@
     extraArgs:
 {% if gen_kubernetes_config_ethereum_node.cl == 'lodestar' %}
       - --execution.urls=http://nethermind-lodestar-001:8551
-      - --checkpointSyncUrl=https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.{{ network_subdomain }}
       - --genesisStateFile=/data/testnet_spec/genesis.ssz
       - --paramsFile=/data/testnet_spec/config.yaml
       - --network.connectToDiscv5Bootnodes
       - --bootnodesFile=/data/bootnodes.txt
       - --rest.namespace='*'
+{% elif gen_kubernetes_config_ethereum_node.cl == 'teku' %}
+      - --network=/data/testnet_spec/config.yaml
+      - --initial-state=/data/testnet_spec/genesis.ssz
+      - --p2p-discovery-bootnodes=ADD_BOOTNODES_HERE
+      - --p2p-peer-upper-bound=100
+      - --data-storage-non-canonical-blocks-enabled=true
+      - --data-storage-mode=PRUNE
+      - --logging=info
+      - --Xlog-include-p2p-warnings-enabled
+      - --metrics-block-timing-tracking-enabled
+      - --Xmetrics-blob-sidecars-storage-enabled=true
+      - --Xtrusted-setup=/data/testnet_spec/trusted_setup.txt
+      - --Xpeer-rate-limit=100000
+      - --Xpeer-request-limit=1000
+      - --Xepochs-store-blobs=max # Keep blobs forever
 {% endif %}
     initContainers:
     - name: init-genesis

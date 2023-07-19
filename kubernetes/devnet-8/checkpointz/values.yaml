@@ -1,0 +1,50 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,62035b5 2023/07/19 11:41
+
+checkpointz:
+  fullnameOverride: checkpointz
+  replicas: 1
+
+  image:
+    repository: ethpandaops/checkpointz
+    tag: 0.15.0
+
+  resources:
+    requests:
+      cpu: 64m
+      memory: 256Mi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: checkpoint-sync.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+    tls:
+    - hosts:
+      - checkpoint-sync.dencun-devnet-8.ethpandaops.io
+      secretName: dencun-devnet-8-checkpoint-sync-tls
+
+  config:
+    global:
+      listenAddr: ":5555"
+      logging: "info" # panic,fatal,warm,info,debug,trace
+      metricsAddr: ":9090"
+
+    checkpointz:
+      mode: full
+      caches:
+        blocks:
+          max_items: 100
+        states:
+          max_items: 5
+      historical_epoch_count: 20
+
+    beacon:
+      upstreams:
+      - name: rpc-beacon
+        address: http://teku-nethermind-001:5052
+        dataProvider: true

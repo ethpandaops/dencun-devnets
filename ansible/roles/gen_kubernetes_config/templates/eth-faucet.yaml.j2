@@ -18,7 +18,7 @@ eth-faucet:
             pathType: Prefix
 
   secretEnv:
-    PRIVATE_KEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.faucet_2_private_key}>"
+    PRIVATE_KEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.faucet_2_private_key}>"
 
   extraEnv:
     - name: WEB3_PROVIDER
