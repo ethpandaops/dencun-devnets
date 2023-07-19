@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blockscout.yaml.j2,7922b18 2023/07/19 09:54
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blockscout.yaml.j2,59c298f 2023/07/19 09:57
 
 blockscout:
   fullnameOverride: blockscout
@@ -7,7 +7,7 @@ blockscout:
     repository: blockscout/blockscout
     tag: master
   annotations:
-    promtail.io/ignore_pod: "true"
+    "promtail.io/ignore_pod": "true"
   resources:
     requests:
       cpu: 2000m
