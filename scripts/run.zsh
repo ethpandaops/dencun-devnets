@@ -257,11 +257,11 @@ for arg in "${command[@]}"; do
       curl -s $bn_endpoint/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
       ;;
     "send_blob")
-      echo "Sending blob"
       # Get a private key from a mnemonic
       privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
+        echo "Sending a blob"
         blob=$(docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint 1 "$privatekey" 0x000000000000000000000000000000000000f1c1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
         echo "Blob submitted with hash $blob"
         echo "Would you like to check which slot the blob was included in? (y/n)"
@@ -275,6 +275,7 @@ for arg in "${command[@]}"; do
         fi
         exit;
       else
+        echo "Sending ${command[2]} blobs"
         docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
         exit;
       fi
