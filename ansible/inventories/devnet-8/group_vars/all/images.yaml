@@ -1,0 +1,29 @@
+default_ethereum_client_images:
+  # Consensus layer clients
+  lighthouse: ethpandaops/lighthouse:boxed-blobs-d534ac0 # NOT YET UPDATED
+  lodestar: g11tech/lodestar:devnet36-6c23a8 # NOT YET UPDATED
+  nimbus: ethpandaops/nimbus:unstable-b626649 # NOT YET UPDATED
+  prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # NOT YET UPDATED
+  teku: consensys/teku:23.6.1 # NOT YET UPDATED
+  # Execution layer clients
+  besu: ethpandaops/besu:4844-devnet-5b-ee00538 # NOT YET UPDATED
+  geth: ethpandaops/geth:4844-devnet-6-e03b5ad # NOT YET UPDATED
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # Not ready
+  ethereumjs: g11tech/ethereumjs:devnet36-fa4ec69 # NOT YET UPDATED
+  nethermind: nethermindeth/nethermind:eip-4844-v6-36 # NOT YET UPDATED
+
+default_tooling_images:
+  xatu_sentry: ethpandaops/xatu:0.0.60
+  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.21.0
+  tx_fuzz: ethpandaops/tx-fuzz:1.1.0
+  forkmon: skylenet/nodemonitor:darkmode
+  forky: ethpandaops/forky:0.0.34-debian
+  fauceth: skylenet/fauceth:fix_fee_estimation
+  ethstats: skylenet/ethstats-server:poa-no-geoip
+  homepage: ethpandaops/ethereum-testnet-homepage:latest
+  checkpointz: ethpandaops/checkpointz:0.15.0
+  blockscout: blockscout/blockscout:master
+  beacon_metrics_gazer: dapplion/beacon-metrics-gazer:v0.1.3
+  eth_fauceth: chainflag/eth-faucet:latest
+  blobscan: blossomlabs/blobscan:latest
+  blobscan_indexer: blossomlabs/blobscan-indexer:latest
