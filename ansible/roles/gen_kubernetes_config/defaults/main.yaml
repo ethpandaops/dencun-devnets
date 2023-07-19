@@ -100,3 +100,4 @@ gen_kubernetes_config_helm_charts:
       - name: ethereum-node
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.0.7
+        alias: node-001
