@@ -13,7 +13,7 @@ node-001:
     enabled: true
     image:
       repository: nethermindeth/nethermind
-      tag: devnet36-6c23a8
+      tag: eip-4844-v6-36
       pullPolicy: Always
     p2pNodePort:
       enabled: false
