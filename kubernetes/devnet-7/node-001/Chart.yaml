@@ -6,7 +6,7 @@ description: A Helm chart for Kubernetes
 type: application
 version: 0.1.0
 dependencies:
-  - name: ethereum-node
+  - alias: node-001
+    name: ethereum-node
     repository: https://ethpandaops.github.io/ethereum-helm-charts
     version: 0.0.7
-    alias: node-001
