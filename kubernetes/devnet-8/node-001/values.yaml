@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,fafc13c 2023/07/18 15:10
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,a3df7b9 2023/07/19 17:20
 
 node-001:
   global:
@@ -6,12 +6,14 @@ node-001:
       network: dencun-devnet-8
     checkpointSync:
       enabled: false
+      addresses:
+        dencun-devnet-8: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.dencun-devnet-8.ethpandaops.io
   nethermind:
     fullnameOverride: nethermind-teku-001
     enabled: true
     image:
       repository: nethermindeth/nethermind
-      tag: 23.6.1
+      tag: eip-4844-v6-36
       pullPolicy: Always
     p2pNodePort:
       enabled: false

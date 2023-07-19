@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forkmon.yaml.j2,7fff5a7 2023/07/19 12:31
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forkmon.yaml.j2,6be50ca 2023/07/19 13:22
 
 forkmon:
   fullnameOverride: forkmon
