@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,d1b766c 2023/07/18 16:41
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,30c5553 2023/07/18 16:45
 
 blobscan:
   fullnameOverride: blobscan
@@ -80,4 +80,13 @@ blobscan-api:
   extraVolumes:
     - name: storage
       emptyDir: {}
+  extraEnv:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?ssl=false"
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_PORT
+      value: "3001"
+    - name: NODE_ENV
+      value: "development"
 

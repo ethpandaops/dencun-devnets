@@ -80,4 +80,13 @@ blobscan-api:
   extraVolumes:
     - name: storage
       emptyDir: {}
+  extraEnv:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?ssl=false"
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_PORT
+      value: "3001"
+    - name: NODE_ENV
+      value: "development"
 
