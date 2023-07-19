@@ -46,7 +46,7 @@ blobscan-api:
     tag: latest
     pullPolicy: Always
   ingress:
-    enabled: true
+    enabled: false
     className: ingress-nginx-public
     hosts:
       - host: blobscan-api.4844-devnet-7.ethpandaops.io

@@ -46,7 +46,7 @@ blobscan-api:
     tag: {{ default_tooling_images.blobscan.split(':') | last }}
     pullPolicy: Always
   ingress:
-    enabled: true
+    enabled: false
     className: ingress-nginx-public
     hosts:
       - host: blobscan-api.{{ network_subdomain }}
