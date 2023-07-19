@@ -6,7 +6,8 @@
       network: {{ ethereum_network_name }}
     checkpointSync:
       enabled: false
-        addresses: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+      addresses:
+        {{ ethereum_network_name }}: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.{{ ethereum_network_name }}.ethpandaops.io
   {{ gen_kubernetes_config_ethereum_node.el }}:
     fullnameOverride: {{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
     enabled: true

@@ -5,13 +5,15 @@ node-001:
     main:
       network: 4844-devnet-7
     checkpointSync:
-      enabled: false
+      enabled: true
+      addresses:
+        4844-devnet-7: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
   nethermind:
     fullnameOverride: nethermind-lodestar-001
     enabled: true
     image:
       repository: nethermindeth/nethermind
-      tag: devnet36-6c23a8
+      tag: eip-4844-v6-36
       pullPolicy: Always
     p2pNodePort:
       enabled: false
