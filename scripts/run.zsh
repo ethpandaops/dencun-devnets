@@ -47,7 +47,7 @@ print_usage() {
   echo "    RPC_ENDPOINT=https://rpc.alternative.rpc.endpoint \\"
   echo "    BOOTNODE_ENDPOINT=https://bootnode.alternative.endpoint \\"
   echo "    ./run.zsh [command]"
-  echo 
+  echo
 }
 
 # Store the command in an array
@@ -103,7 +103,7 @@ for arg in "${command[@]}"; do
       else
         block=${command[2]}
         hex_block=$(printf "%x\n" $block)
-        get_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["0x'${hex_block}'"], "id":0}' https://rpc.$prefix-$network.$domain | jq .)
+        get_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["0x'${hex_block}'"], "id":0}' $rpc_endpoint | jq .)
         echo "Block $block: $get_block"
         exit;
       fi
@@ -257,14 +257,25 @@ for arg in "${command[@]}"; do
       curl -s $bn_endpoint/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
       ;;
     "send_blob")
+      echo "Sending blob"
       # Get a private key from a mnemonic
       privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
-        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain 1 "$privatekey" 0x000000000000000000000000000000000000f1c1
+        blob=$(docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint 1 "$privatekey" 0x000000000000000000000000000000000000f1c1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+        echo "Blob submitted with hash $blob"
+        echo "Would you like to check which slot the blob was included in? (y/n)"
+        read -r response
+        if [[ $response == y ]]
+        then
+          echo "Waiting for blob to be included in a block (sleeping 10 seconds)"
+          sleep 10
+          ${0} get_slot_for_blob $blob
+          exit;
+        fi
         exit;
       else
-        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest https://rpc.$prefix-$network.$domain ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
+        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
         exit;
       fi
       ;;
@@ -292,7 +303,7 @@ for arg in "${command[@]}"; do
             ethereal beacon deposit \
               --allow-unknown-contract=true \
               --address="$deposit_contract_address" \
-              --connection=https://rpc.$prefix-$network.$domain \
+              --connection=$rpc_endpoint \
               --data="$x" \
               --value="32000000000" \
               --from="$publickey" \
@@ -305,7 +316,7 @@ for arg in "${command[@]}"; do
           exit;
         fi
         echo
-        if 
+        if
         exit;
       fi
       ;;
