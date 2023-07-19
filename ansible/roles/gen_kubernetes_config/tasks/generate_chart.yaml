@@ -20,6 +20,18 @@
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/.helmignore"
     mode: "0644"
 
+- name: Add ethpandaops helm repository
+  kubernetes.core.helm_repository:
+    name: ethereum-helm-charts
+    url: https://ethpandaops.github.io/ethereum-helm-charts
+    state: present
+
+- name: Add blobscan helm repository
+  kubernetes.core.helm_repository:
+    name: blobscan-helm-charts
+    url: https://blobscan.github.io/blobscan-helm-charts/
+    state: present
+
 - name: Check if dependencies should be updated
   ansible.builtin.command:
     cmd: >-

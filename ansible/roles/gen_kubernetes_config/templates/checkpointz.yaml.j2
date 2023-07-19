@@ -14,12 +14,9 @@ checkpointz:
       memory: 256Mi
   ingress:
     enabled: true
-
     className: ingress-nginx-public
-
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
-
     hosts:
       - host: checkpoint-sync.{{ network_subdomain }}
         paths:
