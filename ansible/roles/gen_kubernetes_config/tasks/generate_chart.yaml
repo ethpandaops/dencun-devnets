@@ -53,6 +53,11 @@
     cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
+- name: Include client vars
+  ansible.builtin.include_vars:
+    dir: "{{ inventory_dir }}/group_vars"
+    depth: 1
+
 - name: Generate values file
   ansible.builtin.template:
     src: "{{ item.value.valuesTemplatePath }}"
