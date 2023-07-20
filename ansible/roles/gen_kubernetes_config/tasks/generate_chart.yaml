@@ -53,12 +53,9 @@
     cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
-- ansible.builtin.debug:
-    var: inventory_dir
-
 - name: Include client vars
   ansible.builtin.include_vars:
-   dir: "{{ inventory_dir }}/group_vars"
+    dir: "{{ inventory_dir }}/group_vars"
 
 - name: Generate values file
   ansible.builtin.template:
