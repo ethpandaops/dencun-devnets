@@ -104,13 +104,13 @@ variable "digitalocean_vm_groups" {
     {
       id = "teku-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=40 validator_end=240" }
+        "1" = { }
       },
     },
     {
       id = "teku-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=240 validator_end=440" }
+        "1" = { ansible_vars : "validator_start=40 validator_end=440" }
       },
     },
     # Prysm
@@ -120,11 +120,11 @@ variable "digitalocean_vm_groups" {
     },
     {
       id  = "prysm-nethermind"
-      vms = { "1" = { ansible_vars : "validator_start=900 validator_end=920" } },
+      vms = { "1" = {  } },
     },
     {
       id  = "prysm-besu"
-      vms = { "1" = { ansible_vars : "validator_start=920 validator_end=940" } },
+      vms = { "1" = { ansible_vars : "validator_start=900 validator_end=940" } },
     },
     # Lighthouse
     {
@@ -136,19 +136,19 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-nethermind"
       vms = {
-        "1" = { ansible_vars : "validator_start=470 validator_end=670" }
+        "1" = { ansible_vars : "validator_start=470 validator_end=480" }
       },
     },
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { ansible_vars : "validator_start=670 validator_end=880" }
+        "1" = { ansible_vars : "validator_start=480 validator_end=880" }
       },
     },
     # Nimbus
     {
       id  = "nimbus-geth"
-      vms = { "1" = { ansible_vars : "validator_start=940 validator_end=960" } },
+      vms = { "1" = { } },
     },
     {
       id  = "nimbus-nethermind"
