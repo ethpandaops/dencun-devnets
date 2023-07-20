@@ -124,7 +124,7 @@
         volumeMounts:
           - name: storage
             mountPath: "/data"
-{%- if gen_kubernetes_config_ethereum_node.el in ['nethermind','erigon'] +%}
+{%- if gen_kubernetes_config_ethereum_node.el in ['geth','erigon'] +%}
       - name: init-genesis
         image: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] }}
         imagePullPolicy: Always
