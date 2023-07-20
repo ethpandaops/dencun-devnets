@@ -48,7 +48,7 @@ checkpointz:
       - name: rpc-beacon
         address: {{ default_cl_endpoint }}
         dataProvider: true
-{% for host in (groups['all']) | sort %}
+{% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
       - name: {{ hostvars[host]['inventory_hostname'] }}
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
         dataProvider: true
