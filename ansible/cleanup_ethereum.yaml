@@ -32,6 +32,7 @@
             - "geth-init"
             - "geth"
             - "nethermind"
+            - "execution"
             # Consensus layer clients
             - "lighthouse-validator"
             - "lighthouse"
@@ -42,8 +43,12 @@
             - "prysm"
             - "teku-validator"
             - "teku"
+            - "beacon"
+            - "validator"
             # Others
             - "ethereum-metrics-exporter"
+            - "snooper-engine"
+            - "snooper-rpc"
             #- "cl-bootnode"
         - name: Remove data dirs
           file:

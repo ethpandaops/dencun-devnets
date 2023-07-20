@@ -1,0 +1,47 @@
+nethermind_container_name: execution
+
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_el:
+  - MarekM25
+  - kamilchodola
+  - LukaszRozmej
+  - marcindsobczak
+  - asdacap
+  - rubo
+  - smartprogrammer93
+  - g11tech
+  - cbermudez97
+  - flcl42
+  - jflo
+  - shashankshampi
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: nethermind
+
+# role: ethpandaops.general.nethermind
+nethermind_container_image: "{{ default_ethereum_client_images.nethermind }}"
+nethermind_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+nethermind_container_volumes:
+  - "{{ nethermind_datadir }}:/data"
+  - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+nethermind_container_command_extra_args:
+  - --Init.ChainSpecPath=/network-config/chainspec.json
+  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --Init.IsMining=false
+  - --Pruning.Mode=None
+  - --config=none.cfg
+  - --Init.KzgSetupPath=/network-config/trusted_setup.txt
+#    - --Init.ChainSpecPath=/network-config/chainspec.json
+#    - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+#    - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+#    - --Init.IsMining=false
+#    - --Pruning.Mode=None
+#    - --config=none.cfg
+#    - --log=DEBUG
+  #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
+nethermind_container_pull: true
