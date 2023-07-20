@@ -99,11 +99,12 @@ testnet-homepage:
         blobscanUrl: https://blobscan.com
         blobscanethpandaUrl: https://blobscan.4844-sepolia-sf1.ethpandaops.io
         ethstatsUrl: https://ethstats.4844-sepolia-sf1.ethpandaops.io
+        forkyUrl: https://forky.4844-sepolia-sf1.ethpandaops.io
         chainName: "4844-sepolia-sf1"
-        chainId: "7011893056"
-        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/sepolia-sf1
+        chainId: "11155111"
+        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/sepolia-shadowfork-1
       metamask:
-        enabled: true
+        enabled: false
       logo:
         enabled: false
         url: https://i.imgur.com/M0gEdpw.png
@@ -119,24 +120,10 @@ testnet-homepage:
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl
-      - name: "Explorer"
-        dataLookup: explorerUrl
-      - name: "Beaconchain explorer (not working)"
-        dataLookup: "beaconexplorerUrl"
-      - name: "Blobscan"
-        dataLookup: blobscanUrl
-      - name: "Blobscan ethpanda edition"
-        dataLookup: blobscanethpandaUrl
-      - name: "Checkpoint Sync"
-        dataLookup: checkpointSyncUrl
-      - name: "Faucet 1"
-        dataLookup: faucetUrl
-      - name: "Faucet 2"
-        dataLookup: faucet2Url
       - name: "Forkmon"
         dataLookup: forkmonUrl
-      - name: "Ethstats"
-        dataLookup: ethstatsUrl
+      - name: "Forky"
+        dataLookup: forkyUrl
     menu:
       main:
         - identifier: ethereum-website
