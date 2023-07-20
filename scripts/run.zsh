@@ -23,6 +23,7 @@ print_usage() {
   echo "  latest_slot_verbose               Get the latest slot with verbose output"
   echo "  latest_block                      Get the latest block"
   echo "  get_block n                       Get the block number n [default latest]"
+  echo "  get_balance address               Get the balance of address - mandatory argument"
   echo "  finalized_epoch                   Get the finalized epoch"
   echo "  finalized_slot                    Get the finalized slot"
   echo "  finalized_slot_verbose            Get the finalized slot with verbose output"
@@ -107,6 +108,18 @@ for arg in "${command[@]}"; do
         hex_block=$(printf "%x\n" $block)
         get_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["0x'${hex_block}'"], "id":0}' $rpc_endpoint | jq .)
         echo "Block $block: $get_block"
+        exit;
+      fi
+      ;;
+    "get_balance")
+      # Get a specific block of the network
+      if [[ -z "${command[2]}" ]]; then
+        echo "Please provide a address as the second argument"
+        echo "  Example: ${0} get_balance 0xf97e180c050e5ab072211ad2c213eb5aee4df134"
+        exit;
+      else
+        balance=$(curl -s  --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getBalance", "params":["'${command[2]}'","latest"], "id":0}' $rpc_endpoint | jq -r '.result' | python -c "import sys; print(int(sys.stdin.read(), 16) / 1e18)")
+        echo "balance $address: $balance Ether"
         exit;
       fi
       ;;
