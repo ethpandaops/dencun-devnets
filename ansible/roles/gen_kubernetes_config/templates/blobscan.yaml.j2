@@ -1,0 +1,92 @@
+# {{ ansible_managed }}
+
+blobscan:
+  fullnameOverride: blobscan
+  image:
+    repository: {{ default_tooling_images.blobscan.split(':') | first }}
+    tag: {{ default_tooling_images.blobscan.split(':') | last }}
+    pullPolicy: Always
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.{{ network_subdomain }}
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+  image:
+    repository: {{ default_tooling_images.blobscan_indexer.split(':') | first }}
+    tag: {{ default_tooling_images.blobscan_indexer.split(':') | last }}
+    pullPolicy: Always
+  extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
+    - name: EXECUTION_NODE_ENDPOINT
+      value: {{ default_el_endpoint }}
+    - name: BEACON_NODE_ENDPOINT
+      value: {{ default_cl_endpoint }}
+
+# Blobscan API
+blobscan-api:
+  fullnameOverride: blobscan-api
+  image:
+    repository: {{ default_tooling_images.blobscan.split(':') | first }}
+    tag: {{ default_tooling_images.blobscan.split(':') | last }}
+    pullPolicy: Always
+  ingress:
+    enabled: false
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan-api.{{ network_subdomain }}
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001
+
+  # Fake GCS server
+  extraContainers:
+    - name: fake-gcs-server
+      image: fsouza/fake-gcs-server
+      imagePullPolicy: IfNotPresent
+      args: ["-scheme", "http"]
+      volumeMounts:
+        - name: storage
+          mountPath: /storage
+      ports:
+        - name: fake-gcs-server
+          containerPort: 4443
+          protocol: TCP
+  extraPorts:
+    - name: fake-gcs-server
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+  extraVolumes:
+    - name: storage
+      emptyDir: {}
+  extraEnv:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?ssl=false"
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_PORT
+      value: "3001"
+    - name: NODE_ENV
+      value: "development"
+

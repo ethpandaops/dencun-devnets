@@ -1,0 +1,56 @@
+# {{ ansible_managed }}
+
+beacon-metrics-gazer:
+  image:
+    repository: {{ default_tooling_images.beacon_metrics_gazer.split(':') | first }}
+    tag: {{ default_tooling_images.beacon_metrics_gazer.split(':') | last }}
+  fullnameOverride: beacon-metrics-gazer
+  resources:
+    requests:
+      cpu: 68m
+      memory: 128Mi
+    limits:
+      cpu: 128m
+      memory: 256Mi
+
+  serviceMonitor:
+    enabled: true
+    labels:
+      vmagent: common
+      network: "{{ ethereum_network_name }}"
+
+  customCommand:
+    - /beacon-metrics-gazer
+    - {{ default_cl_endpoint }}
+    - --ranges-file
+    - /custom-config/ranges.yaml
+    - --port
+    - "8080"
+    - --address
+    - "0.0.0.0"
+
+  extraVolumes:
+    - name: custom-config
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: custom-config
+      mountPath: "/custom-config"
+
+  initContainers:
+  - name: init-config
+    image: alpine:latest
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+    command:
+      - sh
+      - -ace
+      - >
+        apk update && apk add curl yq;
+        curl -s https://config.{{ network_subdomain }}/api/v1/nodes/validator-ranges | yq '.ranges' -P > /custom-config/ranges.yaml;
+        echo "====== init done ======";
+        cat /custom-config/ranges.yaml;
+    volumeMounts:
+      - name: custom-config
+        mountPath: "/custom-config"

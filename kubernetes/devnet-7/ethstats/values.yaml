@@ -1,3 +1,5 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethstats.yaml.j2,49f27d5 2023/07/18 13:12
+
 ethstats:
   fullnameOverride: ethstats
 
@@ -18,7 +20,7 @@ ethstats:
 
   secretEnv:
     WS_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>"
-  
+
   resources:
     requests:
       memory: 256Mi

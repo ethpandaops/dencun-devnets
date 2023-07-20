@@ -1,0 +1,40 @@
+# {{ ansible_managed }}
+
+forkmon:
+  fullnameOverride: forkmon
+  image:
+    repository: {{ default_tooling_images.forkmon.split(':') | first }}
+    tag: {{ default_tooling_images.forkmon.split(':') | last }}
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: forkmon.{{ network_subdomain }}
+        paths:
+          - path: /
+            pathType: Prefix
+  network: {{ ethereum_network_name }}
+  endpoints:
+  # Rpc
+  - addr: {{ default_el_endpoint }}
+    name: rpc
+{% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
+    name: {{ hostvars[host]['inventory_hostname'] }}
+{% endfor %}
+{% raw %}
+  config: |
+    # How often to reload data from the nodes
+    reload_interval = "10s"
+    # If specified, a http server will serve static content here
+    server_address = "0.0.0.0:{{ .Values.httpPort}}"
+    # Shown in the document title, if specified
+    chain_name="{{ .Values.network }}"
+    # Local or non third party connection require rpc kind
+    {{- range .Values.endpoints }}
+    [[clients]]
+      url  = {{ .addr | quote }}
+      name = {{ .name | quote }}
+      kind = "rpc"
+    {{- end }}
+{% endraw %}

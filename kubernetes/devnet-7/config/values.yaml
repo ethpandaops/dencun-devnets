@@ -1,8 +1,8 @@
-# Find All + Replace all instances of these values in this entire folder to swap to a different network
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/config.yaml.j2,ed3449f 2023/07/18 14:24
+
 network: devnet-7
 chainId: 7011893056
 
-# Actual values (change these too)
 domain: 4844-devnet-7.ethpandaops.io
 
 config:
@@ -70,6 +70,9 @@ config:
     - path: /cl/bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/bootstrap_nodes.txt
+    - path: /cl/boot_enr.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/boot_enr.yaml
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
       target: /ethpandaops/4844-testnet/master/network-configs/devnet-7/config.yaml

@@ -1,11 +1,13 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/testnet-homepage.yaml.j2,49f27d5 2023/07/18 13:12
+
 testnet-homepage:
   fullnameOverride: homepage
 
   replicas: 1
 
   image:
-    pullPolicy: Always
     repository: ethpandaops/ethereum-testnet-homepage
+    tag: latest
 
   resources:
     requests:
@@ -24,7 +26,7 @@ testnet-homepage:
 
   customMarkdown: |-
     ## Network Spec
-    https://notes.ethereum.org/@parithosh/devnet-7-specs
+    https://notes.ethereum.org/@ethpandaops/devnet-7-specs
 
     ## Ansible setup
     https://github.com/ethpandaops/4844-testnet
