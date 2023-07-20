@@ -75,21 +75,6 @@ forky:
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.4844-sepolia-sf1.ethpandaops.io
             polling_interval: "12s"
-        - name: nimbus-besu-1
-          type: "beacon_node"
-          config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-besu-1.srv.4844-sepolia-sf1.ethpandaops.io
-            polling_interval: "12s"
-        - name: nimbus-geth-1
-          type: "beacon_node"
-          config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.4844-sepolia-sf1.ethpandaops.io
-            polling_interval: "12s"
-        - name: nimbus-nethermind-1
-          type: "beacon_node"
-          config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.4844-sepolia-sf1.ethpandaops.io
-            polling_interval: "12s"
         - name: prysm-besu-1
           type: "beacon_node"
           config:

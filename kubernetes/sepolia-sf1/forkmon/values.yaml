@@ -16,8 +16,6 @@ forkmon:
   network: 4844-sepolia-sf1
   endpoints:
   # Rpc
-  - addr: http://nethermind-lodestar-001:8545
-    name: rpc
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.bootnode-1.srv.4844-sepolia-sf1.ethpandaops.io
     name: bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-sepolia-sf1.ethpandaops.io
@@ -32,12 +30,6 @@ forkmon:
     name: lodestar-geth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.4844-sepolia-sf1.ethpandaops.io
     name: lodestar-nethermind-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.srv.4844-sepolia-sf1.ethpandaops.io
-    name: nimbus-besu-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-geth-1.srv.4844-sepolia-sf1.ethpandaops.io
-    name: nimbus-geth-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.nimbus-nethermind-1.srv.4844-sepolia-sf1.ethpandaops.io
-    name: nimbus-nethermind-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.4844-sepolia-sf1.ethpandaops.io
     name: prysm-besu-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.4844-sepolia-sf1.ethpandaops.io
