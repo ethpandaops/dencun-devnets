@@ -1,0 +1,157 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,UNCOMMITED
+
+lodestar-nethermind-001:
+  global:
+    main:
+      network: 4844-devnet-7
+    checkpointSync:
+      enabled: true
+      addresses:
+        4844-devnet-7: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+    clientArgs:
+      networks:
+        4844-devnet-7:
+          execution:
+            nethermind:
+              - --Init.ChainSpecPath=/data/network-config/chainspec.json
+              - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+              - --Discovery.Bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
+              - --Init.IsMining=false
+              - --Pruning.Mode=None
+              - --config=none.cfg
+              - --EthStats.Enabled=true
+              - --Ethstats.Name=k8s-lodestar-nethermind-001
+              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Server=wss://ethstats.4844-devnet-7.ethpandaops.io/api/
+              - --log=INFO
+          consensus:
+            lodestar:
+              - --paramsFile=/data/network-config/config.yaml
+              - --genesisStateFile=/data/network-config/genesis.ssz
+              - --bootnodes=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+              - --rest.namespace="*"
+              - --network.connectToDiscv5Bootnodes
+              - --nat=true
+
+  nethermind:
+    enabled: true
+    image:
+      repository: nethermindeth/nethermind
+      tag: eip-4844-v6-36
+      pullPolicy: Always
+    p2pNodePort:
+      enabled: false
+    persistence:
+      enabled: true
+      size: 50Gi
+    podLabels:
+      network: 4844-devnet-7
+      testnet: 4844-devnet-7
+      ethereum_network: 4844-devnet-7
+      ethereum_role: execution
+      consensus_client: lodestar
+      execution_client: nethermind
+      ethereum_instance: nethermind-lodestar-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    initContainers:
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/chainspec.json;
+          TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
+          if ! [ -f /data/genesis_init_done ];
+          then
+            apk update && apk add curl jq;
+            wget -O /data/genesis.json $GENESIS_URI;
+            curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode' > /data/bootnodes.txt;
+            wget -O /data/trusted_setup.txt $TRUSTED_SETUP_URI;
+            cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
+            touch /data/genesis_init_done;
+            echo "genesis init done";
+          else
+            echo "genesis is already initialized";
+          fi;
+          echo "bootnode init done: $(cat /data/bootnodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
+
+  lodestar:
+    enabled: true
+    image:
+      repository: g11tech/lodestar
+      tag: devnet36-6c23a8
+      pullPolicy: Always
+    mode: "beacon"
+    p2pNodePort:
+      enabled: false
+    podLabels:
+      network: 4844-devnet-7
+      testnet: 4844-devnet-7
+      ethereum_network: 4844-devnet-7
+      ethereum_role: consensus
+      consensus_client: lodestar
+      execution_client: nethermind
+      ethereum_instance: nethermind-lodestar-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    persistence:
+      enabled: true
+      size: 50Gi
+    extraArgs:
+    initContainers:
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          apk add jq curl sed;
+          DEPOSIT_CONTRACT_URI=https://config.4844-devnet-7.ethpandaops.io/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
+          curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
+          TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
+          mkdir -p /data/testnet_spec;
+          if ! [ -f /data/network-config/genesis.ssz ];
+          then
+            wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/network-config/deploy_block.txt $DEPLOY_BLOCK_URI;
+            wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
+            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+            echo "genesis init done";
+          else
+            echo "genesis exists. skipping...";
+          fi;
+          (tr '\n' ',' < /data/network-config/bootnodes.txt | sed 's/[^,]*/"&"/g') > /data/network-config/bootnodes2.txt;
+          mv /data/network-config/bootnodes2.txt /data/network-config/bootnodes.txt;
+          echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
