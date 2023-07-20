@@ -45,7 +45,7 @@ checkpointz:
 
     beacon:
       upstreams:
-      - name: rpc-beacon
+      - name: rpc-{{ gen_kubernetes_config_ethereum_node_name }}
         address: {{ default_cl_endpoint }}
         dataProvider: true
 {% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}

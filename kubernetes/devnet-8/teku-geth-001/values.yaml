@@ -1,0 +1,176 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,a3df7b9 2023/07/19 17:20
+
+teku-geth-001:
+  global:
+    main:
+      network: dencun-devnet-8
+    checkpointSync:
+      enabled: true
+      addresses:
+        dencun-devnet-8: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+    clientArgs:
+      networks:
+        dencun-devnet-8:
+          execution:
+            besu:
+            nethermind:
+            geth:
+            erigon:
+            ethereumjs:
+          consensus:
+            lodestar:
+            teku:
+            prysm:
+            lighthouse:
+            nimbus:
+
+  geth:
+    enabled: true
+    fullnameOverride: teku-geth-001
+    image:
+      repository: ethpandaops/geth
+      tag: 4844-devnet-6-e03b5ad
+      pullPolicy: Always
+    p2pNodePort:
+      enabled: false
+    persistence:
+      enabled: true
+      size: 50Gi
+    podLabels:
+      network: dencun-devnet-8
+      testnet: dencun-devnet-8
+      ethereum_network: dencun-devnet-8
+      ethereum_role: execution
+      consensus_client: teku
+      execution_client: geth
+      ethereum_instance: teku-geth-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    initContainers:
+      - name: init-config
+        image: alpine:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            CHAINSPEC_URI=https://config.dencun-devnet-8.ethpandaops.io/el/chainspec.json;
+            GENESIS_URI=https://config.dencun-devnet-8.ethpandaops.io/el/genesis.json;
+            BESU_GENESIS_URI=https://config.dencun-devnet-8.ethpandaops.io/el/besu.json;
+            BOOTNODES_URI=https://config.dencun-devnet-8.ethpandaops.io/el/bootnodes.txt;
+            TRUSTED_SETUP_URI=https://config.dencun-devnet-8.ethpandaops.io/trusted_setup.txt;
+            if ! [ -f /data/network_config_init_done ];
+            then
+              apk update && apk add curl jq;
+              wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
+              wget -O /data/network-config/genesis.json $GENESIS_URI;
+              wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
+              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+              cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
+              touch /data/network_config_init_done;
+              echo "network config init done";
+            else
+              echo "network config already present";
+            fi;
+            echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+      - name: init-genesis
+        image: ethpandaops/geth:4844-devnet-6-e03b5ad
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            if ! [ -f /data/genesis_init_done ];
+            then
+              geth init --datadir /data /data/network-config/genesis.json;
+              touch /data/genesis_init_done;
+              echo "genesis init done";
+            else
+              echo "genesis is already initialized";
+            fi;
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+
+  teku:
+    enabled: true
+    fullnameOverride: geth-teku-001
+    image:
+      repository: consensys/teku
+      tag: 23.6.1
+      pullPolicy: Always
+    mode: "beacon"
+    p2pNodePort:
+      enabled: false
+    podLabels:
+      network: dencun-devnet-8
+      testnet: dencun-devnet-8
+      ethereum_network: dencun-devnet-8
+      ethereum_role: consensus
+      consensus_client: teku
+      execution_client: geth
+      ethereum_instance: geth-teku-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    persistence:
+      enabled: true
+      size: 50Gi
+    extraArgs:
+    initContainers:
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          apk add jq curl sed;
+          DEPOSIT_CONTRACT_URI=https://config.dencun-devnet-8.ethpandaops.io/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/genesis.ssz;
+          curl -s https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
+          TRUSTED_SETUP_URI=https://config.dencun-devnet-8.ethpandaops.io/trusted_setup.txt;
+          mkdir -p /data/testnet_spec;
+          if ! [ -f /data/network-config/genesis.ssz ];
+          then
+            wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/network-config/deploy_block.txt $DEPLOY_BLOCK_URI;
+            wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
+            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+            echo "genesis init done";
+          else
+            echo "genesis exists. skipping...";
+          fi;
+          (tr '\n' ',' < /data/network-config/bootnodes.txt | sed 's/[^,]*/"&"/g') > /data/network-config/bootnodes2.txt;
+          mv /data/network-config/bootnodes2.txt /data/network-config/bootnodes.txt;
+          echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"

@@ -24,8 +24,8 @@ rpc-proxy:
             pathType: Prefix
 
   args:
-    - --url=http://nethermind-teku-001:8545
-    - --wsurl=ws://nethermind-teku-001:8546
+    - --url=http://geth-teku-001:8545
+    - --wsurl=ws://geth-teku-001:8546
     - --rpm=10000
 
   config: |

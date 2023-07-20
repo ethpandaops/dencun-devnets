@@ -21,7 +21,7 @@ beacon-metrics-gazer:
 
   customCommand:
     - /beacon-metrics-gazer
-    - http://teku-nethermind-001:5052
+    - http://teku-geth-001:5052
     - --ranges-file
     - /custom-config/ranges.yaml
     - --port

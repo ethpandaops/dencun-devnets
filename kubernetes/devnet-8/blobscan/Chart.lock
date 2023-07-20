@@ -9,4 +9,4 @@ dependencies:
   repository: https://blobscan.github.io/blobscan-helm-charts/
   version: 0.2.7
 digest: sha256:a0ce98d0d35ef6de502ea32d219fda2272714cb94918a349d6784b292dfe66ba
-generated: "2023-07-19T13:13:54.097571+02:00"
+generated: "2023-07-20T18:43:18.857557+02:00"

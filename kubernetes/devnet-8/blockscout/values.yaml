@@ -35,10 +35,10 @@ blockscout:
     ENABLE_TXS_STATS: "true"
     ECTO_USE_SSL: "false"
     SHOW_TXS_CHART: "true"
-    ETHEREUM_JSONRPC_VARIANT: "nethermind"
-    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-teku-001:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-teku-001:8546
-    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-teku-001:8545
+    ETHEREUM_JSONRPC_VARIANT: "geth"
+    ETHEREUM_JSONRPC_HTTP_URL: http://geth-teku-001:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://geth-teku-001:8546
+    ETHEREUM_JSONRPC_TRACE_URL: http://geth-teku-001:8545
     INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
     NETWORK: Ethereum
     SUBNETWORK: dencun-devnet-8
