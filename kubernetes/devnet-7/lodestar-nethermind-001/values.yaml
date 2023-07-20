@@ -1,6 +1,6 @@
 # Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,205c207 2023/07/20 15:17
 
-lodestar-nethermind-001:
+lodestar-nethermind-002:
   global:
     main:
       network: 4844-devnet-7
