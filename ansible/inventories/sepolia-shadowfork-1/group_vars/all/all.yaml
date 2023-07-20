@@ -5,6 +5,7 @@
 #  ╚██████╔╝███████╗╚█████╔╝██████╦╝██║░░██║███████╗  ░░╚██╔╝░░██║░░██║██║░░██║██████╔╝
 #  ░╚═════╝░╚══════╝░╚════╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
+network_subdomain: "{{ ethereum_network_name }}.ethpandaops.io"
 server_fqdn: "{{ inventory_hostname }}.srv.{{ ethereum_network_name }}.ethpandaops.io"
 
 ethereum_network_id: >-
@@ -34,6 +35,7 @@ ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 7011893056
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('4844-', '') }}"
 ethereum_genesis_timestamp: 1688126400
+ethereum_genesis_timedelay: 60
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
   Darwin: "date -v +30M +%s"
@@ -60,7 +62,7 @@ ethereum_genesis_generator_config_files:
     export WITHDRAWAL_ADDRESS={{ ethereum_genesis_validator_bls_change_execution_address }}
     export BEACON_STATIC_ENR=""
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
-    export GENESIS_DELAY=60
+    export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
     export SLOT_DURATION_IN_SECONDS=12
 ethereum_genesis_validator_keys_output_dir: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys"
 ethereum_genesis_validator_bls_change_execution_address: "{{ ethereum_node_cl_validator_fee_recipient }}"
