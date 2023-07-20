@@ -76,6 +76,7 @@
 
   {{ gen_kubernetes_config_ethereum_node.el }}:
     enabled: true
+    fullnameOverride: {{ item.key }}
     image:
       repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | first }}
       tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | last }}
@@ -92,7 +93,7 @@
       ethereum_role: execution
       consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
       execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
-      ethereum_instance: {{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
+      ethereum_instance: {{ item.key }}
     resources:
       requests:
         cpu: 2000m
@@ -160,6 +161,7 @@
 
   {{ gen_kubernetes_config_ethereum_node.cl }}:
     enabled: true
+    fullnameOverride: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
     image:
       repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | first }}
       tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | last }}
@@ -174,7 +176,7 @@
       ethereum_role: consensus
       consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
       execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
-      ethereum_instance: {{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
+      ethereum_instance: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
     resources:
       requests:
         cpu: 2000m

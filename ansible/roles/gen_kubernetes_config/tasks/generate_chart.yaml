@@ -1,38 +1,26 @@
-- name: Inform which chart is being processed
+- name: Inform which chart is being processed for {{ item.key }}
   ansible.builtin.debug:
     msg: "Generating '{{ item.key }}' with template '{{ item.value.valuesTemplatePath | default('') }}'"
 
-- name: Create directory
+- name: Create directory for {{ item.key }}
   ansible.builtin.file:
     path: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}"
     state: directory
     mode: "0755"
 
-- name: Generate Chart.yaml
+- name: Generate Chart.yaml for {{ item.key }}
   ansible.builtin.template:
     src: Chart.yaml.j2
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/Chart.yaml"
     mode: "0644"
 
-- name: Copy the helm ignore file
+- name: Copy the helm ignore file for {{ item.key }}
   ansible.builtin.copy:
     src: ".helmignore"
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/.helmignore"
     mode: "0644"
 
-- name: Add ethpandaops helm repository
-  kubernetes.core.helm_repository:
-    name: ethereum-helm-charts
-    url: https://ethpandaops.github.io/ethereum-helm-charts
-    state: present
-
-- name: Add blobscan helm repository
-  kubernetes.core.helm_repository:
-    name: blobscan-helm-charts
-    url: https://blobscan.github.io/blobscan-helm-charts/
-    state: present
-
-- name: Check if dependencies should be updated
+- name: Check if dependencies should be updated for {{ item.key }}
   ansible.builtin.command:
     cmd: >-
       ls
@@ -43,22 +31,21 @@
   failed_when: false
   register: chart_needs_update
 
-- name: Run helm dependency update
+- name: Run helm dependency update for {{ item.key }}
   ansible.builtin.command: # noqa: no-changed-when
     cmd: helm  dependency update {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
-- name: Run helm dependency build
+- name: Run helm dependency build for {{ item.key }}
   ansible.builtin.command: # noqa: no-changed-when
     cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
   when: chart_needs_update.rc != 0
 
-- name: Include client vars
+- name: Include client vars for {{ item.key }}
   ansible.builtin.include_vars:
     dir: "{{ inventory_dir }}/group_vars"
-    depth: 1
 
-- name: Generate values file
+- name: Generate values file for {{ item.key }}
   ansible.builtin.template:
     src: "{{ item.value.valuesTemplatePath }}"
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/values.yaml"
