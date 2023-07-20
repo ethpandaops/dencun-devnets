@@ -119,7 +119,7 @@ for arg in "${command[@]}"; do
         exit;
       else
         balance=$(curl -s  --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getBalance", "params":["'${command[2]}'","latest"], "id":0}' $rpc_endpoint | jq -r '.result' | python -c "import sys; print(int(sys.stdin.read(), 16) / 1e18)")
-        echo "balance $address: $balance Ether"
+        echo "balance ${command[2]}: $balance Ether"
         exit;
       fi
       ;;
