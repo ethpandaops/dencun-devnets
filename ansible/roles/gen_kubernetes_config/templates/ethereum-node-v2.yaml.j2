@@ -13,7 +13,7 @@
         {{ ethereum_network_name }}:
           execution:
             besu:
-            {%- for arg in besu_container_command_extra_args +%}
+            {%- for arg in besu_container_command_extra_args | default [] +%}
               {%- if arg.startswith('--ethstats=') +%}
               - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
               {%- else +%}
@@ -21,7 +21,7 @@
               {%- endif +%}
             {%- endfor +%}
             nethermind:
-            {%- for arg in nethermind_container_command_extra_args +%}
+            {%- for arg in nethermind_container_command_extra_args | default [] +%}
               {%- if arg.startswith('--log=') +%}
               - --log=INFO
               {%- elif arg.startswith('--EthStats.Name=') +%}
@@ -33,7 +33,7 @@
               {%- endif +%}
             {%- endfor +%}
             geth:
-            {%- for arg in geth_container_command_extra_args +%}
+            {%- for arg in geth_container_command_extra_args | default [] +%}
               {%- if arg.startswith('--ethstats=') +%}
               - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
@@ -41,7 +41,7 @@
               {%- endif +%}
             {%- endfor +%}
             erigon:
-            {%- for arg in erigon_container_command_extra_args +%}
+            {%- for arg in erigon_container_command_extra_args | default [] +%}
               {%- if arg.startswith('--ethstats=') +%}
               - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
@@ -49,28 +49,28 @@
               {%- endif +%}
             {%- endfor +%}
             ethereumjs:
-            {%- for arg in ethereumjs_container_command_extra_args +%}
+            {%- for arg in ethereumjs_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
           consensus:
             lodestar:
-            {%- for arg in lodestar_container_command_extra_args +%}
+            {%- for arg in lodestar_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             teku:
-            {%- for arg in teku_container_command_extra_args +%}
+            {%- for arg in teku_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             prysm:
-            {%- for arg in prysm_container_command_extra_args +%}
+            {%- for arg in prysm_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             lighthouse:
-            {%- for arg in prysm_container_command_extra_args +%}
+            {%- for arg in prysm_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             nimbus:
-            {%- for arg in prysm_container_command_extra_args +%}
+            {%- for arg in prysm_container_command_extra_args | default [] +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
 
