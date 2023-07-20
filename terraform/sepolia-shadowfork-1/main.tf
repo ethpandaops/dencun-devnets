@@ -46,6 +46,10 @@ variable "ethereum_network" {
   type    = string
   default = "4844-sepolia-shadowfork-1"
 }
+variable "sepolia_shadowfork_naming_override" {
+  type    = string
+  default = "4844-sepolia-sf1"
+}
 
 variable "digitalocean_project_name" {
   type    = string
@@ -334,7 +338,7 @@ resource "cloudflare_record" "server_record" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "${each.value.name}.srv.${var.ethereum_network}"
+  name    = "${each.value.name}.srv.${var.sepolia_shadowfork_naming_override}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
@@ -346,7 +350,7 @@ resource "cloudflare_record" "server_record_rpc" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "rpc.${each.value.name}.srv.${var.ethereum_network}"
+  name    = "rpc.${each.value.name}.srv.${var.sepolia_shadowfork_naming_override}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
@@ -358,7 +362,7 @@ resource "cloudflare_record" "server_record_beacon" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "bn.${each.value.name}.srv.${var.ethereum_network}"
+  name    = "bn.${each.value.name}.srv.${var.sepolia_shadowfork_naming_override}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false

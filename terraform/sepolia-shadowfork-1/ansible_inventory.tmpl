@@ -1,5 +1,5 @@
 [all:vars]
-ethereum_network_name=${ethereum_network_name}
+ethereum_network_name=${sepolia_shadowfork_naming_override}
 
 %{ for gid, group in groups ~}
 [${replace(gid, "-", "_")}]
