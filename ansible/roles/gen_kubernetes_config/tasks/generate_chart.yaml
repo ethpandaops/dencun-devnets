@@ -56,6 +56,7 @@
 - name: Include client vars
   ansible.builtin.include_vars:
     dir: "{{ inventory_dir }}/group_vars"
+    depth: 1
 
 - name: Generate values file
   ansible.builtin.template:
