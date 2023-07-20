@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,205c207 2023/07/20 15:17
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,49a76cf 2023/07/20 16:09
 
 lodestar-nethermind-002:
   global:
@@ -18,7 +18,7 @@ lodestar-nethermind-002:
               - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
-              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io:443
+              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io:443
               - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
               - --Xfilter-on-enr-fork-id=true
             nethermind:
@@ -29,7 +29,7 @@ lodestar-nethermind-002:
               - --Pruning.Mode=None
               - --config=none.cfg
               - --EthStats.Enabled=true
-              - --Ethstats.Name=k8s-lodestar-nethermind-001
+              - --Ethstats.Name=k8s-lodestar-nethermind-002
               - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
               - --EthStats.Server=wss://ethstats.4844-devnet-7.ethpandaops.io/api/
               - --log=INFO
@@ -39,7 +39,7 @@ lodestar-nethermind-002:
               - --networkid=7011893056
               - --syncmode=full
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
-              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
+              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
             erigon:
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
               - --http.vhosts=*
@@ -48,7 +48,7 @@ lodestar-nethermind-002:
               - --networkid=7011893056
               - --db.size.limit=100GB
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
-              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
+              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
             ethereumjs:
               - --gethGenesis=/data/network-config/genesis.json
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
@@ -118,6 +118,7 @@ lodestar-nethermind-002:
 
   nethermind:
     enabled: true
+    fullnameOverride: lodestar-nethermind-002
     image:
       repository: nethermindeth/nethermind
       tag: eip-4844-v6-36
@@ -134,7 +135,7 @@ lodestar-nethermind-002:
       ethereum_role: execution
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: nethermind-lodestar-001
+      ethereum_instance: lodestar-nethermind-002
     resources:
       requests:
         cpu: 2000m
@@ -179,6 +180,7 @@ lodestar-nethermind-002:
 
   lodestar:
     enabled: true
+    fullnameOverride: nethermind-lodestar-002
     image:
       repository: g11tech/lodestar
       tag: devnet36-6c23a8
@@ -193,7 +195,7 @@ lodestar-nethermind-002:
       ethereum_role: consensus
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: nethermind-lodestar-001
+      ethereum_instance: nethermind-lodestar-002
     resources:
       requests:
         cpu: 2000m

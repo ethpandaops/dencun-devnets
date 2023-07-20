@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,62035b5 2023/07/19 11:41
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,8819352 2023/07/20 16:01
 
 checkpointz:
   fullnameOverride: checkpointz
