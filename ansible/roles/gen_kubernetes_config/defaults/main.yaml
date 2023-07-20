@@ -13,6 +13,12 @@ gen_kubernetes_config_ethereum_node:
   el: nethermind
   cl: lodestar
 
+gen_kubernetes_config_helm_repositories:
+  - name: ethereum-helm-charts
+    url: https://ethpandaops.github.io/ethereum-helm-charts
+  - name: blobscan-helm-charts
+    url: https://blobscan.github.io/blobscan-helm-charts/
+
 gen_kubernetes_config_helm_charts:
   config:
     valuesTemplatePath: templates/config.yaml.j2
@@ -95,10 +101,10 @@ gen_kubernetes_config_helm_charts:
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.0.7
         alias: node-001
-  lodestar-nethermind-001:
+  lodestar-nethermind-002:
     valuesTemplatePath: templates/ethereum-node-v2.yaml.j2
     dependencies:
       - name: ethereum-node
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.0.7
-        alias: lodestar-nethermind-001
+        alias: lodestar-nethermind-002
