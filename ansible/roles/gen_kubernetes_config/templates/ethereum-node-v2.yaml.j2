@@ -24,9 +24,45 @@
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
             {%- endfor +%}
+            geth:
+            {%- for arg in geth_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            erigon:
+            {%- for arg in erigon_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            ethereumjs:
+            {%- for arg in ethereumjs_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
           consensus:
             lodestar:
             {%- for arg in lodestar_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            teku:
+            {%- for arg in teku_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            prysm:
+            {%- for arg in prysm_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            lighthouse:
+            {%- for arg in prysm_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            nimbus:
+            {%- for arg in prysm_container_command_extra_args +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
 
@@ -57,36 +93,60 @@
         cpu: 3000m
         memory: 7Gi
     initContainers:
-{% if gen_kubernetes_config_ethereum_node.el == 'nethermind' %}
-    - name: init-genesis
-      image: alpine:latest
-      imagePullPolicy: IfNotPresent
-      securityContext:
-        runAsNonRoot: false
-        runAsUser: 0
-      command:
-        - sh
-        - -ace
-        - >
-          GENESIS_URI=https://config.{{ network_subdomain }}/el/chainspec.json;
-          TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
-          if ! [ -f /data/genesis_init_done ];
-          then
-            apk update && apk add curl jq;
-            wget -O /data/genesis.json $GENESIS_URI;
-            curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .execution.enode' > /data/bootnodes.txt;
-            wget -O /data/trusted_setup.txt $TRUSTED_SETUP_URI;
-            cat /data/genesis.json | jq -r '.config.chainId' > /data/chainid.txt;
-            touch /data/genesis_init_done;
-            echo "genesis init done";
-          else
-            echo "genesis is already initialized";
-          fi;
-          echo "bootnode init done: $(cat /data/bootnodes.txt)";
-      volumeMounts:
-        - name: storage
-          mountPath: "/data"
-{% endif %}
+      - name: init-config
+        image: alpine:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            CHAINSPEC_URI=https://config.{{ network_subdomain }}/el/chainspec.json;
+            GENESIS_URI=https://config.{{ network_subdomain }}/el/genesis.json;
+            BOOTNODES_URI=https://config.{{ network_subdomain }}/el/bootnodes.txt;
+            TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
+            if ! [ -f /data/network_config_init_done ];
+            then
+              apk update && apk add curl jq;
+              wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
+              wget -O /data/network-config/genesis.json $GENESIS_URI;
+              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+              cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
+              touch /data/network_config_init_done;
+              echo "network config init done";
+            else
+              echo "network config already present";
+            fi;
+            echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+{%- if gen_kubernetes_config_ethereum_node.el in ['nethermind','erigon'] +%}
+      - name: init-genesis
+        image: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] }}
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            if ! [ -f /data/genesis_init_done ];
+            then
+              {{ gen_kubernetes_config_ethereum_node.el }} init --datadir /data /data/network-config/genesis.json;
+              touch /data/genesis_init_done;
+              echo "genesis init done";
+            else
+              echo "genesis is already initialized";
+            fi;
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+{%- endif +%}
 
   {{ gen_kubernetes_config_ethereum_node.cl }}:
     enabled: true
