@@ -12,6 +12,14 @@
       networks:
         {{ ethereum_network_name }}:
           execution:
+            besu:
+            {%- for arg in besu_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
             nethermind:
             {%- for arg in nethermind_container_command_extra_args +%}
               {%- if arg.startswith('--log=') +%}
@@ -105,6 +113,7 @@
           - >
             CHAINSPEC_URI=https://config.{{ network_subdomain }}/el/chainspec.json;
             GENESIS_URI=https://config.{{ network_subdomain }}/el/genesis.json;
+            BESU_GENESIS_URI=https://config.{{ network_subdomain }}/el/besu.json;
             BOOTNODES_URI=https://config.{{ network_subdomain }}/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
             if ! [ -f /data/network_config_init_done ];
@@ -112,6 +121,7 @@
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
+              wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
               wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;

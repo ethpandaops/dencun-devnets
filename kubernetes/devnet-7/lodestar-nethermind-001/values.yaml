@@ -12,6 +12,15 @@ lodestar-nethermind-001:
       networks:
         4844-devnet-7:
           execution:
+            besu:
+              - --genesis-file=/data/network-config/besu.json
+              - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
+              - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
+              - --sync-mode=FULL
+              - --data-storage-format=BONSAI
+              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io:443
+              - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
+              - --Xfilter-on-enr-fork-id=true
             nethermind:
               - --Init.ChainSpecPath=/data/network-config/chainspec.json
               - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
@@ -146,6 +155,7 @@ lodestar-nethermind-001:
           - >
             CHAINSPEC_URI=https://config.4844-devnet-7.ethpandaops.io/el/chainspec.json;
             GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/genesis.json;
+            BESU_GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/besu.json;
             BOOTNODES_URI=https://config.4844-devnet-7.ethpandaops.io/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
             if ! [ -f /data/network_config_init_done ];
@@ -153,6 +163,7 @@ lodestar-nethermind-001:
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
+              wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
               wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
