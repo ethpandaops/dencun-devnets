@@ -149,19 +149,6 @@ variable "digitalocean_vm_groups" {
         "1" = { ansible_vars : "validator_start=480 validator_end=880" }
       },
     },
-    # Nimbus
-    {
-      id  = "nimbus-geth"
-      vms = { "1" = {} },
-    },
-    {
-      id  = "nimbus-nethermind"
-      vms = { "1" = {} },
-    },
-    {
-      id  = "nimbus-besu"
-      vms = { "1" = {} },
-    },
   ]
 }
 
