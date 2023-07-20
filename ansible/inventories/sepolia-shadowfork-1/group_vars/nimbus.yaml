@@ -45,18 +45,19 @@ nimbus_container_volumes:
 nimbus_container_command_extra_args: >-
   {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
 nimbus_container_command_extra_simple_args:
-  - --network=sepolia
+  - --network=/network-config
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level=DEBUG
   - --light-client-data-serve=false
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
-#  - --network=/network-config
-#    - --validator-monitor-auto=false
-#    - --doppelganger-detection=off
-#    - --log-level=DEBUG
-#    - --light-client-data-serve=false
-#    - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+#  - --network=sepolia
+#  - --validator-monitor-auto=false
+#  - --doppelganger-detection=off
+#  - --log-level=DEBUG
+#  - --light-client-data-serve=false
+#  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+
 nimbus_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 

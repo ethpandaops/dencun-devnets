@@ -1,11 +1,14 @@
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_cl_enr'] }}"
-
-
+  - "enr:-Ly4QJ4C2KCGx8Fxw1xWHs9kvuJZaZI6nlIdDuTCwsEwk1ZZRteCXYo00qzS8K82bUyCubrEcdmxKx-cBIAGZWN1ZjABh2F0dG5ldHOIAAAAAAAAAACEZXRoMpChikUGUAAAABQAAAAAAAAAgmlkgnY0gmlwhEDhSYuJc2VjcDI1NmsxoQJCIgAt7fhrrBbwO-JGjD2VZluZd7-8P_9g0h2tWq-kHIhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+  - "{{ hostvars['teku-geth-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_cl_enr'] }}"
 ethereum_el_bootnodes: 
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
-
+  - "enode://ae6ce36c3684d3d12b6aa26e3c231ced50ea238e40ea12fe89ee8691f22198144cfc5a4fccbf4b60439783966c9ccfcba88f8b8fe1ef3a42738a405b992ba32d@64.225.73.139:30303"
+  - "{{ hostvars['teku-geth-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_el_enode'] }}"
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write

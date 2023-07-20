@@ -387,6 +387,7 @@ resource "local_file" "ansible_inventory" {
   content = templatefile("ansible_inventory.tmpl",
     {
       ethereum_network_name = "${var.ethereum_network}"
+      sepolia_shadowfork_naming_override = "${var.sepolia_shadowfork_naming_override}"
       groups = merge(
         { for group in var.digitalocean_vm_groups : "${group.id}" => true },
       )
