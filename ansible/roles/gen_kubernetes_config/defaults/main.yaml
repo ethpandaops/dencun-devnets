@@ -95,3 +95,10 @@ gen_kubernetes_config_helm_charts:
         repository: https://ethpandaops.github.io/ethereum-helm-charts
         version: 0.0.7
         alias: node-001
+  lodestar-nethermind-001:
+    valuesTemplatePath: templates/ethereum-node-v2.yaml.j2
+    dependencies:
+      - name: ethereum-node
+        repository: https://ethpandaops.github.io/ethereum-helm-charts
+        version: 0.0.7
+        alias: lodestar-nethermind-001

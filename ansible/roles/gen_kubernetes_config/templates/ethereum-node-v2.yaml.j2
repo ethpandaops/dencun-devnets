@@ -1,0 +1,226 @@
+# {{ ansible_managed }}
+
+{{ item.key }}:
+  global:
+    main:
+      network: {{ ethereum_network_name }}
+    checkpointSync:
+      enabled: true
+      addresses:
+        {{ ethereum_network_name }}: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+    clientArgs:
+      networks:
+        {{ ethereum_network_name }}:
+          execution:
+            besu:
+            {%- for arg in besu_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            nethermind:
+            {%- for arg in nethermind_container_command_extra_args +%}
+              {%- if arg.startswith('--log=') +%}
+              - --log=INFO
+              {%- elif arg.startswith('--EthStats.Name=') +%}
+              - --Ethstats.Name=k8s-{{ item.key }}
+              {%- elif arg.startswith('--EthStats.Secret=') +%}
+              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            geth:
+            {%- for arg in geth_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            erigon:
+            {%- for arg in erigon_container_command_extra_args +%}
+              {%- if arg.startswith('--ethstats=') +%}
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              {%- else +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
+            {%- endfor +%}
+            ethereumjs:
+            {%- for arg in ethereumjs_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+          consensus:
+            lodestar:
+            {%- for arg in lodestar_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            teku:
+            {%- for arg in teku_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            prysm:
+            {%- for arg in prysm_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            lighthouse:
+            {%- for arg in prysm_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+            nimbus:
+            {%- for arg in prysm_container_command_extra_args +%}
+              - {{ arg | replace('/network-config', '/data/network-config') }}
+            {%- endfor +%}
+
+  {{ gen_kubernetes_config_ethereum_node.el }}:
+    enabled: true
+    image:
+      repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | first }}
+      tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | last }}
+      pullPolicy: Always
+    p2pNodePort:
+      enabled: false
+    persistence:
+      enabled: true
+      size: 50Gi
+    podLabels:
+      network: {{ ethereum_network_name }}
+      testnet: {{ ethereum_network_name }}
+      ethereum_network: {{ ethereum_network_name }}
+      ethereum_role: execution
+      consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
+      execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
+      ethereum_instance: {{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    initContainers:
+      - name: init-config
+        image: alpine:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            CHAINSPEC_URI=https://config.{{ network_subdomain }}/el/chainspec.json;
+            GENESIS_URI=https://config.{{ network_subdomain }}/el/genesis.json;
+            BESU_GENESIS_URI=https://config.{{ network_subdomain }}/el/besu.json;
+            BOOTNODES_URI=https://config.{{ network_subdomain }}/el/bootnodes.txt;
+            TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
+            if ! [ -f /data/network_config_init_done ];
+            then
+              apk update && apk add curl jq;
+              wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
+              wget -O /data/network-config/genesis.json $GENESIS_URI;
+              wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
+              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+              cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
+              touch /data/network_config_init_done;
+              echo "network config init done";
+            else
+              echo "network config already present";
+            fi;
+            echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+{%- if gen_kubernetes_config_ethereum_node.el in ['geth','erigon'] +%}
+      - name: init-genesis
+        image: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] }}
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+          - sh
+          - -ace
+          - >
+            if ! [ -f /data/genesis_init_done ];
+            then
+              {{ gen_kubernetes_config_ethereum_node.el }} init --datadir /data /data/network-config/genesis.json;
+              touch /data/genesis_init_done;
+              echo "genesis init done";
+            else
+              echo "genesis is already initialized";
+            fi;
+        volumeMounts:
+          - name: storage
+            mountPath: "/data"
+{%- endif +%}
+
+  {{ gen_kubernetes_config_ethereum_node.cl }}:
+    enabled: true
+    image:
+      repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | first }}
+      tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | last }}
+      pullPolicy: Always
+    mode: "beacon"
+    p2pNodePort:
+      enabled: false
+    podLabels:
+      network: {{ ethereum_network_name }}
+      testnet: {{ ethereum_network_name }}
+      ethereum_network: {{ ethereum_network_name }}
+      ethereum_role: consensus
+      consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
+      execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
+      ethereum_instance: {{ gen_kubernetes_config_ethereum_node.el }}-{{ gen_kubernetes_config_ethereum_node.cl }}-001
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+      limits:
+        cpu: 3000m
+        memory: 7Gi
+    persistence:
+      enabled: true
+      size: 50Gi
+    extraArgs:
+    initContainers:
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          apk add jq curl sed;
+          DEPOSIT_CONTRACT_URI=https://config.{{ network_subdomain }}/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.{{ network_subdomain }}/cl/deposit_contract_block.txt;
+          DEPLOY_BLOCK_URI=https://config.{{ network_subdomain }}/cl/deploy_block.txt;
+          GENESIS_CONFIG_URI=https://config.{{ network_subdomain }}/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.{{ network_subdomain }}/cl/genesis.ssz;
+          curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
+          TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
+          mkdir -p /data/testnet_spec;
+          if ! [ -f /data/network-config/genesis.ssz ];
+          then
+            wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/network-config/deploy_block.txt $DEPLOY_BLOCK_URI;
+            wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
+            wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
+            echo "genesis init done";
+          else
+            echo "genesis exists. skipping...";
+          fi;
+          (tr '\n' ',' < /data/network-config/bootnodes.txt | sed 's/[^,]*/"&"/g') > /data/network-config/bootnodes2.txt;
+          mv /data/network-config/bootnodes2.txt /data/network-config/bootnodes.txt;
+          echo "bootnode init done: $(cat /data/network-config/bootnodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
