@@ -13,7 +13,7 @@
         {{ ethereum_network_name }}:
           execution:
             besu:
-            {%- for arg in besu_container_command_extra_args  | default ([]) +%}
+            {%- for arg in besu_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
               - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
               {%- else +%}
@@ -25,9 +25,9 @@
               {%- if arg.startswith('--log=') +%}
               - --log=INFO
               {%- elif arg.startswith('--EthStats.Name=') +%}
-              - --Ethstats.Name=k8s-{{ item.key }}
+              - --EthStats.Name=k8s-{{ item.key }}
               {%- elif arg.startswith('--EthStats.Secret=') +%}
-              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -76,7 +76,7 @@
 
   {{ gen_kubernetes_config_ethereum_node.el }}:
     enabled: true
-    fullnameOverride: {{ item.key }}
+    fullnameOverride: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
     image:
       repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | first }}
       tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.el] | split(':') | last }}
@@ -93,7 +93,7 @@
       ethereum_role: execution
       consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
       execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
-      ethereum_instance: {{ item.key }}
+      ethereum_instance: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
     resources:
       requests:
         cpu: 2000m
@@ -117,13 +117,14 @@
             BESU_GENESIS_URI=https://config.{{ network_subdomain }}/el/besu.json;
             BOOTNODES_URI=https://config.{{ network_subdomain }}/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
+            mkdir -p /data/network-config;
             if ! [ -f /data/network_config_init_done ];
             then
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
               wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
-              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/bootnodes.txt $BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
               touch /data/network_config_init_done;
@@ -161,7 +162,7 @@
 
   {{ gen_kubernetes_config_ethereum_node.cl }}:
     enabled: true
-    fullnameOverride: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
+    fullnameOverride: {{ item.key }}
     image:
       repository: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | first }}
       tag: {{ default_ethereum_client_images[gen_kubernetes_config_ethereum_node.cl] | split(':') | last }}
@@ -176,7 +177,7 @@
       ethereum_role: consensus
       consensus_client: {{ gen_kubernetes_config_ethereum_node.cl }}
       execution_client: {{ gen_kubernetes_config_ethereum_node.el }}
-      ethereum_instance: {{ item.key.split('-')[1] + "-" + item.key.split('-')[0] + "-" + item.key.split('-')[2] }}
+      ethereum_instance: {{ item.key }}
     resources:
       requests:
         cpu: 2000m
@@ -205,9 +206,9 @@
           DEPLOY_BLOCK_URI=https://config.{{ network_subdomain }}/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.{{ network_subdomain }}/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.{{ network_subdomain }}/cl/genesis.ssz;
+          mkdir -p /data/network-config;
           curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
           TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
           if ! [ -f /data/network-config/genesis.ssz ];
           then
             wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
