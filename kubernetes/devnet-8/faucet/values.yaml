@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,6be50ca 2023/07/19 13:22
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,caa6558 2023/07/20 18:56
 
 fauceth:
   fullnameOverride: fauceth

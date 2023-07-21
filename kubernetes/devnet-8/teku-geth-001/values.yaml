@@ -1,13 +1,16 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,a3df7b9 2023/07/19 17:20
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,f8b6547 2023/07/21 11:50
 
 teku-geth-001:
   global:
     main:
       network: dencun-devnet-8
+      engineEndpoint: http://geth-teku-001:8551
+      rpcEndpoint: http://geth-teku-001:8545
+      beaconEndpoint: http://teku-geth-001:5052
     checkpointSync:
       enabled: true
       addresses:
-        dencun-devnet-8: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+        dencun-devnet-8: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
     clientArgs:
       networks:
         dencun-devnet-8:
@@ -26,7 +29,7 @@ teku-geth-001:
 
   geth:
     enabled: true
-    fullnameOverride: teku-geth-001
+    fullnameOverride: geth-teku-001
     image:
       repository: ethpandaops/geth
       tag: 4844-devnet-6-e03b5ad
@@ -43,7 +46,7 @@ teku-geth-001:
       ethereum_role: execution
       consensus_client: teku
       execution_client: geth
-      ethereum_instance: teku-geth-001
+      ethereum_instance: geth-teku-001
     resources:
       requests:
         cpu: 2000m
@@ -67,13 +70,14 @@ teku-geth-001:
             BESU_GENESIS_URI=https://config.dencun-devnet-8.ethpandaops.io/el/besu.json;
             BOOTNODES_URI=https://config.dencun-devnet-8.ethpandaops.io/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.dencun-devnet-8.ethpandaops.io/trusted_setup.txt;
+            mkdir -p /data/network-config;
             if ! [ -f /data/network_config_init_done ];
             then
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
               wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
-              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/bootnodes.txt $BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
               touch /data/network_config_init_done;
@@ -109,7 +113,7 @@ teku-geth-001:
 
   teku:
     enabled: true
-    fullnameOverride: geth-teku-001
+    fullnameOverride: teku-geth-001
     image:
       repository: consensys/teku
       tag: 23.6.1
@@ -124,7 +128,7 @@ teku-geth-001:
       ethereum_role: consensus
       consensus_client: teku
       execution_client: geth
-      ethereum_instance: geth-teku-001
+      ethereum_instance: teku-geth-001
     resources:
       requests:
         cpu: 2000m
@@ -135,7 +139,6 @@ teku-geth-001:
     persistence:
       enabled: true
       size: 50Gi
-    extraArgs:
     initContainers:
     - name: init-genesis
       image: alpine:latest
@@ -153,9 +156,9 @@ teku-geth-001:
           DEPLOY_BLOCK_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.dencun-devnet-8.ethpandaops.io/cl/genesis.ssz;
+          mkdir -p /data/network-config;
           curl -s https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
           TRUSTED_SETUP_URI=https://config.dencun-devnet-8.ethpandaops.io/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
           if ! [ -f /data/network-config/genesis.ssz ];
           then
             wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;

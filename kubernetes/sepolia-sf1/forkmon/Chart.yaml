@@ -6,10 +6,6 @@ description: A Helm chart for Kubernetes
 type: application
 version: 0.1.0
 dependencies:
-<<<<<<<< HEAD:kubernetes-archive/devnet-7/node-001/Chart.yaml
-  - name: ethereum-node
-========
   - name: forkmon
->>>>>>>> master:kubernetes/sepolia-sf1/forkmon/Chart.yaml
     repository: https://ethpandaops.github.io/ethereum-helm-charts
     version: 0.1.4
