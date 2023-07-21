@@ -36,9 +36,9 @@ blockscout:
     ECTO_USE_SSL: "false"
     SHOW_TXS_CHART: "true"
     ETHEREUM_JSONRPC_VARIANT: "nethermind"
-    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-002:8545
-    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-002:8546
-    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-lodestar-002:8545
+    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8546
+    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-lodestar-001:8545
     INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
     NETWORK: Ethereum
     SUBNETWORK: 4844-devnet-7

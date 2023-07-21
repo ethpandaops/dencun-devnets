@@ -22,7 +22,7 @@ eth-faucet:
 
   extraEnv:
     - name: WEB3_PROVIDER
-      value: "http://nethermind-lodestar-002:8545"
+      value: "http://nethermind-lodestar-001:8545"
 
   args:
     - -faucet.amount=100

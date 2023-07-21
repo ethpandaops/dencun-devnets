@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,49f27d5 2023/07/18 13:12
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,c7753ef 2023/07/21 09:42
 
 fauceth:
   fullnameOverride: fauceth
@@ -46,7 +46,7 @@ fauceth:
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
-          "http://nethermind-lodestar-002:8545"
+          "http://nethermind-lodestar-001:8545"
         ],
         "faucets": [],
         "nativeCurrency": {

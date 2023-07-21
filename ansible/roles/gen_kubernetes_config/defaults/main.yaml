@@ -12,7 +12,7 @@ default_el_auth_endpoint: >-
 gen_kubernetes_config_ethereum_node:
   el: nethermind
   cl: lodestar
-  value: "002"
+  value: "001"
 
 gen_kubernetes_config_helm_repositories:
   - name: ethereum-helm-charts

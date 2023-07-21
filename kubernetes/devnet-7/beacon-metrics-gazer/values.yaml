@@ -21,7 +21,7 @@ beacon-metrics-gazer:
 
   customCommand:
     - /beacon-metrics-gazer
-    - http://lodestar-nethermind-002:5052
+    - http://lodestar-nethermind-001:5052
     - --ranges-file
     - /custom-config/ranges.yaml
     - --port
