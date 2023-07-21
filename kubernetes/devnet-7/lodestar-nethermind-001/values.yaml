@@ -166,7 +166,7 @@ lodestar-nethermind-001:
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
               wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
-              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/bootnodes.txt $BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
               touch /data/network_config_init_done;

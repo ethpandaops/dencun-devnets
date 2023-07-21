@@ -117,13 +117,14 @@
             BESU_GENESIS_URI=https://config.{{ network_subdomain }}/el/besu.json;
             BOOTNODES_URI=https://config.{{ network_subdomain }}/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
+            mkdir -p /data/network-config;
             if ! [ -f /data/network_config_init_done ];
             then
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
               wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
-              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/bootnodes.txt $BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
               touch /data/network_config_init_done;
@@ -205,9 +206,9 @@
           DEPLOY_BLOCK_URI=https://config.{{ network_subdomain }}/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.{{ network_subdomain }}/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.{{ network_subdomain }}/cl/genesis.ssz;
+          mkdir -p /data/network-config;
           curl -s https://config.{{ network_subdomain }}/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
           TRUSTED_SETUP_URI=https://config.{{ network_subdomain }}/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
           if ! [ -f /data/network-config/genesis.ssz ];
           then
             wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
