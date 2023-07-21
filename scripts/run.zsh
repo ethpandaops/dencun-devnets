@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="teku-geth-1"
-network="sepolia-shadowfork-1"
+network="sepolia-sf1"
 domain="ethpandaops.io"
 prefix="4844"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -161,6 +161,7 @@ for arg in "${command[@]}"; do
         then
           echo "Sending single blob to the network"
           blob_hash=$(${0} send_blob 1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+          echo $blob_hash
           echo "Waiting for blob to be included in a block (sleeping 30 seconds)"
           sleep 30
           ${0} get_slot_for_blob $blob_hash
@@ -173,7 +174,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint| jq -r .result.timestamp )
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp | awk '/Slot/{print $NF}')
         echo "Slot for blob $blob: $slot"
         exit;
@@ -201,7 +202,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp)
         echo "Slot for blob $blob: $slot"
         exit;
@@ -282,7 +283,7 @@ for arg in "${command[@]}"; do
         exit;
       fi
       ;;
-      "deposit")
+    "deposit")
       if [[ $# -ne 3 ]]; then
         echo "Deposit calls for exactly 2 arguments!"
         echo "  Usage: ${0} deposit startIndex endIndex"
@@ -292,8 +293,8 @@ for arg in "${command[@]}"; do
         deposit_path="m/44'/60'/0'/0/3"
         privatekey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
         publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
-        fork_version=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.GENESIS_FORK_VERSION')
-        deposit_contract_address=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.DEPOSIT_CONTRACT_ADDRESS')
+        fork_version=$(curl -s $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')
+        deposit_contract_address=$(curl -s $bn_endpoint/eth/v1/config/spec | jq -r '.data.DEPOSIT_CONTRACT_ADDRESS')
         eth2-val-tools deposit-data --source-min=${command[2]} --source-max=${command[3]} --amount=32000000000 --fork-version=$fork_version --withdrawals-mnemonic="$sops_mnemonic" --validators-mnemonic="$sops_mnemonic" > deposits_$prefix-$network-${command[2]}_${command[3]}.txt
         # ask if you want to deposit to the network
         echo "Are you sure you want to make a deposit to the network for validators ${command[2]} to ${command[3]}? (y/n)"
@@ -318,12 +319,9 @@ for arg in "${command[@]}"; do
           echo "Exiting without depositing to the network"
           exit;
         fi
-        echo
-        if
-        exit;
       fi
       ;;
-      "set_withdrawal_addr")
+    "set_withdrawal_addr")
       if [[ $# -ne 4 ]]; then
         echo "setting  calls for exactly 3 arguments!"
         echo "  Usage: ${0} set_withdrawal_addr startIndex endIndex adress"
@@ -363,11 +361,9 @@ for arg in "${command[@]}"; do
         rm -rf /tmp/set_withdrawal_addr
 
         echo
-        if
-        exit;
       fi
       ;;
-      "full_withdrawal")
+    "full_withdrawal")
       if [[ $# -ne 3 ]]; then
         echo "withdrawal calls for exactly 2 arguments!"
         echo "  Usage: ${0} full_withdrawal startIndex endIndex"
@@ -405,9 +401,6 @@ for arg in "${command[@]}"; do
         # deleting stale files
         rm -rf /tmp/set_withdrawal_addr
         echo
-
-        if
-        exit;
       fi
       ;;
     "help")
