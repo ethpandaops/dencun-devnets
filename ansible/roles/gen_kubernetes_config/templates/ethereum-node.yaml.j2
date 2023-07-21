@@ -25,9 +25,9 @@
               {%- if arg.startswith('--log=') +%}
               - --log=INFO
               {%- elif arg.startswith('--EthStats.Name=') +%}
-              - --Ethstats.Name=k8s-{{ item.key }}
+              - --EthStats.Name=k8s-{{ item.key }}
               {%- elif arg.startswith('--EthStats.Secret=') +%}
-              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}

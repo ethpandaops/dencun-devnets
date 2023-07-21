@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,c7753ef 2023/07/21 09:42
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,16d2546 2023/07/21 09:59
 
 lodestar-nethermind-001:
   global:
@@ -29,8 +29,8 @@ lodestar-nethermind-001:
               - --Pruning.Mode=None
               - --config=none.cfg
               - --EthStats.Enabled=true
-              - --Ethstats.Name=k8s-lodestar-nethermind-001
-              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Name=k8s-lodestar-nethermind-001
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
               - --EthStats.Server=wss://ethstats.4844-devnet-7.ethpandaops.io/api/
               - --log=INFO
             geth:
