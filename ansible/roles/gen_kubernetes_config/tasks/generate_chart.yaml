@@ -51,3 +51,17 @@
     src: "{{ item.value.valuesTemplatePath }}"
     dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/values.yaml"
     mode: "0644"
+
+- name: Make sure the template folder is created for {{ item.key }}
+  ansible.builtin.file:
+    path: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/templates"
+    state: directory
+    mode: "0755"
+  when: item.key == 'config'
+
+- name: Copy ingress config to {{ item.key }}
+  ansible.builtin.copy:
+    src: ingress.config.yaml
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/templates/ingress.config.yaml"
+    mode: "0644"
+  when: item.key == 'config'
