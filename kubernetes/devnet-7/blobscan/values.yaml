@@ -34,9 +34,9 @@ blobscan-indexer:
     - name: BLOBSCAN_API_ENDPOINT
       value: "http://blobscan-api:3001"
     - name: EXECUTION_NODE_ENDPOINT
-      value: http://nethermind-lodestar-001:8545
+      value: http://nethermind-lodestar-002:8545
     - name: BEACON_NODE_ENDPOINT
-      value: http://lodestar-nethermind-001:5052
+      value: http://lodestar-nethermind-002:5052
 
 # Blobscan API
 blobscan-api:

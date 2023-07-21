@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,49a76cf 2023/07/20 16:09
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,f38a9f2 2023/07/19 16:29
 
 lodestar-nethermind-002:
   global:
@@ -118,7 +118,7 @@ lodestar-nethermind-002:
 
   nethermind:
     enabled: true
-    fullnameOverride: lodestar-nethermind-002
+    fullnameOverride: nethermind-lodestar-002
     image:
       repository: nethermindeth/nethermind
       tag: eip-4844-v6-36
@@ -135,7 +135,7 @@ lodestar-nethermind-002:
       ethereum_role: execution
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: lodestar-nethermind-002
+      ethereum_instance: nethermind-lodestar-002
     resources:
       requests:
         cpu: 2000m
@@ -180,7 +180,7 @@ lodestar-nethermind-002:
 
   lodestar:
     enabled: true
-    fullnameOverride: nethermind-lodestar-002
+    fullnameOverride: lodestar-nethermind-002
     image:
       repository: g11tech/lodestar
       tag: devnet36-6c23a8
@@ -195,7 +195,7 @@ lodestar-nethermind-002:
       ethereum_role: consensus
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: nethermind-lodestar-002
+      ethereum_instance: lodestar-nethermind-002
     resources:
       requests:
         cpu: 2000m
