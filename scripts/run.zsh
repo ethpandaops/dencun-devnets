@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="teku-geth-1"
-network="sepolia-shadowfork-1"
+network="sepolia-sf1"
 domain="ethpandaops.io"
 prefix="4844"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -161,6 +161,7 @@ for arg in "${command[@]}"; do
         then
           echo "Sending single blob to the network"
           blob_hash=$(${0} send_blob 1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+          echo $blob_hash
           echo "Waiting for blob to be included in a block (sleeping 30 seconds)"
           sleep 30
           ${0} get_slot_for_blob $blob_hash
@@ -173,7 +174,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint| jq -r .result.timestamp )
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp | awk '/Slot/{print $NF}')
         echo "Slot for blob $blob: $slot"
         exit;
@@ -201,7 +202,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp)
         echo "Slot for blob $blob: $slot"
         exit;
