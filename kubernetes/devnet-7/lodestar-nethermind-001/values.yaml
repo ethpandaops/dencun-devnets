@@ -1,9 +1,12 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,f39f9fe 2023/07/21 10:02
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,2fb739c 2023/07/21 10:15
 
 lodestar-nethermind-001:
   global:
     main:
       network: 4844-devnet-7
+      engineEndpoint: http://nethermind-lodestar-001:8551
+      rpcEndpoint: http://nethermind-lodestar-001:8545
+      beaconEndpoint: http://lodestar-nethermind-001:5052
     checkpointSync:
       enabled: true
       addresses:
@@ -58,95 +61,52 @@ lodestar-nethermind-001:
               - --logLevel=debug
           consensus:
             lodestar:
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --paramsFile=/data/network-config/config.yaml
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --genesisStateFile=/data/network-config/genesis.ssz
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --bootnodes=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --rest.namespace="*"
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --network.connectToDiscv5Bootnodes
-              - --execution.urls=http://nethermind-lodestar-001:8551
               - --nat=true
             teku:
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --network=/data/network-config/config.yaml
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --initial-state=/data/network-config/genesis.ssz
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --p2p-discovery-bootnodes=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --p2p-peer-upper-bound=100
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --data-storage-non-canonical-blocks-enabled=true
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --data-storage-mode=PRUNE
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --validators-graffiti=teku/nethermind
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --logging=info
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --Xlog-include-p2p-warnings-enabled
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --metrics-block-timing-tracking-enabled
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --Xmetrics-blob-sidecars-storage-enabled=true
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --Xtrusted-setup=/data/network-config/trusted_setup.txt
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --Xpeer-rate-limit=100000
-              - --ee-endpoint=http://nethermind-lodestar-001:8551
               - --Xpeer-request-limit=1000
             prysm:
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --grpc-gateway-corsdomain=*
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --chain-config-file=/data/network-config/config.yaml
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --genesis-state=/data/network-config/genesis.ssz
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --contract-deployment-block=0
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --min-sync-peers=1
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --pprof
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --enable-debug-rpc-endpoints
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --verbosity=debug
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --subscribe-all-subnets
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --bootstrap-node=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --bootstrap-node=enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
             lighthouse:
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --testnet-dir=/data/network-config
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --boot-nodes=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --self-limiter=blob_sidecars_by_range:512/10
-              - --execution-endpoint=http://nethermind-lodestar-001:8551
               - --debug-level=debug
             nimbus:
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --network=/data/network-config
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --validator-monitor-auto=false
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --doppelganger-detection=off
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --log-level=DEBUG
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --light-client-data-serve=false
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --graffiti=teku/nethermind
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --bootstrap-node=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
-              - ----web3-url=http://nethermind-lodestar-001:8551
               - --bootstrap-node=enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
 
   nethermind:

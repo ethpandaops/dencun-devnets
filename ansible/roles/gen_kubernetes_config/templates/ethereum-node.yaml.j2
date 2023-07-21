@@ -4,6 +4,9 @@
   global:
     main:
       network: {{ ethereum_network_name }}
+      engineEndpoint: {{ default_el_auth_endpoint }}
+      rpcEndpoint: {{ default_el_endpoint }}
+      beaconEndpoint: {{ default_cl_endpoint }}
     checkpointSync:
       enabled: true
       addresses:
@@ -55,27 +58,22 @@
           consensus:
             lodestar:
             {%- for arg in lodestar_container_command_extra_args | default ([]) +%}
-              - --execution.urls={{ default_el_auth_endpoint }}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             teku:
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
-              - --ee-endpoint={{ default_el_auth_endpoint }}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             prysm:
             {%- for arg in prysm_container_command_extra_args | default ([]) +%}
-              - --execution-endpoint={{ default_el_auth_endpoint }}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             lighthouse:
             {%- for arg in lighthouse_container_command_extra_args | default ([]) +%}
-              - --execution-endpoint={{ default_el_auth_endpoint }}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
             nimbus:
             {%- for arg in nimbus_container_command_extra_args | default ([]) +%}
-              - ----web3-url={{ default_el_auth_endpoint }}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
 
