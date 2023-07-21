@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forkmon.yaml.j2,7fff5a7 2023/07/19 12:31
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forkmon.yaml.j2,c7753ef 2023/07/21 09:42
 
 forkmon:
   fullnameOverride: forkmon
@@ -17,7 +17,7 @@ forkmon:
   endpoints:
   # Rpc
   - addr: http://nethermind-lodestar-001:8545
-    name: rpc
+    name: rpc-lodestar-nethermind-001
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.bootnode-1.srv.4844-devnet-7.ethpandaops.io
     name: bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.4844-devnet-7.ethpandaops.io

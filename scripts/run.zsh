@@ -1,6 +1,6 @@
 #!/bin/zsh
-node="lighthouse-nethermind-1"
-network="devnet-7"
+node="teku-geth-1"
+network="sepolia-sf1"
 domain="ethpandaops.io"
 prefix="4844"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -23,6 +23,7 @@ print_usage() {
   echo "  latest_slot_verbose               Get the latest slot with verbose output"
   echo "  latest_block                      Get the latest block"
   echo "  get_block n                       Get the block number n [default latest]"
+  echo "  get_balance address               Get the balance of address - mandatory argument"
   echo "  finalized_epoch                   Get the finalized epoch"
   echo "  finalized_slot                    Get the finalized slot"
   echo "  finalized_slot_verbose            Get the finalized slot with verbose output"
@@ -40,6 +41,8 @@ print_usage() {
   echo "  fork_choice                       Get the fork choice of the network"
   echo "  send_blob n                       Send "n" number of blob(s) to the network [default 1]"
   echo "  deposit s e                       Deposit to the network from validator index start to end - mandatory argument"
+  echo "  set_withdrawal_addr s e address   Set the withdrawal credentials for validator index start to end and Ethereum address - mandatory argument"
+  echo "  full_withdrawal s e               Withdraw from the network from validator index start to end - mandatory argument"
   echo "  help                              Print this help message"
   echo ""
   echo " To use an alternative endpoint run the script by setting the environment variable:"
@@ -108,6 +111,22 @@ for arg in "${command[@]}"; do
         exit;
       fi
       ;;
+    "get_balance")
+      # Get a specific block of the network
+      if [[ -z "${command[2]}" ]]; then
+        echo "Please provide a address as the second argument"
+        echo "  Example: ${0} get_balance 0xf97e180c050e5ab072211ad2c213eb5aee4df134"
+        exit;
+      elif [[ (${#command[2]} == 42) && (${command[2]} == 0x*) ]]; then
+        balance=$(curl -s  --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getBalance", "params":["'${command[2]}'","latest"], "id":0}' $rpc_endpoint | jq -r '.result' | python -c "import sys; print(int(sys.stdin.read(), 16) / 1e18)")
+        echo "balance ${command[2]}: $balance Ether"
+        exit;
+      else
+        echo "You did not provide a valid address as the second argument"
+        echo "  Example: ${0} get_balance 0xf97e180c050e5ab072211ad2c213eb5aee4df134"
+        exit;
+      fi
+      ;;
     "finalized_epoch")
       # Get the finalized slot of the network
       finalized_epoch=$(ethdo --connection=$bn_endpoint chain status --verbose | awk '/Finalized epoch:/{print $NF}')
@@ -159,6 +178,7 @@ for arg in "${command[@]}"; do
         then
           echo "Sending single blob to the network"
           blob_hash=$(${0} send_blob 1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+          echo $blob_hash
           echo "Waiting for blob to be included in a block (sleeping 30 seconds)"
           sleep 30
           ${0} get_slot_for_blob $blob_hash
@@ -171,7 +191,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint| jq -r .result.timestamp )
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp | awk '/Slot/{print $NF}')
         echo "Slot for blob $blob: $slot"
         exit;
@@ -199,7 +219,7 @@ for arg in "${command[@]}"; do
       else
         blob=${command[2]}
         block_hash=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["'$blob'"],"id":0}' $rpc_endpoint | jq .result.blockHash)
-        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash'],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
+        get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp)
         echo "Slot for blob $blob: $slot"
         exit;
@@ -280,7 +300,7 @@ for arg in "${command[@]}"; do
         exit;
       fi
       ;;
-      "deposit")
+    "deposit")
       if [[ $# -ne 3 ]]; then
         echo "Deposit calls for exactly 2 arguments!"
         echo "  Usage: ${0} deposit startIndex endIndex"
@@ -290,8 +310,8 @@ for arg in "${command[@]}"; do
         deposit_path="m/44'/60'/0'/0/3"
         privatekey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
         publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
-        fork_version=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.GENESIS_FORK_VERSION')
-        deposit_contract_address=$(curl -s https://config.$prefix-$network.$domain/cl/config.yaml | yq -r '.DEPOSIT_CONTRACT_ADDRESS')
+        fork_version=$(curl -s $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')
+        deposit_contract_address=$(curl -s $bn_endpoint/eth/v1/config/spec | jq -r '.data.DEPOSIT_CONTRACT_ADDRESS')
         eth2-val-tools deposit-data --source-min=${command[2]} --source-max=${command[3]} --amount=32000000000 --fork-version=$fork_version --withdrawals-mnemonic="$sops_mnemonic" --validators-mnemonic="$sops_mnemonic" > deposits_$prefix-$network-${command[2]}_${command[3]}.txt
         # ask if you want to deposit to the network
         echo "Are you sure you want to make a deposit to the network for validators ${command[2]} to ${command[3]}? (y/n)"
@@ -316,12 +336,90 @@ for arg in "${command[@]}"; do
           echo "Exiting without depositing to the network"
           exit;
         fi
-        echo
-        if
-        exit;
       fi
       ;;
+    "set_withdrawal_addr")
+      if [[ $# -ne 4 ]]; then
+        echo "setting  calls for exactly 3 arguments!"
+        echo "  Usage: ${0} set_withdrawal_addr startIndex endIndex adress"
+        echo "  Example: ${0} set_withdrawal_addr 0 10 0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
+        exit;
+      else
+        genesis_validators_root=$(curl --silent $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_validators_root')
+        fork_version=$(curl --silent $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')
+        deposit_contract_address=$(curl --silent $bn_endpoint/eth/v1/config/spec | jq -r '.data.DEPOSIT_CONTRACT_ADDRESS')
 
+        # create folder for withdrawal data
+        mkdir -p /tmp/set_withdrawal_addr
+        # generate the withdrawal credentials
+        eth2-val-tools bls-address-change \
+        --withdrawals-mnemonic=$sops_mnemonic \
+        --execution-address=${command[4]} \
+        --source-min=${command[2]} \
+        --source-max=${command[3]} \
+        --genesis-validators-root=$genesis_validators_root \
+        --fork-version=$fork_version \
+        --as-json-list=true > "/tmp/set_withdrawal_addr/change_operations.json"
+
+        # ask if you want to deposit to the network
+        echo "Are you sure you want to set withdrawal credentials for validators ${command[2]} to ${command[3]}? (y/n)"
+
+        read -r response
+        if [[ $response == "y" ]]; then
+            curl -X POST $bn_endpoint/eth/v1/beacon/pool/bls_to_execution_changes \
+               -H "Content-Type: application/json" \
+               --data-binary "@/tmp/set_withdrawal_addr/change_operations.json"
+        else
+          echo "Exiting without submitting changes to the network"
+          exit;
+        fi
+
+        # deleting stale files
+        rm -rf /tmp/set_withdrawal_addr
+
+        echo
+      fi
+      ;;
+    "full_withdrawal")
+      if [[ $# -ne 3 ]]; then
+        echo "withdrawal calls for exactly 2 arguments!"
+        echo "  Usage: ${0} full_withdrawal startIndex endIndex"
+        echo "  Example: ${0} full_withdrawal 0 10"
+        exit;
+      else
+        # create folder for withdrawal data
+        mkdir -p /tmp/full_withdrawal
+
+        ethdo wallet create --base-dir=/tmp/full_withdrawal --type=hd --wallet=withdrawal-validators --mnemonic=$sops_mnemonic --wallet-passphrase="superSecure" --allow-weak-passphrases
+        echo "Local wallet has been created to process mnemonic and withdrawal data"
+
+        # ask if you want to do a full withdrawal to the network
+        echo "Are you sure you want to make a full withdrawal to the network for validators ${command[2]} to ${command[3]}? (y/n)"
+        read -r response
+        if [[ $response == "y" ]]; then
+          # Loop through all the validator indexes that want to be withdrawn
+          for i in $(seq ${command[2]} ${command[3]})
+          do
+              # Create an account from previous wallet, this will basically be the derivation path pub/private keypair
+              ethdo account create --base-dir=/tmp/full_withdrawal --account=withdrawal-validators/$i --wallet-passphrase="superSecure" --passphrase="superSecure" --allow-weak-passphrases --path="m/12381/3600/$i/0/0"
+
+              # Create JSON exit data and for earlier specified account and store it in disk
+              ethdo validator exit --base-dir=/tmp/full_withdrawal --json --account=withdrawal-validators/$i --passphrase="superSecure" --connection=$bn_endpoint > /tmp/full_withdrawal/withdrawal-$i.json
+              echo "generated exit data for validator number $i , now exiting..."
+              ethdo validator exit --signed-operations=$(cat /tmp/full_withdrawal/withdrawal-$i.json) --connection=$bn_endpoint
+          done
+          # Cleanup wallet as its no longer needed
+          ethdo wallet delete --base-dir=/tmp/full_withdrawal --wallet=withdrawal-validators
+        else
+          echo "Exiting without withdrawal to the network"
+          exit;
+        fi
+
+        # deleting stale files
+        rm -rf /tmp/set_withdrawal_addr
+        echo
+      fi
+      ;;
     "help")
       print_usage "${command[@]}"
       ;;

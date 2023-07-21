@@ -1,0 +1,98 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/config.yaml.j2,ed3449f 2023/07/18 14:24
+
+network: sepolia-sf1
+chainId: 7011893056
+
+domain: 4844-sepolia-sf1.ethpandaops.io
+
+config:
+  enabled: true
+  files:
+    # Support all files as they appear in the github repo
+    - path: /besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/besu.json
+    - path: /bootnode.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/bootnode.txt
+    - path: /bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/bootstrap_nodes.txt
+    - path: /chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/chainspec.json
+    - path: /config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/config.yaml
+    - path: /deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deploy_block.txt
+    - path: /deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deposit_contract.txt
+    - path: /deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deposit_contract_block.txt
+    - path: /deposit_contract_block_hash.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deposit_contract_block_hash.txt
+    - path: /genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/genesis.json
+    - path: /genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/genesis.ssz
+    - path: /parseBeaconState.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/parseBeaconState.json
+    - path: /trusted_setup.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/trusted_setup.txt
+    - path: /trusted_setup.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/trusted_setup.json
+
+    # Execution Layer specific redirects
+    - path: /el/bootnodes
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/bootnode.txt
+    - path: /el/besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/besu.json
+    - path: /el/chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/chainspec.json
+    - path: /el/genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/genesis.json
+
+    # Consensus Layer specific redirects
+    - path: /cl/bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/bootstrap_nodes.txt
+    - path: /cl/boot_enr.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/boot_enr.yaml
+    - path: /cl/config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/config.yaml
+    - path: /cl/genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/genesis.ssz
+    - path: /cl/deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deploy_block.txt
+    - path: /cl/deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deposit_contract.txt
+    - path: /cl/deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/4844-testnet/master/network-configs/sepolia-sf1/deposit_contract_block.txt
+
+    # Ansible generated ethereum nodes inventory
+    - path: /api/v1/nodes/inventory
+      upstream: bootnode-1.srv.4844-sepolia-sf1.ethpandaops.io
+      target: /meta/api/v1/inventory.json
+    - path: /api/v1/nodes/validator-ranges
+      upstream: bootnode-1.srv.4844-sepolia-sf1.ethpandaops.io
+      target: /meta/api/v1/validator-ranges.json

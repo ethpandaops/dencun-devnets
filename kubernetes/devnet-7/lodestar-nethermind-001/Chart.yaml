@@ -1,0 +1,20 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/Chart.yaml.j2,67551b8 2023/07/13 18:06
+
+apiVersion: v2
+<<<<<<<< HEAD:kubernetes/devnet-8/teku-geth-001/Chart.yaml
+name: teku-geth-001
+========
+name: lodestar-nethermind-001
+>>>>>>>> master:kubernetes/devnet-7/lodestar-nethermind-001/Chart.yaml
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+dependencies:
+<<<<<<<< HEAD:kubernetes/devnet-8/teku-geth-001/Chart.yaml
+  - alias: teku-geth-001
+========
+  - alias: lodestar-nethermind-001
+>>>>>>>> master:kubernetes/devnet-7/lodestar-nethermind-001/Chart.yaml
+    name: ethereum-node
+    repository: https://ethpandaops.github.io/ethereum-helm-charts
+    version: 0.0.7
