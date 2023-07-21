@@ -42,6 +42,8 @@ nethermind_container_command_extra_args:
   - --Init.IsMining=false
   - --Pruning.Mode=None
   - --config=none.cfg
+  - --Init.KzgSetupPath=/network-config/trusted_setup.txt
+  - --Init.BaseDbPath=nethermind_db/sepolia
 #  - --config=sepolia
 #  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
 #  - --Init.IsMining=false
