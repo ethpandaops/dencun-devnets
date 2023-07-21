@@ -159,6 +159,7 @@ lodestar-nethermind-001:
             BESU_GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/besu.json;
             BOOTNODES_URI=https://config.4844-devnet-7.ethpandaops.io/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
+            mkdir -p /data/network-config;
             if ! [ -f /data/network_config_init_done ];
             then
               apk update && apk add curl jq;
@@ -224,9 +225,9 @@ lodestar-nethermind-001:
           DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
+          mkdir -p /data/network-config;
           curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
           TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
           if ! [ -f /data/network-config/genesis.ssz ];
           then
             wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
