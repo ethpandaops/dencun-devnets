@@ -17,7 +17,7 @@ fauceth:
             pathType: Prefix
 
   secretEnv:
-    APP_AMOUNT: "100080000000000000000" # 32.08 ETH
+    APP_AMOUNT: "100080000000000000000" # 100.08 ETH
     APP_IMAGEURL: "https://i.imgur.com/M0gEdpw.png"
     APP_TITLE: "4844-devnet-7 Faucet"
     APP_CHAINS: "7011893056"
@@ -46,7 +46,7 @@ fauceth:
         "chain": "4844Eth",
         "icon": "ethereum",
         "rpc": [
-          "http://nethermind-lodestar-001:8545"
+          "http://nethermind-lodestar-002:8545"
         ],
         "faucets": [],
         "nativeCurrency": {

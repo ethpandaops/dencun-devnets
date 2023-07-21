@@ -44,6 +44,7 @@
 - name: Include client vars for {{ item.key }}
   ansible.builtin.include_vars:
     dir: "{{ inventory_dir }}/group_vars"
+    depth: 1
 
 - name: Generate values file for {{ item.key }}
   ansible.builtin.template:
