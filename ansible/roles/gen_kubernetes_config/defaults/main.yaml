@@ -1,13 +1,13 @@
 gen_kubernetes_config_default_output_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
 
 default_cl_endpoint: >-
-  http://{{ gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_cl_ports_http_beacon|string }}
+  http://{{ gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_cl_ports_http_beacon | string }}
 default_el_endpoint: >-
-  http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_http_rpc|string }}
+  http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_http_rpc | string }}
 default_el_ws_endpoint: >-
-  ws://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_ws_rpc|string }}
+  ws://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_ws_rpc | string }}
 default_el_auth_endpoint: >-
-  http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_engine|string }}
+  http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_engine | string }}
 
 gen_kubernetes_config_ethereum_node:
   el: nethermind
