@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,2fb739c 2023/07/21 10:15
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,fab18a8 2023/07/21 10:25
 
 lodestar-nethermind-001:
   global:
@@ -200,7 +200,6 @@ lodestar-nethermind-001:
     persistence:
       enabled: true
       size: 50Gi
-    extraArgs:
     initContainers:
     - name: init-genesis
       image: alpine:latest
