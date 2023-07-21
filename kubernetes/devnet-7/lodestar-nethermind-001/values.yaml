@@ -1,9 +1,12 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node-v2.yaml.j2,49a76cf 2023/07/20 16:09
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,fab18a8 2023/07/21 10:25
 
-lodestar-nethermind-002:
+lodestar-nethermind-001:
   global:
     main:
       network: 4844-devnet-7
+      engineEndpoint: http://nethermind-lodestar-001:8551
+      rpcEndpoint: http://nethermind-lodestar-001:8545
+      beaconEndpoint: http://lodestar-nethermind-001:5052
     checkpointSync:
       enabled: true
       addresses:
@@ -18,7 +21,7 @@ lodestar-nethermind-002:
               - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
-              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io:443
+              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io:443
               - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
               - --Xfilter-on-enr-fork-id=true
             nethermind:
@@ -29,8 +32,8 @@ lodestar-nethermind-002:
               - --Pruning.Mode=None
               - --config=none.cfg
               - --EthStats.Enabled=true
-              - --Ethstats.Name=k8s-lodestar-nethermind-002
-              - --Ethstats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Name=k8s-lodestar-nethermind-001
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
               - --EthStats.Server=wss://ethstats.4844-devnet-7.ethpandaops.io/api/
               - --log=INFO
             geth:
@@ -39,7 +42,7 @@ lodestar-nethermind-002:
               - --networkid=7011893056
               - --syncmode=full
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
-              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
+              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
             erigon:
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
               - --http.vhosts=*
@@ -48,7 +51,7 @@ lodestar-nethermind-002:
               - --networkid=7011893056
               - --db.size.limit=100GB
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
-              - --ethstats==k8s-lodestar-nethermind-002:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
+              - --ethstats==k8s-lodestar-nethermind-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.4844-devnet-7.ethpandaops.io
             ethereumjs:
               - --gethGenesis=/data/network-config/genesis.json
               - --bootnodes=enode://20dc61be87177b06373f74b57812d202208869d5692c4ba3766d80c5c8737a8fb834443d93fc4e9b0be0ecce1c51083bc087e86825550d97200fc5609cdd61ba@206.189.105.76:30303?discport=30303
@@ -92,33 +95,23 @@ lodestar-nethermind-002:
               - --bootstrap-node=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
             lighthouse:
-              - --grpc-gateway-corsdomain=*
-              - --chain-config-file=/data/network-config/config.yaml
-              - --genesis-state=/data/network-config/genesis.ssz
-              - --contract-deployment-block=0
-              - --min-sync-peers=1
-              - --pprof
-              - --enable-debug-rpc-endpoints
-              - --verbosity=debug
-              - --subscribe-all-subnets
-              - --bootstrap-node=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
-              - --bootstrap-node=enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+              - --testnet-dir=/data/network-config
+              - --boot-nodes=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+              - --self-limiter=blob_sidecars_by_range:512/10
+              - --debug-level=debug
             nimbus:
-              - --grpc-gateway-corsdomain=*
-              - --chain-config-file=/data/network-config/config.yaml
-              - --genesis-state=/data/network-config/genesis.ssz
-              - --contract-deployment-block=0
-              - --min-sync-peers=1
-              - --pprof
-              - --enable-debug-rpc-endpoints
-              - --verbosity=debug
-              - --subscribe-all-subnets
+              - --network=/data/network-config
+              - --validator-monitor-auto=false
+              - --doppelganger-detection=off
+              - --log-level=DEBUG
+              - --light-client-data-serve=false
+              - --graffiti=teku/nethermind
               - --bootstrap-node=enr:-Iq4QBskSEWq0jSk12p8nNe5OYUVcWBpGJEqODbpl8YWMgaDfrmZ6mzc24B1_j7gGqQOoiUI0TOxD9Q3G0tYm33WtXKGAYkL4s02gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-MS4QPy930QKEBORrZN3icIN5G00AGeJK3upPki44bjG4B7gEiJsQ1O2CjxUpP8rjfTtojq0JeyldZWCfQK24y0HXhsJh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAeqX-JUHFGOf__________gmlkgnY0gmlwhM69aUyJc2VjcDI1NmsxoQKHgIEQ_if0loI5NE2FGtAfxM0y_iLBTVuOye6Y3zn6tYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
 
   nethermind:
     enabled: true
-    fullnameOverride: lodestar-nethermind-002
+    fullnameOverride: nethermind-lodestar-001
     image:
       repository: nethermindeth/nethermind
       tag: eip-4844-v6-36
@@ -135,7 +128,7 @@ lodestar-nethermind-002:
       ethereum_role: execution
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: lodestar-nethermind-002
+      ethereum_instance: nethermind-lodestar-001
     resources:
       requests:
         cpu: 2000m
@@ -159,13 +152,14 @@ lodestar-nethermind-002:
             BESU_GENESIS_URI=https://config.4844-devnet-7.ethpandaops.io/el/besu.json;
             BOOTNODES_URI=https://config.4844-devnet-7.ethpandaops.io/el/bootnodes.txt;
             TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
+            mkdir -p /data/network-config;
             if ! [ -f /data/network_config_init_done ];
             then
               apk update && apk add curl jq;
               wget -O /data/network-config/chainspec.json $CHAINSPEC_URI;
               wget -O /data/network-config/genesis.json $GENESIS_URI;
               wget -O /data/network-config/besu.json $BESU_GENESIS_URI;
-              wget -O /data/network-config/bootnodes.txt BOOTNODES_URI;
+              wget -O /data/network-config/bootnodes.txt $BOOTNODES_URI;
               wget -O /data/network-config/trusted_setup.txt $TRUSTED_SETUP_URI;
               cat /data/network-config/genesis.json | jq -r '.config.chainId' > /data/network-config/chainid.txt;
               touch /data/network_config_init_done;
@@ -180,7 +174,7 @@ lodestar-nethermind-002:
 
   lodestar:
     enabled: true
-    fullnameOverride: nethermind-lodestar-002
+    fullnameOverride: lodestar-nethermind-001
     image:
       repository: g11tech/lodestar
       tag: devnet36-6c23a8
@@ -195,7 +189,7 @@ lodestar-nethermind-002:
       ethereum_role: consensus
       consensus_client: lodestar
       execution_client: nethermind
-      ethereum_instance: nethermind-lodestar-002
+      ethereum_instance: lodestar-nethermind-001
     resources:
       requests:
         cpu: 2000m
@@ -206,7 +200,6 @@ lodestar-nethermind-002:
     persistence:
       enabled: true
       size: 50Gi
-    extraArgs:
     initContainers:
     - name: init-genesis
       image: alpine:latest
@@ -224,9 +217,9 @@ lodestar-nethermind-002:
           DEPLOY_BLOCK_URI=https://config.4844-devnet-7.ethpandaops.io/cl/deploy_block.txt;
           GENESIS_CONFIG_URI=https://config.4844-devnet-7.ethpandaops.io/cl/config.yaml;
           GENESIS_SSZ_URI=https://config.4844-devnet-7.ethpandaops.io/cl/genesis.ssz;
+          mkdir -p /data/network-config;
           curl -s https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootnodes.txt;
           TRUSTED_SETUP_URI=https://config.4844-devnet-7.ethpandaops.io/trusted_setup.txt;
-          mkdir -p /data/testnet_spec;
           if ! [ -f /data/network-config/genesis.ssz ];
           then
             wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;

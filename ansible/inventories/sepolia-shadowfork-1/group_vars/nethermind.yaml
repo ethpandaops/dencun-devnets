@@ -36,6 +36,7 @@ nethermind_container_command_extra_args:
   - --Pruning.Mode=None
   - --config=none.cfg
   - --Init.KzgSetupPath=/network-config/trusted_setup.txt
+  - --Init.BaseDbPath=nethermind_db/sepolia
 #    - --Init.ChainSpecPath=/network-config/chainspec.json
 #    - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
 #    - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
