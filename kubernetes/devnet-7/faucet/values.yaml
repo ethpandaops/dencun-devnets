@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,49f27d5 2023/07/18 13:12
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/fauceth.yaml.j2,c7753ef 2023/07/21 09:42
 
 fauceth:
   fullnameOverride: fauceth
@@ -17,7 +17,7 @@ fauceth:
             pathType: Prefix
 
   secretEnv:
-    APP_AMOUNT: "100080000000000000000" # 32.08 ETH
+    APP_AMOUNT: "100080000000000000000" # 100.08 ETH
     APP_IMAGEURL: "https://i.imgur.com/M0gEdpw.png"
     APP_TITLE: "4844-devnet-7 Faucet"
     APP_CHAINS: "7011893056"
