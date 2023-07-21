@@ -4,9 +4,11 @@
       tags: [ethereum_genesis]
 
 - import_playbook: ethpandaops.general.bootstrap_server
+  vars:
+    target: "all:!localhost"
   tags: [init-server, bootstrap]
 
-- hosts: all
+- hosts: all:!localhost
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:

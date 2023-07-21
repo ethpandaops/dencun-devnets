@@ -24,6 +24,6 @@ default_tooling_images:
   checkpointz: ethpandaops/checkpointz:0.15.0
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:v0.1.3
-  eth_fauceth: chainflag/eth-fauceth:latest
+  eth_fauceth: chainflag/eth-faucet:latest
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest

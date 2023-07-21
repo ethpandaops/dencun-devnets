@@ -3,4 +3,4 @@ dependencies:
   repository: https://ethpandaops.github.io/ethereum-helm-charts
   version: 0.1.1
 digest: sha256:75f12a1b8e28d10c1cbb7b58095d323bbc8dc03474d2ecd715425f41c29ccf49
-generated: "2023-07-06T11:01:23.683487+02:00"
+generated: "2023-07-20T17:38:05.509454+02:00"

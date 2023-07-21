@@ -17,7 +17,7 @@ forkmon:
   endpoints:
   # Rpc
   - addr: {{ default_el_endpoint }}
-    name: rpc
+    name: rpc-{{ gen_kubernetes_config_ethereum_node_name }}
 {% for host in (groups['ethereum_node'] + groups['bootnode']) | sort %}
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@rpc.{{ hostvars[host]['inventory_hostname'] }}.srv.{{ network_subdomain }}
     name: {{ hostvars[host]['inventory_hostname'] }}
@@ -30,33 +30,11 @@ forkmon:
     server_address = "0.0.0.0:{{ .Values.httpPort}}"
     # Shown in the document title, if specified
     chain_name="{{ .Values.network }}"
-    # Third party providers
-    infura_key          = "<INFURA_API_KEY>"
-    infura_endpoint     = "https://mainnet.infura.io/v3/"
-    alchemy_key         = "<ALCHEMY_API_KEY>"
-    alchemy_endpoint    = "https://eth-mainnet.g.alchemy.com/v2/"
-    etherscan_key       = "<ETHERSCAN_API_KEY>"
-    etherscan_endpoint  = "https://api.etherscan.io/api"
-    [Metrics]
-    enabled = false
-    endpoint = "<INFLUX_ENDPOINT>"
-    username = "<INFLUX_USERNAME>"
-    database  = "<INFLUX_DB_NAME>"
-    password  = "<INFLUX_PASSWORD>"
     # Local or non third party connection require rpc kind
     {{- range .Values.endpoints }}
     [[clients]]
       url  = {{ .addr | quote }}
       name = {{ .name | quote }}
       kind = "rpc"
-    {{- end }}
-    # Third party client configuration doesn't require url
-    # Kind can vary between infura, alchemy or etherscan
-    # Recommended to enable rate limit for third party services
-    {{- range .Values.thirdparty_endpoints }}
-    [[clients]]
-      name = {{ .name | quote }}
-      kind = {{ .kind | quote }}
-      rate_limit = {{ .rate_limit }}
     {{- end }}
 {% endraw %}

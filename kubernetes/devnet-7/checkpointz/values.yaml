@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,49f27d5 2023/07/18 13:12
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/checkpointz.yaml.j2,c7753ef 2023/07/21 09:42
 
 checkpointz:
   fullnameOverride: checkpointz
@@ -14,12 +14,9 @@ checkpointz:
       memory: 256Mi
   ingress:
     enabled: true
-
     className: ingress-nginx-public
-
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
-
     hosts:
       - host: checkpoint-sync.4844-devnet-7.ethpandaops.io
         paths:
@@ -48,69 +45,69 @@ checkpointz:
 
     beacon:
       upstreams:
-      - name: rpc-beacon
+      - name: rpc-lodestar-nethermind-001
         address: http://lodestar-nethermind-001:5052
         dataProvider: true
       - name: bootnode-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.bootnode-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lighthouse-besu-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-besu-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-besu-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lighthouse-ethereumjs-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lighthouse-geth-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lighthouse-nethermind-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lodestar-besu-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-besu-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-besu-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lodestar-ethereumjs-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lodestar-geth-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: lodestar-nethermind-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: nimbus-besu-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-besu-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-besu-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: nimbus-ethereumjs-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: nimbus-geth-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: nimbus-nethermind-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: prysm-besu-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-besu-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: prysm-ethereumjs-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: prysm-geth-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-geth-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: prysm-nethermind-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: teku-besu-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-besu-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-besu-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: teku-ethereumjs-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-ethereumjs-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: teku-geth-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true
       - name: teku-nethermind-1
-      - address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.4844-devnet-7.ethpandaops.io
         dataProvider: true

@@ -23,6 +23,7 @@ eth_inventory_web_content:
           {% endfor %}
         }
       }
+    when: ethereum_genesis_validator_keyranges is defined
   - file: v1/inventory.json
     content: |
       {
@@ -39,7 +40,7 @@ eth_inventory_web_content:
               "execution": {
                 "client": "{{ hostvars[host]['ethereum_node_el'] }}",
                 "image": "{{ hostvars[host][(hostvars[host]['ethereum_node_el']) + '_container_image'] }}",
-                "enode": "{{ hostvars[host]['ethereum_node_fact_el_enode'] }}",
+                "enode": "{{ hostvars[host]['ethereum_node_fact_el_enode'] | default('') }}",
                 "rpc_uri": "https://{{ hostvars[host]['ethereum_node_rcp_hostname'] }}"
               }
             }{% if not loop.last %},{% endif %}

@@ -6,7 +6,8 @@ blockscout:
   image:
     repository: {{ default_tooling_images.blockscout.split(':') | first }}
     tag: {{ default_tooling_images.blockscout.split(':') | last }}
-
+  podAnnotations:
+    "promtail.io/ignore_pod": "true"
   resources:
     requests:
       cpu: 2000m
