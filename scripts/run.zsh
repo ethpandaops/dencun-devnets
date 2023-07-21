@@ -117,9 +117,13 @@ for arg in "${command[@]}"; do
         echo "Please provide a address as the second argument"
         echo "  Example: ${0} get_balance 0xf97e180c050e5ab072211ad2c213eb5aee4df134"
         exit;
-      else
+      elif [[ (${#command[2]} == 42) && (${command[2]} == 0x*) ]]; then
         balance=$(curl -s  --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getBalance", "params":["'${command[2]}'","latest"], "id":0}' $rpc_endpoint | jq -r '.result' | python -c "import sys; print(int(sys.stdin.read(), 16) / 1e18)")
         echo "balance ${command[2]}: $balance Ether"
+        exit;
+      else
+        echo "You did not provide a valid address as the second argument"
+        echo "  Example: ${0} get_balance 0xf97e180c050e5ab072211ad2c213eb5aee4df134"
         exit;
       fi
       ;;
