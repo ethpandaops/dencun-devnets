@@ -1,0 +1,6 @@
+dependencies:
+- name: beacon-metrics-gazer
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.1.3
+digest: sha256:25670c466402ba0216633aa1bea24a43329fac709a6c633bba91c5663620c2cc
+generated: "2023-06-27T15:55:57.665917+02:00"

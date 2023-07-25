@@ -1,0 +1,73 @@
+blockscout:
+  fullnameOverride: blockscout
+
+  image:
+    repository: blockscout/blockscout
+    tag: master
+
+  resources:
+    requests:
+      cpu: 2000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: explorer.4844-devnet-6.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  config:
+    COIN: ETH
+    DISABLE_EXCHANGE_RATES: "true"
+    DISABLE_KNOWN_TOKENS: "true"
+    SHOW_PRICE_CHART: "false"
+    ENABLE_1559_SUPPORT: "true"
+    DISABLE_READ_API: "false"
+    DISABLE_WRITE_API: "true"
+    ENABLE_TXS_STATS: "true"
+    ECTO_USE_SSL: "false"
+    SHOW_TXS_CHART: "true"
+    ETHEREUM_JSONRPC_VARIANT: nethermind
+    ETHEREUM_JSONRPC_HTTP_URL: http://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_WS_URL: ws://nethermind-lodestar-001:8545
+    ETHEREUM_JSONRPC_TRACE_URL: http://nethermind-lodestar-001:8545
+    INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
+    NETWORK: Ethereum
+    SUBNETWORK: 4844-devnet-6
+    BLOCK_TRANSFORMER: base
+    POOL_SIZE: "15"
+    CHAIN_SPEC_PATH: /config-update/chainspec.json
+
+  extraVolumes:
+    - name: config-update
+      emptyDir: {}
+
+  extraVolumeMounts:
+    - name: config-update
+      mountPath: "/config-update"
+
+  initContainers:
+    - name: init-config
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+      - sh
+      - -ace
+      - >
+        GENESIS_URI=https://config.4844-devnet-6.ethpandaops.io/el/chainspec.json;
+        wget -O /config-update/chainspec.json $GENESIS_URI;
+        echo "got genesis";
+      volumeMounts:
+        - name: config-update
+          mountPath: /config-update
+
+  serviceMonitor:
+    enabled: true

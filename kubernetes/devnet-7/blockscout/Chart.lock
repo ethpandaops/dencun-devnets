@@ -1,0 +1,6 @@
+dependencies:
+- name: blockscout
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.2.0
+digest: sha256:6ca5d0965d8589b2443d4438c71451b989409a2b780d4bbe80c790b32fea2710
+generated: "2023-07-20T17:36:54.164524+02:00"

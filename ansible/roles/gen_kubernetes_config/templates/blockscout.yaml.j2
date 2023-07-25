@@ -1,0 +1,80 @@
+# {{ ansible_managed }}
+
+blockscout:
+  fullnameOverride: blockscout
+
+  image:
+    repository: {{ default_tooling_images.blockscout.split(':') | first }}
+    tag: {{ default_tooling_images.blockscout.split(':') | last }}
+  podAnnotations:
+    "promtail.io/ignore_pod": "true"
+  resources:
+    requests:
+      cpu: 2000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: explorer.{{ network_subdomain }}
+        paths:
+          - path: /
+            pathType: Prefix
+
+  config:
+    COIN: ETH
+    DATABASE_URL: postgres://postgres:postgres@blockscout-postgresql:5432/blockscout?ssl=false
+    DISABLE_EXCHANGE_RATES: "true"
+    DISABLE_KNOWN_TOKENS: "true"
+    SHOW_PRICE_CHART: "false"
+    ENABLE_1559_SUPPORT: "true"
+    DISABLE_READ_API: "false"
+    DISABLE_WRITE_API: "true"
+    ENABLE_TXS_STATS: "true"
+    ECTO_USE_SSL: "false"
+    SHOW_TXS_CHART: "true"
+    ETHEREUM_JSONRPC_VARIANT: "{{ gen_kubernetes_config_ethereum_node.el }}"
+    ETHEREUM_JSONRPC_HTTP_URL: {{ default_el_endpoint }}
+    ETHEREUM_JSONRPC_WS_URL: {{ default_el_ws_endpoint }}
+    ETHEREUM_JSONRPC_TRACE_URL: {{ default_el_endpoint }}
+    INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
+    NETWORK: Ethereum
+    SUBNETWORK: {{ ethereum_network_name }}
+    BLOCK_TRANSFORMER: base
+    POOL_SIZE: "15"
+    CHAIN_SPEC_PATH: /config-update/chainspec.json
+  extraVolumes:
+    - name: config-update
+      emptyDir: {}
+
+  extraVolumeMounts:
+    - name: config-update
+      mountPath: "/config-update"
+
+  initContainers:
+    - name: init-config
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+      - sh
+      - -ace
+      - >
+        CHAINSPEC=https://config.{{ network_subdomain }}/el/chainspec.json;
+        mkdir -p /config-update;
+        wget -O /config-update/chainspec.json $CHAINSPEC;
+        echo "got genesis";
+      volumeMounts:
+        - name: config-update
+          mountPath: /config-update
+
+  serviceMonitor:
+    enabled: true
+
+  postgresql:
+    fullnameOverride: blockscout-postgresql

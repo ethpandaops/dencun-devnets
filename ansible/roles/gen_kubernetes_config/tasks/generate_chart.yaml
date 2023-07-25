@@ -1,0 +1,67 @@
+- name: Inform which chart is being processed for {{ item.key }}
+  ansible.builtin.debug:
+    msg: "Generating '{{ item.key }}' with template '{{ item.value.valuesTemplatePath | default('') }}'"
+
+- name: Create directory for {{ item.key }}
+  ansible.builtin.file:
+    path: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}"
+    state: directory
+    mode: "0755"
+
+- name: Generate Chart.yaml for {{ item.key }}
+  ansible.builtin.template:
+    src: Chart.yaml.j2
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/Chart.yaml"
+    mode: "0644"
+
+- name: Copy the helm ignore file for {{ item.key }}
+  ansible.builtin.copy:
+    src: ".helmignore"
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/.helmignore"
+    mode: "0644"
+
+- name: Check if dependencies should be updated for {{ item.key }}
+  ansible.builtin.command:
+    cmd: >-
+      ls
+      {% for d in item.value.dependencies | default([]) %}
+      {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/charts/{{ d.name }}-{{ d.version }}.tgz
+      {% endfor %}
+  changed_when: false
+  failed_when: false
+  register: chart_needs_update
+
+- name: Run helm dependency update for {{ item.key }}
+  ansible.builtin.command: # noqa: no-changed-when
+    cmd: helm  dependency update {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
+  when: chart_needs_update.rc != 0
+
+- name: Run helm dependency build for {{ item.key }}
+  ansible.builtin.command: # noqa: no-changed-when
+    cmd: helm dependency build {{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}
+  when: chart_needs_update.rc != 0
+
+- name: Include client vars for {{ item.key }}
+  ansible.builtin.include_vars:
+    dir: "{{ inventory_dir }}/group_vars"
+    depth: 1
+
+- name: Generate values file for {{ item.key }}
+  ansible.builtin.template:
+    src: "{{ item.value.valuesTemplatePath }}"
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/values.yaml"
+    mode: "0644"
+
+- name: Make sure the template folder is created for {{ item.key }}
+  ansible.builtin.file:
+    path: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/templates"
+    state: directory
+    mode: "0755"
+  when: item.key == 'config'
+
+- name: Copy ingress config to {{ item.key }}
+  ansible.builtin.copy:
+    src: ingress.config.yaml
+    dest: "{{ gen_kubernetes_config_default_output_dir }}/{{ item.key }}/templates/ingress.config.yaml"
+    mode: "0644"
+  when: item.key == 'config'

@@ -1,0 +1,6 @@
+- name: Add used helm repositories
+  loop: "{{ gen_kubernetes_config_helm_repositories | default([]) }}"
+  ansible.builtin.include_tasks: helm_repositories.yaml
+- name: Generate charts
+  loop: "{{ gen_kubernetes_config_helm_charts | dict2items }}"
+  ansible.builtin.include_tasks: generate_chart.yaml

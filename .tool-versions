@@ -2,5 +2,6 @@ age 1.1.1
 helm 3.12.1
 shellcheck 0.9.0
 sops 3.7.3
-terraform 1.5.0
+terraform 1.5.2
 python 3.11.4
+ansible-lint 6.17.2
