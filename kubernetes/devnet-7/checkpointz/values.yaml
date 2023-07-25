@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: 0.15.0
+    tag: 0.15.1
 
   resources:
     requests:
