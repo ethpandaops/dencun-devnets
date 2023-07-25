@@ -5,7 +5,7 @@ forky:
   replicas: 1
   image:
     repository: ethpandaops/forky
-    tag: 0.0.34-debian
+    tag: 0.0.37-debian
   resources:
     requests:
       cpu: 256m
