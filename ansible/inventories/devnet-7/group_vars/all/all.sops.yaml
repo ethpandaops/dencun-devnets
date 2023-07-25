@@ -4,6 +4,10 @@ secret_zerossl:
 secret_prometheus_remote_write:
     username: ENC[AES256_GCM,data:b4eGJwF5CZUYmYgOtwZMug==,iv:aGs8i0K0rwM7J4Oyux6ty20IeEWN08gRr3hrKZwuY00=,tag:XlxBriyFLijFtFymh0qhqQ==,type:str]
     password: ENC[AES256_GCM,data:a+yn7XbpupEMwc5LYUBC++ljnKe+gs0tUgjuxX8=,iv:vGBvd5QyH4HrOAGBRoB/v6aZYPTiHVaMFfoRZj4FX9w=,tag:l84IDIYRLgJkT59c9kR8Xw==,type:str]
+secret_loki:
+    endpoint: ENC[AES256_GCM,data:sc9ffC3rWvmV2KUx0M9gmedaKwaWU+FHZwAGVwFmqJMy/F/btB9HEg0JHe0soz46sCHOfyo=,iv:1BfxsNQKTWtUP6xQQm9IU+610bLO65f8uH8qsBSQNbE=,tag:ihasAJuf9sX91b3pOJOpwg==,type:str]
+    username: ENC[AES256_GCM,data:7M7twmPoASyEolwvv3hVKw==,iv:QTYRXBkg5B/YXB1KEPPRrRUu716Z1Sw/DdZjesMd1RY=,tag:yqn2puR60CkfD5uIiF8ZoQ==,type:str]
+    password: ENC[AES256_GCM,data:yvL5XEcOhuN59raPLYqb0CasR53aiCvi8+SuEbc=,iv:twJEJvlwC3Y7qt5YGw2iK2rwwUTwpE6B1BS5BteiSk0=,tag:DULvQKhOdAWhaW3IXtgaIg==,type:str]
 secret_nginx_shared_basic_auth:
     name: ENC[AES256_GCM,data:ewHq,iv:3m9r+IutYQfVmmxnhGgrBTPf8AR5EY/7mxXSRscMgDo=,tag:9H/NPeIVAuDJ2W3L3sjIng==,type:str]
     password: ENC[AES256_GCM,data:GiqfFP7amT/6x3W75fMV,iv:H8CmQRbYnZo8zA4X3bK5/wUvWIDsV3MYRktaiLP0+3w=,tag:y+hEypeHIbXadljRAXGjtw==,type:str]
@@ -28,8 +32,8 @@ sops:
             S0pVVTVEL2VxWlIxOVF6eC8xTXEyM3MKYhjAZ68Q9L+KPje+wlsFPijx7KUiiNkl
             4Cl1FyL9WaHglxG+s+Bc6JKzVI/PuJdR24lYEEDMBxN30fl5XTJKCA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-06-30T06:50:16Z"
-    mac: ENC[AES256_GCM,data:RxbXGoI4ZELClvZbejpJuCTSqXxYu9ok3YXiX8cJliUOfoZH/0+BSOeUIaNQfxQZfLIjtBFZEUumkcO7VhAODRyE32Ds8RFPnIXT1hI6x7TsrWZEFN1+tpxO21bg3eDMddVoTOOCfvfM41iPJxS+qCOKt/jJZIoDZG2oNI7Y7GM=,iv:odRkfA1GzBHksy9D8angg42dAOJG9f8y7/wORiC+w+Q=,tag:izk+k1ohkOFJQ/8pO9NTTA==,type:str]
+    lastmodified: "2023-07-25T12:44:23Z"
+    mac: ENC[AES256_GCM,data:57JthVyT8eki9GWowsxTmioM9CPYNySvxj4H0OsqM1ZM6XRFYH+zbCdGn4dekjYG7MFsxVPb2ChiWfH/0He1xO8KNvv+zQCefo+ZH6zGiGeCGS3aXm2OVy39sC4cQOqHV0ThtDQvpltyuZvoGbVtGpMl4UKpbj3j7ElkuRQkuOM=,iv:1yI+NAGKSlKpoEOSq41XJSoDk78W+7oTnAA5CtbY1pY=,tag:hgyzAtBp4S1ZeRcI+BmSjA==,type:str]
     pgp:
         - created_at: "2023-06-13T11:13:22Z"
           enc: |-
