@@ -184,6 +184,13 @@ vector_config: |
     labels.network = "{{ ethereum_network_name }}"
     labels.testnet = "{{ ethereum_network_name }}"
     labels.ingress_user = "{{ secret_loki.username }}"
+    labels.container_name = "{{ '{{ container_name }}' }}"
+  {%- if ethereum_node_el is defined +%}
+    labels.ethereum_el = "{{ ethereum_node_el }}"
+  {%- endif +%}
+  {%- if ethereum_node_cl is defined +%}
+    labels.ethereum_cl = "{{ ethereum_node_cl }}"
+  {%- endif +%}
     encoding.codec = "json"
     endpoint = "{{ secret_loki.endpoint }}"
     auth.strategy = "basic"
