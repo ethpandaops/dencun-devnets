@@ -31,6 +31,7 @@ print_usage() {
   echo "  epoch_summary n                   Get the epoch summary for epoch n [default current - 1 epoch]"
   echo "  get_slot_for_blob txhash          Get the slot for a given blob given txhash, or send blob now"
   echo "  get_slot_for_blob_verbose txhash  Get the slot for a given blob with verbose output given txhash, or send blob now"
+  echo "  get_block_for_slot n              Get the block for a given slot - mandatory argument"
   echo "  whose_validator_for_slot n        Get the validator for a given slot "n" - mandatory argument"
   echo "  get_enrs                          Get the ENRs of the network"
   echo "  get_enodes                        Get the enodes of the network"
@@ -222,6 +223,19 @@ for arg in "${command[@]}"; do
         get_block_timestamp=$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":['$block_hash',false],"id":0}' $rpc_endpoint | jq -r .result.timestamp)
         slot=$(ethdo --connection=$bn_endpoint block info --block-time=$get_block_timestamp)
         echo "Slot for blob $blob: $slot"
+        exit;
+      fi
+      ;;
+    "get_block_for_slot")
+      # Get the block for a given slot
+      if [[ -z "${command[2]}" ]]; then
+        echo "Please provide a slot number as the second argument"
+        echo "  Example: ${0} get_block_for_slot 100"
+        exit;
+      else
+        slot=${command[2]}
+        block_number=$(curl -s $bn_endpoint/eth/v2/beacon/blocks/$slot | jq -r '.data.message.body.execution_payload.block_number' )
+        echo "Block is $block_number for slot $slot"
         exit;
       fi
       ;;
