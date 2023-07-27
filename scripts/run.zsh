@@ -235,6 +235,22 @@ for arg in "${command[@]}"; do
       else
         slot=${command[2]}
         block_number=$(curl -s $bn_endpoint/eth/v2/beacon/blocks/$slot | jq -r '.data.message.body.execution_payload.block_number' )
+        if [[ $block_number == null ]]; then
+          echo "Block for slot $slot has not been produced"
+          echo "Would you like to look for the next block? (y/n)"
+          read -r response
+          if [[ $response == y ]]
+          then
+            echo "Looking for the next block"
+            slot=$((slot + 1))
+            ${0} get_block_for_slot $slot
+            exit;
+          else
+            echo "Exiting without looking for the next block"
+            exit;
+          fi
+          exit;
+        fi
         echo "Block is $block_number for slot $slot"
         exit;
       fi
