@@ -241,8 +241,8 @@ for arg in "${command[@]}"; do
           read -r response
           if [[ $response == y ]]
           then
-            echo "Looking for the next block"
             slot=$((slot + 1))
+            echo "Looking for the next block for slot $slot"
             ${0} get_block_for_slot $slot
             exit;
           else
