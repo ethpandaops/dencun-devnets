@@ -1,6 +1,0 @@
-dependencies:
-- name: testnet-homepage
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.2.2
-digest: sha256:dbd8fd0c4812d6eaee2c3c7cbac8a9ada0800b1e63db46d724aabeaeb8a588a7
-generated: "2023-07-20T18:32:00.875991+02:00"

@@ -1,5 +1,5 @@
 ansible-lint==6.17.2
-ansible==8.1.0
+ansible==8.2.0
 netaddr==0.8.0
 pip==23.2
 PyYAML==6.0.1

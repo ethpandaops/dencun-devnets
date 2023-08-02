@@ -26,6 +26,7 @@ blockscout:
 
   config:
     COIN: ETH
+    DATABASE_URL: postgres://postgres:postgres@blockscout-postgresql:5432/blockscout?ssl=false
     DISABLE_EXCHANGE_RATES: "true"
     DISABLE_KNOWN_TOKENS: "true"
     SHOW_PRICE_CHART: "false"
@@ -74,3 +75,6 @@ blockscout:
 
   serviceMonitor:
     enabled: true
+
+  postgresql:
+    fullnameOverride: blockscout-postgresql
