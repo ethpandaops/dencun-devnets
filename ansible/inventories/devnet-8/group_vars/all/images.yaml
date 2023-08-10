@@ -2,8 +2,9 @@ default_ethereum_client_images:
   # Consensus layer clients
   lighthouse: ethpandaops/lighthouse:deneb-free-blobs # NOT YET UPDATED
   lodestar: chainsafe/lodestar:unsafe # Ready for devnet 8
-  nimbus: ethpandaops/nimbus:unstable-b626649 # NOT YET UPDATED
+  nimbus: ethpandaops/nimbus:unstable # NOT YET UPDATED
   prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # NOT YET UPDATED
+  prysm_validator: ethpandaops/prysm-validator:deneb-devnet7-e60b3bb # NOT YET UPDATED
   teku: consensys/teku:23.6.1 # NOT YET UPDATED
   # Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # NOT YET UPDATED

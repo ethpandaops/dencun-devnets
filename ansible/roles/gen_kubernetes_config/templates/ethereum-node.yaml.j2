@@ -63,6 +63,7 @@
             teku:
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
+              - --Xepochs-store-blobs=max # Keep the blobs forever
             {%- endfor +%}
             prysm:
             {%- for arg in prysm_container_command_extra_args | default ([]) +%}
@@ -190,7 +191,7 @@
         memory: 7Gi
     persistence:
       enabled: true
-      size: 50Gi
+      size: 250Gi
     initContainers:
     - name: init-genesis
       image: alpine:latest
