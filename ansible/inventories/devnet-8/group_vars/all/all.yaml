@@ -34,7 +34,7 @@ ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-genera
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 7011893058
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('dencun-', '') }}"
-ethereum_genesis_timestamp: 1234567890
+ethereum_genesis_timestamp: 1692007140
 ethereum_genesis_timedelay: 60
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -50,7 +50,7 @@ ethereum_genesis_generator_config_files:
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
     export CL_EXEC_BLOCK="0"
     export DEPOSIT_CONTRACT_BLOCK="0x0000000000000000000000000000000000000000000000000000000000000000"
-    export NUMBER_OF_VALIDATORS=880
+    export NUMBER_OF_VALIDATORS=140
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
