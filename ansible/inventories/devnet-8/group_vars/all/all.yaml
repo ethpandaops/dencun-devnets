@@ -30,7 +30,7 @@ ethstats_secret: "{{ secret_ethstats }}"
 #  ╚═╝░░╚═╝░╚════╝░╚══════╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
 # role: ethpandaops.general.ethereum_genesis
-ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:1.3.1"
+ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:1.3.2"
 ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_image.split(':')[-1] }}"
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 7011893058
