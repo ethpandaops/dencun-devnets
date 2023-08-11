@@ -1,17 +1,18 @@
 default_ethereum_client_images:
-  # Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:deneb-free-blobs # NOT YET UPDATED
-  lodestar: chainsafe/lodestar:unsafe # Ready for devnet 8
-  nimbus: ethpandaops/nimbus:unstable # NOT YET UPDATED
-  prysm: ethpandaops/prysm:deneb-devnet7-e60b3bb # NOT YET UPDATED
-  prysm_validator: ethpandaops/prysm-validator:deneb-devnet7-e60b3bb # NOT YET UPDATED
-  teku: consensys/teku:23.6.1 # NOT YET UPDATED
-  # Execution layer clients
-  besu: ethpandaops/besu:4844-devnet-5b-ee00538 # NOT YET UPDATED
-  geth: ethpandaops/geth:deneb-devnet-8 # Ready
-  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # Not ready
-  ethereumjs: ethpandaops/ethereumjs:master # Ready for devnet 8
-  nethermind: nethermindeth/nethermind:eip-4844-v6-36 # NOT YET UPDATED
+### Consensus layer clients
+  lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
+  lodestar: ethpandaops/lodestar:unstable # :heavy_check_mark:
+  nimbus: ethpandaops/nimbus:unstable # :exclamation:
+  prysm: ethpandaops/prysm:dencun-devnet-8 # :heavy_check_mark:
+  prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8 # :heavy_check_mark:
+  teku: consensys/teku:develop # :exclamation: wrong parentBeaconBlockRoot
+### Execution layer clients
+  besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
+  geth: ethpandaops/geth:deneb-devnet-8 # :heavy_check_mark:
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
+  ethereumjs: ethpandaops/ethereumjs:master # :heavy_check_mark:
+  nethermind: nethermindeth/nethermind:eip-4844-v6-36 # :exclamation:
+
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.60
