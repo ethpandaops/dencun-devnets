@@ -12,6 +12,7 @@ default_ethereum_client_images:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
   ethereumjs: ethpandaops/ethereumjs:master # :heavy_check_mark:
   nethermind: nethermindeth/nethermind:eip-4844-v6-36 # :exclamation:
+  reth: ethpandaops/reth:main # :exclamation:
 
 
 default_tooling_images:
