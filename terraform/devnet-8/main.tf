@@ -59,16 +59,16 @@ variable "digitalocean_ssh_key_name" {
 
 variable "regions" {
   default = [
-    "nyc1",
-    "sgp1",
-    "lon1",
-    "nyc3",
+    # "nyc1",
+    # "sgp1",
+    # "lon1",
+    # "nyc3",
     "ams3",
-    "fra1",
-    "tor1",
-    "blr1",
-    "sfo3",
-    "syd1"
+    # "fra1",
+    # "tor1",
+    # "blr1",
+    # "sfo3",
+    # "syd1"
   ]
 }
 
@@ -85,28 +85,28 @@ locals {
     var.bootnode,
     var.lighthouse_geth,
     var.lighthouse_nethermind,
-    var.lighthouse_erigon,
-    var.lighthouse_besu,
+    #var.lighthouse_erigon,
+    #var.lighthouse_besu,
     var.lighthouse_ethereumjs,
     var.prysm_geth,
     var.prysm_nethermind,
-    var.prysm_erigon,
-    var.prysm_besu,
+    #var.prysm_erigon,
+    #var.prysm_besu,
     var.prysm_ethereumjs,
     var.lodestar_geth,
     var.lodestar_nethermind,
-    var.lodestar_erigon,
-    var.lodestar_besu,
+    #var.lodestar_erigon,
+    #var.lodestar_besu,
     var.lodestar_ethereumjs,
     var.nimbus_geth,
     var.nimbus_nethermind,
-    var.nimbus_erigon,
-    var.nimbus_besu,
+    #var.nimbus_erigon,
+    #var.nimbus_besu,
     var.nimbus_ethereumjs,
     var.teku_geth,
     var.teku_nethermind,
-    var.teku_erigon,
-    var.teku_besu,
+    #var.teku_erigon,
+    #var.teku_besu,
     var.teku_ethereumjs
   ]
 }
@@ -143,7 +143,7 @@ locals {
 
 locals {
   digitalocean_default_region = "ams3"
-  digitalocean_default_size   = "c-16"
+  digitalocean_default_size   = "s-2vcpu-8gb-amd"
   digitalocean_default_image  = "debian-11-x64"
   digitalocean_global_tags = [
     "Owner:Devops",
