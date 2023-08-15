@@ -22,6 +22,7 @@ validator_bls_sync_files:
 ethereum_node_cl: teku
 
 # role: ethpandaops.general.teku
+teku_container_name: beacon
 teku_container_image: "{{ default_ethereum_client_images.teku }}"
 teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"

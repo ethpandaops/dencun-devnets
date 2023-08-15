@@ -3,34 +3,34 @@
     - role: ethpandaops.general.ethereum_genesis
       tags: [ethereum_genesis]
 
-- import_playbook: ethpandaops.general.bootstrap_server
-  vars:
-    target: "all:!localhost"
-  tags: [init-server, bootstrap]
+# - import_playbook: ethpandaops.general.bootstrap_server
+#   vars:
+#     target: "all:!localhost"
+#   tags: [init-server, bootstrap]
 
-- hosts: all:!localhost
-  serial: "{{ batch_count | default('100%') }}"
-  become: true
-  roles:
-    # - role: robertdebock.fail2ban
-    #   tags: [init-server, fail2ban]
-    - role: geerlingguy.docker
-      tags: [init-server, docker]
-    - role: geerlingguy.pip
-      pip_install_packages:
-        - name: docker
-        - name: docker-compose
-      tags: [init-server, pip]
-    - role: ethpandaops.general.docker_cleanup
-      tags: [init-server, docker_cleanup]
-    - role: ethpandaops.general.docker_network
-      tags: [init-server, docker_network]
-    - role: ethpandaops.general.node_exporter
-      tags: [init-server, node_exporter]
-    - role: ethpandaops.general.prometheus
-      tags: [init-server, prometheus]
-    - role: ethpandaops.general.vector
-      tags: [init-server, vector]
+# - hosts: all:!localhost
+#   serial: "{{ batch_count | default('100%') }}"
+#   become: true
+#   roles:
+#     # - role: robertdebock.fail2ban
+#     #   tags: [init-server, fail2ban]
+#     - role: geerlingguy.docker
+#       tags: [init-server, docker]
+#     - role: geerlingguy.pip
+#       pip_install_packages:
+#         - name: docker
+#         - name: docker-compose
+#       tags: [init-server, pip]
+#     - role: ethpandaops.general.docker_cleanup
+#       tags: [init-server, docker_cleanup]
+#     - role: ethpandaops.general.docker_network
+#       tags: [init-server, docker_network]
+#     - role: ethpandaops.general.node_exporter
+#       tags: [init-server, node_exporter]
+#     - role: ethpandaops.general.prometheus
+#       tags: [init-server, prometheus]
+#     - role: ethpandaops.general.vector
+#       tags: [init-server, vector]
 
 - hosts: bootnode
   become: true

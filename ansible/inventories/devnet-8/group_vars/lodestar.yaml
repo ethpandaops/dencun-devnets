@@ -24,6 +24,7 @@ validator_bls_sync_files:
 ethereum_node_cl: lodestar
 
 # role: ethpandaops.general.lodestar
+lodestar_container_name: beacon
 lodestar_container_image: "{{ default_ethereum_client_images.lodestar }}"
 lodestar_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
@@ -42,6 +43,8 @@ lodestar_container_command_extra_args:
   - --nat=true
   #- --chain.trustedSetup=/network-config/trusted_setup.txt
   #- --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.dencun-devnet-7.ethpandaops.io
+
+lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"

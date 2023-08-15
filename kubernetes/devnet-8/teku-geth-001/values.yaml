@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,f8b6547 2023/07/21 11:50
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,278d968 2023/08/10 16:35
 
 teku-geth-001:
   global:
@@ -16,23 +16,119 @@ teku-geth-001:
         dencun-devnet-8:
           execution:
             besu:
+              - --genesis-file=/data/network-config/besu.json
+              - --bootnodes=enode://5ca87f731099c0dfaf95962f69d4f67a65974e70ff8d1fb9a03f74cdc8551c986ace70b11cd370ebad3e7f9491a27be2e29b2922249c6807ec516e9ae344b107@178.128.254.170:30303?discport=30303
+              - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
+              - --sync-mode=FULL
+              - --data-storage-format=BONSAI
+              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io:443
+              - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
+              - --Xfilter-on-enr-fork-id=true
             nethermind:
+              - --Init.ChainSpecPath=/data/network-config/chainspec.json
+              - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+              - --Discovery.Bootnodes=enode://5ca87f731099c0dfaf95962f69d4f67a65974e70ff8d1fb9a03f74cdc8551c986ace70b11cd370ebad3e7f9491a27be2e29b2922249c6807ec516e9ae344b107@178.128.254.170:30303?discport=30303
+              - --Init.IsMining=false
+              - --Pruning.Mode=None
+              - --config=none.cfg
+              - --EthStats.Enabled=true
+              - --EthStats.Name=k8s-teku-geth-001
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>
+              - --EthStats.Server=wss://ethstats.dencun-devnet-8.ethpandaops.io/api/
+              - --log=INFO
             geth:
+              - --http.api=eth,net,web3,debug,admin
+              - --http.vhosts=*
+              - --networkid=7011893058
+              - --syncmode=full
+              - --bootnodes=enode://5ca87f731099c0dfaf95962f69d4f67a65974e70ff8d1fb9a03f74cdc8551c986ace70b11cd370ebad3e7f9491a27be2e29b2922249c6807ec516e9ae344b107@178.128.254.170:30303?discport=30303
+              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
             erigon:
+              - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
+              - --http.vhosts=*
+              - --ws
+              - --prune=htc
+              - --networkid=7011893058
+              - --db.size.limit=100GB
+              - --bootnodes=enode://5ca87f731099c0dfaf95962f69d4f67a65974e70ff8d1fb9a03f74cdc8551c986ace70b11cd370ebad3e7f9491a27be2e29b2922249c6807ec516e9ae344b107@178.128.254.170:30303?discport=30303
+              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
             ethereumjs:
+              - --gethGenesis=/data/network-config/genesis.json
+              - --bootnodes=enode://5ca87f731099c0dfaf95962f69d4f67a65974e70ff8d1fb9a03f74cdc8551c986ace70b11cd370ebad3e7f9491a27be2e29b2922249c6807ec516e9ae344b107@178.128.254.170:30303?discport=30303
+              - --sync=full
+              - --maxPeers=75
+              - --isSingleNode=true
+              - --logLevel=debug
           consensus:
             lodestar:
+              - --paramsFile=/data/network-config/config.yaml
+              - --genesisStateFile=/data/network-config/genesis.ssz
+              - --bootnodes=enr:-Iq4QAQn8QN2V5ez_LGOoRMlMgZInFyedEjC6U08fFtqWjNpfxC_hPK5VQexJXzSkOv9orNUz-4JoT1p1Aq0yRbi9ryGAYn4j6-4gmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QFIwYYkcYbgcwx2xmlcBXdm7S1f2Cz8V1AsJVADNgvoLdQ_LXk4yyhEDnk2itXP8t0sLEspGL4hR7WJtLm81EIUEh2F0dG5ldHOIAAAAAAAAAAOEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQJNbPp-KThslCDURjda9C03At0XxWvhObEx6tvxMLuP6IN0Y3CCIyiDdWRwgiMo
+              - --rest.namespace="*"
+              - --network.connectToDiscv5Bootnodes
+              - --nat=true
             teku:
+              - --network=/data/network-config/config.yaml
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --initial-state=/data/network-config/genesis.ssz
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --p2p-discovery-bootnodes=enr:-Iq4QAQn8QN2V5ez_LGOoRMlMgZInFyedEjC6U08fFtqWjNpfxC_hPK5VQexJXzSkOv9orNUz-4JoT1p1Aq0yRbi9ryGAYn4j6-4gmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QFIwYYkcYbgcwx2xmlcBXdm7S1f2Cz8V1AsJVADNgvoLdQ_LXk4yyhEDnk2itXP8t0sLEspGL4hR7WJtLm81EIUEh2F0dG5ldHOIAAAAAAAAAAOEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQJNbPp-KThslCDURjda9C03At0XxWvhObEx6tvxMLuP6IN0Y3CCIyiDdWRwgiMo
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --p2p-peer-upper-bound=100
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --data-storage-non-canonical-blocks-enabled=true
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --data-storage-mode=PRUNE
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --validators-graffiti=teku/reth
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --logging=info
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --Xlog-include-p2p-warnings-enabled
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --metrics-block-timing-tracking-enabled
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --Xmetrics-blob-sidecars-storage-enabled=true
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --Xtrusted-setup=/data/network-config/trusted_setup.txt
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --Xpeer-rate-limit=100000
+              - --Xepochs-store-blobs=max # Keep the blobs forever
+              - --Xpeer-request-limit=1000
+              - --Xepochs-store-blobs=max # Keep the blobs forever
             prysm:
+              - --grpc-gateway-corsdomain=*
+              - --chain-config-file=/data/network-config/config.yaml
+              - --genesis-state=/data/network-config/genesis.ssz
+              - --contract-deployment-block=0
+              - --min-sync-peers=1
+              - --pprof
+              - --enable-debug-rpc-endpoints
+              - --verbosity=debug
+              - --subscribe-all-subnets
+              - --bootstrap-node=enr:-Iq4QAQn8QN2V5ez_LGOoRMlMgZInFyedEjC6U08fFtqWjNpfxC_hPK5VQexJXzSkOv9orNUz-4JoT1p1Aq0yRbi9ryGAYn4j6-4gmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
+              - --bootstrap-node=enr:-LK4QFIwYYkcYbgcwx2xmlcBXdm7S1f2Cz8V1AsJVADNgvoLdQ_LXk4yyhEDnk2itXP8t0sLEspGL4hR7WJtLm81EIUEh2F0dG5ldHOIAAAAAAAAAAOEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQJNbPp-KThslCDURjda9C03At0XxWvhObEx6tvxMLuP6IN0Y3CCIyiDdWRwgiMo
             lighthouse:
+              - --testnet-dir=/data/network-config
+              - --boot-nodes=enr:-Iq4QAQn8QN2V5ez_LGOoRMlMgZInFyedEjC6U08fFtqWjNpfxC_hPK5VQexJXzSkOv9orNUz-4JoT1p1Aq0yRbi9ryGAYn4j6-4gmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QFIwYYkcYbgcwx2xmlcBXdm7S1f2Cz8V1AsJVADNgvoLdQ_LXk4yyhEDnk2itXP8t0sLEspGL4hR7WJtLm81EIUEh2F0dG5ldHOIAAAAAAAAAAOEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQJNbPp-KThslCDURjda9C03At0XxWvhObEx6tvxMLuP6IN0Y3CCIyiDdWRwgiMo
+              - --self-limiter=blob_sidecars_by_range:512/10
+              - --debug-level=debug
             nimbus:
+              - --network=/data/network-config
+              - --validator-monitor-auto=false
+              - --doppelganger-detection=off
+              - --log-level=DEBUG
+              - --light-client-data-serve=false
+              - --graffiti=teku/reth
+              - --bootstrap-node=enr:-Iq4QAQn8QN2V5ez_LGOoRMlMgZInFyedEjC6U08fFtqWjNpfxC_hPK5VQexJXzSkOv9orNUz-4JoT1p1Aq0yRbi9ryGAYn4j6-4gmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
+              - --bootstrap-node=enr:-LK4QFIwYYkcYbgcwx2xmlcBXdm7S1f2Cz8V1AsJVADNgvoLdQ_LXk4yyhEDnk2itXP8t0sLEspGL4hR7WJtLm81EIUEh2F0dG5ldHOIAAAAAAAAAAOEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhLKA_qqJc2VjcDI1NmsxoQJNbPp-KThslCDURjda9C03At0XxWvhObEx6tvxMLuP6IN0Y3CCIyiDdWRwgiMo
 
   geth:
     enabled: true
     fullnameOverride: geth-teku-001
     image:
       repository: ethpandaops/geth
-      tag: 4844-devnet-6-e03b5ad
+      tag: dencun-devnet-8-946a2da
       pullPolicy: Always
     p2pNodePort:
       enabled: false
@@ -90,7 +186,7 @@ teku-geth-001:
           - name: storage
             mountPath: "/data"
       - name: init-genesis
-        image: ethpandaops/geth:4844-devnet-6-e03b5ad
+        image: ethpandaops/geth:dencun-devnet-8-946a2da
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: false
@@ -116,7 +212,7 @@ teku-geth-001:
     fullnameOverride: teku-geth-001
     image:
       repository: consensys/teku
-      tag: 23.6.1
+      tag: develop
       pullPolicy: Always
     mode: "beacon"
     p2pNodePort:
@@ -138,7 +234,7 @@ teku-geth-001:
         memory: 7Gi
     persistence:
       enabled: true
-      size: 50Gi
+      size: 250Gi
     initContainers:
     - name: init-genesis
       image: alpine:latest

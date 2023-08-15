@@ -21,7 +21,7 @@ validator_bls_sync_files:
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: nimbus
-
+nimbus_container_name: beacon
 # role: ethpandaops.general.nimbus
 # Checkpointsync
 nimbus_checkpoint_sync_enabled: false

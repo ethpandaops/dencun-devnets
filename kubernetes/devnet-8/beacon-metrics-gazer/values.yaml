@@ -3,7 +3,7 @@
 beacon-metrics-gazer:
   image:
     repository: dapplion/beacon-metrics-gazer
-    tag: v0.1.3
+    tag: latest
   fullnameOverride: beacon-metrics-gazer
   resources:
     requests:

@@ -38,6 +38,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
 ethereum_node_el: geth
 
 # role: ethpandaops.general.geth
+geth_container_name: execution
 geth_container_image: "{{ default_ethereum_client_images.geth }}"
 geth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
@@ -48,7 +49,6 @@ geth_container_command_extra_args:
   - --http.vhosts=*
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
@@ -78,6 +78,7 @@ validator_bls_sync_files:
 ethereum_node_cl: teku
 
 # role: ethpandaops.general.teku
+teku_container_name: beacon
 teku_container_image: "{{ default_ethereum_client_images.teku }}"
 teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
@@ -91,11 +92,10 @@ teku_container_volumes:
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
   - --initial-state=/network-config/genesis.ssz
-  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
   - --data-storage-mode=PRUNE
-  - --validators-graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+  - --validators-graffiti=bootnode-{{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --logging=info
   - --Xlog-include-p2p-warnings-enabled
   - --metrics-block-timing-tracking-enabled

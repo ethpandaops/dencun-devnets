@@ -9,6 +9,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
 ethereum_node_el: geth
 
 # role: ethpandaops.general.geth
+geth_container_name: execution
 geth_container_image: "{{ default_ethereum_client_images.geth }}"
 geth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"

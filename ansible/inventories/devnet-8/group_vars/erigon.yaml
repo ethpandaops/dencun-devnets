@@ -7,6 +7,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
 ethereum_node_el: erigon
 
 # role: ethpandaops.general.erigon
+erigon_container_name: execution
 erigon_container_image: "{{ default_ethereum_client_images.erigon }}"
 erigon_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"

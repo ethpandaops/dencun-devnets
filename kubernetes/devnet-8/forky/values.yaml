@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forky.yaml.j2,6be50ca 2023/07/19 13:22
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forky.yaml.j2,0f6d20a 2023/08/10 10:56
 
 forky:
   fullnameOverride: forky
@@ -26,7 +26,7 @@ forky:
       addr: ":9090"
       enabled: true
     forky:
-      retention_period: "60m"
+      retention_period: "1m"
       store:
         type: memory
       indexer:
@@ -38,5 +38,85 @@ forky:
           spec:
             seconds_per_slot: 12
             slots_per_epoch: 32
-            genesis_time: 1234567950
+            genesis_time: 1692099060
       sources:
+        - name: bootnode-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lighthouse-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lighthouse-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lighthouse-nethermind-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lodestar-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lodestar-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: lodestar-nethermind-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-nethermind-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: prysm-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: prysm-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: prysm-nethermind-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: teku-ethereumjs-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: teku-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"
+        - name: teku-nethermind-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"

@@ -9,6 +9,9 @@ bootstrap_default_user_authorized_keys_github_team_el:
 ethereum_node_el: ethereumjs
 
 # role: ethpandaops.general.ethereumjs
+ethereum_node_fact_discovery_el_enode_cmd:
+  ethereumjs: cat /data/ethereumjs/genesis/rlpx
+ethereumjs_container_name: execution
 ethereumjs_container_image: "{{ default_ethereum_client_images.ethereumjs }}"
 ethereumjs_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
@@ -25,4 +28,6 @@ ethereumjs_container_command_extra_args:
   - --maxPeers=75
   - --isSingleNode=true
   - --logLevel=debug
+
+
   #- --trustedSetup=/network-config/trusted_setup.txt
