@@ -1,17 +1,17 @@
 default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
-  lodestar: ethpandaops/lodestar:unstable # :heavy_check_mark:
-  nimbus: ethpandaops/nimbus:unstable # :exclamation:
-  prysm: ethpandaops/prysm:dencun-devnet-8 # :heavy_check_mark:
-  prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8 # :heavy_check_mark:
-  teku: consensys/teku:develop # :exclamation: wrong parentBeaconBlockRoot
+  lodestar: chainsafe/lodestar:next # :heavy_check_mark:
+  nimbus: ethpandaops/nimbus:unstable-6de3c49 # :exclamation:
+  prysm: ethpandaops/prysm:dencun-devnet-8-0e81971 # :heavy_check_mark:
+  prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8-0e81971 # :heavy_check_mark:
+  teku: consensys/teku:develop # :exclamation:
 ### Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
-  geth: ethpandaops/geth:deneb-devnet-8 # :heavy_check_mark:
+  geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
-  ethereumjs: ethpandaops/ethereumjs:master # :heavy_check_mark:
-  nethermind: nethermindeth/nethermind:eip-4844-v6-36 # :exclamation:
+  ethereumjs: ethpandaops/ethereumjs:master-e6dc9db # :heavy_check_mark:
+  nethermind: ethpandaops/nethermind:cancun-4d80576 # :exclamation:
   reth: ethpandaops/reth:main # :exclamation:
 
 
