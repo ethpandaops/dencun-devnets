@@ -27,32 +27,32 @@ variable "lighthouse_nethermind" {
   }
 }
 
-variable "lighthouse_besu" {
-  default = {
-    name            = "lighthouse-besu"
-    count           = 1
-    validator_start = 20
-    validator_end   = 24
-  }
-}
+# variable "lighthouse_besu" {
+#   default = {
+#     name            = "lighthouse-besu"
+#     count           = 1
+#     validator_start = 20
+#     validator_end   = 24
+#   }
+# }
 
 variable "lighthouse_ethereumjs" {
   default = {
     name            = "lighthouse-ethereumjs"
     count           = 1
-    validator_start = 24
-    validator_end   = 26
-  }
-}
-
-variable "lighthouse_erigon" {
-  default = {
-    name            = "lighthouse-erigon"
-    count           = 1
-    validator_start = 26
+    validator_start = 20
     validator_end   = 28
   }
 }
+
+# variable "lighthouse_erigon" {
+#   default = {
+#     name            = "lighthouse-erigon"
+#     count           = 1
+#     validator_start = 26
+#     validator_end   = 28
+#   }
+# }
 
 # Prysm
 variable "prysm_geth" {
@@ -73,32 +73,32 @@ variable "prysm_nethermind" {
   }
 }
 
-variable "prysm_besu" {
-  default = {
-    name            = "prysm-besu"
-    count           = 1
-    validator_start = 48
-    validator_end   = 52
-  }
-}
+# variable "prysm_besu" {
+#   default = {
+#     name            = "prysm-besu"
+#     count           = 1
+#     validator_start = 48
+#     validator_end   = 52
+#   }
+# }
 
 variable "prysm_ethereumjs" {
   default = {
     name            = "prysm-ethereumjs"
     count           = 1
-    validator_start = 52
-    validator_end   = 54
-  }
-}
-
-variable "prysm_erigon" {
-  default = {
-    name            = "prysm-erigon"
-    count           = 1
-    validator_start = 54
+    validator_start = 48
     validator_end   = 56
   }
 }
+
+# variable "prysm_erigon" {
+#   default = {
+#     name            = "prysm-erigon"
+#     count           = 1
+#     validator_start = 54
+#     validator_end   = 56
+#   }
+# }
 
 # Lodestar
 variable "lodestar_geth" {
@@ -119,32 +119,32 @@ variable "lodestar_nethermind" {
   }
 }
 
-variable "lodestar_besu" {
-  default = {
-    name            = "lodestar-besu"
-    count           = 1
-    validator_start = 76
-    validator_end   = 80
-  }
-}
+# variable "lodestar_besu" {
+#   default = {
+#     name            = "lodestar-besu"
+#     count           = 1
+#     validator_start = 76
+#     validator_end   = 80
+#   }
+# }
 
 variable "lodestar_ethereumjs" {
   default = {
     name            = "lodestar-ethereumjs"
     count           = 1
     validator_start = 80
-    validator_end   = 82
-  }
-}
-
-variable "lodestar_erigon" {
-  default = {
-    name            = "lodestar-erigon"
-    count           = 1
-    validator_start = 82
     validator_end   = 84
   }
 }
+
+# variable "lodestar_erigon" {
+#   default = {
+#     name            = "lodestar-erigon"
+#     count           = 1
+#     validator_start = 82
+#     validator_end   = 84
+#   }
+# }
 
 # Teku
 variable "teku_geth" {
@@ -152,7 +152,7 @@ variable "teku_geth" {
     name            = "teku-geth"
     count           = 1
     validator_start = 84
-    validator_end   = 94
+    validator_end   = 114
   }
 }
 
@@ -160,37 +160,37 @@ variable "teku_nethermind" {
   default = {
     name            = "teku-nethermind"
     count           = 1
-    validator_start = 94
-    validator_end   = 104
+    validator_start = 114
+    validator_end   = 134
   }
 }
 
-variable "teku_besu" {
-  default = {
-    name            = "teku-besu"
-    count           = 1
-    validator_start = 104
-    validator_end   = 108
-  }
-}
+# variable "teku_besu" {
+#   default = {
+#     name            = "teku-besu"
+#     count           = 1
+#     validator_start = 104
+#     validator_end   = 108
+#   }
+#}
 
 variable "teku_ethereumjs" {
   default = {
     name            = "teku-ethereumjs"
     count           = 1
-    validator_start = 108
-    validator_end   = 110
+    validator_start = 134
+    validator_end   = 140
   }
 }
 
-variable "teku_erigon" {
-  default = {
-    name            = "teku-erigon"
-    count           = 1
-    validator_start = 110
-    validator_end   = 112
-  }
-}
+# variable "teku_erigon" {
+#   default = {
+#     name            = "teku-erigon"
+#     count           = 1
+#     validator_start = 110
+#     validator_end   = 112
+#   }
+# }
 
 
 # Nimbus
@@ -198,8 +198,8 @@ variable "nimbus_geth" {
   default = {
     name            = "nimbus-geth"
     count           = 1
-    validator_start = 112
-    validator_end   = 122
+    validator_start = 140
+    validator_end   = 142
   }
 }
 
@@ -207,34 +207,34 @@ variable "nimbus_nethermind" {
   default = {
     name            = "nimbus-nethermind"
     count           = 1
-    validator_start = 122
-    validator_end   = 132
+    validator_start = 142
+    validator_end   = 144
   }
 }
 
-variable "nimbus_besu" {
-  default = {
-    name            = "nimbus-besu"
-    count           = 1
-    validator_start = 132
-    validator_end   = 136
-  }
-}
+# variable "nimbus_besu" {
+#   default = {
+#     name            = "nimbus-besu"
+#     count           = 1
+#     validator_start = 132
+#     validator_end   = 136
+#   }
+# }
 
 variable "nimbus_ethereumjs" {
   default = {
     name            = "nimbus-ethereumjs"
     count           = 1
-    validator_start = 136
-    validator_end   = 138
+    validator_start = 144
+    validator_end   = 146
   }
 }
 
-variable "nimbus_erigon" {
-  default = {
-    name            = "nimbus-erigon"
-    count           = 1
-    validator_start = 138
-    validator_end   = 140
-  }
-}
+# variable "nimbus_erigon" {
+#   default = {
+#     name            = "nimbus-erigon"
+#     count           = 1
+#     validator_start = 138
+#     validator_end   = 140
+#   }
+# }
