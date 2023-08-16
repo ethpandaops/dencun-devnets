@@ -37,7 +37,7 @@ teku-geth-001:
               - --EthStats.Server=wss://ethstats.dencun-devnet-8.ethpandaops.io/api/
               - --log=INFO
             geth:
-              - --http.api=eth,net,web3,debug,admin
+              - --http.api=eth,net,web3,debug,admin,txpool
               - --http.vhosts=*
               - --networkid=7011893058
               - --syncmode=full
