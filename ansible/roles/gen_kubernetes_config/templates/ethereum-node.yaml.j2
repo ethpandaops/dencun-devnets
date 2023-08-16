@@ -10,7 +10,7 @@
     checkpointSync:
       enabled: true
       addresses:
-        {{ ethereum_network_name }}: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+        {{ ethereum_network_name }}: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.{{ ethereum_network_name }}.ethpandaops.io
     clientArgs:
       networks:
         {{ ethereum_network_name }}:
@@ -18,7 +18,7 @@
             besu:
             {%- for arg in besu_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -30,7 +30,7 @@
               {%- elif arg.startswith('--EthStats.Name=') +%}
               - --EthStats.Name=k8s-{{ item.key }}
               {%- elif arg.startswith('--EthStats.Secret=') +%}
-              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>
+              - --EthStats.Secret=<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -38,7 +38,7 @@
             geth:
             {%- for arg in geth_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -46,7 +46,7 @@
             erigon:
             {%- for arg in erigon_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.4844-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -64,6 +64,7 @@
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
+              - --Xepochs-store-blobs=max # Keep the blobs forever
             prysm:
             {%- for arg in prysm_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
@@ -88,7 +89,7 @@
       enabled: false
     persistence:
       enabled: true
-      size: 50Gi
+      size: 100Gi
     podLabels:
       network: {{ ethereum_network_name }}
       testnet: {{ ethereum_network_name }}
@@ -190,7 +191,7 @@
         memory: 7Gi
     persistence:
       enabled: true
-      size: 50Gi
+      size: 200Gi
     initContainers:
     - name: init-genesis
       image: alpine:latest

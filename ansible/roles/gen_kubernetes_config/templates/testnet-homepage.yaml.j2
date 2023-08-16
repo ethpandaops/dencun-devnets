@@ -26,13 +26,13 @@ testnet-homepage:
 
   customMarkdown: |-
     ## Network Spec
-    https://notes.ethereum.org/@ethpandaops/{{ ethereum_network_name  | replace('4844-', '')}}-specs
+    https://notes.ethereum.org/@ethpandaops/{{ ethereum_network_name  | replace('dencun-', '')}}-specs
 
     ## Ansible setup
-    https://github.com/ethpandaops/4844-testnet
+    https://github.com/ethpandaops/dencun-testnet
 
     ## Client versions
-    https://github.com/ethpandaops/4844-testnet/blob/master/ansible/inventories/{{ ethereum_network_name  | replace('4844-', '')}}/group_vars/all/images.yaml
+    https://github.com/ethpandaops/dencun-testnet/blob/master/ansible/inventories/{{ ethereum_network_name  | replace('dencun-', '')}}/group_vars/all/images.yaml
 
     ## Validator ranges
     - https://config.{{ network_subdomain }}/api/v1/nodes/validator-ranges
@@ -101,7 +101,7 @@ testnet-homepage:
         ethstatsUrl: https://ethstats.{{ network_subdomain }}
         chainName: "{{ ethereum_network_name }}"
         chainId: "{{ ethereum_genesis_chain_id }}"
-        github: https://github.com/ethpandaops/4844-testnet/tree/master/network-configs/{{ ethereum_network_name  | replace('4844-', '')}}
+        github: https://github.com/ethpandaops/dencun-testnet/tree/master/network-configs/{{ ethereum_network_name  | replace('dencun-', '')}}
       metamask:
         enabled: true
       logo:
