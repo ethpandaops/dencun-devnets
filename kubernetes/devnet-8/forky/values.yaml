@@ -38,7 +38,7 @@ forky:
           spec:
             seconds_per_slot: 12
             slots_per_epoch: 32
-            genesis_time: 1692099060
+            genesis_time: 1692182400
       sources:
         - name: bootnode-1
           type: "beacon_node"

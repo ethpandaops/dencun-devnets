@@ -63,8 +63,8 @@
             teku:
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
-              - --Xepochs-store-blobs=max # Keep the blobs forever
             {%- endfor +%}
+              - --Xepochs-store-blobs=max # Keep the blobs forever
             prysm:
             {%- for arg in prysm_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
@@ -89,7 +89,7 @@
       enabled: false
     persistence:
       enabled: true
-      size: 50Gi
+      size: 100Gi
     podLabels:
       network: {{ ethereum_network_name }}
       testnet: {{ ethereum_network_name }}
@@ -191,7 +191,7 @@
         memory: 7Gi
     persistence:
       enabled: true
-      size: 250Gi
+      size: 200Gi
     initContainers:
     - name: init-genesis
       image: alpine:latest
