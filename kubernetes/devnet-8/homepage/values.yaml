@@ -26,7 +26,7 @@ testnet-homepage:
 
   customMarkdown: |-
     ## Network Spec
-    https://notes.ethereum.org/@ethpandaops/devnet-8-specs
+    https://notes.ethereum.org/@ethpandaops/dencun-devnet-8
 
     ## Ansible setup
     https://github.com/ethpandaops/dencun-testnet

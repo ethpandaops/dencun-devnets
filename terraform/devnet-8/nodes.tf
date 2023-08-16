@@ -132,7 +132,7 @@ variable "lodestar_ethereumjs" {
   default = {
     name            = "lodestar-ethereumjs"
     count           = 1
-    validator_start = 80
+    validator_start = 76
     validator_end   = 84
   }
 }

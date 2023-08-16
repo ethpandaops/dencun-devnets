@@ -35,7 +35,7 @@ teku_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
-  - --initial-state=/network-config/genesis.ssz
+  - "{% if checkpoint_sync_enabled %}--initial-state={{ checkpoint_sync_enabled }}/eth/v2/debug/beacon/states/finalized{% else %}--initial-state=/network-config/genesis.ssz{% endif %}"
   - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true

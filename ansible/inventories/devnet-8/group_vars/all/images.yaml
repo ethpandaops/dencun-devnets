@@ -11,7 +11,7 @@ default_ethereum_client_images:
   geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
   ethereumjs: ethpandaops/ethereumjs:master-e6dc9db # :heavy_check_mark:
-  nethermind: ethpandaops/nethermind:dencun-devnet-8-83d1b00 # :heavy_check_mark:
+  nethermind: nethermindeth/nethermind:cancun # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 
 

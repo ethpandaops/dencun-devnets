@@ -21,7 +21,11 @@ ethereum_node_beacon_hostname: "bn.{{ server_fqdn }}"
 ethstats_url: "ethstats.{{ network_subdomain }}"
 ethstats_secret: "{{ secret_ethstats }}"
 
-
+### Checkpoint sync specific for Ansible & Kubernetes
+checkpoint_sync_node: teku-nethermind-1
+checkpoint_sync_enabled: false
+checkpoint_sync_address: https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.{{ checkpoint_sync_node }}.srv.{{ ethereum_network_name }}.ethpandaops.io
+checkpoint_sync_address_kube: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.{{ checkpoint_sync_node }}.srv.{{ ethereum_network_name }}.ethpandaops.io
 #  ██████╗░░█████╗░██╗░░░░░███████╗  ██╗░░░██╗░█████╗░██████╗░░██████╗
 #  ██╔══██╗██╔══██╗██║░░░░░██╔════╝  ██║░░░██║██╔══██╗██╔══██╗██╔════╝
 #  ██████╔╝██║░░██║██║░░░░░█████╗░░  ╚██╗░██╔╝███████║██████╔╝╚█████╗░
