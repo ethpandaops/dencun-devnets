@@ -41,7 +41,7 @@ lighthouse_container_volumes:
 lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
-  - --self-limiter=blob_sidecars_by_range:512/10
+  - --self-limiter=blob_sidecars_by_range:256/10
   - --debug-level=debug
 
 lighthouse_validator_container_volumes: validator

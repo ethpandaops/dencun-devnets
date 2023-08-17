@@ -59,8 +59,8 @@ variable "prysm_geth" {
   default = {
     name            = "prysm-geth"
     count           = 1
-    validator_start = 28
-    validator_end   = 38
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -68,8 +68,8 @@ variable "prysm_nethermind" {
   default = {
     name            = "prysm-nethermind"
     count           = 1
-    validator_start = 38
-    validator_end   = 48
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -86,8 +86,8 @@ variable "prysm_ethereumjs" {
   default = {
     name            = "prysm-ethereumjs"
     count           = 1
-    validator_start = 48
-    validator_end   = 56
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -153,6 +153,15 @@ variable "teku_geth" {
     count           = 1
     validator_start = 84
     validator_end   = 114
+  }
+}
+
+variable "temp_teku_geth" {
+  default = {
+    name            = "temp-teku-geth"
+    count           = 1
+    validator_start = 28
+    validator_end   = 56
   }
 }
 
