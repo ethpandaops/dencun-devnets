@@ -102,11 +102,12 @@ for arg in "${command[@]}"; do
       if [[ -z "${command[2]}" ]]; then
         echo "Please provide a slot number as the second argument, or get the latest slot"
         echo "  Example: ${0} get_slot 100"
+        # since none is provided, get latest slot
         ${0} latest_slot
         exit;
       else
         slot=${command[2]}
-        # Get the latest slot of the network
+        # Get the slot specified on the network
         get_slot=$(curl -s $bn_endpoint/eth/v2/beacon/blocks/${slot} | jq .)
         echo "$get_slot"
         exit;
