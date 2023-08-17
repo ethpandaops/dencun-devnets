@@ -10,7 +10,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
   geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
-  ethereumjs: ethpandaops/ethereumjs:master-e6dc9db # :heavy_check_mark:
+  ethereumjs: ethpandaops/ethereumjs:master-e1c1e7a # :heavy_check_mark:
   nethermind: nethermindeth/nethermind:cancun # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 

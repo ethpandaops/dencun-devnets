@@ -107,7 +107,8 @@ locals {
     var.teku_nethermind,
     #var.teku_erigon,
     #var.teku_besu,
-    var.teku_ethereumjs
+    var.teku_ethereumjs,
+    var.temp_teku_geth
   ]
 }
 

@@ -154,6 +154,6 @@ prometheus_config: |
     - job_name: "consensus_node"
       metrics_path: "/metrics"
       static_configs:
-        - targets: ["{{ ethereum_node_cl }}:{{ ethereum_node_cl_ports_metrics }}"]
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
           labels:
             instance: "{{ inventory_hostname }}"
