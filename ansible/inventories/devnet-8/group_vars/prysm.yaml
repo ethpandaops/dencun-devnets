@@ -48,8 +48,12 @@ prysm_container_command_extra_simple_args:
   - --enable-debug-rpc-endpoints
   - --verbosity=debug
   - --subscribe-all-subnets
-  - "{% if checkpoint_sync_enabled %}--checkpoint-sync-url={{ checkpoint_sync_address }}{% endif %}"
-  - "{% if checkpoint_sync_enabled %}--genesis-beacon-api-url={{ checkpoint_sync_address }}{% endif %}"
+
+prysm_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
+prysm_container_command_checkpoint_args:
+  - --checkpoint-sync-url={{ checkpoint_sync_address }}
+  - --genesis-beacon-api-url={{ checkpoint_sync_address }}
+
 prysm_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 

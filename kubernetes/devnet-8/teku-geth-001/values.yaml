@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,6a9c8aa 2023/08/16 11:51
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,367ca50 2023/08/16 16:01
 
 teku-geth-001:
   global:
@@ -37,7 +37,7 @@ teku-geth-001:
               - --EthStats.Server=wss://ethstats.dencun-devnet-8.ethpandaops.io/api/
               - --log=INFO
             geth:
-              - --http.api=eth,net,web3,debug,admin
+              - --http.api=eth,net,web3,debug,admin,txpool
               - --http.vhosts=*
               - --networkid=7011893058
               - --syncmode=full
@@ -68,7 +68,6 @@ teku-geth-001:
               - --network.connectToDiscv5Bootnodes
               - --nat=true
               - --chain.trustedSetup=/data/network-config/trusted_setup.txt
-              - 
             teku:
               - --network=/data/network-config/config.yaml
               - --initial-state=/data/network-config/genesis.ssz
@@ -95,8 +94,6 @@ teku-geth-001:
               - --enable-debug-rpc-endpoints
               - --verbosity=debug
               - --subscribe-all-subnets
-              - 
-              - 
               - --bootstrap-node=enr:-Iq4QO1muovGRR8-Okbsm6ipEw8CYs_ZP0TWlf9nelJaoVIaIDtpwiDeQlRLGcppukTWuaerLTp-tHwZJYJN3IUv-n2GAYn9uwt0gmlkgnY0gmlwhI5dg7OJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-LK4QE_oehtctXx_uR862hXr6ZnXRDvHRnm7lc0tqpd0grfRJ-mK1ocAiKDwCZTJw0RbbKqSHUW0IBdk1TJu9oikz7YEh2F0dG5ldHOIAAAAAIABAACEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhI5dg7OJc2VjcDI1NmsxoQImVFXk-j9jwl35k8ThDfk4v2e4sD5OvlCSRpISYMSpBYN0Y3CCIyiDdWRwgiMo
             lighthouse:
@@ -104,7 +101,6 @@ teku-geth-001:
               - --boot-nodes=enr:-Iq4QO1muovGRR8-Okbsm6ipEw8CYs_ZP0TWlf9nelJaoVIaIDtpwiDeQlRLGcppukTWuaerLTp-tHwZJYJN3IUv-n2GAYn9uwt0gmlkgnY0gmlwhI5dg7OJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QE_oehtctXx_uR862hXr6ZnXRDvHRnm7lc0tqpd0grfRJ-mK1ocAiKDwCZTJw0RbbKqSHUW0IBdk1TJu9oikz7YEh2F0dG5ldHOIAAAAAIABAACEZXRoMpC8NFLzQBCTlgUAAAAAAAAAgmlkgnY0gmlwhI5dg7OJc2VjcDI1NmsxoQImVFXk-j9jwl35k8ThDfk4v2e4sD5OvlCSRpISYMSpBYN0Y3CCIyiDdWRwgiMo
               - --self-limiter=blob_sidecars_by_range:512/10
               - --debug-level=debug
-              - 
             nimbus:
               - --network=/data/network-config
               - --validator-monitor-auto=false

@@ -58,11 +58,7 @@
           consensus:
             lodestar:
             {%- for arg in lodestar_container_command_extra_args | default ([]) +%}
-              {%- if checkpoint_sync_enabled | bool and arg.startswith('--checkpointSyncUrl=') +%}
-                {# Skip arguments that start with "--checkpointSyncUrl" if checkpointSync is enabled #}
-              {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
-              {%- endif +%}
             {%- endfor +%}
             teku:
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
@@ -75,19 +71,11 @@
               - --Xepochs-store-blobs=max # Keep the blobs forever
             prysm:
             {%- for arg in prysm_container_command_extra_args | default ([]) +%}
-              {%- if checkpoint_sync_enabled | bool and (arg.startswith('--checkpoint-sync-url=') or arg.startswith('--genesis-beacon-api-url=')) +%}
-                {# Skip arguments that start with "--checkpoint-sync-url=" or "--genesis-beacon-api-url=" if checkpointSync is enabled #}
-              {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
-              {%- endif +%}
             {%- endfor +%}
             lighthouse:
             {%- for arg in lighthouse_container_command_extra_args | default ([]) +%}
-              {%- if checkpoint_sync_enabled | bool and arg.startswith('--checkpoint-sync-url=') %}
-                {# Skip arguments that start with "--checkpoint-sync-url=" if checkpointSync is enabled #}
-              {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
-              {%- endif %}
             {%- endfor +%}
             nimbus:
             {%- for arg in nimbus_container_command_extra_args | default ([]) +%}

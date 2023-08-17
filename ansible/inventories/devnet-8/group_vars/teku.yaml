@@ -49,6 +49,10 @@ teku_container_command_extra_args:
   - --Xpeer-rate-limit=100000
   - --Xpeer-request-limit=1000
 
+teku_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
+teku_container_command_checkpoint_args:
+  - --initial-state={{ checkpoint_sync_enabled }}/eth/v2/debug/beacon/states/finalized
+
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"

@@ -308,7 +308,7 @@ for arg in "${command[@]}"; do
       ;;
     "send_blob")
       # Get a private key from a mnemonic
-      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/3" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
         echo "Sending a blob"

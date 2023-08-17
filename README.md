@@ -27,3 +27,11 @@ Status | Network | Links | Ansible | Terraform | Kubernetes
 We're using [asdf](https://github.com/asdf-vm/asdf) to make sure that we all use the same versions across tools. Our repositories should contain versions defined in .tools-versions.
 
 You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
+
+
+# Update all sops files
+```
+find . -type d -name "group_vars" -exec find {} -name "*.sops.yaml" \; | while read -r file; do
+    sops updatekeys "$file" -y
+done
+```

@@ -43,7 +43,11 @@ lighthouse_container_command_extra_args:
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:512/10
   - --debug-level=debug
-  - "{% if checkpoint_sync_enabled %}--checkpoint-sync-url={{ checkpoint_sync_address }}{% endif %}"
+
+lighthouse_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
+lighthouse_container_command_checkpoint_args:
+  - --checkpoint-sync-url={{ checkpoint_sync_address }}
+
 lighthouse_validator_container_volumes: validator
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"

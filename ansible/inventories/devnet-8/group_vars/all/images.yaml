@@ -5,7 +5,7 @@ default_ethereum_client_images:
   nimbus: ethpandaops/nimbus:unstable-2306263 # :heavy_check_mark:
   prysm: ethpandaops/prysm:dencun-devnet-8-2fdb790 # :heavy_check_mark:
   prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8-2fdb790 # :heavy_check_mark:
-  teku: consensys/teku:develop # :exclamation:
+  teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
   geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
