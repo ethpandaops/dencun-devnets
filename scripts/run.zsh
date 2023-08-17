@@ -22,6 +22,7 @@ print_usage() {
   echo "  latest_slot                       Get the latest slot"
   echo "  latest_slot_verbose               Get the latest slot with verbose output"
   echo "  latest_block                      Get the latest block"
+  echo "  get_slot n                        Get the slot number n [default head]"
   echo "  get_block n                       Get the block number n [default latest]"
   echo "  get_balance address               Get the balance of address - mandatory argument"
   echo "  finalized_epoch                   Get the finalized epoch"
@@ -96,6 +97,20 @@ for arg in "${command[@]}"; do
       # Get the latest block of the network
       latest_block=$(curl -s --data-raw '{"jsonrpc":"2.0","method":"eth_getBlockByNumber", "params":["latest"], "id":0}' $rpc_endpoint | jq .)
       echo "Latest Block: $latest_block"
+      ;;
+    "get_slot")
+      if [[ -z "${command[2]}" ]]; then
+        echo "Please provide a slot number as the second argument, or get the latest slot"
+        echo "  Example: ${0} get_slot 100"
+        ${0} latest_slot
+        exit;
+      else
+        slot=${command[2]}
+        # Get the latest slot of the network
+        get_slot=$(curl -s $bn_endpoint/eth/v2/beacon/blocks/${slot} | jq .)
+        echo "$get_slot"
+        exit;
+      fi
       ;;
     "get_block")
       # Get a specific block of the network
