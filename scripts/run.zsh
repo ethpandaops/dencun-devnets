@@ -1,8 +1,8 @@
 #!/bin/zsh
-node="teku-geth-1"
-network="sepolia-sf1"
+node="lighthouse-geth-1"
+network="devnet-8"
 domain="ethpandaops.io"
-prefix="4844"
+prefix="dencun"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
 sops_password=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.password')
 sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_genesis_mnemonic')
@@ -263,7 +263,7 @@ for arg in "${command[@]}"; do
         exit;
       else
         slot=${command[2]}
-        proposer_index=$(ethdo --connection=$bn_endpoint block info --blockid=$slot --json | jq -r .message.proposer_index)
+        proposer_index=$(ethdo --connection=$bn_endpoint proposer duties --slot=$slot | grep -oE '[0-9]+')
         curl -s $bootnode_endpoint/meta/api/v1/validator-ranges.json | jq .ranges | jq -r 'to_entries[] | "\(.key | split("-") | .[0]),\(.key | split("-") | .[1] | tonumber - 1),\(.value)"' > validator.csv
         declare -A validators
         while IFS="," read -r low high whose
@@ -308,7 +308,7 @@ for arg in "${command[@]}"; do
       ;;
     "send_blob")
       # Get a private key from a mnemonic
-      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/2" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/3" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
         echo "Sending a blob"

@@ -1,0 +1,72 @@
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blobscan.yaml.j2,6a9c8aa 2023/08/16 11:51
+
+blobscan:
+  fullnameOverride: blobscan
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
+  extraEnv:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?schema=public"
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: NEXT_PUBLIC_BEACON_BASE_URL
+      value: ""
+    - name: NEXT_PUBLIC_EXPLORER_BASE_URL
+      value: "https://explorer.4844-devnet-8.ethpandaops.io/"
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+    persistence:
+      enabled: true
+      size: 100Gi
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+  image:
+    repository: blossomlabs/blobscan-indexer
+    tag: latest
+    pullPolicy: Always
+  extraEnv:
+    - name: SECRET_KEY
+      value: "supersecret"
+    - name: BLOBSCAN_API_ENDPOINT
+      value: "http://blobscan-api:3001"
+    - name: EXECUTION_NODE_ENDPOINT
+      value: http://geth-teku-001:8545
+    - name: BEACON_NODE_ENDPOINT
+      value: http://teku-geth-001:5052
+
+# Blobscan API
+blobscan-api:
+  fullnameOverride: blobscan-api
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  ingress:
+    enabled: false
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan-api.dencun-devnet-8.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001

@@ -1,4 +1,4 @@
-gen_kubernetes_config_default_output_dir: ../kubernetes/{{ ethereum_network_name | replace('4844-', '') }}
+gen_kubernetes_config_default_output_dir: ../kubernetes/{{ ethereum_network_name | replace('dencun-', '') }}
 
 default_cl_endpoint: >-
   http://{{ gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_cl_ports_http_beacon | string }}
@@ -10,8 +10,8 @@ default_el_auth_endpoint: >-
   http://{{ gen_kubernetes_config_ethereum_node.el + '-' + gen_kubernetes_config_ethereum_node.cl + '-' + gen_kubernetes_config_ethereum_node.value + ':' + ethereum_node_el_ports_engine | string }}
 
 gen_kubernetes_config_ethereum_node:
-  el: nethermind
-  cl: lodestar
+  el: geth
+  cl: teku
   value: "001"
 
 gen_kubernetes_config_helm_repositories:

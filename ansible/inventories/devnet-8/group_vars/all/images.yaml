@@ -1,0 +1,32 @@
+default_ethereum_client_images:
+### Consensus layer clients
+  lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
+  lodestar: chainsafe/lodestar:next # :heavy_check_mark:
+  nimbus: ethpandaops/nimbus:unstable-2306263 # :heavy_check_mark:
+  prysm: ethpandaops/prysm:dencun-devnet-8-2fdb790 # :heavy_check_mark:
+  prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8-2fdb790 # :heavy_check_mark:
+  teku: consensys/teku:develop # :heavy_check_mark:
+### Execution layer clients
+  besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
+  geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
+  erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
+  ethereumjs: ethpandaops/ethereumjs:master-e1c1e7a # :heavy_check_mark:
+  nethermind: nethermindeth/nethermind:cancun # :heavy_check_mark:
+  reth: ethpandaops/reth:main # :exclamation:
+
+
+default_tooling_images:
+  xatu_sentry: ethpandaops/xatu:0.0.60
+  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.21.0
+  tx_fuzz: ethpandaops/tx-fuzz:1.1.0
+  forkmon: skylenet/nodemonitor:darkmode
+  forky: ethpandaops/forky:0.0.34-debian
+  fauceth: skylenet/fauceth:fix_fee_estimation
+  ethstats: skylenet/ethstats-server:poa-no-geoip
+  homepage: ethpandaops/ethereum-testnet-homepage:latest
+  checkpointz: ethpandaops/checkpointz:0.15.0
+  blockscout: blockscout/blockscout:master
+  beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
+  eth_fauceth: chainflag/eth-faucet:latest
+  blobscan: blossomlabs/blobscan:latest
+  blobscan_indexer: blossomlabs/blobscan-indexer:latest
