@@ -43,10 +43,6 @@ lodestar_container_command_extra_args:
   - --nat=true
   - --chain.trustedSetup=/network-config/trusted_setup.txt
 
-lodestar_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
-lodestar_container_command_checkpoint_args:
-  - --checkpointSyncUrl={{ checkpoint_sync_address }}
-
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"

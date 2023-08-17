@@ -10,7 +10,7 @@
     checkpointSync:
       enabled: {{ checkpoint_sync_enabled | lower }}
       addresses:
-        {{ ethereum_network_name }}: {{ checkpoint_sync_address_kube }}
+        {{ ethereum_network_name }}: {{ checkpoint_sync_url_kube }}
     clientArgs:
       networks:
         {{ ethereum_network_name }}:

@@ -49,11 +49,6 @@ prysm_container_command_extra_simple_args:
   - --verbosity=debug
   - --subscribe-all-subnets
 
-prysm_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
-prysm_container_command_checkpoint_args:
-  - --checkpoint-sync-url={{ checkpoint_sync_address }}
-  - --genesis-beacon-api-url={{ checkpoint_sync_address }}
-
 prysm_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 
