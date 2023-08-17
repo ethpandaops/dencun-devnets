@@ -8,9 +8,9 @@
       rpcEndpoint: {{ default_el_endpoint }}
       beaconEndpoint: {{ default_cl_endpoint }}
     checkpointSync:
-      enabled: true
+      enabled: {{ checkpoint_sync_enabled | lower }}
       addresses:
-        {{ ethereum_network_name }}: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.{{ ethereum_network_name }}.ethpandaops.io
+        {{ ethereum_network_name }}: {{ checkpoint_sync_url_kube }}
     clientArgs:
       networks:
         {{ ethereum_network_name }}:
@@ -18,7 +18,7 @@
             besu:
             {%- for arg in besu_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
+              - --ethstats=k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io:443
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -38,7 +38,7 @@
             geth:
             {%- for arg in geth_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              - --ethstats=k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -46,7 +46,7 @@
             erigon:
             {%- for arg in erigon_container_command_extra_args | default ([]) +%}
               {%- if arg.startswith('--ethstats=') +%}
-              - --ethstats==k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
+              - --ethstats=k8s-{{ item.key }}:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.{{ ethereum_network_name }}.ethpandaops.io
               {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
               {%- endif +%}
@@ -62,7 +62,11 @@
             {%- endfor +%}
             teku:
             {%- for arg in teku_container_command_extra_args | default ([]) +%}
+              {%- if checkpoint_sync_enabled | bool and arg.startswith('--initial-state=') +%}
+                {# Skip arguments that start with "--initial-state" if checkpointSync is enabled #}
+              {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
+              {%- endif +%}
             {%- endfor +%}
               - --Xepochs-store-blobs=max # Keep the blobs forever
             prysm:

@@ -5,13 +5,13 @@ default_ethereum_client_images:
   nimbus: ethpandaops/nimbus:unstable-2306263 # :heavy_check_mark:
   prysm: ethpandaops/prysm:dencun-devnet-8-2fdb790 # :heavy_check_mark:
   prysm_validator: ethpandaops/prysm-validator:dencun-devnet-8-2fdb790 # :heavy_check_mark:
-  teku: consensys/teku:develop # :exclamation:
+  teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
   besu: ethpandaops/besu:4844-devnet-5b-ee00538 # :exclamation:
   geth: ethpandaops/geth:dencun-devnet-8-946a2da # :heavy_check_mark:
   erigon: ethpandaops/erigon:roberto-bayardo-eip-4844-b5a7a15 # :exclamation:
   ethereumjs: ethpandaops/ethereumjs:master-e6dc9db # :heavy_check_mark:
-  nethermind: ethpandaops/nethermind:dencun-devnet-8-83d1b00 # :heavy_check_mark:
+  nethermind: nethermindeth/nethermind:cancun # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 
 

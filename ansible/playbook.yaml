@@ -101,7 +101,8 @@
   roles:
     - role: eth_inventory_web
       tags: [eth_inventory_web]
-
+    - role: ethpandaops.general.beaconlight_explorer
+      tags: [beaconlight_explorer]
 # - hosts: beaconchain_explorer
 #   become: true
 #   roles:

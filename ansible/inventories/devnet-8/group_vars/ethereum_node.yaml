@@ -3,7 +3,7 @@ ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_cl_enr'] }}"
 
 
-ethereum_el_bootnodes: 
+ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
 
 
@@ -57,6 +57,6 @@ prometheus_config: |
     - job_name: "consensus_node"
       metrics_path: "/metrics"
       static_configs:
-        - targets: ["{{ ethereum_node_cl }}:{{ ethereum_node_cl_ports_metrics }}"]
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
           labels:
             instance: "{{ inventory_hostname }}"

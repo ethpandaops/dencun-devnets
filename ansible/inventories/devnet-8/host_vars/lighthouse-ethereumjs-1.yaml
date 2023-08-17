@@ -1,0 +1,8 @@
+ethereumjs_container_command_extra_args:
+  - --gethGenesis=/network-config/genesis.json
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --sync=full
+  - --maxPeers=75
+  - --isSingleNode=true
+  - --logLevel=debug
+  - --rpcDebug

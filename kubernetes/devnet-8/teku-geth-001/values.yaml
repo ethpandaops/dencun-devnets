@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,6a9c8aa 2023/08/16 11:51
+# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,537f93a 2023/08/17 10:44
 
 teku-geth-001:
   global:
@@ -21,7 +21,7 @@ teku-geth-001:
               - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
-              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io:443
+              - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io:443
               - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
               - --Xfilter-on-enr-fork-id=true
             nethermind:
@@ -42,7 +42,7 @@ teku-geth-001:
               - --networkid=7011893058
               - --syncmode=full
               - --bootnodes=enode://37380a62c67602611b423fd34f4f6a87239158a7fe78a5d3c1073f31a6fed36107f670b4b3c4725ba383e3079864d95d50356160ad317e1d4454fd6a7afd486d@142.93.131.179:30303?discport=30303
-              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
+              - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
             erigon:
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
               - --http.vhosts=*
@@ -51,7 +51,7 @@ teku-geth-001:
               - --networkid=7011893058
               - --db.size.limit=100GB
               - --bootnodes=enode://37380a62c67602611b423fd34f4f6a87239158a7fe78a5d3c1073f31a6fed36107f670b4b3c4725ba383e3079864d95d50356160ad317e1d4454fd6a7afd486d@142.93.131.179:30303?discport=30303
-              - --ethstats==k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
+              - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-8.ethpandaops.io
             ethereumjs:
               - --gethGenesis=/data/network-config/genesis.json
               - --bootnodes=enode://37380a62c67602611b423fd34f4f6a87239158a7fe78a5d3c1073f31a6fed36107f670b4b3c4725ba383e3079864d95d50356160ad317e1d4454fd6a7afd486d@142.93.131.179:30303?discport=30303
@@ -67,6 +67,7 @@ teku-geth-001:
               - --rest.namespace="*"
               - --network.connectToDiscv5Bootnodes
               - --nat=true
+              - --chain.trustedSetup=/data/network-config/trusted_setup.txt
             teku:
               - --network=/data/network-config/config.yaml
               - --initial-state=/data/network-config/genesis.ssz

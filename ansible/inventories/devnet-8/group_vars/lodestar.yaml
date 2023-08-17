@@ -41,8 +41,7 @@ lodestar_container_command_extra_args:
   - --rest.namespace="*"
   - --network.connectToDiscv5Bootnodes
   - --nat=true
-  #- --chain.trustedSetup=/network-config/trusted_setup.txt
-  #- --checkpointSyncUrl=https://{{secret_nginx_shared_basic_auth.name}}:{{secret_nginx_shared_basic_auth.password}}@bn.teku-nethermind-1.srv.dencun-devnet-7.ethpandaops.io
+  - --chain.trustedSetup=/network-config/trusted_setup.txt
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
