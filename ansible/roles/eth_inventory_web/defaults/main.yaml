@@ -19,7 +19,7 @@ eth_inventory_web_content:
       {
         "ranges": {
           {% for k, v in ethereum_genesis_validator_keyranges.items() | sort(attribute='1.start') %}
-          "{{ v.start }}-{{ v.end }}": "{{ k }}"{% if not loop.last %},{% endif %}
+          "{{ v.start }}-{{ v.end-1 }}": "{{ k }}"{% if not loop.last %},{% endif %}
           {% endfor %}
         }
       }
