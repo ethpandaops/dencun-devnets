@@ -96,3 +96,6 @@ checkpointz:
       - name: teku-nethermind-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
         dataProvider: true
+      - name: temp-teku-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.temp-teku-geth-1.srv.dencun-devnet-8.ethpandaops.io
+        dataProvider: true

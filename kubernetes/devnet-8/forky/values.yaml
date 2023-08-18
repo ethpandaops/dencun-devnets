@@ -120,3 +120,8 @@ forky:
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
             polling_interval: "12s"
+        - name: temp-teku-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.temp-teku-geth-1.srv.dencun-devnet-8.ethpandaops.io
+            polling_interval: "12s"

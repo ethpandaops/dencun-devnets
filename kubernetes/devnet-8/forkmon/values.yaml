@@ -50,6 +50,8 @@ forkmon:
     name: teku-geth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
     name: teku-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.temp-teku-geth-1.srv.dencun-devnet-8.ethpandaops.io
+    name: temp-teku-geth-1
 
   config: |
     # How often to reload data from the nodes
