@@ -328,7 +328,7 @@ for arg in "${command[@]}"; do
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
         echo "Sending a blob"
-        blob=$(docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint 1 "$privatekey" 0x000000000000000000000000000000000000f1c1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
+        blob=$(docker run -it --rm -d --platform linux/x86_64 ghcr.io/flcl42/send-blobs:latest $rpc_endpoint 1 "$privatekey" 0x000000000000000000000000000000000000f1c1 | awk '/Result:/{print $NF}' | awk -F ':' '{print $2}')
         echo "Blob submitted with hash $blob"
         echo "Would you like to check which slot the blob was included in? (y/n)"
         read -r response
@@ -342,7 +342,7 @@ for arg in "${command[@]}"; do
         exit;
       else
         echo "Sending ${command[2]} blobs"
-        docker run --platform linux/x86_64 --rm ghcr.io/flcl42/send-blobs:latest $rpc_endpoint ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
+        docker run -it --rm -d  --platform linux/x86_64 ghcr.io/flcl42/send-blobs:latest $rpc_endpoint ${command[2]} "$privatekey" 0x000000000000000000000000000000000000f1c1
         exit;
       fi
       ;;
