@@ -67,7 +67,6 @@
               {%- else +%}
                 {%- if arg.startswith('--data-storage-mode=PRUNE') +%}
               - --data-storage-mode=ARCHIVE
-              - --data-storage-frequency=32
                 {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
                 {%- endif +%}

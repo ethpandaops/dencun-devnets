@@ -75,7 +75,6 @@ teku-geth-001:
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=ARCHIVE
-              - --data-storage-frequency=32
               - --validators-graffiti=teku/reth
               - --logging=info
               - --Xlog-include-p2p-warnings-enabled
