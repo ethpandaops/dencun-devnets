@@ -19,15 +19,6 @@ blobscan:
                 name: blobscan
                 port:
                   number: 3000
-  extraEnv:
-    - name: DATABASE_URL
-      value: "postgresql://postgres:postgres@blobscan-blobscandb:5432/blobscan?schema=public"
-    - name: SECRET_KEY
-      value: "supersecret"
-    - name: NEXT_PUBLIC_BEACON_BASE_URL
-      value: ""
-    - name: NEXT_PUBLIC_EXPLORER_BASE_URL
-      value: "https://explorer.4844-devnet-8.ethpandaops.io/"
   blobscandb:
     fullnameOverride: blobscan-blobscandb
     persistence:

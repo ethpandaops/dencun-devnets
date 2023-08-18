@@ -65,7 +65,12 @@
               {%- if checkpoint_sync_enabled | bool and arg.startswith('--initial-state=') +%}
                 {# Skip arguments that start with "--initial-state" if checkpointSync is enabled #}
               {%- else +%}
+                {%- if arg.startswith('--data-storage-mode=PRUNE') +%}
+              - --data-storage-mode=ARCHIVE
+              - --data-storage-frequency=32
+                {%- else +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
+                {%- endif +%}
               {%- endif +%}
             {%- endfor +%}
               - --Xepochs-store-blobs=max # Keep the blobs forever
@@ -81,6 +86,7 @@
             {%- for arg in nimbus_container_command_extra_args | default ([]) +%}
               - {{ arg | replace('/network-config', '/data/network-config') }}
             {%- endfor +%}
+
 
   {{ gen_kubernetes_config_ethereum_node.el }}:
     enabled: true
