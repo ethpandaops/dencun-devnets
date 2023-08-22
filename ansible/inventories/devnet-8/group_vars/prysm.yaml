@@ -20,6 +20,13 @@ validator_bls_sync_files:
     owner: prysm
     group: prysm
 
+prysm_container_ports:
+  - "127.0.0.1:{{ prysm_ports_http_beacon }}:{{ prysm_ports_http_beacon }}"
+  - "{{ prysm_ports_p2p_tcp }}:{{ prysm_ports_p2p_tcp }}"
+  - "{{ prysm_ports_p2p_udp }}:{{ prysm_ports_p2p_udp }}/udp"
+  - "127.0.0.1:{{ethereum_node_cl_ports_metrics }}:{{ ethereum_node_cl_ports_metrics }}"
+  - 0.0.0.0:6060:6060
+
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: prysm
 
@@ -45,6 +52,7 @@ prysm_container_command_extra_simple_args:
   - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --min-sync-peers=1
   - --pprof
+  - --pprofaddr=0.0.0.0
   - --enable-debug-rpc-endpoints
   - --verbosity=debug
   - --subscribe-all-subnets
