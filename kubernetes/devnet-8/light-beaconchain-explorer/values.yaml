@@ -74,3 +74,6 @@ light-beaconchain-explorer:
     name: dencun-devnet-8
     configPath: "https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml"
     validatorNamesInventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
+
+  postgresql:
+    fullnameOverride: light-beaconchain-explorer-postgresql
