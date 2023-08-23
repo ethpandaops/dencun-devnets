@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/blockscout.yaml.j2,3217385 2023/07/21 12:26
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/blockscout.yaml.j2
 
 blockscout:
   fullnameOverride: blockscout

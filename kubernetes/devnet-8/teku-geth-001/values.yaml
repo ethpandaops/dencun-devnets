@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/ethereum-node.yaml.j2,3b630b6 2023/08/18 11:09
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/ethereum-node.yaml.j2
 
 teku-geth-001:
   global:
@@ -91,6 +91,7 @@ teku-geth-001:
               - --contract-deployment-block=0
               - --min-sync-peers=1
               - --pprof
+              - --pprofaddr=0.0.0.0
               - --enable-debug-rpc-endpoints
               - --verbosity=debug
               - --subscribe-all-subnets

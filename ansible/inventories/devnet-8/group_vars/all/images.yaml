@@ -30,3 +30,4 @@ default_tooling_images:
   eth_fauceth: chainflag/eth-faucet:latest
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
+  light_beaconchain_explorer: pk910/light-beaconchain-explorer:unstable

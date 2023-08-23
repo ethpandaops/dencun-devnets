@@ -37,29 +37,29 @@
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-    - role: eth_testnet_config
-      tags: [ethereum, eth_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
       tags: [docker_nginx_proxy]
-    - role: gen_basic_auth_nginx
+    - role: ethpandaops.general.generate_basic_auth_nginx
       tags: [docker_nginx_proxy]
 
 - hosts: ethereum_node
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-    - role: eth_testnet_config
-      tags: [ethereum, eth_testnet_config]
-    - role: validator_keys
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
       tags: [docker_nginx_proxy]
-    - role: gen_basic_auth_nginx
+    - role: ethpandaops.general.generate_basic_auth_nginx
       tags: [docker_nginx_proxy]
   post_tasks:
     - name: Wait between runs
@@ -99,8 +99,8 @@
 - hosts: bootnode
   become: true
   roles:
-    - role: eth_inventory_web
-      tags: [eth_inventory_web]
+    - role: ethpandaops.general.ethereum_inventory_web
+      tags: [eth_inventory_web, ethereum_inventory_web]
     - role: ethpandaops.general.beaconlight_explorer
       tags: [beaconlight_explorer]
 # - hosts: beaconchain_explorer
@@ -117,7 +117,7 @@
 
 - hosts: localhost
   roles:
-    - role: eth_post_network_setup
-      tags: [eth_post_network_setup]
-    - role: gen_kubernetes_config
-      tags: [gen_kubernetes_config]
+    - role: ethpandaops.general.ethereum_post_network_setup
+      tags: [eth_post_network_setup, ethereum_post_network_setup]
+    - role: ethpandaops.general.generate_kubernetes_config
+      tags: [gen_kubernetes_config, generate_kubernetes_config]

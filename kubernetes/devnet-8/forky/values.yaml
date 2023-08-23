@@ -1,4 +1,4 @@
-# Ansible managed. Don't change this file manually. Template info: /roles/gen_kubernetes_config/templates/forky.yaml.j2,0f6d20a 2023/08/10 10:56
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/forky.yaml.j2
 
 forky:
   fullnameOverride: forky
