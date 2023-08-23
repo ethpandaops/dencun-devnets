@@ -70,10 +70,10 @@ light-beaconchain-explorer:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
     name: teku-nethermind-1
 
-  config:
-    name: dencun-devnet-8
-    configPath: "https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml"
-    validatorNamesInventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
+  
+  name: dencun-devnet-8
+  configPath: "https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml"
+  validatorNamesInventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
 
   postgresql:
     fullnameOverride: light-beaconchain-explorer-postgresql
