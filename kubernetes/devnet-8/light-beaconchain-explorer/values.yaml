@@ -5,6 +5,7 @@ light-beaconchain-explorer:
   image:
     repository: pk910/light-beaconchain-explorer
     tag: unstable
+    pullPolicy: Always
   ingress:
     enabled: true
     className: ingress-nginx-public
