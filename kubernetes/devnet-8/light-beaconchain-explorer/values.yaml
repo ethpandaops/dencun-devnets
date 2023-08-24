@@ -63,7 +63,7 @@ light-beaconchain-explorer:
       # CL Client RPC
       endpoints:
         {{- range .Values.endpoints }}
-          url: {{ .url | quote }}
+        - url: {{ .url | quote }}
           {{- if .name }}
           name: {{ .name | quote }}
           {{- end }}
