@@ -31,14 +31,19 @@ light-beaconchain-explorer:
     name: bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-besu-1.srv.dencun-devnet-8.ethpandaops.io
     name: lighthouse-besu-1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.srv.dencun-devnet-8.ethpandaops.io
     name: lighthouse-erigon-1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-ethereumjs-1.srv.dencun-devnet-8.ethpandaops.io
     name: lighthouse-ethereumjs-1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.srv.dencun-devnet-8.ethpandaops.io
     name: lighthouse-geth-1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.srv.dencun-devnet-8.ethpandaops.io
     name: lighthouse-nethermind-1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.srv.dencun-devnet-8.ethpandaops.io
     name: lodestar-besu-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-erigon-1.srv.dencun-devnet-8.ethpandaops.io
