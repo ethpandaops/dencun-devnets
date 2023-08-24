@@ -160,7 +160,7 @@ light-beaconchain-explorer:
     database:
       engine: "pgsql"
       pgsql:
-        host: "{{ include light-beaconchain-explorer.fullname $ }}-postgresql"
+        host: "{{ include "light-beaconchain-explorer".fullname $ }}-postgresql"
         port: 5432
         user: "{{ .Values.postgresql.auth.username }}"
         password: "{{ .Values.postgresql.auth.password }}"
