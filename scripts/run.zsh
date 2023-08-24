@@ -358,7 +358,8 @@ for arg in "${command[@]}"; do
         publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
         fork_version=$(curl -s $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')
         deposit_contract_address=$(curl -s $bn_endpoint/eth/v1/config/spec | jq -r '.data.DEPOSIT_CONTRACT_ADDRESS')
-        eth2-val-tools deposit-data --source-min=${command[2]} --source-max=${command[3]} --amount=32000000000 --fork-version=$fork_version --withdrawals-mnemonic="$sops_mnemonic" --validators-mnemonic="$sops_mnemonic" > deposits_$prefix-$network-${command[2]}_${command[3]}.txt
+        max=$(( command[3] + 1 ))
+        eth2-val-tools deposit-data --source-min=${command[2]} --source-max=$max --amount=32000000000 --fork-version=$fork_version --withdrawals-mnemonic="$sops_mnemonic" --validators-mnemonic="$sops_mnemonic" > deposits_$prefix-$network-${command[2]}_${command[3]}.txt
         # ask if you want to deposit to the network
         echo "Are you sure you want to make a deposit to the network for validators ${command[2]} to ${command[3]}? (y/n)"
         read -r response
@@ -376,8 +377,9 @@ for arg in "${command[@]}"; do
               --from="$publickey" \
               --privatekey="$privatekey"
             echo "Sent deposit for validator $account_name $pubkey"
-            sleep 2
+            sleep 3
           done < deposits_$prefix-$network-${command[2]}_${command[3]}.txt
+          exit;
         else
           echo "Exiting without depositing to the network"
           exit;
