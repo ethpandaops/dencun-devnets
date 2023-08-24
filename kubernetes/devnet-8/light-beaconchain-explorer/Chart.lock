@@ -3,4 +3,4 @@ dependencies:
   repository: file://../../../../../ethereum-helm-charts/charts/light-beaconchain-explorer
   version: 0.0.1
 digest: sha256:631391d9f5ddc873252418dde3cbad8a07d990848e8524473c5abe517a02a47f
-generated: "2023-08-24T12:37:01.166386+02:00"
+generated: "2023-08-24T12:45:56.132684+02:00"
