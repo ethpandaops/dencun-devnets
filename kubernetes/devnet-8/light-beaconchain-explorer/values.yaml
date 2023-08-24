@@ -71,7 +71,7 @@ light-beaconchain-explorer:
     name: teku-nethermind-1
 
 
-  name:  "{{ include ChartName . }}-{{ include ChartName.name . }}-{{ include ChartName.Name .}}"
+  name:  "{{ include light-beaconchain-explorer.fullname $ }}-postgresql""
   configPath: "https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
 
