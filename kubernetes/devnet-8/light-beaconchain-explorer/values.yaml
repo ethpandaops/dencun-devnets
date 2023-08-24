@@ -71,7 +71,7 @@ light-beaconchain-explorer:
     name: teku-nethermind-1
 
 
-  name:  "{{ include light-beaconchain-explorer.fullname $ }}-postgresql"
+  name:  "dencun-devnet-8"
   configPath: "https://config.dencun-devnet-8.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
 
@@ -160,7 +160,7 @@ light-beaconchain-explorer:
     database:
       engine: "pgsql"
       pgsql:
-        host: "{{ include "light-beaconchain-explorer".fullname $ }}-postgresql"
+        host: "light-beaconchain-explorer-postgresql"
         port: 5432
         user: "{{ .Values.postgresql.auth.username }}"
         password: "{{ .Values.postgresql.auth.password }}"
