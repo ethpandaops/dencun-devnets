@@ -9,8 +9,8 @@ default_ethereum_client_images:
 ### Execution layer clients
   besu: ethpandaops/besu:main-139fc12 # :heavy_check_mark:
   geth: ethpandaops/geth:lightclient-devnet-8-edf4ab3 # :heavy_check_mark:
-  erigon: ethpandaops/erigon:devel-bb2c2ad # :exclamation:
-  ethereumjs: ethpandaops/ethereumjs:master-e1c1e7a # :heavy_check_mark:
+  erigon: ethpandaops/erigon:devel-75e3ae0 # :exclamation:
+  ethereumjs: ethpandaops/ethereumjs:master-35ec012 # :heavy_check_mark:
   nethermind: nethermindeth/nethermind:cancun # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 
