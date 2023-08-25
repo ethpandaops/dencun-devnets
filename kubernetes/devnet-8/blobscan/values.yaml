@@ -6,6 +6,7 @@ blobscan:
     repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
+  NEXT_PUBLIC_NETWORK_NAME: dencun-testnet-8
   ingress:
     enabled: true
     className: ingress-nginx-public
@@ -31,15 +32,8 @@ blobscan-indexer:
     repository: blossomlabs/blobscan-indexer
     tag: latest
     pullPolicy: Always
-  extraEnv:
-    - name: SECRET_KEY
-      value: "supersecret"
-    - name: BLOBSCAN_API_ENDPOINT
-      value: "http://blobscan-api:3001"
-    - name: EXECUTION_NODE_ENDPOINT
-      value: http://geth-teku-001:8545
-    - name: BEACON_NODE_ENDPOINT
-      value: http://teku-geth-001:5052
+  EXECUTION_NODE_ENDPOINT: http://geth-teku-001:8545
+  BEACON_NODE_ENDPOINT: http://teku-geth-001:5052
 
 # Blobscan API
 blobscan-api:
@@ -48,6 +42,8 @@ blobscan-api:
     repository: blossomlabs/blobscan
     tag: latest
     pullPolicy: Always
+  BEACON_NODE_ENDPOINT: "http://teku-geth-001:5052"
+  CHAIN_ID: "7011893058"
   ingress:
     enabled: false
     className: ingress-nginx-public
