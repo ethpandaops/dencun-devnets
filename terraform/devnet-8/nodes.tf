@@ -156,15 +156,6 @@ variable "teku_geth" {
   }
 }
 
-variable "temp_teku_geth" {
-  default = {
-    name            = "temp-teku-geth"
-    count           = 1
-    validator_start = 28
-    validator_end   = 56
-  }
-}
-
 variable "teku_nethermind" {
   default = {
     name            = "teku-nethermind"

@@ -108,7 +108,6 @@ locals {
     var.teku_erigon,
     var.teku_besu,
     var.teku_ethereumjs,
-    var.temp_teku_geth
   ]
 }
 
