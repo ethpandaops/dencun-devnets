@@ -2,8 +2,8 @@ default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
   lodestar: chainsafe/lodestar:next # :heavy_check_mark:
-  nimbus: ethpandaops/nimbus:s7l # :heavy_check_mark:
-  prysm: ethpandaops/prysm:devnet8-fix-c728e09 # :exclamation:
+  nimbus: ethpandaops/nimbus:unstable-29dbab9 # :heavy_check_mark:
+  prysm: ethpandaops/prysm:devnet8-fix-c728e09 # :heavy_check_mark:
   prysm_validator: ethpandaops/prysm-validator:devnet8-fix-c728e09 # :exclamation:
   teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
