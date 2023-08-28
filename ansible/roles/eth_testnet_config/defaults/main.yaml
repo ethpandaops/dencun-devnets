@@ -1,9 +1,0 @@
-eth_testnet_config_dir: /data/ethereum-network-config
-
-eth_testnet_config_git_enabled: false
-eth_testnet_config_git_repo: https://github.com/Inphi/eip4844-testnet
-eth_testnet_config_git_version: devnet-4
-eth_testnet_config_git_update: false # Once it's cloned, it wont update anymore, unless this var is changed
-
-eth_testnet_config_local_dir_enabled: false
-eth_testnet_config_local_dir_src: "files/ethereum-network-config"

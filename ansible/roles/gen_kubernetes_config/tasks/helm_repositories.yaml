@@ -1,5 +1,0 @@
-- name: Add helm repository for {{ item.name }}
-  kubernetes.core.helm_repository:
-    name: "{{ item.name }}"
-    url: "{{ item.url }}"
-    state: present

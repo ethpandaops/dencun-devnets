@@ -1,12 +1,12 @@
 dependencies:
 - name: blobscan
-  repository: file://../../../../../blobscan-helm-charts/charts/blobscan
-  version: 0.2.7
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.9
 - name: blobscan-api
-  repository: file://../../../../../blobscan-helm-charts/charts/blobscan-api
-  version: 0.2.6
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.7
 - name: blobscan-indexer
-  repository: file://../../../../../blobscan-helm-charts/charts/blobscan-indexer
-  version: 0.2.8
-digest: sha256:5197d1cf2328c91085ce3ad5be4acf1957f53af0e8cf5eed3a4cb64a822ce016
-generated: "2023-08-25T11:44:57.687466+02:00"
+  repository: https://blobscan.github.io/blobscan-helm-charts
+  version: 0.2.9
+digest: sha256:18fcacba664c668abef5bbce2a0256023d3424043815c611dc3aa4cf4e142128
+generated: "2023-08-28T10:05:23.365555+02:00"
