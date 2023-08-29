@@ -24,7 +24,7 @@ default_tooling_images:
   fauceth: skylenet/fauceth:fix_fee_estimation
   ethstats: skylenet/ethstats-server:poa-no-geoip
   homepage: ethpandaops/ethereum-testnet-homepage:latest
-  checkpointz: ethpandaops/checkpointz:0.15.0
+  checkpointz: ethpandaops/checkpointz:0.0.3-dencun-debian
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
   eth_fauceth: chainflag/eth-faucet:latest
