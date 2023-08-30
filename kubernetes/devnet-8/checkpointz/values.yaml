@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: 0.0.3-dencun-debian
+    tag: 0.0.10-dencun-debian
 
   resources:
     requests:
