@@ -8,7 +8,7 @@ version: 0.1.0
 dependencies:
   - name: blobscan
     repository: https://blobscan.github.io/blobscan-helm-charts/
-    version: 0.2.10
+    version: 0.2.11
   - name: blobscan-api
     repository: https://blobscan.github.io/blobscan-helm-charts/
     version: 0.2.7
