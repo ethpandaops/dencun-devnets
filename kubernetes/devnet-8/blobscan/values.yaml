@@ -50,7 +50,7 @@ blobscan-api:
     BEACON_NODE_ENDPOINT: http://teku-geth-001:5052
     CHAIN_ID: "7011893058"
   ingress:
-    enabled: false
+    enabled: true
     className: ingress-nginx-public
     hosts:
       - host: blobscan-api.dencun-devnet-8.ethpandaops.io
