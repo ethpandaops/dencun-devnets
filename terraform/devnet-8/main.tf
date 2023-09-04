@@ -311,7 +311,7 @@ resource "cloudflare_record" "server_record" {
   ttl     = 120
 }
 
-resource "cloudflare_record" "server_record-short" {
+resource "cloudflare_record" "server_record_short" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
@@ -335,7 +335,7 @@ resource "cloudflare_record" "server_record_rpc" {
   ttl     = 120
 }
 
-resource "cloudflare_record" "server_record_rpc-short" {
+resource "cloudflare_record" "server_record_rpc_short" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
@@ -359,7 +359,7 @@ resource "cloudflare_record" "server_record_beacon" {
   ttl     = 120
 }
 
-resource "cloudflare_record" "server_record_beacon-short" {
+resource "cloudflare_record" "server_record_beacon_short" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }

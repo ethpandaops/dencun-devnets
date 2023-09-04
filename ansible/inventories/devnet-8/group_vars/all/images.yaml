@@ -7,10 +7,10 @@ default_ethereum_client_images:
   prysm_validator: ethpandaops/prysm-validator:devnet8-fix-c728e09 # :exclamation:
   teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
-  besu: ethpandaops/besu:main-139fc12 # :heavy_check_mark:
+  besu: ethpandaops/besu:gtrintinalia-besu-add-decode-type-to-transaction-decoder # :heavy_check_mark:
   geth: ethpandaops/geth:lightclient-devnet-8-edf4ab3 # :heavy_check_mark:
   erigon: ethpandaops/erigon:devel-75e3ae0 # :exclamation:
-  ethereumjs: ethpandaops/ethereumjs:master-35ec012 # :heavy_check_mark:
+  ethereumjs: ethpandaops/ethereumjs:master-linux-amd64-f94accb # :heavy_check_mark:
   nethermind: nethermindeth/nethermind:cancun-84d41bd # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 

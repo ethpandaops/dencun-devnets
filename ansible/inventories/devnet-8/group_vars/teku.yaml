@@ -28,14 +28,14 @@ teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
-  JAVA_OPTS: "-XX:SoftMaxHeapSize=4g -Xmx4g"
+  JAVA_OPTS: "-Xmx2500m"
 teku_container_volumes:
   - "{{ teku_datadir }}:/data"
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
-  - "{% if checkpoint_sync_enabled %}--initial-state={{ checkpoint_sync_enabled }}/eth/v2/debug/beacon/states/finalized{% else %}--initial-state=/network-config/genesis.ssz{% endif %}"
+  - --initial-state=/network-config/genesis.ssz
   - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
