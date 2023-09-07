@@ -376,7 +376,7 @@ for arg in "${command[@]}"; do
               --from="$publickey" \
               --privatekey="$privatekey"
             echo "Sent deposit for validator $account_name $pubkey"
-            sleep 3
+            sleep 5
           done < deposits_$prefix-$network-${command[2]}_${command[3]}.txt
           exit;
         else

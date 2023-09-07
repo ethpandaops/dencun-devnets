@@ -49,8 +49,8 @@ variable "lighthouse_erigon" {
   default = {
     name            = "lighthouse-erigon"
     count           = 1
-    validator_start = 0
-    validator_end   = 0
+    validator_start = 164
+    validator_end   = 168
   }
 }
 
@@ -95,8 +95,8 @@ variable "prysm_erigon" {
   default = {
     name            = "prysm-erigon"
     count           = 1
-    validator_start = 0
-    validator_end   = 0
+    validator_start = 168
+    validator_end   = 172
   }
 }
 
@@ -141,8 +141,8 @@ variable "lodestar_erigon" {
   default = {
     name            = "lodestar-erigon"
     count           = 1
-    validator_start = 0
-    validator_end   = 0
+    validator_start = 172
+    validator_end   = 176
   }
 }
 
@@ -187,8 +187,8 @@ variable "teku_erigon" {
   default = {
     name            = "teku-erigon"
     count           = 1
-    validator_start = 0
-    validator_end   = 0
+    validator_start = 176
+    validator_end   = 180
   }
 }
 
@@ -234,7 +234,7 @@ variable "nimbus_erigon" {
   default = {
     name            = "nimbus-erigon"
     count           = 1
-    validator_start = 0
-    validator_end   = 0
+    validator_start = 180
+    validator_end   = 184
   }
 }
