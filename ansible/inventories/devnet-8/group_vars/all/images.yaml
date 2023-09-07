@@ -3,8 +3,8 @@ default_ethereum_client_images:
   lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
   lodestar: chainsafe/lodestar:next # :heavy_check_mark:
   nimbus: ethpandaops/nimbus:unstable-8993d57 # :heavy_check_mark:
-  prysm: ethpandaops/prysm:devnet8-fix-efd28da # :heavy_check_mark:
-  prysm_validator: ethpandaops/prysm:devnet8-fix-efd28da # :exclamation:
+  prysm: ethpandaops/prysm:devnet8-fix-c549d15 # :heavy_check_mark:
+  prysm_validator: ethpandaops/prysm:devnet8-fix-c549d15 # :exclamation:
   teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
   besu: ethpandaops/besu:gtrintinalia-besu-add-decode-type-to-transaction-decoder # :heavy_check_mark:
@@ -24,7 +24,7 @@ default_tooling_images:
   fauceth: skylenet/fauceth:fix_fee_estimation
   ethstats: skylenet/ethstats-server:poa-no-geoip
   homepage: ethpandaops/ethereum-testnet-homepage:latest
-  checkpointz: ethpandaops/checkpointz:0.0.10-dencun-debian
+  checkpointz: ethpandaops/checkpointz:0.0.11-dencun-debian
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
   eth_fauceth: chainflag/eth-faucet:latest
