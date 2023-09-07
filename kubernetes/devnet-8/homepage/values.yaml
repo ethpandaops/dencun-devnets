@@ -94,9 +94,9 @@ testnet-homepage:
         rpcUrl: https://rpc.dencun-devnet-8.ethpandaops.io
         explorerUrl: https://explorer.dencun-devnet-8.ethpandaops.io
         forkmonUrl: https://forkmon.dencun-devnet-8.ethpandaops.io
-        beaconexplorerUrl: "WIP"
+        beaconexplorerUrl: "https://dencun-devnet-8.beaconcha.in"
         lightbeaconexplorerUrl: https://light-beaconchain-explorer.dencun-devnet-8.ethpandaops.io
-        checkpointSyncUrl: "WIP"
+        checkpointSyncUrl: "https://checkpoint-sync.dencun-devnet-8.ethpandaops.io"
         blobscanUrl: https://blobscan.com
         blobscanethpandaUrl: https://blobscan.dencun-devnet-8.ethpandaops.io
         ethstatsUrl: https://ethstats.dencun-devnet-8.ethpandaops.io
