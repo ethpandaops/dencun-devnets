@@ -53,6 +53,7 @@ rpc-proxy:
       "eth_newBlockFilter",
       "eth_newPendingTransactionFilter",
       "eth_sendRawTransaction",
+      "eth_maxPriorityFeePerGas",
       "eth_subscribe",
       "eth_syncing",
       "eth_uninstallFilter",
