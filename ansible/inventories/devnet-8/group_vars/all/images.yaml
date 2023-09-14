@@ -11,7 +11,7 @@ default_ethereum_client_images:
   geth: ethpandaops/geth:lightclient-devnet-8-edf4ab3 # :heavy_check_mark:
   erigon: ethpandaops/erigon:devel-75e3ae0 # :exclamation:
   ethereumjs: ethpandaops/ethereumjs:master-linux-amd64-f94accb # :heavy_check_mark:
-  nethermind: nethermindeth/nethermind:cancun-dc04d62 # :heavy_check_mark:
+  nethermind: nethermindeth/nethermind:cancun-bf897df # :heavy_check_mark:
   reth: ethpandaops/reth:main # :exclamation:
 
 
