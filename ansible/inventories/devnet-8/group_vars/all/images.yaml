@@ -3,11 +3,11 @@ default_ethereum_client_images:
   lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
   lodestar: chainsafe/lodestar:next # :heavy_check_mark:
   nimbus: ethpandaops/nimbus:unstable-8993d57 # :heavy_check_mark:
-  prysm: ethpandaops/prysm:develop # :heavy_check_mark:
-  prysm_validator: ethpandaops/prysm:develop # :exclamation:
+  prysm: ethpandaops/prysm:develop-8c39c55 # :heavy_check_mark:
+  prysm_validator: ethpandaops/prysm-validator:develop-8c39c55 # :exclamation:
   teku: consensys/teku:develop # :heavy_check_mark:
 ### Execution layer clients
-  besu: ethpandaops/besu:gtrintinalia-besu-add-decode-type-to-transaction-decoder # :heavy_check_mark:
+  besu: ethpandaops/besu:main-4b2ef68 # :heavy_check_mark:
   geth: ethpandaops/geth:lightclient-devnet-8-edf4ab3 # :heavy_check_mark:
   erigon: ethpandaops/erigon:devel-75e3ae0 # :exclamation:
   ethereumjs: ethpandaops/ethereumjs:master-linux-amd64-f94accb # :heavy_check_mark:
