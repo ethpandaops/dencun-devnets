@@ -1,6 +1,6 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: sigp/lighthouse:deneb-modern # :heavy_check_mark:
+  lighthouse: ethpandaops/lighthouse:devnet8-39853b4 # :heavy_check_mark:
   lodestar: chainsafe/lodestar:next # :heavy_check_mark:
   nimbus: ethpandaops/nimbus:unstable-8993d57 # :heavy_check_mark:
   prysm: ethpandaops/prysm:develop-8c39c55 # :heavy_check_mark:
