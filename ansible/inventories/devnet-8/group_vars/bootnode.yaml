@@ -105,9 +105,14 @@ teku_container_command_extra_args:
   - --Xpeer-request-limit=1000
 
 # role: ethpandaops.general.prometheus
-prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
+prometheus_remote_push_url_old: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
+prometheus_remote_write_username_old: "{{ secret_prometheus_remote_write_old.username }}"
+prometheus_remote_write_password_old: "{{ secret_prometheus_remote_write_old.password }}"
+
+prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus
 prometheus_remote_write_username: "{{ secret_prometheus_remote_write.username }}"
 prometheus_remote_write_password: "{{ secret_prometheus_remote_write.password }}"
+
 prometheus_config: |
   global:
     scrape_interval: 30s
@@ -138,11 +143,11 @@ prometheus_config: |
         max_samples_per_send: 500
         min_backoff: 50ms
         max_shards: 100
-      url: {{ prometheus_remote_push_url2 }}
+      url: {{ prometheus_remote_push_url_old }}
       remote_timeout: 10s
       basic_auth:
-        username: {{ prometheus_remote_write_username2 }}
-        password: {{ prometheus_remote_write_password2 }}
+        username: {{ prometheus_remote_write_username_old }}
+        password: {{ prometheus_remote_write_password_old }}
   scrape_configs:
     - job_name: "prometheus"
       metrics_path: "/metrics"
