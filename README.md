@@ -29,9 +29,10 @@ We're using [asdf](https://github.com/asdf-vm/asdf) to make sure that we all use
 You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
 
 
-# Update all sops files
-```
-find . -type d -name "group_vars" -exec find {} -name "*.sops.yaml" \; | while read -r file; do
+* Update all sops files
+```shell
+# Find all .sops.yaml files and update their keys
+for file in $(find . -type f -name "*.enc.yaml"); do
     sops updatekeys "$file" -y
 done
 ```
