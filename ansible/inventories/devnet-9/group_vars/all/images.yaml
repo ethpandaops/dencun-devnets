@@ -1,18 +1,18 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:devnet8-39853b4 # :heavy_check_mark:
-  lodestar: chainsafe/lodestar:next # :heavy_check_mark:
-  nimbus: ethpandaops/nimbus:unstable-8993d57 # :heavy_check_mark:
-  prysm: ethpandaops/prysm:develop-6b915ba # :heavy_check_mark:
-  prysm_validator: ethpandaops/prysm-validator:develop-6b915ba # :exclamation:
-  teku: consensys/teku:develop # :heavy_check_mark:
+  lighthouse: ethpandaops/lighthouse:deneb-free-blobs-57edc0f
+  lodestar: chainsafe/lodestar:next
+  nimbus: ethpandaops/nimbus:unstable-e9c8f82
+  prysm: ethpandaops/prysm:develop-c20f188
+  prysm_validator: ethpandaops/prysm-validator:develop-c20f188
+  teku: consensys/teku:develop
 ### Execution layer clients
-  besu: ethpandaops/besu:branchForDevnet8-6fc3ebb # :heavy_check_mark:
-  geth: ethpandaops/geth:lightclient-devnet-8-edf4ab3 # :heavy_check_mark:
-  erigon: ethpandaops/erigon:devel-7a833e5 # :exclamation:
-  ethereumjs: ethpandaops/ethereumjs:master-linux-amd64-f94accb # :heavy_check_mark:
-  nethermind: nethermindeth/nethermind:cancun-b52c14d # :heavy_check_mark:
-  reth: ethpandaops/reth:main # :exclamation:
+  besu: ethpandaops/besu:main-4f49ec9
+  geth: ethpandaops/geth:lightclient-devnet-9-ae44519
+  erigon: ethpandaops/erigon:devel-669503d
+  ethereumjs: ethpandaops/ethereumjs:master-6062850
+  nethermind: ethpandaops/nethermind:master-dc1781d
+  reth: ethpandaops/reth:main-8e9937b
 
 
 default_tooling_images:
