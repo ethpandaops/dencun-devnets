@@ -1,0 +1,213 @@
+#ansible_user: root
+
+beaconchain_explorer_remote_ethereum_node: "erigon"
+beaconchain_explorer_remote_consensus_node: "lighthouse"
+beaconchain_explorer_aio_docker_image_default: guybrush/eth-explorer:4844-1
+beaconchain_explorer_aio_url_erigon: http://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
+beaconchain_explorer_aio_url_erigon_ws: ws://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
+beaconchain_explorer_aio_url_geth: http://{{ beaconchain_explorer_remote_ethereum_node }}:{{ ethereum_node_el_ports_http_rpc }}
+beaconchain_explorer_aio_sql_init_file_url: https://raw.githubusercontent.com/gobitfly/eth2-beaconchain-explorer/master/db/migrations/20230330131622_init_database.sql
+beaconchain_explorer_aio_cleanup_all: false
+beaconchain_explorer_aio_bigtable_external_enabled: false 
+beaconchain_explorer_aio_networks: ["{{ docker_network_name }}", "beaconchain-explorer-aio_default"]
+beaconchain_frontend_config: |
+  # All config options can be found in here: https://github.com/gobitfly/eth2-beaconchain-explorer/blob/master/types/config.go
+  chain:
+    network: "{{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["CONFIG_NAME"] }}"
+    slotsPerEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["SLOTS_PER_EPOCH"] }}
+    secondsPerSlot: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["SECONDS_PER_SLOT"] }}
+    genesisTimestamp: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["MIN_GENESIS_TIME"] }}
+    mainnet: false # hide mainnet staking pool etc. info
+    minGenesisActiveValidatorCount: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["MIN_GENESIS_ACTIVE_VALIDATOR_COUNT"] }}
+    phase0path: "/custom_configs/phase0.yml"
+    altairPath: "/custom_configs/phase0.yml"
+    altairForkEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["ALTAIR_FORK_EPOCH"] }}
+    configPath: "/custom_configs/phase0.yml"
+    genesisValidatorsRoot: 0x0
+  readerDatabase:
+    name: db
+    host: beaconchain_postgres
+    port: "5432"
+    user: postgres
+    password: "pass"
+  writerDatabase:
+    name: db
+    host: beaconchain_postgres
+    port: "5432"
+    user: postgres
+    password: "pass"
+  bigtable:
+    project: explorer
+    instance: beaconchain_bigtable:9000
+  lastAttestationCachePath: "/data/lastAttestationCache"
+  eth1ErigonEndpoint: "{{ beaconchain_explorer_aio_url_erigon }}"
+  eth1GethEndpoint: "{{ beaconchain_explorer_aio_url_geth }}"
+  redisCacheEndpoint: 'beaconchain_redis:6379'
+  tieredCacheProvider: 'redis'
+  frontend:
+    siteDomain: "localhost:8080"
+    siteName: "Beaconchain Explorer"
+    siteSubtitle: "Testnet"
+    server:
+      host: '0.0.0.0' # Address to listen on
+      port: '8080' # Port to listen on
+    readerDatabase:
+      name: db
+      host: beaconchain_postgres
+      port: "5432"
+      user: postgres
+      password: "pass"
+    writerDatabase:
+      name: db
+      host: beaconchain_postgres
+      port: "5432"
+      user: postgres
+      password: "pass"
+    sessionSecret: "11111111111111111111111111111111"
+    jwtSigningSecret: "1111111111111111111111111111111111111111111111111111111111111111"
+    jwtIssuer: "localhost"
+    jwtValidityInMinutes: 30
+    maxMailsPerEmailPerDay: 10
+    mail:
+      mailgun:
+        sender: no-reply@localhost
+        domain: mg.localhost
+        privateKey: "key-11111111111111111111111111111111"
+    csrfAuthKey: '1111111111111111111111111111111111111111111111111111111111111111'
+  indexer:
+    indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
+    #updateAllEpochStatistics: true
+    #fixCanonOnStartup: true
+    #fullIndexOnStartup: true
+    #checkAllBlocksOnStartup: true
+    node:
+      host: "{{ beaconchain_explorer_remote_consensus_node }}"
+      port: "{{ ethereum_node_cl_ports_http_beacon }}"
+      type: lighthouse
+    eth1DepositContractAddress: '{{ "%#x" % (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["DEPOSIT_CONTRACT_ADDRESS"] }}'
+    eth1DepositContractFirstBlock: 0
+
+beaconchain_explorer_aio_config: |
+  # All config options can be found in here: https://github.com/gobitfly/eth2-beaconchain-explorer/blob/master/types/config.go
+  chain:
+    network: "{{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["CONFIG_NAME"] }}"
+    slotsPerEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["SLOTS_PER_EPOCH"] }}
+    secondsPerSlot: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["SECONDS_PER_SLOT"] }}
+    genesisTimestamp: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["MIN_GENESIS_TIME"] }}
+    mainnet: false # hide mainnet staking pool etc. info
+    minGenesisActiveValidatorCount: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["MIN_GENESIS_ACTIVE_VALIDATOR_COUNT"] }}
+    phase0path: "/custom_configs/phase0.yml"
+    altairPath: "/custom_configs/phase0.yml"
+    altairForkEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["ALTAIR_FORK_EPOCH"] }}
+    configPath: "/custom_configs/phase0.yml"
+    genesisValidatorsRoot: 0x0
+  readerDatabase:
+    name: db
+    host: beaconchain_postgres
+    port: "5432"
+    user: postgres
+    password: "pass"
+  writerDatabase:
+    name: db
+    host: beaconchain_postgres
+    port: "5432"
+    user: postgres
+    password: "pass"
+  bigtable:
+    project: explorer
+    instance: beaconchain_bigtable:9000
+  lastAttestationCachePath: "/data/lastAttestationCache"
+  eth1ErigonEndpoint: "{{ beaconchain_explorer_aio_url_erigon }}"
+  eth1GethEndpoint: "{{ beaconchain_explorer_aio_url_geth }}"
+  redisCacheEndpoint: 'beaconchain_redis:6379'
+  tieredCacheProvider: 'redis'
+  frontend:
+    siteDomain: "localhost:8080"
+    siteName: "Beaconchain Explorer"
+    siteSubtitle: "Testnet"
+    server:
+      host: '0.0.0.0' # Address to listen on
+      port: '8080' # Port to listen on
+    readerDatabase:
+      name: db
+      host: beaconchain_postgres
+      port: "5432"
+      user: postgres
+      password: "pass"
+    writerDatabase:
+      name: db
+      host: beaconchain_postgres
+      port: "5432"
+      user: postgres
+      password: "pass"
+    sessionSecret: "11111111111111111111111111111111"
+    jwtSigningSecret: "1111111111111111111111111111111111111111111111111111111111111111"
+    jwtIssuer: "localhost"
+    jwtValidityInMinutes: 30
+    maxMailsPerEmailPerDay: 10
+    mail:
+      mailgun:
+        sender: no-reply@localhost
+        domain: mg.localhost
+        privateKey: "key-11111111111111111111111111111111"
+    csrfAuthKey: '1111111111111111111111111111111111111111111111111111111111111111'
+  indexer:
+    enabled: true
+    indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
+    #updateAllEpochStatistics: true
+    #fixCanonOnStartup: true
+    #fullIndexOnStartup: true
+    #checkAllBlocksOnStartup: true
+    node:
+      host: "{{ beaconchain_explorer_remote_consensus_node }}"
+      port: "{{ ethereum_node_cl_ports_http_beacon }}"
+      type: lighthouse
+      pageSize: 10000
+    eth1DepositContractAddress: '{{ "%#x" % (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["DEPOSIT_CONTRACT_ADDRESS"] }}'
+    eth1DepositContractFirstBlock: 0
+  pprof:
+    enabled: true
+    port: 8082
+
+# These configs need to exist because the beaconchain explorer can't expand the 'PRESET_BASE'
+beaconchain_explorer_aio_cl_config_extra: |
+  INACTIVITY_PENALTY_QUOTIENT_ALTAIR: 50331648
+  MIN_SLASHING_PENALTY_QUOTIENT_ALTAIR: 64
+  PROPORTIONAL_SLASHING_MULTIPLIER_ALTAIR: 2
+  SYNC_COMMITTEE_SIZE: 512
+  EPOCHS_PER_SYNC_COMMITTEE_PERIOD: 256
+  MIN_SYNC_COMMITTEE_PARTICIPANTS: 1
+  UPDATE_TIMEOUT: 8192
+  INACTIVITY_PENALTY_QUOTIENT_BELLATRIX: 16777216
+  MIN_SLASHING_PENALTY_QUOTIENT_BELLATRIX: 32
+  PROPORTIONAL_SLASHING_MULTIPLIER_BELLATRIX: 3
+  MAX_BYTES_PER_TRANSACTION: 1073741824
+  MAX_TRANSACTIONS_PER_PAYLOAD: 1048576
+  BYTES_PER_LOGS_BLOOM: 256
+  MAX_EXTRA_DATA_BYTES: 32
+  RANDAO_PENALTY_EPOCHS: 2
+  EARLY_DERIVED_SECRET_PENALTY_MAX_FUTURE_EPOCHS: 32768
+  EPOCHS_PER_CUSTODY_PERIOD: 16384
+  CUSTODY_PERIOD_TO_RANDAO_PADDING: 2048
+  MAX_CHUNK_CHALLENGE_DELAY: 32768
+  MAX_CUSTODY_KEY_REVEALS: 256
+  MAX_EARLY_DERIVED_SECRET_REVEALS: 1
+  MAX_CUSTODY_CHUNK_CHALLENGES: 4
+  MAX_CUSTODY_CHUNK_CHALLENGE_RESP: 16
+  MAX_CUSTODY_SLASHINGS: 1
+  EARLY_DERIVED_SECRET_REVEAL_SLOT_REWARD_MULTIPLE: 2
+  MINOR_REWARD_QUOTIENT: 256
+  MAX_COMMITTEES_PER_SLOT: 64
+  TARGET_COMMITTEE_SIZE: 128
+  MAX_VALIDATORS_PER_COMMITTEE: 2048
+  SHUFFLE_ROUND_COUNT: 90
+  HYSTERESIS_QUOTIENT: 4
+  SLOTS_PER_EPOCH: 32
+  MAX_BLS_TO_EXECUTION_CHANGES: 16
+  MAX_WITHDRAWALS_PER_PAYLOAD: 16
+  MAX_VALIDATORS_PER_WITHDRAWALS_SWEEP: 16384
+
+beaconchain_explorer_aio_extra_config_files:
+  phase0.yml: |
+    {{ lookup('ansible.builtin.file', '../network-configs/devnet-5/config.yaml') }}
+    {{ beaconchain_explorer_aio_cl_config_extra }}

@@ -1,0 +1,12 @@
+beaconlight_beaconapi_endpoint: "http://beacon:5052"
+beaconlight_chain_name: "dencun-devnet-8"
+beaconlight_chain_displayname: "{{ beaconlight_chain_name }}"
+beaconlight_chain_genesistime: "{{ ethereum_genesis_timestamp + ethereum_genesis_timedelay }}"
+beaconlight_chain_config: /ethereum-network-config/config.yaml
+beaconlight_frontend_validatornames_inventory: "https://config.dencun-devnet-8.ethpandaops.io/api/v1/nodes/validator-ranges"
+beaconlight_container_volumes:
+   - "{{ beaconlight_datadir }}/explorer:/config"
+   - "/data/ethereum-network-config:/ethereum-network-config"
+
+beaconlight_container_ports:
+  - "127.0.0.1:8080:8080"
