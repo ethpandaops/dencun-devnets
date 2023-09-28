@@ -32,8 +32,6 @@ You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
 
 # Update all sops files
 ```
-# Find all .sops.yaml and *.enc.yaml files and update their keys
- for file in $(find . -type f \( -name "*.sops.yaml" -o -name "*.enc.yaml" \)); do
-     sops updatekeys "$file" -y
- done
+# Find all .sops.* and *.enc.* files and update their keys
+find . -type d -name "vendor" -prune -o \( -type f \( -name "*.sops.*" -o -name "*.enc.*" \) \) -exec sops updatekeys {} -y \;
 ```
