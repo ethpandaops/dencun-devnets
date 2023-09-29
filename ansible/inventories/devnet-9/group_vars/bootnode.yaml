@@ -15,18 +15,6 @@ ethereum_node_el: geth
 ethereum_node_cl: teku
 ethereum_node_cl_validator_enabled: false
 
-bootstrap_default_user_authorized_keys_github_team_el:
-  - MarekM25
-  - kamilchodola
-  - LukaszRozmej
-  - marcindsobczak
-  - asdacap
-  - rubo
-  - smartprogrammer93
-  - g11tech
-  - cbermudez97
-  - flcl42
-
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_el:
   - mariusVanDerWijden
@@ -62,18 +50,6 @@ bootstrap_default_user_authorized_keys_github_team_cl:
   - siladu
   - lucassaldanha
 
-# role: validator_keys
-validator_keys_sync_files:
-  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/teku-keys/"
-    dest: "{{ teku_validator_datadir }}/keys/"
-  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/teku-secrets/"
-    dest: "{{ teku_validator_datadir }}/secrets/"
-
-validator_bls_sync_files:
-  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
-    dest: "{{ teku_validator_datadir }}/change_operations.json"
-    owner: teku
-    group: teku
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: teku
 
@@ -94,7 +70,7 @@ teku_container_command_extra_args:
   - --initial-state=/network-config/genesis.ssz
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
-  - --data-storage-mode=PRUNE
+  - --data-storage-mode=ARCHIVE
   - --validators-graffiti=bootnode-{{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --logging=info
   - --Xlog-include-p2p-warnings-enabled
@@ -171,5 +147,11 @@ prometheus_config: |
       metrics_path: "/metrics"
       static_configs:
         - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "execution"
+      metrics_path: "/debug/metrics/prometheus"
+      static_configs:
+        - targets: ["execution:{{ ethereum_node_el_ports_metrics }}"]
           labels:
             instance: "{{ inventory_hostname }}"

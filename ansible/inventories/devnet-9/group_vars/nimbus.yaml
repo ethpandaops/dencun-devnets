@@ -46,7 +46,7 @@ nimbus_container_command_extra_simple_args:
   - --network=/network-config
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
-  - --log-level=DEBUG
+  - --log-level={{ log_level | upper | default('DEBUG') }}
   - --light-client-data-serve=false
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 nimbus_container_command_extra_bootnode_args: >-

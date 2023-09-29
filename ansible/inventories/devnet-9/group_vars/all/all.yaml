@@ -21,6 +21,8 @@ ethereum_node_beacon_hostname: "bn.{{ server_fqdn }}"
 ethstats_url: "ethstats.{{ network_subdomain }}"
 ethstats_secret: "{{ secret_ethstats }}"
 
+log_level: info
+
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
 checkpoint_sync_enabled: false
@@ -34,7 +36,7 @@ checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
 #  ╚═╝░░╚═╝░╚════╝░╚══════╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
 # role: ethpandaops.general.ethereum_genesis
-ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:1.3.4"
+ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:2.0.0"
 ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_image.split(':')[-1] }}"
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 7011893059
@@ -63,7 +65,6 @@ ethereum_genesis_generator_config_files:
     genesis_timestamp: ${GENESIS_TIMESTAMP}
     genesis_delay: ${GENESIS_DELAY}
     slot_duration_in_seconds: ${SLOT_DURATION_IN_SECONDS}
-    capella_fork_epoch: ${CAPELLA_FORK_EPOCH}
     deneb_fork_epoch: ${DENEB_FORK_EPOCH}
 
   values.env: |-
@@ -77,9 +78,8 @@ ethereum_genesis_generator_config_files:
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
     export CAPELLA_FORK_VERSION="0x40{{ ethereum_genesis_fork_version_suffix }}"
-    export CAPELLA_FORK_EPOCH="5"
     export DENEB_FORK_VERSION="0x50{{ ethereum_genesis_fork_version_suffix }}"
-    export DENEB_FORK_EPOCH="10"
+    export DENEB_FORK_EPOCH="20"
     export WITHDRAWAL_TYPE="0x00"
     export WITHDRAWAL_ADDRESS={{ ethereum_genesis_validator_bls_change_execution_address }}
     export BEACON_STATIC_ENR=""
