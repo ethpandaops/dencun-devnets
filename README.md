@@ -14,7 +14,8 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status | Network | Links | Ansible | Terraform | Kubernetes
 ------ | ------- | ----  |  -----  | -------   | ----------
- 🟢 Active | [devnet-8](https://dencun-devnet-8.ethpandaops.io/) | [Network config](network-configs/devnet-8) / [Inventory](ansible/inventories/devnet-8/inventory.ini)  | [🔗](ansible/inventories/devnet-8) | [🔗](terraform/devnet-8) | [🔗](kubernetes/devnet-8)
+ 🟢 Active | [devnet-9](https://dencun-devnet-9.ethpandaops.io/) | [Network config](network-configs/devnet-9) / [Inventory](ansible/inventories/devnet-9/inventory.ini)  | [🔗](ansible/inventories/devnet-9) | [🔗](terraform/devnet-9) | [🔗](kubernetes/devnet-9)
+ 🟡 Deprecated | [devnet-8](https://dencun-devnet-8.ethpandaops.io/) | [Network config](network-configs/devnet-8) / [Inventory](ansible/inventories/devnet-8/inventory.ini)  | [🔗](ansible/inventories/devnet-8) | [🔗](terraform/devnet-8) | [🔗](kubernetes/devnet-8)
  🔴 Off | [devnet-7](https://4844-devnet-7.ethpandaops.io/) | [Network config](network-configs/devnet-7) / [Inventory](ansible/inventories/devnet-7/inventory.ini)  | [🔗](ansible/inventories/devnet-7) | [🔗](terraform/devnet-7) | [🔗](kubernetes/devnet-7)
  🔴 Off | [sepolia-sf1](https://4844-sepolia-sf1.ethpandaops.io/) | [Network config](network-configs/sepolia-sf1) / [Inventory](ansible/inventories/sepolia-shadowfork-1/inventory.ini) | [🔗](ansible/inventories/sepolia-shadowfork-1) | [🔗](terraform/sepolia-shadowfork-1) | [🔗](kubernetes/sepolia-sf1)
  🔴 Off | [devnet-6](https://4844-devnet-6.ethpandaops.io/)    | [Network config](network-configs/devnet-6) / [Inventory](ansible/inventories/devnet-6/inventory.ini)  | [🔗](ansible/inventories/devnet-6) | [🔗](terraform/devnet-6) | [🔗](kubernetes-archive/devnet-6)
@@ -31,7 +32,6 @@ You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
 
 # Update all sops files
 ```
-find . -type d -name "group_vars" -exec find {} -name "*.sops.yaml" \; | while read -r file; do
-    sops updatekeys "$file" -y
-done
+# Find all .sops.* and *.enc.* files and update their keys
+find . -type d -name "vendor" -prune -o \( -type f \( -name "*.sops.*" -o -name "*.enc.*" \) \) -exec sops updatekeys {} -y \;
 ```

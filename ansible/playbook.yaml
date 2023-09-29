@@ -5,7 +5,7 @@
 
 - import_playbook: ethpandaops.general.bootstrap_server
   vars:
-    target: "all:!localhost"
+    target: all:!localhost
   tags: [init-server, bootstrap]
 
 - hosts: all:!localhost
@@ -19,7 +19,6 @@
     - role: geerlingguy.pip
       pip_install_packages:
         - name: docker
-        - name: docker-compose
       tags: [init-server, pip]
     - role: ethpandaops.general.docker_cleanup
       tags: [init-server, docker_cleanup]
@@ -101,14 +100,7 @@
   roles:
     - role: ethpandaops.general.ethereum_inventory_web
       tags: [eth_inventory_web, ethereum_inventory_web]
-    - role: ethpandaops.general.dora_the_explorer
-      tags: [dora]
-# - hosts: beaconchain_explorer
-#   become: true
-#   roles:
-#     - role: ethpandaops.general.beaconchain_explorer_aio
-#       tags: [beaconchain_explorer]
-#
+
 # - hosts: tx_fuzz
 #   become: true
 #   roles:

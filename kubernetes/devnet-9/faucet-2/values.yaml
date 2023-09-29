@@ -1,0 +1,30 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/eth-faucet.yaml.j2
+
+eth-faucet:
+  fullnameOverride: faucet-2
+
+  image:
+    repository: chainflag/eth-faucet
+    tag: latest
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: faucet-2.dencun-devnet-9.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  secretEnv:
+    PRIVATE_KEY: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.faucet_2_private_key}>"
+
+  extraEnv:
+    - name: WEB3_PROVIDER
+      value: "http://geth-teku-001:8545"
+
+  args:
+    - -faucet.amount=100
+    - -faucet.name=dencun-devnet-9
+    - -proxycount=2

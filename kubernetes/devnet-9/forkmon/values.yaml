@@ -1,0 +1,97 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/forkmon.yaml.j2
+
+forkmon:
+  fullnameOverride: forkmon
+  image:
+    repository: skylenet/nodemonitor
+    tag: darkmode
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: forkmon.dencun-devnet-9.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+  network: dencun-devnet-9
+  endpoints:
+  # Rpc
+  - addr: http://geth-teku-001:8545
+    name: rpc-teku-geth-001
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io
+    name: bootnode-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-ethereumjs-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-reth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lighthouse-reth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-besu-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-ethereumjs-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-geth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-reth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: lodestar-reth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-ethereumjs-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-geth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-reth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: nimbus-reth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-besu-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-ethereumjs-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-geth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-reth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: prysm-reth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-besu-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-besu-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-erigon-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-ethereumjs-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-ethereumjs-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-geth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-geth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-nethermind-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-reth-1.srv.dencun-devnet-9.ethpandaops.io
+    name: teku-reth-1
+
+  config: |
+    # How often to reload data from the nodes
+    reload_interval = "10s"
+    # If specified, a http server will serve static content here
+    server_address = "0.0.0.0:{{ .Values.httpPort}}"
+    # Shown in the document title, if specified
+    chain_name="{{ .Values.network }}"
+    # Local or non third party connection require rpc kind
+    {{- range .Values.endpoints }}
+    [[clients]]
+      url  = {{ .addr | quote }}
+      name = {{ .name | quote }}
+      kind = "rpc"
+    {{- end }}
