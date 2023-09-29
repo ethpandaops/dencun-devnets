@@ -15,6 +15,11 @@ light-beaconchain-explorer:
           - path: /
             pathType: Prefix
 
+  customCommand:
+    - ./dora-explorer
+    - -config
+    - /data/config.yaml
+
   name: dencun-devnet-9
   configPath: "https://config.dencun-devnet-9.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.dencun-devnet-9.ethpandaops.io/api/v1/nodes/validator-ranges"
