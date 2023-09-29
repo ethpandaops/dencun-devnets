@@ -6,7 +6,7 @@ secret_prometheus_remote_write_old:
     password: ENC[AES256_GCM,data:ixPDvF8vWlBzKMhmtPiMArtPGDhy/p5vc5DWwEc=,iv:bFJW7t2moB7PwwA71slVEVLyVH/hERfH/Nb48nP8E1c=,tag:V3jxdU+7+1vvqQmslYaZeQ==,type:str]
 secret_prometheus_remote_write:
     username: ENC[AES256_GCM,data:DuxQ5KymLhtVu+ZaID2O,iv:ha2bpO6Eh562HYJ+kanct72xCP+mhQ7ljnvhWNnzwds=,tag:KmGtBprkP37glsGz6Wllgw==,type:str]
-    password: ENC[AES256_GCM,data:5bVlnxSJwzlCqtNeeGkgklDRiB7XGdSjZgwW+q4=,iv:0X+yCw+jUw335Tb0OgiJ+f0Mx83c4K/eMDaN3pX9iL4=,tag:6kiHssUzwbjbcZE0JmhA4Q==,type:str]
+    password: ENC[AES256_GCM,data:Nv9uGlq7agboQUNOWifMCxUoTi9AWZ9gXaDFb2s=,iv:fDTWZ5Z4V8euYAuKdyXtrRuHcXWW94zQkxA+BACAg3g=,tag:Z76GtcYTJ+2DEWuACEdvSA==,type:str]
 secret_nginx_shared_basic_auth:
     name: ENC[AES256_GCM,data:ewHq,iv:3m9r+IutYQfVmmxnhGgrBTPf8AR5EY/7mxXSRscMgDo=,tag:9H/NPeIVAuDJ2W3L3sjIng==,type:str]
     password: ENC[AES256_GCM,data:GiqfFP7amT/6x3W75fMV,iv:H8CmQRbYnZo8zA4X3bK5/wUvWIDsV3MYRktaiLP0+3w=,tag:y+hEypeHIbXadljRAXGjtw==,type:str]
@@ -31,8 +31,8 @@ sops:
             cjFQSjNMdEtTZ3ZsVXF0S1YzUFpjSWMK9egMDPVbDH9wZ63Xphb71mEISx2Oen4T
             DVSVbwUAAWgyxR4TWC2hk/JjYZ3MKIFY65WVc4J1MB/ULq+l0HhttQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-09-28T09:20:59Z"
-    mac: ENC[AES256_GCM,data:MTrjuRNF9R3kfvw/k60b6tBlAAgfafm51y9MZZhrDXJgU8afXDZEbOrOri3wMZSyY0m7hh5RwF1uNr6fhlF0vLT8kzkt4GGYf9atCMQxc+14sh2z13PzffAOXdSxi0GsAOzFgwP0Po3qLaQYry2XOjfyDlw7FTy8MfU+LfKgvts=,iv:I6qUmUGIZR+X4wFNTcutGzV9St992gwMynm0U6V5AJY=,tag:Z6w4MmVVSPTI94Zwf4ZIIQ==,type:str]
+    lastmodified: "2023-09-29T09:48:11Z"
+    mac: ENC[AES256_GCM,data:7FQ+waOJS96bZKIFmc2xvnO2dHhIp/pG/ClSkPHTf9XfxSSXOtBePtxTMb3h4KHfJJsu7alyajFMVFSo6dTWqUCsj725mAsufJgF7R/DOeHoYBvaRjOoG4ol5QKVas7zRv+CUISd2PKeJI3lT/uzXXt9/iyCmBMl9qDzo9qc+YY=,iv:QPm59irb/9LnOy5uybnFSWE/HqwDFH4MeDxvifHBp7E=,tag:rSGn9+vdjaUItM9qVoQ8Rg==,type:str]
     pgp:
         - created_at: "2023-08-17T08:39:40Z"
           enc: |-

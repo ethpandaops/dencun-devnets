@@ -3,8 +3,8 @@
 light-beaconchain-explorer:
   fullnameOverride: light-beaconchain-explorer
   image:
-    repository: pk910/light-beaconchain-explorer
-    tag: unstable
+    repository: ethpandaops/dora-the-explorer
+    tag: master
     pullPolicy: Always
   ingress:
     enabled: true
@@ -22,7 +22,7 @@ light-beaconchain-explorer:
   postgresql:
     name: "light-beaconchain-explorer-postgresql"
     fullnameOverride: "light-beaconchain-explorer-postgresql"
-  
+
   endpoints:
   # Rpc
   - url: http://teku-geth-001:5052
