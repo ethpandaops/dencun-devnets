@@ -109,7 +109,6 @@ bootstrap_default_user_authorized_keys_github_all:
   - samcm
   - savid
   - skylenet
-  - Inphi
   - jtraglia
   - pk910
 bootstrap_default_user_authorized_keys_github: >

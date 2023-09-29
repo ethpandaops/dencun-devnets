@@ -26,6 +26,8 @@ reth_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 reth_container_command_extra_args:
   - --chain=/network-config/genesis.json
+  - --log.directory=/data/logs
+  - --http.api=eth,net,web3,debug,admin,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   #- --trustedSetup=/network-config/trusted_setup.txt
 
