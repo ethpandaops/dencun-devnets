@@ -26,7 +26,7 @@ ${replace(gid, "-", "_")}
 
 # Execution client groups
 
-%{ for el in ["besu", "ethereumjs", "geth", "nethermind", "erigon"] ~}
+%{ for el in ["besu", "ethereumjs", "geth", "nethermind", "erigon", "reth"] ~}
 [${el}:children]
 %{ for gid, group in groups ~}
 %{ if split("-", gid)[0] != "bootnode" ~}
