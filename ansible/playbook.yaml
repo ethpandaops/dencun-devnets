@@ -1,98 +1,98 @@
-- hosts: localhost
-  roles:
-    - role: ethpandaops.general.ethereum_genesis
-      tags: [ethereum_genesis]
+# - hosts: localhost
+#   roles:
+#     - role: ethpandaops.general.ethereum_genesis
+#       tags: [ethereum_genesis]
 
-- import_playbook: ethpandaops.general.bootstrap_server
-  vars:
-    target: all:!localhost
-  tags: [init-server, bootstrap]
+# - import_playbook: ethpandaops.general.bootstrap_server
+#   vars:
+#     target: all:!localhost
+#   tags: [init-server, bootstrap]
 
-- hosts: all:!localhost
-  serial: "{{ batch_count | default('100%') }}"
-  become: true
-  roles:
-    # - role: robertdebock.fail2ban
-    #   tags: [init-server, fail2ban]
-    - role: geerlingguy.docker
-      tags: [init-server, docker]
-    - role: geerlingguy.pip
-      pip_install_packages:
-        - name: docker
-      tags: [init-server, pip]
-    - role: ethpandaops.general.docker_cleanup
-      tags: [init-server, docker_cleanup]
-    - role: ethpandaops.general.docker_network
-      tags: [init-server, docker_network]
-    - role: ethpandaops.general.node_exporter
-      tags: [init-server, node_exporter]
-    - role: ethpandaops.general.prometheus
-      tags: [init-server, prometheus]
-    - role: ethpandaops.general.vector
-      tags: [init-server, vector]
+# - hosts: all:!localhost
+#   serial: "{{ batch_count | default('100%') }}"
+#   become: true
+#   roles:
+#     # - role: robertdebock.fail2ban
+#     #   tags: [init-server, fail2ban]
+#     - role: geerlingguy.docker
+#       tags: [init-server, docker]
+#     - role: geerlingguy.pip
+#       pip_install_packages:
+#         - name: docker
+#       tags: [init-server, pip]
+#     - role: ethpandaops.general.docker_cleanup
+#       tags: [init-server, docker_cleanup]
+#     - role: ethpandaops.general.docker_network
+#       tags: [init-server, docker_network]
+#     - role: ethpandaops.general.node_exporter
+#       tags: [init-server, node_exporter]
+#     - role: ethpandaops.general.prometheus
+#       tags: [init-server, prometheus]
+#     - role: ethpandaops.general.vector
+#       tags: [init-server, vector]
 
-- hosts: bootnode
-  become: true
-  roles:
-    - role: ethpandaops.general.cl_bootnode
-      tags: [cl_bootnode]
-    - role: ethpandaops.general.ethereum_testnet_config
-      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
-    - role: ethpandaops.general.ethereum_node
-      tags: [ethereum, ethereum_node]
-    - role: ethpandaops.general.docker_nginx_proxy
-      tags: [docker_nginx_proxy]
-    - role: ethpandaops.general.generate_basic_auth_nginx
-      tags: [docker_nginx_proxy]
+# - hosts: bootnode
+#   become: true
+#   roles:
+#     - role: ethpandaops.general.cl_bootnode
+#       tags: [cl_bootnode]
+#     - role: ethpandaops.general.ethereum_testnet_config
+#       tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+#     - role: ethpandaops.general.ethereum_node
+#       tags: [ethereum, ethereum_node]
+#     - role: ethpandaops.general.docker_nginx_proxy
+#       tags: [docker_nginx_proxy]
+#     - role: ethpandaops.general.generate_basic_auth_nginx
+#       tags: [docker_nginx_proxy]
 
-- hosts: ethereum_node
-  serial: "{{ batch_count | default('100%') }}"
-  become: true
-  roles:
-    - role: ethpandaops.general.ethereum_testnet_config
-      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
-    - role: ethpandaops.general.validator_keys
-      when: ethereum_node_cl_validator_enabled == true
-      tags: [ethereum, validator_keys]
-    - role: ethpandaops.general.ethereum_node
-      tags: [ethereum, ethereum_node]
-    - role: ethpandaops.general.docker_nginx_proxy
-      tags: [docker_nginx_proxy]
-    - role: ethpandaops.general.generate_basic_auth_nginx
-      tags: [docker_nginx_proxy]
-  post_tasks:
-    - name: Wait between runs
-      tags: [ethereum, ethereum_node]
-      ansible.builtin.pause:
-        seconds: >-
-          {{
-            batch_count is defined | ternary(
-                (batch_wait_seconds | default(30)),
-                0
-              )
-          }}
+# - hosts: ethereum_node
+#   serial: "{{ batch_count | default('100%') }}"
+#   become: true
+#   roles:
+#     - role: ethpandaops.general.ethereum_testnet_config
+#       tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+#     - role: ethpandaops.general.validator_keys
+#       when: ethereum_node_cl_validator_enabled == true
+#       tags: [ethereum, validator_keys]
+#     - role: ethpandaops.general.ethereum_node
+#       tags: [ethereum, ethereum_node]
+#     - role: ethpandaops.general.docker_nginx_proxy
+#       tags: [docker_nginx_proxy]
+#     - role: ethpandaops.general.generate_basic_auth_nginx
+#       tags: [docker_nginx_proxy]
+#   post_tasks:
+#     - name: Wait between runs
+#       tags: [ethereum, ethereum_node]
+#       ansible.builtin.pause:
+#         seconds: >-
+#           {{
+#             batch_count is defined | ternary(
+#                 (batch_wait_seconds | default(30)),
+#                 0
+#               )
+#           }}
 
-- hosts: teku
-  serial:
-    - "{{ batch_count | default('100%') }}"
-  become: true
-  tasks:
-    - name: Toggle log level for blobs
-      tags: [teku_logs]
-      ansible.builtin.uri:
-        url: http://localhost:5052/teku/v1/admin/log_level
-        method: PUT
-        status_code: [200, 204]
-        headers:
-          accept: /
-          Content-Type: application/json
-        body_format: json
-        body:
-          level: "TRACE"
-          log_filter:
-            - "tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker"
-            - "tech.pegasys.teku.statetransition.forkchoice.ForkChoice"
-            - "tech.pegasys.teku.statetransition.blobs"
+# - hosts: teku
+#   serial:
+#     - "{{ batch_count | default('100%') }}"
+#   become: true
+#   tasks:
+#     - name: Toggle log level for blobs
+#       tags: [teku_logs]
+#       ansible.builtin.uri:
+#         url: http://localhost:5052/teku/v1/admin/log_level
+#         method: PUT
+#         status_code: [200, 204]
+#         headers:
+#           accept: /
+#           Content-Type: application/json
+#         body_format: json
+#         body:
+#           level: "TRACE"
+#           log_filter:
+#             - "tech.pegasys.teku.statetransition.forkchoice.ForkChoiceBlobSidecarsAvailabilityChecker"
+#             - "tech.pegasys.teku.statetransition.forkchoice.ForkChoice"
+#             - "tech.pegasys.teku.statetransition.blobs"
 
 
 - hosts: bootnode
@@ -100,14 +100,7 @@
   roles:
     - role: ethpandaops.general.ethereum_inventory_web
       tags: [eth_inventory_web, ethereum_inventory_web]
-    - role: ethpandaops.general.dora_the_explorer
-      tags: [dora]
-# - hosts: beaconchain_explorer
-#   become: true
-#   roles:
-#     - role: ethpandaops.general.beaconchain_explorer_aio
-#       tags: [beaconchain_explorer]
-#
+
 # - hosts: tx_fuzz
 #   become: true
 #   roles:
