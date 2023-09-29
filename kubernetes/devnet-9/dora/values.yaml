@@ -1,33 +1,28 @@
-# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/light-beaconchain-explorer.yaml.j2
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora.yaml.j2
 
-light-beaconchain-explorer:
-  fullnameOverride: light-beaconchain-explorer
+dora:
+  fullnameOverride: dora
   image:
-    repository: ethpandaops/dora-the-explorer
+    repository: ethpandaops/dora
     tag: master
     pullPolicy: Always
   ingress:
     enabled: true
     className: ingress-nginx-public
     hosts:
-      - host: light-beaconchain-explorer.dencun-devnet-9.ethpandaops.io
+      - host: dora.dencun-devnet-9.ethpandaops.io
         paths:
           - path: /
             pathType: Prefix
-
-  customCommand:
-    - ./dora-explorer
-    - -config
-    - /data/config.yaml
 
   name: dencun-devnet-9
   configPath: "https://config.dencun-devnet-9.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.dencun-devnet-9.ethpandaops.io/api/v1/nodes/validator-ranges"
 
   postgresql:
-    name: "light-beaconchain-explorer-postgresql"
-    fullnameOverride: "light-beaconchain-explorer-postgresql"
-
+    name: "dora-postgresql"
+    fullnameOverride: "dora-postgresql"
+  
   endpoints:
   # Rpc
   - url: http://teku-geth-001:5052

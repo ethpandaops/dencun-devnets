@@ -1,6 +1,0 @@
-dependencies:
-- name: light-beaconchain-explorer
-  repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.0.1
-digest: sha256:2371d00aa4c4c2e2bcc1d30226df09957b01dfb86eabb8b3d165c0e7cb4a7ac8
-generated: "2023-09-29T11:35:10.92198+02:00"
