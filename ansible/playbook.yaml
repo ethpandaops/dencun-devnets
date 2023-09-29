@@ -19,7 +19,6 @@
     - role: geerlingguy.pip
       pip_install_packages:
         - name: docker
-        - name: docker-compose
       tags: [init-server, pip]
     - role: ethpandaops.general.docker_cleanup
       tags: [init-server, docker_cleanup]
