@@ -5,7 +5,7 @@
 
 - import_playbook: ethpandaops.general.bootstrap_server
   vars:
-    target: "all:!localhost"
+    target: all:!localhost
   tags: [init-server, bootstrap]
 
 - hosts: all:!localhost

@@ -149,7 +149,7 @@ locals {
 locals {
   digitalocean_default_region = "ams3"
   digitalocean_default_size   = "s-2vcpu-8gb-amd"
-  digitalocean_default_image  = "debian-11-x64"
+  digitalocean_default_image  = "debian-12-x64"
   digitalocean_global_tags = [
     "Owner:Devops",
     "EthNetwork:${var.ethereum_network}"
@@ -207,7 +207,7 @@ resource "digitalocean_droplet" "main" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
-  name        = each.value.name
+  name        = "${var.ethereum_network}-${each.value.name}"
   region      = each.value.region
   ssh_keys    = each.value.ssh_keys
   image       = each.value.image
