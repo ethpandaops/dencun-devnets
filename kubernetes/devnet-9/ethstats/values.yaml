@@ -4,8 +4,8 @@ ethstats:
   fullnameOverride: ethstats
 
   image:
-    repository: skylenet/ethstats-server
-    tag: poa-no-geoip
+    repository: ethpandaops/ethstats
+    tag: snapshot
 
   ingress:
     enabled: true

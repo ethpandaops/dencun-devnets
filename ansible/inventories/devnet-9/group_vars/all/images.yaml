@@ -22,7 +22,7 @@ default_tooling_images:
   forkmon: skylenet/nodemonitor:darkmode
   forky: ethpandaops/forky:0.0.34-debian
   fauceth: skylenet/fauceth:fix_fee_estimation
-  ethstats: skylenet/ethstats-server:poa-no-geoip
+  ethstats: ethpandaops/ethstats:snapshot
   homepage: ethpandaops/ethereum-testnet-homepage:latest
   checkpointz: ethpandaops/checkpointz:0.0.11-dencun-debian
   blockscout: blockscout/blockscout:master

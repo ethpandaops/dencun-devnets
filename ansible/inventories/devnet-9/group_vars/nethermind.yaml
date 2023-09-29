@@ -18,8 +18,6 @@ ethereum_node_el: nethermind
 
 # role: ethpandaops.general.nethermind
 nethermind_container_name: execution
-nethermind_container_entrypoint:
-   - /nethermind/nethermind
 nethermind_container_image: "{{ default_ethereum_client_images.nethermind }}"
 nethermind_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
