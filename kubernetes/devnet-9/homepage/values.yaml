@@ -95,7 +95,7 @@ testnet-homepage:
         explorerUrl: https://explorer.dencun-devnet-9.ethpandaops.io
         forkmonUrl: https://forkmon.dencun-devnet-9.ethpandaops.io
         beaconexplorerUrl: "https://dencun-devnet-9.beaconcha.in"
-        lightbeaconexplorerUrl: https://light-beaconchain-explorer.dencun-devnet-9.ethpandaops.io
+        doraUrl: https://dora.dencun-devnet-9.ethpandaops.io
         checkpointSyncUrl: "https://checkpoint-sync.dencun-devnet-9.ethpandaops.io"
         blobscanUrl: https://blobscan.com
         blobscanethpandaUrl: https://blobscan.dencun-devnet-9.ethpandaops.io
@@ -122,8 +122,8 @@ testnet-homepage:
         dataLookup: rpcUrl
       - name: "Explorer"
         dataLookup: explorerUrl
-      - name: "Light Beaconchain Explorer"
-        dataLookup: lightbeaconexplorerUrl
+      - name: "Dora the Explorer"
+        dataLookup: doraUrl
       - name: "Beaconchain explorer (not working)"
         dataLookup: "beaconexplorerUrl"
       - name: "Blobscan"

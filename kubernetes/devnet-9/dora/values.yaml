@@ -3,8 +3,8 @@
 dora:
   fullnameOverride: dora
   image:
-    repository: pk910/light-beaconchain-explorer
-    tag: unstable
+    repository: ethpandaops/dora
+    tag: master
     pullPolicy: Always
   ingress:
     enabled: true
