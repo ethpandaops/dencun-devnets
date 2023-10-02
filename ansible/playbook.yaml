@@ -78,7 +78,7 @@
   become: true
   tasks:
     - name: Toggle log level for blobs
-      tags: [teku_logs]
+      tags: [ethereum,teku_logs]
       ansible.builtin.uri:
         url: http://localhost:5052/teku/v1/admin/log_level
         method: PUT
@@ -99,7 +99,7 @@
   become: true
   roles:
     - role: ethpandaops.general.ethereum_inventory_web
-      tags: [eth_inventory_web, ethereum_inventory_web]
+      tags: [ethereum,eth_inventory_web, ethereum_inventory_web]
 
 # - hosts: tx_fuzz
 #   become: true
