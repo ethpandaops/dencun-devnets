@@ -12,7 +12,7 @@ default_ethereum_client_images:
   erigon: ethpandaops/erigon:devel-669503d
   ethereumjs: ethpandaops/ethereumjs:master-c235d37
   nethermind: ethpandaops/nethermind:master-dc1781d
-  reth: ethpandaops/reth:main-8e9937b
+  reth: ethpandaops/reth:main-602e775
 
 
 default_tooling_images:
