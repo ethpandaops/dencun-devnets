@@ -32,6 +32,7 @@
             - "geth-init"
             - "geth"
             - "nethermind"
+            - "reth"
             - "execution"
             # Consensus layer clients
             - "lighthouse-validator"
@@ -61,6 +62,7 @@
             - /data/ethereumjs
             - /data/geth
             - /data/nethermind
+            - /data/reth
             # Consensus layer data
             - /data/lighthouse
             - /data/lighthouse-validator
