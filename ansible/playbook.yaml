@@ -101,11 +101,11 @@
     - role: ethpandaops.general.ethereum_inventory_web
       tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
 
-# - hosts: tx_fuzz
-#   become: true
-#   roles:
-#     - role: ethpandaops.general.tx_fuzz
-#       tags: [tx_fuzz]
+- hosts: tx_fuzz
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz]
 
 - hosts: localhost
   roles:

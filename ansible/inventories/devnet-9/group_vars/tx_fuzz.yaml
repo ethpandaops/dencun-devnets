@@ -2,10 +2,10 @@ tx_fuzz_container_image: "{{ default_tooling_images.tx_fuzz }}"
 
 
 tx_fuzz_container_command:
-  - spam
+  - blobs
   - --no-al
-  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.teku-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io
   - --sk={{ tx_fuzz_privkey }}
-  - --txcount=500
+  - --txcount=3
 
 tx_fuzz_container_networks: "{{ docker_networks_shared }}"
