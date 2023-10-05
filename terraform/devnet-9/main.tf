@@ -385,12 +385,12 @@ resource "local_file" "ansible_inventory" {
 
 
 resource "digitalocean_firewall" "mev_rule" {
-  name = "${var.ethereum_network}-mev-relay"
+  name        = "${var.ethereum_network}-mev-relay"
   droplet_ids = [digitalocean_droplet.main["mev-relay-1"].id]
-    // Mev-relay-api
+  // Mev-relay-api
   inbound_rule {
-    protocol = "tcp"
-    port_range = "9062"
+    protocol         = "tcp"
+    port_range       = "9062"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 }
