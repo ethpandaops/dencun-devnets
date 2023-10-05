@@ -10,7 +10,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:main-62159dc
   geth: ethpandaops/geth:lightclient-devnet-9-6e6c723
   erigon: ethpandaops/erigon:devel-669503d
-  ethereumjs: ethpandaops/ethereumjs:skeleton-reorg-fixes-b87b2f4
+  ethereumjs: ethpandaops/ethereumjs:skeleton-reorg-fixes-872175f
   nethermind: nethermindeth/nethermind:cancun-3320d24
   reth: ethpandaops/reth:main-1e7d028
 
