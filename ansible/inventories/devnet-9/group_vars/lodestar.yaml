@@ -42,6 +42,8 @@ lodestar_container_command_extra_args:
   - --network.connectToDiscv5Bootnodes
   - --nat=true
   - --chain.trustedSetup=/network-config/trusted_setup.txt
+  - --builder
+  - --builder.urls=http://mev-boost:18550
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:

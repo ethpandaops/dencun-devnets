@@ -41,12 +41,16 @@ ${replace(gid, "-", "_")}
 
 [consensus_node:children]
 %{ for x,y in merge( { for gid, group in groups : split("-", gid)[0] => true... if split("-", gid)[0] != "bootnode" } )   ~}
+%{ if x != "mev" ~}
 ${x}
+%{ endif ~}
 %{ endfor ~}
 
 [execution_node:children]
 %{ for x,y in merge( { for gid, group in groups : split("-", gid)[1] => true... if split("-", gid)[0] != "bootnode" } )   ~}
+%{ if x != "relay" ~}
 ${x}
+%{ endif ~}
 %{ endfor ~}
 
 [ethereum_node:children]

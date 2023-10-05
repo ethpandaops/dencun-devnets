@@ -82,6 +82,7 @@ variable "base_cidr_block" {
 
 locals {
   vm_groups = [
+    var.mev_relay,
     var.bootnode,
     var.lighthouse_geth,
     var.lighthouse_nethermind,
@@ -380,4 +381,25 @@ resource "local_file" "ansible_inventory" {
     }
   )
   filename = "../../ansible/inventories/devnet-9/inventory.ini"
+}
+
+
+resource "digitalocean_firewall" "mev_rule" {
+  name = "${var.ethereum_network}-mev-relay"
+  droplet_ids = [digitalocean_droplet.main["mev-relay-1"].id]
+    // Mev-relay-api
+  inbound_rule {
+    protocol = "tcp"
+    port_range = "9062"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
+}
+
+resource "cloudflare_record" "mev_relay_cloudflare_record" {
+  zone_id = data.cloudflare_zone.default.id
+  name    = "mev-api.${var.ethereum_network}"
+  type    = "A"
+  value   = digitalocean_droplet.main["mev-relay-1"].ipv4_address
+  proxied = false
+  ttl     = 120
 }

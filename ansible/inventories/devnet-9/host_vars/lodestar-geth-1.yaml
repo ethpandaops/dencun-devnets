@@ -1,0 +1,10 @@
+lodestar_container_command_extra_args:
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
+  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --rest.namespace="*"
+  - --network.connectToDiscv5Bootnodes
+  - --nat=true
+  - --chain.trustedSetup=/network-config/trusted_setup.txt
+  - --builder
+  - --builder.urls=http://mev-boost:18550

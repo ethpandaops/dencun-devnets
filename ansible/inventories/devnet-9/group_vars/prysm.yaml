@@ -54,7 +54,7 @@ prysm_container_command_extra_simple_args:
   - --pprof
   - --pprofaddr=0.0.0.0
   - --enable-debug-rpc-endpoints
-  - --verbosity={{ log_level | default('debug') }}
+  - --verbosity=debug
   - --subscribe-all-subnets
 
 prysm_container_command_extra_bootnode_args: >-

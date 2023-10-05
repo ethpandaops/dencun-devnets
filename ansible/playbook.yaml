@@ -45,7 +45,7 @@
     - role: ethpandaops.general.generate_basic_auth_nginx
       tags: [docker_nginx_proxy]
 
-- hosts: ethereum_node
+- hosts: ethereum_node, mev_relay
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
@@ -113,3 +113,19 @@
       tags: [eth_post_network_setup, ethereum_post_network_setup]
     - role: ethpandaops.general.generate_kubernetes_config
       tags: [gen_kubernetes_config, generate_kubernetes_config]
+
+
+- hosts: mev_relay
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_relay
+      tags: [mev_relay]
+
+
+- hosts: mev_boost
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_boost
+      tags: [mev_boost]
+    - role: ethpandaops.general.mev_flood
+      tags: [mev_flood]
