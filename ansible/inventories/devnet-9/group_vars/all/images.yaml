@@ -7,7 +7,7 @@ default_ethereum_client_images:
   prysm_validator: ethpandaops/prysm-validator:develop-c20f188
   teku: consensys/teku:develop
 ### Execution layer clients
-  besu: ethpandaops/besu:main-4f49ec9
+  besu: ethpandaops/besu:main-62159dc
   geth: ethpandaops/geth:lightclient-devnet-9-6e6c723
   erigon: ethpandaops/erigon:devel-669503d
   ethereumjs: ethpandaops/ethereumjs:skeleton-reorg-fixes-b87b2f4
