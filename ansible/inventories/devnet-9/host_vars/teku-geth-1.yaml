@@ -1,0 +1,5 @@
+default_ethereum_client_images:
+### Consensus layer clients
+  teku: consensys/teku:develop
+### Execution layer clients
+  geth: ethpandaops/geth:bad-block-generator-4844-fcabcdb

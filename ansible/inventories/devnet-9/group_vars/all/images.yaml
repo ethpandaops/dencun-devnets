@@ -8,7 +8,7 @@ default_ethereum_client_images:
   teku: consensys/teku:develop
 ### Execution layer clients
   besu: ethpandaops/besu:main-4f49ec9
-  geth: ethpandaops/geth:lightclient-devnet-9-2443467
+  geth: ethpandaops/geth:lightclient-devnet-9-6e6c723
   erigon: ethpandaops/erigon:devel-669503d
   ethereumjs: ethpandaops/ethereumjs:fix-chainreset-551b56f
   nethermind: nethermindeth/nethermind:cancun-3320d24
