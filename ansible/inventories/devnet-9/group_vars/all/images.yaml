@@ -10,9 +10,9 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:main-4f49ec9
   geth: ethpandaops/geth:lightclient-devnet-9-6e6c723
   erigon: ethpandaops/erigon:devel-669503d
-  ethereumjs: ethpandaops/ethereumjs:fix-chainreset-551b56f
+  ethereumjs: ethpandaops/ethereumjs:skeleton-reorg-fixes-b87b2f4
   nethermind: nethermindeth/nethermind:cancun-3320d24
-  reth: ethpandaops/reth:main-602e775
+  reth: ethpandaops/reth:main-1e7d028
 
 
 default_tooling_images:
