@@ -11,7 +11,7 @@ mev_relay_docker_network_name: shared
 mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
-beacon_endpoint: https://beacon:5052
+beacon_endpoint: http://beacon:5052
 mev_img: flashbots/mev-boost-relay:0.28.0a2
 
 # ------------------------------------------------------------------
@@ -97,6 +97,8 @@ mev_relay_website_container_command_extra_args:
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: lighthouse
 
+lighthouse_checkpoint_sync_enabled: true
+
 # role: ethpandaops.general.lighthouse
 lighthouse_container_name: beacon
 lighthouse_container_image: "{{ default_ethereum_client_images.lighthouse }}"
@@ -112,7 +114,7 @@ lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:256/10
-  - --debug-level={{ log_level | default('debug') }}
+  - --debug-level=info
   - --always-prepare-payload
   - --prepare-payload-lookahead=12000
   - --disable-peer-scoring
@@ -169,7 +171,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev3
+geth_container_image: flashbots/builder:1.13.2.4844.dev4
 
-
+ethereum_node_json_rpc_snooper_engine_enabled: false
 
