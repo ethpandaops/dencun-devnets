@@ -404,3 +404,12 @@ resource "cloudflare_record" "mev_relay_cloudflare_record" {
   proxied = false
   ttl     = 120
 }
+
+resource "cloudflare_record" "mev_relay_cloudflare_record" {
+  zone_id = data.cloudflare_zone.default.id
+  name    = "powfaucet.${var.ethereum_network}"
+  type    = "A"
+  value   = digitalocean_droplet.main["bootnode"].ipv4_address
+  proxied = false
+  ttl     = 120
+}

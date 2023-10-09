@@ -1,0 +1,71 @@
+# role: ethpandaops.general.powfaucet
+
+powfaucet_title: "Devnet9 PoW Faucet"
+#powfaucet_rpcurl: "https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io"
+powfaucet_rpcurl: "https://rpc.dencun-devnet-9.ethpandaops.io"
+powfaucet_explorer_link: ""
+
+powfaucet_min_drop_wei: 1000000000000000000 # 1 ETH
+powfaucet_max_drop_wei: 50000000000000000000 # 50 ETH
+
+# captcha module (require captcha check)
+powfaucet_captcha_enabled: false
+powfaucet_captcha_provider: "hcaptcha"
+powfaucet_captcha_sitekey: "00000000-0000-0000-0000-000000000000"
+powfaucet_captcha_secret: "0xCensoredHCaptchaSecretKey"
+
+# ens module (allow/require ENS names)
+powfaucet_ens_enabled: true
+powfaucet_ens_rpcurl: "https://rpc.flashbots.net/"
+powfaucet_ens_required: false
+
+# ipinfo module (check ip-api.com)
+powfaucet_ipinfo_enabled: true
+powfaucet_ipinfo_hosting_rewards: 10 # 10%
+powfaucet_ipinfo_proxy_rewards: 10 # 10%
+
+# ethinfo module (check target wallet balance / type)
+powfaucet_ethinfo_enabled: true
+powfaucet_ethinfo_maxbalance_wei: 100000000000000000000 # 100 ETH
+powfaucet_ethinfo_deny_contract: true
+
+# outflow module (limit global faucet outflow)
+powfaucet_outflow_enabled: false
+powfaucet_outflow_amount_wei: 1000000000000000000000 # 1000 ETH
+powfaucet_outflow_duration: 86400 # 1 day
+powfaucet_outflow_buffer_wei: 500000000000000000000 # 500 ETH
+
+# github module (require login to github)
+powfaucet_github_enabled: false
+powfaucet_github_clientid: "" # github app
+powfaucet_github_secret: "" # github app
+powfaucet_github_min_age: 604800 # 7 days
+powfaucet_github_min_repos: 5
+powfaucet_github_min_followers: 5
+powfaucet_github_limit_amount_wei: 100000000000000000000 # 100 ETH
+powfaucet_github_limit_duration: 86400 # 1 day
+
+# mainnet module (check mainnet wallet balance / nonce)
+powfaucet_mainnet_enabled: false
+powfaucet_mainnet_rpcurl: "https://rpc.flashbots.net/"
+powfaucet_mainnet_min_balance_wei: 10000000000000000 # 0.01 ETH
+powfaucet_mainnet_min_tx_count: 5
+
+# recurring limits module (enforce limits for recurring users)
+powfaucet_recurring_limits_enabled: true
+powfaucet_recurring_limits_amount_wei: 100000000000000000000 # 100 ETH
+powfaucet_recurring_limits_duration: 86400 # 1 day
+
+# pow module (require mining)
+powfaucet_pow_enabled: false
+powfaucet_pow_reward_per_hash: 500000000000000000 # 0.5 ETH
+powfaucet_pow_max_duration: 18000 # 5h
+powfaucet_pow_difficulty: 12
+
+# container config
+powfaucet_container_image: pk910/powfaucet:v2-stable
+powfaucet_container_env:
+  VIRTUAL_HOST: "powfaucet.{{ ethereum_network_name }}.ethpandaops.io"
+  VIRTUAL_PORT: "8080"
+  LETSENCRYPT_HOST: "powfaucet.{{ ethereum_network_name }}.ethpandaops.io"
+powfaucet_container_ports: []

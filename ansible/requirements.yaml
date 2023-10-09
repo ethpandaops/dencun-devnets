@@ -17,6 +17,6 @@ collections:
   - name: community.sops
     version: 1.6.0
   - name: ethpandaops.general
-    source: https://github.com/ethpandaops/ansible-collection-general.git,adding-mev-relay
+    source: https://github.com/ethpandaops/ansible-collection-general.git,pk910/powfaucet
     type: git
   - name: kubernetes.core
