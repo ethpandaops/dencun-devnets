@@ -101,12 +101,6 @@
     - role: ethpandaops.general.ethereum_inventory_web
       tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
 
-- hosts: tx_fuzz
-  become: true
-  roles:
-    - role: ethpandaops.general.tx_fuzz
-      tags: [tx_fuzz]
-
 - hosts: localhost
   roles:
     - role: ethpandaops.general.ethereum_post_network_setup
@@ -114,6 +108,24 @@
     - role: ethpandaops.general.generate_kubernetes_config
       tags: [gen_kubernetes_config, generate_kubernetes_config]
 
+- hosts: tx_fuzz_blobs
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz, tx_fuzz_blobs]
+      vars:
+        tx_fuzz_container_name: "{{ tx_fuzz_blobs_container_name }}"
+        tx_fuzz_container_command: "{{ tx_fuzz_blobs_container_command }}"
+        tx_fuzz_container_image: "{{ tx_fuzz_blobs_container_image }}"
+- hosts: tx_fuzz_txs
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz, tx_fuzz_txs]
+      vars:
+        tx_fuzz_container_name: "{{ tx_fuzz_txs_container_name }}"
+        tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
+        tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
 
 - hosts: mev_relay
   become: true
