@@ -43,7 +43,7 @@ variable "lighthouse_besu" {
     count           = 1
     validator_start = 200
     validator_end   = 225
-    size           = "s-4vcpu-16gb-amd"
+    size            = "s-4vcpu-16gb-amd"
   }
 }
 
