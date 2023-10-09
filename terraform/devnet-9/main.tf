@@ -405,7 +405,7 @@ resource "cloudflare_record" "mev_relay_cloudflare_record" {
   ttl     = 120
 }
 
-resource "cloudflare_record" "mev_relay_cloudflare_record" {
+resource "cloudflare_record" "powfaucet_cloudflare_record" {
   zone_id = data.cloudflare_zone.default.id
   name    = "powfaucet.${var.ethereum_network}"
   type    = "A"
