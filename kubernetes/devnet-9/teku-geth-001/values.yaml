@@ -175,7 +175,7 @@ teku-geth-001:
           - name: storage
             mountPath: "/data"
       - name: init-genesis
-        image: ethpandaops/geth:lightclient-devnet-9-ae44519
+        image: ethpandaops/geth:lightclient-devnet-9-6e6c723
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: false
