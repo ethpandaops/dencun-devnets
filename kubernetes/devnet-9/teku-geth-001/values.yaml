@@ -70,7 +70,6 @@ teku-geth-001:
               - --chain.trustedSetup=/data/network-config/trusted_setup.txt
             teku:
               - --network=/data/network-config/config.yaml
-              - --initial-state=/data/network-config/genesis.ssz
               - --p2p-discovery-bootnodes=enr:-Iq4QLp-F8tI4yI5-L4gq5uEq_tj3n98pnJGo90b8YBVtvH4Nw2YSbISbphF0Rupl6fRwm80PCY7MQVglkhoIzxAYj2GAYrgIsDogmlkgnY0gmlwhKesJuOJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QJfp92Hi0fOXffoIFNvvS8TUKGz8pgohDHR8kpGbU3C5OfxVVgnDubedgTlIOg2Y8leD8kIy92Yb_UIvbEC5rckEh2F0dG5ldHOIAAAAAAwAAACEZXRoMpDlv50qUGmUeBQAAAAAAAAAgmlkgnY0gmlwhKesJuOJc2VjcDI1NmsxoQMqPtDPiTfyNScxSJolzK1F9vE_mLiheG_xzQBVcN1f0YN0Y3CCIyiDdWRwgiMo
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
