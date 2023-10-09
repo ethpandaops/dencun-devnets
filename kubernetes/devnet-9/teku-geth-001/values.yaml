@@ -8,7 +8,7 @@ teku-geth-001:
       rpcEndpoint: http://geth-teku-001:8545
       beaconEndpoint: http://teku-geth-001:5052
     checkpointSync:
-      enabled: false
+      enabled: true
       addresses:
         dencun-devnet-9: https://checkpoint-sync.dencun-devnet-9.ethpandaops.io
     clientArgs:
