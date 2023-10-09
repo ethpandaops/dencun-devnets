@@ -117,7 +117,7 @@ teku-geth-001:
     fullnameOverride: geth-teku-001
     image:
       repository: ethpandaops/geth
-      tag: lightclient-devnet-9-ae44519
+      tag: lightclient-devnet-9-6e6c723
       pullPolicy: Always
     p2pNodePort:
       enabled: false
