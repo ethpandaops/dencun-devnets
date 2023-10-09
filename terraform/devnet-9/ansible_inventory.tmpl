@@ -57,5 +57,21 @@ ${x}
 consensus_node
 execution_node
 
+# Add bootnode hosts to tx_fuzz_blobs group
+[tx_fuzz_blobs]
+%{ for key, host in hosts ~}
+%{ if host.group == "bootnode" ~}
+${host.hostname}
+%{ endif ~}
+%{ endfor ~}
+
+# Add bootnode hosts to tx_fuzz_txs group
+[tx_fuzz_txs]
+%{ for key, host in hosts ~}
+%{ if host.group == "bootnode" ~}
+${host.hostname}
+%{ endif ~}
+%{ endfor ~}
+
 #[beaconchain_explorer:children]
 #lighthouse_erigon

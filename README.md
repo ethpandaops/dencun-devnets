@@ -35,3 +35,15 @@ You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
 # Find all .sops.* and *.enc.* files and update their keys
 find . -type d -name "vendor" -prune -o \( -type f \( -name "*.sops.*" -o -name "*.enc.*" \) \) -exec sops updatekeys {} -y \;
 ```
+
+## Genesis allocation used:
+Here's a table of where the keys are used
+
+| Account Index | Component Used In | Private Key Used | Public Key Used | Comment                           |
+|---------------|-------------------|------------------|----------------|-----------------------------------|
+| 0             | tx_fuzz blobs     | ✅                |                | Spams blobs on the network        |
+| 1             | tx_fuzz_txs       | ✅                 |                | Spams tx on the network           |
+| 2             |                   |                  |                |                                   |
+| 3             |                   |                  |                |                                   |
+| 4             | mev_flood         |   ✅               |                | Spams mev-able txs on the network |
+| 5             |                   |                  |                |                                   |

@@ -11,8 +11,8 @@ eth_inventory_web_container_env:
   LETSENCRYPT_HOST: "{{ server_fqdn }}"
 
 # role: ethpandaops.general.ethereum_node
-ethereum_node_el: geth
 ethereum_node_cl: teku
+ethereum_node_el: geth
 ethereum_node_cl_validator_enabled: false
 
 # role: ethpandaops.general.bootstrap
@@ -21,9 +21,6 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - holiman
   - karalabe
   - g11tech
-
-# role: ethpandaops.general.ethereum_node
-ethereum_node_el: geth
 
 # role: ethpandaops.general.geth
 geth_container_name: execution
@@ -50,8 +47,6 @@ bootstrap_default_user_authorized_keys_github_team_cl:
   - siladu
   - lucassaldanha
 
-# role: ethpandaops.general.ethereum_node
-ethereum_node_cl: teku
 
 # role: ethpandaops.general.teku
 teku_container_name: beacon
