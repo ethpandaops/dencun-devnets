@@ -44,7 +44,7 @@ lighthouse_container_command_extra_args:
   - --self-limiter=blob_sidecars_by_range:256/10
   - --debug-level={{ log_level | default('debug') }}
 
-lighthouse_validator_container_volumes: validator
+lighthouse_validator_container_name: validator
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
