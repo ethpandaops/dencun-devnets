@@ -1,16 +1,11 @@
 
+goomy_container_networks: "{{ docker_networks_shared }}"
 goomy_rpc_urls:
-  - your-execution-node:8545
-goomy_private_key: ""
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-besu-1.srv.dencun-devnet-9.ethpandaops.io
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-geth-1.srv.dencun-devnet-9.ethpandaops.io
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lodestar-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.nimbus-erigon-1.srv.dencun-devnet-9.ethpandaops.io
+  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.prysm-geth-1.srv.dencun-devnet-9.ethpandaops.io
 goomy_scenario: "combined"
-goomy_extra_args: "-b 2 -t 2 --max-pending 3"
-
-
-tx_fuzz_blobs_container_command:
-  - blobs
-  - --no-al
-  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io
-  - --sk={{ tx_fuzz_blobs_privkey }}
-  - --txcount=3
-
-tx_fuzz_container_networks: "{{ docker_networks_shared }}"
+goomy_extra_args: ["-b", "2", "-t", "2", "--max-pending", "3"]
