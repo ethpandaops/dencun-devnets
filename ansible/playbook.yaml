@@ -127,6 +127,12 @@
         tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
         tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
 
+- hosts: goomy
+  become: true
+  roles:
+    - role: ethpandaops.general.goomy
+      tags: [goomy]
+
 - hosts: mev_relay
   become: true
   roles:
