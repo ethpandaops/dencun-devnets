@@ -1,11 +1,6 @@
 
 goomy_container_networks: "{{ docker_networks_shared }}"
 goomy_rpc_urls:
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.dencun-devnet-9.ethpandaops.io
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-besu-1.srv.dencun-devnet-9.ethpandaops.io
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-geth-1.srv.dencun-devnet-9.ethpandaops.io
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lodestar-nethermind-1.srv.dencun-devnet-9.ethpandaops.io
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.nimbus-erigon-1.srv.dencun-devnet-9.ethpandaops.io
-  - https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.prysm-geth-1.srv.dencun-devnet-9.ethpandaops.io
+  - "{% for host in groups['execution_node'] %}https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.{{ host }}.srv.dencun-devnet-9.ethpandaops.io,{% endfor %}"
 goomy_scenario: "combined"
-goomy_extra_args: ["-b", "2", "-t", "2", "--max-pending", "3"]
+goomy_extra_args: ["--sidecars", "3", "--throughput", "10", "--max-pending", "20"]
