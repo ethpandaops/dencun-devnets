@@ -1,0 +1,42 @@
+# role: ethpandaops.general.xatu_sentry
+xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
+xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
+xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
+xatu_sentry_config_network_name_override: "{{ ethereum_network_name }}"
+xatu_sentry_container_networks: "{{ docker_networks_shared }}"
+xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
+
+
+xatu_sentry_container_command:
+  - sentry
+  - --config=/config.yaml
+
+xatu_sentry_config:
+  logging: "info"
+  metricsAddr: ":9090"
+  name: "{{ xatu_sentry_config_name }}"
+  ethereum:
+    beaconNodeAddress: "{{ vars[ethereum_node_cl + '_container_name'] }}:{{ethereum_node_cl_ports_http_beacon}}"
+    overrideNetworkName: "{{ xatu_sentry_config_network_name_override }}"
+  outputs:
+  - name: grpc-general
+    type: xatu
+    filter:
+      eventNames:
+        - BEACON_API_ETH_V1_EVENTS_UNKNOWN
+        - BEACON_API_ETH_V1_BEACON_COMMITTEE
+        - BEACON_API_ETH_V1_EVENTS_BLOCK
+        - BEACON_API_ETH_V1_EVENTS_CHAIN_REORG
+        - BEACON_API_ETH_V1_EVENTS_FINALIZED_CHECKPOINT
+        - BEACON_API_ETH_V1_EVENTS_HEAD
+        - BEACON_API_ETH_V1_EVENTS_VOLUNTARY_EXIT
+        - BEACON_API_ETH_V1_EVENTS_ATTESTATION
+        - BEACON_API_ETH_V2_BEACON_BLOCK
+        - BEACON_API_ETH_V1_BEACON_BLOB_SIDECAR
+    config:
+      address: "{{ xatu_sentry_config_server_address }}"
+      tls: true
+      headers:
+        authorization: "Basic {{ (xatu_sentry_config_server_auth_user + ':' + xatu_sentry_config_server_auth_password) | b64encode }}"
+      maxExportBatchSize: 512

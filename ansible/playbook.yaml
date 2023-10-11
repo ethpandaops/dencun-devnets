@@ -141,3 +141,9 @@
       tags: [mev_boost]
     - role: ethpandaops.general.mev_flood
       tags: [mev_flood]
+
+- hosts: xatu
+  become: true
+  roles:
+    - role: ethpandaops.general.xatu_sentry
+      tags: [xatu]
