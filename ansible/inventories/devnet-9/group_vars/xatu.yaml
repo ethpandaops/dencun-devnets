@@ -20,6 +20,15 @@ xatu_sentry_config:
   ethereum:
     beaconNodeAddress: "{{ vars[ethereum_node_cl + '_container_name'] }}:{{ethereum_node_cl_ports_http_beacon}}"
     overrideNetworkName: "{{ xatu_sentry_config_network_name_override }}"
+    beaconSubscriptions:
+    - attestation
+    - block
+    - chain_reorg
+    - finalized_checkpoint
+    - head
+    - voluntary_exit
+    - contribution_and_proof
+    - blob_sidecar
   attestationData:
     enabled: false
   beaconCommittees:
