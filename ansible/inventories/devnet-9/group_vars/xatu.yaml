@@ -35,15 +35,6 @@ xatu_sentry_config:
     enabled: false
   forkChoice:
     enabled: false
-  beaconSubscriptions:
-    - attestation
-    - block
-    - chain_reorg
-    - finalized_checkpoint
-    - head
-    - voluntary_exit
-    - contribution_and_proof
-    - blob_sidecar
   outputs:
   - config:
       address: "{{ xatu_sentry_config_server_address }}"
