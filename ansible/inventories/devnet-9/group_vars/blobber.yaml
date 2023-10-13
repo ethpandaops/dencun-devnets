@@ -20,7 +20,7 @@ blobber_slot_action_frequency: 1
 blobber_container_command:
   - "--cl=172.18.0.6:5052"
   - "--log-level={{ blobber_log_level }}"
-  - "--host-ip={{ blobber_announced_ip }}"
+  - "--external-ip={{ blobber_announced_ip }}"
   - "--slot-action={{ blobber_slot_actions | to_json }}"
   - "--slot-action-frequency={{ blobber_slot_action_frequency }}"
   - "--validator-key-file={{ blobber_validator_key_file }}"
