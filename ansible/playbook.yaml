@@ -127,11 +127,11 @@
         tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
         tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
 
-- hosts: mev_relay
-  become: true
-  roles:
-    - role: ethpandaops.general.mev_relay
-      tags: [mev_relay]
+#- hosts: mev_relay
+#  become: true
+#  roles:
+#    - role: ethpandaops.general.mev_relay
+#      tags: [mev_relay]
 
 
 - hosts: mev_boost
@@ -139,8 +139,8 @@
   roles:
     - role: ethpandaops.general.mev_boost
       tags: [mev_boost]
-    - role: ethpandaops.general.mev_flood
-      tags: [mev_flood]
+#    - role: ethpandaops.general.mev_flood
+#      tags: [mev_flood]
 
 - hosts: xatu
   become: true
