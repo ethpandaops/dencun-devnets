@@ -1,9 +1,9 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:deneb-free-blobs-57edc0f
+  lighthouse: ethpandaops/lighthouse:deneb-free-blobs-38e7172
   lodestar: ethpandaops/lodestar:deneb-builder-49aab61
   nimbus: ethpandaops/nimbus:unstable-e9c8f82
-  prysm: ethpandaops/prysm:develop-c20f188
+  prysm: ethpandaops/prysm:develop-be9b6ea
   prysm_validator: ethpandaops/prysm-validator:develop-c20f188
   teku: ethpandaops/teku:master-2842a85
 ### Execution layer clients
