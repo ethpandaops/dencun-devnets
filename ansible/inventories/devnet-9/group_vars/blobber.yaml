@@ -5,7 +5,7 @@ blobber_log_level: trace
 ethereum_node_blobber_enabled: true
 
 # Storage configs
-blobber_validator_pubkeys: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys/{{ inventory_hostname }}/pubkeys.json"
+blobber_validator_pubkeys: "{{lookup('ansible.builtin.file', '{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys/{{ inventory_hostname }}/pubkeys.json') }}"
 blobber_datadir: /data/blobber
 blobber_validator_key_file: /data/pubkeys.json
 
@@ -18,10 +18,10 @@ blobber_slot_actions: {"name": "extra_blobs","broadcast_block_last": true,"delay
 blobber_slot_action_frequency: 1
 
 blobber_container_command:
-  - "--cl=beacon:5052"
+  - "--cl=172.18.0.6:5052"
   - "--log-level={{ blobber_log_level }}"
   - "--host-ip={{ blobber_announced_ip }}"
-  - "--slot-action={{ blobber_slot_actions }}"
+  - "--slot-action={{ blobber_slot_actions | to_json }}"
   - "--slot-action-frequency={{ blobber_slot_action_frequency }}"
   - "--validator-key-file={{ blobber_validator_key_file }}"
   - "--validator-proxy-port-start={{ blobber_api_listen_port }}"
