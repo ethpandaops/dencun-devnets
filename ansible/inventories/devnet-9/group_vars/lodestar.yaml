@@ -51,5 +51,6 @@ lodestar_validator_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
+  - --useProduceBlockV3
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lodestar_validator_datadir: /data/lodestar-validator

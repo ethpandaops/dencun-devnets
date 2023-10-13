@@ -15,6 +15,7 @@ variable "bootnode" {
     count           = 1
     validator_start = 0
     validator_end   = 0
+    size            = "s-4vcpu-16gb-amd"
   }
 }
 
