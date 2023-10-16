@@ -31,4 +31,4 @@ default_tooling_images:
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
   dora: ethpandaops/dora:master
-  blobber: parithoshj/blobber:v0.0.2-x86
+  blobber: parithoshj/blobber:v0.0.9-x86
