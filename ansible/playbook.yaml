@@ -139,7 +139,6 @@
     - role: ethpandaops.general.mev_relay
       tags: [mev_relay]
 
-
 - hosts: mev_boost
   become: true
   roles:
@@ -147,6 +146,12 @@
       tags: [mev_boost]
     - role: ethpandaops.general.mev_flood
       tags: [mev_flood]
+
+- hosts: powfaucet
+  become: true
+  roles:
+    - role: ethpandaops.general.powfaucet
+      tags: [powfaucet]
 
 - hosts: xatu
   become: true
