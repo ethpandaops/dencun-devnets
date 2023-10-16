@@ -133,10 +133,17 @@ lighthouse_container_pull: true
 ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
   - "{{ hostvars['teku-nethermind-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-nethermind-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-geth-1']['ethereum_node_fact_el_enode'] }}"
 
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
-
+  - "{{ hostvars['bootnode-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['teku-nethermind-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lighthouse-nethermind-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['teku-geth-1']['ethereum_node_fact_cl_enr'] }}"
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: geth
@@ -171,7 +178,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev4
+geth_container_image: flashbots/builder:1.13.2.4844.dev5-6e6c723
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 

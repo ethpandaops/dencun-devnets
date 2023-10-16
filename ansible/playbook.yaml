@@ -127,23 +127,34 @@
         tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
         tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
 
-#- hosts: mev_relay
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.mev_relay
-#      tags: [mev_relay]
+- hosts: goomy
+  become: true
+  roles:
+    - role: ethpandaops.general.goomy
+      tags: [goomy]
 
+- hosts: mev_relay
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_relay
+      tags: [mev_relay]
 
-#- hosts: mev_boost
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.mev_boost
-#      tags: [mev_boost]
-#    - role: ethpandaops.general.mev_flood
-#      tags: [mev_flood]
+- hosts: mev_boost
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_boost
+      tags: [mev_boost]
+    - role: ethpandaops.general.mev_flood
+      tags: [mev_flood]
 
 - hosts: powfaucet
   become: true
   roles:
     - role: ethpandaops.general.powfaucet
       tags: [powfaucet]
+
+- hosts: xatu
+  become: true
+  roles:
+    - role: ethpandaops.general.xatu_sentry
+      tags: [xatu]
