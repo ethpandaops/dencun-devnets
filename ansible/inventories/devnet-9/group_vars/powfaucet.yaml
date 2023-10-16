@@ -65,7 +65,7 @@ powfaucet_pow_difficulty: 11
 # container config
 powfaucet_container_image: pk910/powfaucet:v2-stable
 powfaucet_container_env:
-  VIRTUAL_HOST: "powfaucet.{{ ethereum_network_name }}.ethpandaops.io"
+  VIRTUAL_HOST: "faucet.{{ ethereum_network_name }}.ethpandaops.io"
   VIRTUAL_PORT: "8080"
-  LETSENCRYPT_HOST: "powfaucet.{{ ethereum_network_name }}.ethpandaops.io"
+  LETSENCRYPT_HOST: "faucet.{{ ethereum_network_name }}.ethpandaops.io"
 powfaucet_container_ports: []
