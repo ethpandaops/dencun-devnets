@@ -9,10 +9,10 @@ powfaucet_min_drop_wei: 1000000000000000000 # 1 ETH
 powfaucet_max_drop_wei: 50000000000000000000 # 50 ETH
 
 # captcha module (require captcha check)
-powfaucet_captcha_enabled: false
+powfaucet_captcha_enabled: true
 powfaucet_captcha_provider: "hcaptcha"
-powfaucet_captcha_sitekey: "00000000-0000-0000-0000-000000000000"
-powfaucet_captcha_secret: "0xCensoredHCaptchaSecretKey"
+powfaucet_captcha_sitekey: "8a7e4153-e87c-42e3-8c11-f2728df05ac8"
+#powfaucet_captcha_secret: "see all.sops.yaml"
 
 # ens module (allow/require ENS names)
 powfaucet_ens_enabled: true
@@ -57,10 +57,10 @@ powfaucet_recurring_limits_amount_wei: 100000000000000000000 # 100 ETH
 powfaucet_recurring_limits_duration: 86400 # 1 day
 
 # pow module (require mining)
-powfaucet_pow_enabled: false
+powfaucet_pow_enabled: true
 powfaucet_pow_reward_per_hash: 500000000000000000 # 0.5 ETH
 powfaucet_pow_max_duration: 18000 # 5h
-powfaucet_pow_difficulty: 12
+powfaucet_pow_difficulty: 11
 
 # container config
 powfaucet_container_image: pk910/powfaucet:v2-stable

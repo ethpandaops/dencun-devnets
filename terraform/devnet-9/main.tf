@@ -409,7 +409,7 @@ resource "cloudflare_record" "powfaucet_cloudflare_record" {
   zone_id = data.cloudflare_zone.default.id
   name    = "powfaucet.${var.ethereum_network}"
   type    = "A"
-  value   = digitalocean_droplet.main["bootnode"].ipv4_address
+  value   = digitalocean_droplet.main["bootnode-1"].ipv4_address
   proxied = false
   ttl     = 120
 }
