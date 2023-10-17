@@ -1,0 +1,17 @@
+teku_container_command_extra_args:
+  - --network=/network-config/config.yaml
+  - --initial-state=/network-config/genesis.ssz
+  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --p2p-peer-upper-bound=100
+  - --data-storage-non-canonical-blocks-enabled=true
+  - --data-storage-mode=PRUNE
+  - --validators-graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+  - --logging={{ log_level | default('debug') }}
+  - --Xlog-include-p2p-warnings-enabled
+  - --metrics-block-timing-tracking-enabled
+  - --Xmetrics-blob-sidecars-storage-enabled=true
+  - --Xtrusted-setup=/network-config/trusted_setup.txt
+  - --Xpeer-rate-limit=100000
+  - --Xpeer-request-limit=1000
+  - --validators-builder-registration-default-enabled=true
+  - --builder-endpoint=http://mev-boost:18550
