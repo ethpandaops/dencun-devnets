@@ -13,12 +13,18 @@ blobber_container_volumes:
   - "{{ blobber_datadir }}:/data"
 
 # Blobber specific configs
-blobber_beacon_api: beacon:5052
+blobber_beacon_api: "beacon:5052"
 blobber_slot_actions: {"name": "extra_blobs","broadcast_block_last": true,"delay_milliseconds": 500}
 blobber_slot_action_frequency: 1
 
+blobber_container_ports:
+  - "{{ ansible_host }}:{{ blobber_p2p_port }}:{{ blobber_p2p_port }}"
+  - "{{ ansible_host }}:{{ blobber_p2p_port }}:{{ blobber_p2p_port }}/udp"
+  - "127.0.0.1:{{ blobber_api_listen_port }}:{{ blobber_api_listen_port }}"
+
 blobber_container_command:
-  - "--cl=172.18.0.6:5052"
+  - "--cl={{ blobber_beacon_api | replace('http://', '') }}"
+  - "--beacon-port-start={{ blobber_p2p_port }}"
   - "--log-level={{ blobber_log_level }}"
   - "--external-ip={{ blobber_announced_ip }}"
   - "--slot-action={{ blobber_slot_actions | to_json }}"
