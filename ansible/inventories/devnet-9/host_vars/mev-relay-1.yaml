@@ -12,7 +12,7 @@ mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
 beacon_endpoint: http://beacon:5052
-mev_img: flashbots/mev-boost-relay:0.28.0a2
+mev_img: flashbots/mev-boost-relay:0.28.0a3
 
 # ------------------------------------------------------------------
 # mev-relay-housekeeper

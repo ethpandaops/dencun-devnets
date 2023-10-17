@@ -1,0 +1,17 @@
+prysm_container_command_extra_simple_args:
+  - --grpc-gateway-corsdomain=*
+  - --chain-config-file=/network-config/config.yaml
+  - --genesis-state=/network-config/genesis.ssz
+  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
+  - --min-sync-peers=1
+  - --pprof
+  - --pprofaddr=0.0.0.0
+  - --enable-debug-rpc-endpoints
+  - --verbosity=debug
+  - --subscribe-all-subnets
+  - --http-mev-relay=http://mev-boost:18550
+
+prysm_validator_container_command_extra_args:
+  - --chain-config-file=/network-config/config.yaml
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+  - --enable-builder

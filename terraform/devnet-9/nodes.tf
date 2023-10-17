@@ -44,7 +44,6 @@ variable "lighthouse_besu" {
     count           = 1
     validator_start = 200
     validator_end   = 225
-    size            = "s-4vcpu-16gb-amd"
   }
 }
 
@@ -91,7 +90,6 @@ variable "prysm_besu" {
     count           = 1
     validator_start = 460
     validator_end   = 485
-    size            = "s-4vcpu-16gb-amd"
   }
 }
 
@@ -138,7 +136,6 @@ variable "lodestar_besu" {
     count           = 1
     validator_start = 720
     validator_end   = 745
-    size            = "s-4vcpu-16gb-amd"
   }
 }
 
@@ -185,7 +182,6 @@ variable "teku_besu" {
     count           = 1
     validator_start = 980
     validator_end   = 1005
-    size            = "s-4vcpu-16gb-amd"
   }
 }
 
@@ -232,7 +228,6 @@ variable "nimbus_besu" {
     count           = 1
     validator_start = 1240
     validator_end   = 1265
-    size            = "s-4vcpu-16gb-amd"
   }
 }
 
