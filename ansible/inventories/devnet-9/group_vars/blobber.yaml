@@ -23,10 +23,10 @@ blobber_container_ports:
   - "127.0.0.1:{{ blobber_api_listen_port }}:{{ blobber_api_listen_port }}"
 
 blobber_container_command:
-  - "--cl={{ blobber_beacon_api | replace('http://', '') }}"
+  - "--cl={{ blobber_beacon_api }}"
   - "--beacon-port-start={{ blobber_p2p_port }}"
   - "--log-level={{ blobber_log_level }}"
-  - "--external-ip={{ blobber_announced_ip }}"
+  - "--external-ip=0.0.0.0"
   - "--slot-action={{ blobber_slot_actions | to_json }}"
   - "--slot-action-frequency={{ blobber_slot_action_frequency }}"
   - "--validator-key-folder=/data/validators"
