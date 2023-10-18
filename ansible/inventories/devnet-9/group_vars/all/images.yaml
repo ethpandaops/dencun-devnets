@@ -18,7 +18,7 @@ default_ethereum_client_images:
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.126
   ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.21.0
-  tx_fuzz: ethpandaops/tx-fuzz:1.2.1
+  tx_fuzz: parithoshj/txfuzz:v1.3.0-rc.6
   forkmon: skylenet/nodemonitor:darkmode
   forky: ethpandaops/forky:0.0.34-debian
   fauceth: skylenet/fauceth:fix_fee_estimation
@@ -31,3 +31,4 @@ default_tooling_images:
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
   dora: ethpandaops/dora:master
+  blobber: ethpandaops/blobber:1.0.0
