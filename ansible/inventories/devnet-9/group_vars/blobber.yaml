@@ -14,16 +14,23 @@ blobber_container_volumes:
 
 # Blobber specific configs
 blobber_beacon_api: "beacon:5052"
-blobber_slot_actions: {"name": "extra_blobs","broadcast_block_last": true,"delay_milliseconds": 500}
+#blobber_slot_actions: {"name": "extra_blobs","broadcast_block_last": true,"delay_milliseconds": 500}
+blobber_slot_actions: {"name": "conflicting_blobs"}
 blobber_slot_action_frequency: 1
 
 blobber_container_ports:
   - "{{ ansible_host }}:{{ blobber_p2p_port }}:{{ blobber_p2p_port }}"
   - "{{ ansible_host }}:{{ blobber_p2p_port }}:{{ blobber_p2p_port }}/udp"
+  - "{{ ansible_host }}:{{ blobber_p2p_port + 1 }}:{{ blobber_p2p_port }}"
+  - "{{ ansible_host }}:{{ blobber_p2p_port + 1 }}:{{ blobber_p2p_port }}/udp"
+  - "{{ ansible_host }}:{{ blobber_p2p_port + 2 }}:{{ blobber_p2p_port }}"
+  - "{{ ansible_host }}:{{ blobber_p2p_port + 2 }}:{{ blobber_p2p_port }}/udp"
   - "127.0.0.1:{{ blobber_api_listen_port }}:{{ blobber_api_listen_port }}"
 
 blobber_container_command:
   - "--cl={{ blobber_beacon_api }}"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-geth-1.srv.dencun-devnet-9.ethpandaops.io"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.bootnode-1.srv.dencun-devnet-9.ethpandaops.io"
   - "--beacon-port-start={{ blobber_p2p_port }}"
   - "--log-level={{ blobber_log_level }}"
   - "--external-ip=0.0.0.0"
