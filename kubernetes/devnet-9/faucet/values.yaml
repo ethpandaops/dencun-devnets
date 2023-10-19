@@ -6,6 +6,7 @@ powfaucet:
   image:
     repository: pk910/powfaucet
     tag: v2-stable
+    pullPolicy: Always
 
   resources:
     requests:
