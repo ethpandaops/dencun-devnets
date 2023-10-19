@@ -1,0 +1,77 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/powfaucet.yaml.j2
+
+powfaucet:
+  fullnameOverride: powfaucet
+
+  image:
+    repository: pk910/powfaucet
+    tag: v2-stable
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: faucet.dencun-devnet-9.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  faucetTitle: "dencun-devnet-9 PoW Faucet"
+  faucetPrivkey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.faucet_private_key}>"
+  faucetRpcUrl: "http://geth-teku-001:8545"
+  faucetExplorerLink: "https://explorer.dencun-devnet-9.ethpandaops.io/tx/{txid}"
+
+  # captcha module (require captcha check)
+  faucetCaptchaEnabled: true
+  faucetCaptchaProvider: "hcaptcha"
+  faucetCaptchaSitekey: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.site_key}>"
+  faucetCaptchaSecret: "<path:/secrets/services/services.enc.yaml#hcaptcha | jsonPath {.secret_key}>"
+
+  # ens module (allow/require ENS names)
+  faucetEnsEnabled: true
+  faucetEnsRpcUrl: "https://rpc.flashbots.net/"
+  faucetEnsRequired: false
+
+  # ipinfo module (check ip-api.com)
+  faucetIpinfoEnabled: true
+  faucetIpinfoHostingRewards: 10 # 10%
+  faucetIpinfoProxyRewards: 10 # 10%
+
+  # ethinfo module (check target wallet balance / type)
+  faucetEthinfoEnabled: true
+  faucetEthinfoMaxbalanceWei: 100000000000000000000 # 100 ETH
+  faucetEthinfoDenyContract: true
+
+  # outflow module (limit global faucet outflow)
+  faucetOutflowEnabled: false
+  faucetOutflowAmountWei: 1000000000000000000000 # 1000 ETH
+  faucetOutflowDuration: 86400 # 1 day
+  faucetOutflowBufferWei: 500000000000000000000 # 500 ETH
+
+  # github module (require login to github)
+  faucetGithubEnabled: false
+  faucetGithubClientid: "" # github app
+  faucetGithubSecret: "" # github app
+  faucetGithubMinAge: 604800 # 7 days
+  faucetGithubMinRepos: 5
+  faucetGithubMinFollowers: 5
+  faucetGithubLimitAmountWei: 100000000000000000000 # 100 ETH
+  faucetGithubLimitDuration: 86400 # 1 day
+
+  # mainnet module (check mainnet wallet balance / nonce)
+  faucetMainnetEnabled: false
+  faucetMainnetRpcUrl: "https://rpc.flashbots.net/"
+  faucetMainnetMinBalanceWei: 10000000000000000 # 0.01 ETH
+  faucetMainnetMinTxCount: 5
+
+  # recurring limits module (enforce limits for recurring users)
+  faucetRecurringLimitsEnabled: true
+  faucetRecurringLimitsAmountWei: 500000000000000000000 # 500 ETH
+  faucetRecurringLimitsDuration: 86400 # 1 day
+
+  # pow module (require mining)
+  faucetPowEnabled: true
+  faucetPowRewardPerHash: 1000000000000000000 # 1 ETH
+  faucetPowMaxDuration: 18000 # 5h
+  faucetPowDifficulty: 12
