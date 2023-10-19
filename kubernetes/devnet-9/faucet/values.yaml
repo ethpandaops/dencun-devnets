@@ -9,10 +9,10 @@ powfaucet:
 
   resources:
     requests:
-      cpu: 1000m
+      cpu: 200m
       memory: 500Mi
     limits:
-      cpu: 2000m
+      cpu: 400m
       memory: 1Gi
 
   ingress:
