@@ -21,7 +21,7 @@ default_tooling_images:
   tx_fuzz: ethpandaops/tx-fuzz:master
   forkmon: skylenet/nodemonitor:darkmode
   forky: ethpandaops/forky:0.0.34-debian
-  fauceth: skylenet/fauceth:fix_fee_estimation
+  powfaucet: pk910/powfaucet:v2-stable
   ethstats: ethpandaops/ethstats:snapshot
   homepage: ethpandaops/ethereum-testnet-homepage:latest
   checkpointz: ethpandaops/checkpointz:0.0.11-dencun-debian
