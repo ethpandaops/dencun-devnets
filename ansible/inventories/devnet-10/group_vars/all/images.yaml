@@ -1,30 +1,30 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:deneb-free-blobs-57edc0f
-  lodestar: ethpandaops/lodestar:deneb-builder-8493c43
-  nimbus: ethpandaops/nimbus:unstable-e9c8f82
-  prysm: ethpandaops/prysm:develop-c20f188
-  prysm_validator: ethpandaops/prysm-validator:develop-c20f188
-  teku: consensys/teku:develop
+  lighthouse: ethpandaops/lighthouse:devnet-10-b7a3f52
+  lodestar: ethpandaops/lodestar:deneb-builder-dafe3ca
+  nimbus: ethpandaops/nimbus:unstable-a986a1b
+  prysm: ethpandaops/prysm:devnet-10-b83d0a0
+  prysm_validator: ethpandaops/prysm-validator:devnet-10-b83d0a0
+  teku: ethpandaops/teku:master-d418f8d
 ### Execution layer clients
-  besu: ethpandaops/besu:main-4b822d6
-  geth: ethpandaops/geth:lightclient-devnet-9-6e6c723
-  erigon: ethpandaops/erigon:devel-669503d
-  ethereumjs: ethpandaops/ethereumjs:sync-init-fix-8b8099e
-  nethermind: nethermindeth/nethermind:cancun-3320d24
-  reth: ethpandaops/reth:main-1e7d028
+  besu: ethpandaops/besu:main-9d9fe8c
+  geth: ethpandaops/geth:lightclient-devnet-10-4d161de
+  erigon: ethpandaops/erigon:devel-106e880
+  ethereumjs: ethpandaops/ethereumjs:update-official-setup-468c4cc
+  nethermind: ethpandaops/nethermind:upgrade-ckzg-75a4b33
+  reth: ethpandaops/reth:main-a6bee72
 
 
 default_tooling_images:
-  xatu_sentry: ethpandaops/xatu:0.0.60
-  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.21.0
+  xatu_sentry: ethpandaops/xatu:0.0.129
+  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.22.0
   tx_fuzz: ethpandaops/tx-fuzz:master
   forkmon: skylenet/nodemonitor:darkmode
-  forky: ethpandaops/forky:0.0.34-debian
+  forky: ethpandaops/forky:0.0.50-debian
   powfaucet: pk910/powfaucet:v2-stable
   ethstats: ethpandaops/ethstats:snapshot
   homepage: ethpandaops/ethereum-testnet-homepage:latest
-  checkpointz: ethpandaops/checkpointz:0.0.11-dencun-debian
+  checkpointz: ethpandaops/checkpointz:0.18.0
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
   eth_fauceth: chainflag/eth-faucet:latest
