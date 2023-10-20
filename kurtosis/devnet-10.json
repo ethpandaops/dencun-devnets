@@ -1,0 +1,36 @@
+{
+  "participants": [
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:kzg-refactor-fdaa317"
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:kzg-refactor-fdaa317"
+      }
+  ],
+  "network_params": {
+      "deneb_fork_epoch": 1
+  },
+  "additional_services": [
+      "el_forkmon",
+      "dora"
+  ],
+  "snooper_enabled": true
+}
