@@ -26,6 +26,7 @@ powfaucet:
         paths:
           - path: /
             pathType: Prefix
+  httpProxyCount: 2
 
   faucetTitle: "dencun-devnet-9 PoW Faucet"
   faucetPrivkey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.faucet_private_key}>"
