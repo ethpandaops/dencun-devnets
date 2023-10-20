@@ -149,6 +149,36 @@
         "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
         "cl_client_type": "nimbus",
         "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-d418f8d"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b"
       }
   ],
   "network_params": {
