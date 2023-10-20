@@ -147,12 +147,6 @@
     - role: ethpandaops.general.mev_flood
       tags: [mev_flood]
 
-- hosts: powfaucet
-  become: true
-  roles:
-    - role: ethpandaops.general.powfaucet
-      tags: [powfaucet]
-
 - hosts: xatu
   become: true
   roles:
