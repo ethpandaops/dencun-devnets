@@ -50,6 +50,7 @@
             - "ethereum-metrics-exporter"
             - "snooper-engine"
             - "snooper-rpc"
+            - "mev-boost"
             #- "cl-bootnode"
         - name: Remove data dirs
           file:
