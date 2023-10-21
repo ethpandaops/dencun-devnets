@@ -4,4 +4,5 @@ mev_boost_container_env:
   GENESIS_FORK_VERSION: "0x10699478"
   SKIP_RELAY_SIGNATURE_CHECK: "1"
   BOOST_LISTEN_ADDR: 0.0.0.0:{{ mev_boost_server_port }}
-  RELAYS: http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.dencun-devnet-9.ethpandaops.io:9062,https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-d9.flashbots.net
+  RELAYS: http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.dencun-devnet-9.ethpandaops.io:9062
+  #,https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-d9.flashbots.net

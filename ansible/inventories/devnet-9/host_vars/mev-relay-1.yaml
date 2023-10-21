@@ -157,10 +157,10 @@ geth_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
   BUILDER_TX_SIGNING_KEY: 0x{{ secret_mev_signingkey }}
 geth_container_command_extra_args:
-  - --http.api=admin,engine,net,eth,web3,debug,flashbots
+  - --http.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --http.vhosts=*
   - --ws
-  - --ws.api=admin,engine,net,eth,web3,debug,flashbots
+  - --ws.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --ws.addr=0.0.0.0
   - --ws.port=8545
   - --ws.origins=*
@@ -168,6 +168,7 @@ geth_container_command_extra_args:
   - --syncmode=full
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --builder
   - --builder.remote_relay_endpoint=http://mev-api.dencun-devnet-9.ethpandaops.io:9062
   - --builder.beacon_endpoints=http://beacon:5052
   - --builder.bellatrix_fork_version=0x30699478
