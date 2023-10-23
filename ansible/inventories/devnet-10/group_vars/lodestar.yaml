@@ -23,6 +23,7 @@ validator_bls_sync_files:
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: lodestar
 
+lodestar_mev_boost_enabled: true
 # role: ethpandaops.general.lodestar
 lodestar_container_name: beacon
 lodestar_container_image: "{{ default_ethereum_client_images.lodestar }}"
