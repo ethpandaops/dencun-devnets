@@ -6,6 +6,13 @@ dora:
     repository: ethpandaops/dora
     tag: master
     pullPolicy: Always
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
   ingress:
     enabled: true
     className: ingress-nginx-public
@@ -59,6 +66,10 @@ dora:
     name: lighthouse-geth-1
     priority: -1
     archive: true
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: lighthouse-geth-1-arm
+    priority: -1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-2.srv.dencun-devnet-10.ethpandaops.io
     name: lighthouse-geth-2
     priority: -1
@@ -99,6 +110,10 @@ dora:
     name: lighthouse-reth-1
     priority: -1
     archive: true
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-reth-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: lighthouse-reth-1-arm
+    priority: -1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.srv.dencun-devnet-10.ethpandaops.io
     name: lodestar-besu-1
     priority: -1
@@ -132,6 +147,9 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.srv.dencun-devnet-10.ethpandaops.io
     name: lodestar-nethermind-1
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: lodestar-nethermind-1-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-2.srv.dencun-devnet-10.ethpandaops.io
     name: lodestar-nethermind-2
     priority: -1
@@ -155,6 +173,9 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.srv.dencun-devnet-10.ethpandaops.io
     name: nimbus-erigon-1
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: nimbus-erigon-1-arm
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-2.srv.dencun-devnet-10.ethpandaops.io
     name: nimbus-erigon-2
@@ -180,6 +201,9 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.srv.dencun-devnet-10.ethpandaops.io
     name: nimbus-nethermind-1
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: nimbus-nethermind-1-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-2.srv.dencun-devnet-10.ethpandaops.io
     name: nimbus-nethermind-2
     priority: -1
@@ -195,8 +219,14 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1.srv.dencun-devnet-10.ethpandaops.io
     name: nimbus-reth-1
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: nimbus-reth-1-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1.srv.dencun-devnet-10.ethpandaops.io
     name: prysm-besu-1
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: prysm-besu-1-arm
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-2.srv.dencun-devnet-10.ethpandaops.io
     name: prysm-besu-2
@@ -246,6 +276,9 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.srv.dencun-devnet-10.ethpandaops.io
     name: teku-besu-1
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: teku-besu-1-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-2.srv.dencun-devnet-10.ethpandaops.io
     name: teku-besu-2
     priority: -1
@@ -260,6 +293,9 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.srv.dencun-devnet-10.ethpandaops.io
     name: teku-geth-1
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: teku-geth-1-arm
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-2.srv.dencun-devnet-10.ethpandaops.io
     name: teku-geth-2
@@ -276,6 +312,9 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.srv.dencun-devnet-10.ethpandaops.io
     name: teku-nethermind-1
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: teku-nethermind-1-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-2.srv.dencun-devnet-10.ethpandaops.io
     name: teku-nethermind-2
     priority: -1
@@ -290,4 +329,7 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-reth-1.srv.dencun-devnet-10.ethpandaops.io
     name: teku-reth-1
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-reth-1-arm.srv.dencun-devnet-10.ethpandaops.io
+    name: teku-reth-1-arm
     priority: -1
