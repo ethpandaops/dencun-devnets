@@ -22,7 +22,7 @@ ethstats_url: "ethstats.{{ network_subdomain }}"
 ethstats_secret: "{{ secret_ethstats }}"
 
 log_level: info
-
+json_rpc_snooper_container_image: parithoshj/json_rpc_snoop:v1.0.0-x86
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
 checkpoint_sync_enabled: false
