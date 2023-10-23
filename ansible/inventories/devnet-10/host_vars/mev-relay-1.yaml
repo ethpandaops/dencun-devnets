@@ -173,7 +173,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:v1.13.2.4844.dev5+4d161de
+geth_container_image: flashbots/builder:1.13.2.4844.dev5-4d161de
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 

@@ -6,7 +6,7 @@
 #  ░╚═════╝░╚══════╝░╚════╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
 
 network_subdomain: "{{ ethereum_network_name }}.ethpandaops.io"
-server_fqdn: "{{ inventory_hostname }}.srv.{{ network_subdomain }}"
+server_fqdn: "{{ inventory_hostname }}.{{ network_subdomain }}"
 
 ethereum_network_id: >-
   {{ (lookup('file', eth_testnet_config_local_dir_src + '/genesis.json') | from_json).config.chainId }}
@@ -22,7 +22,6 @@ ethstats_url: "ethstats.{{ network_subdomain }}"
 ethstats_secret: "{{ secret_ethstats }}"
 
 log_level: info
-json_rpc_snooper_container_image: parithoshj/json_rpc_snoop:v1.0.0-x86
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
 checkpoint_sync_enabled: false

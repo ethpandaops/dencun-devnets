@@ -1,3 +1,3 @@
 prysm_container_image: gcr.io/prylabs-dev/prysm/beacon-chain:devnet-10
 prysm_validator_container_image: gcr.io/prylabs-dev/prysm/validator:devnet-10
-json_rpc_snooper_container_image: ethpandaops/json-rpc-snoop:master
+
