@@ -41,6 +41,7 @@ nethermind_container_command_extra_args:
   - --log={{ log_level | upper | default('DEBUG') }}
   - --TxPool.BlobSupportEnabled=true
   - --TxPool.PersistentBlobStorageEnabled=true
+  - --TxPool.ReportMinutes=5
   #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
 nethermind_container_pull: true
 
