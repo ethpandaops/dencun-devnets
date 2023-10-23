@@ -1,0 +1,4 @@
+# teku_container_validator_args:
+#   - --external-signer
+#   - --validators-proposer-default-fee-recipient={{ teku_validator_fee_recipient }}
+#   - --validators-keystore-locking-enabled=false

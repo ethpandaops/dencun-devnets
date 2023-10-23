@@ -5,3 +5,4 @@ sops 3.7.3
 terraform 1.5.4
 python 3.11.4
 ansible-lint 6.17.2
+yq 4.35.2

@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="lighthouse-geth-1"
-network="devnet-9"
+network="devnet-10"
 domain="ethpandaops.io"
 prefix="dencun"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -324,7 +324,7 @@ for arg in "${command[@]}"; do
       ;;
     "send_blob")
       # Get a private key from a mnemonic
-      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/3" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+      privatekey=$(ethereal hd keys --path="m/44'/60'/0'/0/7" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
       if [[ -z "${command[2]}" ]]; then
         # sending only one blob
         echo "Sending a blob"
@@ -353,7 +353,7 @@ for arg in "${command[@]}"; do
         echo "  Example: ${0} deposit 0 10"
         exit;
       else
-        deposit_path="m/44'/60'/0'/0/3"
+        deposit_path="m/44'/60'/0'/0/7"
         privatekey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
         publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
         fork_version=$(curl -s $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')

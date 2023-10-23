@@ -9,6 +9,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - pinges
   - jframe
   - macfarla
+  - usmansaleem
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: besu

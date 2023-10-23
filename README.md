@@ -49,4 +49,5 @@ Here's a table of where the keys are used
 | 4             | faucet-1          | ✅               |                | Faucet 1                          |
 | 5             | faucet-2          | ✅               |                | Faucet 2                          |
 | 6             | mev_flood_private_key | ✅           |                | Spams mev-able txs on the network |
-| 7-29          |                   |                  |                |                                   |
+| 7-29          | manual-deposits   |   ✅             |                | Used to make manual deposits      |
+| 8-29          | available         |                  |                |                                   |

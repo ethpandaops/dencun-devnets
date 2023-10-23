@@ -14,9 +14,8 @@ mev_relay_docker_networks:
 beacon_endpoint: http://beacon:5052
 mev_img: flashbots/mev-boost-relay:0.28.0a2
 
-# NEEDS UPDATING FOR NEW CHAIN!
-gen_validators_root: 0x6079c0b803059b77610f0198ce4b4c459cf43afd4992359084894f719d40faba
-
+gen_validators_root: 0x4959da6d511502e1c2a16a769f8257ab2404d019002729a7d9bd33a553764833
+ethereum_genesis_fork_version_suffix: 416294
 # ------------------------------------------------------------------
 # mev-relay-housekeeper
 mev_relay_housekeeper_enabled: true
@@ -146,7 +145,6 @@ ethereum_node_el: geth
 
 # role: ethpandaops.general.geth
 geth_container_name: execution
-geth_container_image: "{{ default_ethereum_client_images.geth }}"
 geth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
@@ -164,6 +162,7 @@ geth_container_command_extra_args:
   - --syncmode=full
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --builder
   - --builder.remote_relay_endpoint=http://mev-api.{{ network_subdomain }}:9062
   - --builder.beacon_endpoints=http://beacon:5052
   - --builder.bellatrix_fork_version=0x30{{ ethereum_genesis_fork_version_suffix }}
@@ -174,7 +173,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev4
+geth_container_image: flashbots/builder:v1.13.2.4844.dev5+4d161de
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 
