@@ -14,6 +14,7 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status | Network | Links | Ansible | Terraform | Kubernetes
 ------ | ------- | ----  |  -----  | -------   | ----------
+ 🟢 Active | [devnet-10](https://dencun-devnet-10.ethpandaops.io/) | [Network config](network-configs/devnet-10) / [Inventory](ansible/inventories/devnet-10/inventory.ini)  | [🔗](ansible/inventories/devnet-10) | [🔗](terraform/devnet-10) | [🔗](kubernetes/devnet-10)
  🟢 Active | [devnet-9](https://dencun-devnet-9.ethpandaops.io/) | [Network config](network-configs/devnet-9) / [Inventory](ansible/inventories/devnet-9/inventory.ini)  | [🔗](ansible/inventories/devnet-9) | [🔗](terraform/devnet-9) | [🔗](kubernetes/devnet-9)
  🔴 Off | [devnet-8](https://dencun-devnet-8.ethpandaops.io/) | [Network config](network-configs/devnet-8) / [Inventory](ansible/inventories/devnet-8/inventory.ini)  | [🔗](ansible/inventories/devnet-8) | [🔗](terraform/devnet-8) | [🔗](kubernetes/devnet-8)
  🔴 Off | [devnet-7](https://4844-devnet-7.ethpandaops.io/) | [Network config](network-configs/devnet-7) / [Inventory](ansible/inventories/devnet-7/inventory.ini)  | [🔗](ansible/inventories/devnet-7) | [🔗](terraform/devnet-7) | [🔗](kubernetes/devnet-7)
@@ -41,9 +42,11 @@ Here's a table of where the keys are used
 
 | Account Index | Component Used In | Private Key Used | Public Key Used | Comment                           |
 |---------------|-------------------|------------------|----------------|-----------------------------------|
-| 0             | tx_fuzz blobs     | ✅                |                | Spams blobs on the network        |
-| 1             | tx_fuzz_txs       | ✅                 |                | Spams tx on the network           |
-| 2             |                   |                  |                |                                   |
-| 3             |                   |                  |                |                                   |
-| 4             | mev_flood         |   ✅               |                | Spams mev-able txs on the network |
-| 5             |                   |                  |                |                                   |
+| 0             | tx_fuzz blobs     | ✅               |                | Spams blobs on the network        |
+| 1             | tx_fuzz_txs       | ✅               |                | Spams tx on the network           |
+| 2             | mev_flood_signing_key| ✅            |                | Spams mev-able txs on the network |
+| 3             | mev_flood_user_key| ✅               |                | Spams mev-able txs on the network |
+| 4             | faucet-1          | ✅               |                | Faucet 1                          |
+| 5             | faucet-2          | ✅               |                | Faucet 2                          |
+| 6             | mev_flood_private_key | ✅           |                | Spams mev-able txs on the network |
+| 7-29          |                   |                  |                |                                   |

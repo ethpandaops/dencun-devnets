@@ -1,0 +1,208 @@
+{
+  "participants": [
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52"
+      },
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca"
+      },
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509"
+      },
+      {
+        "el_client_type": "geth",
+        "el_client_image": "ethpandaops/geth:lightclient-devnet-10-4d161de",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b"
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0",
+        "count": 0
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52",
+        "count": 0
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca",
+        "count": 0
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509",
+        "count": 0
+      },
+      {
+        "el_client_type": "erigon",
+        "el_client_image": "ethpandaops/erigon:devel-106e880",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b",
+        "count": 0
+      },
+      {
+        "el_client_type": "nethermind",
+        "el_client_image": "ethpandaops/nethermind:upgrade-ckzg-75a4b33",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "nethermind",
+        "el_client_image": "ethpandaops/nethermind:upgrade-ckzg-75a4b33",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52"
+      },
+      {
+        "el_client_type": "nethermind",
+        "el_client_image": "ethpandaops/nethermind:upgrade-ckzg-75a4b33",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca"
+      },
+      {
+        "el_client_type": "nethermind",
+        "el_client_image": "ethpandaops/nethermind:upgrade-ckzg-75a4b33",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509"
+      },
+      {
+        "el_client_type": "nethermind",
+        "el_client_image": "ethpandaops/nethermind:upgrade-ckzg-75a4b33",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b"
+      },
+      {
+        "el_client_type": "besu",
+        "el_client_image": "ethpandaops/besu:main-9d9fe8c",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0",
+        "count": 0
+      },
+      {
+        "el_client_type": "besu",
+        "el_client_image": "ethpandaops/besu:main-9d9fe8c",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52",
+        "count": 0
+      },
+      {
+        "el_client_type": "besu",
+        "el_client_image": "ethpandaops/besu:main-9d9fe8c",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca",
+        "count": 0
+      },
+      {
+        "el_client_type": "besu",
+        "el_client_image": "ethpandaops/besu:main-9d9fe8c",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509",
+        "count": 0
+      },
+      {
+        "el_client_type": "besu",
+        "el_client_image": "ethpandaops/besu:main-9d9fe8c",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b",
+        "count": 0
+      },
+      {
+        "el_client_type": "ethereumjs",
+        "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0",
+        "count": 0
+      },
+      {
+        "el_client_type": "ethereumjs",
+        "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52",
+        "count": 0
+      },
+      {
+        "el_client_type": "ethereumjs",
+        "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca",
+        "count": 0
+      },
+      {
+        "el_client_type": "ethereumjs",
+        "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509",
+        "count": 0
+      },
+      {
+        "el_client_type": "ethereumjs",
+        "el_client_image": "ethpandaops/ethereumjs:update-official-setup-468c4cc",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b",
+        "count": 0
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "prysm",
+        "cl_client_image": "ethpandaops/prysm:devnet-10-b83d0a0,ethpandaops/prysm-validator:devnet-10-linux-amd64-b83d0a0"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "lighthouse",
+        "cl_client_image": "ethpandaops/lighthouse:devnet-10-b7a3f52"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "lodestar",
+        "cl_client_image": "ethpandaops/lodestar:deneb-builder-dafe3ca"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "teku",
+        "cl_client_image": "ethpandaops/teku:master-5800509"
+      },
+      {
+        "el_client_type": "reth",
+        "el_client_image": "ethpandaops/reth:main-9dd270e",
+        "cl_client_type": "nimbus",
+        "cl_client_image": "ethpandaops/nimbus:unstable-a986a1b"
+      }
+  ],
+  "network_params": {
+      "deneb_fork_epoch": 1
+  },
+  "additional_services": [
+      "el_forkmon",
+      "goomy_blob",
+      "dora"
+  ],
+  "snooper_enabled": true
+}
