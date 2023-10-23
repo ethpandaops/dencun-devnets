@@ -124,8 +124,8 @@ variable "lodestar_nethermind" {
   default = {
     name            = "lodestar-nethermind"
     count           = 5
-    validator_start = 125000
-    validator_end   = 150000
+    validator_start = 335000
+    validator_end   = 360000
   }
 }
 
