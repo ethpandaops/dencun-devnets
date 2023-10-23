@@ -2,7 +2,7 @@ blobber_container_image: "{{ default_tooling_images.blobber }}"
 
 blobber_log_level: trace
 
-ethereum_node_blobber_enabled: false
+ethereum_node_blobber_enabled: true
 
 # Storage configs
 blobber_datadir: /data/blobber
