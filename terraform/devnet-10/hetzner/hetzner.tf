@@ -50,7 +50,7 @@ locals {
     [
       for i in range(0, vm_group.count) : {
         group_name = "${vm_group.name}"
-        id         = "${vm_group.name}-${i + 1}"
+        id         = "${vm_group.name}-${i + 1}-arm"
         vms = {
           "${i + 1}" = {
             labels = "group_name:${vm_group.name},val_start:${vm_group.validator_start + (i * (vm_group.validator_end -
@@ -123,7 +123,7 @@ resource "hcloud_server" "main" {
   for_each = {
     for vm in local.hcloud_vms : "${vm.id}" => vm
   }
-  name        = "${var.ethereum_network}-${each.value.name}-arm"
+  name        = "${var.ethereum_network}-${each.value.name}"
   image       = each.value.image
   server_type = each.value.server_type
   location    = each.value.location

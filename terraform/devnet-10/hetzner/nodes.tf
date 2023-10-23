@@ -21,7 +21,7 @@ variable "lighthouse_geth" {
 variable "lighthouse_besu" {
   default = {
     name            = "lighthouse-besu"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -30,7 +30,7 @@ variable "lighthouse_besu" {
 variable "lighthouse_nethermind" {
   default = {
     name            = "lighthouse-nethermind"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -39,7 +39,7 @@ variable "lighthouse_nethermind" {
 variable "lighthouse_ethereumjs" {
   default = {
     name            = "lighthouse-ethereumjs"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -48,7 +48,7 @@ variable "lighthouse_ethereumjs" {
 variable "lighthouse_erigon" {
   default = {
     name            = "lighthouse-erigon"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -67,7 +67,7 @@ variable "lighthouse_reth" {
 variable "prysm_geth" {
   default = {
     name            = "prysm-geth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -85,7 +85,7 @@ variable "prysm_besu" {
 variable "prysm_nethermind" {
   default = {
     name            = "prysm-nethermind"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -94,7 +94,7 @@ variable "prysm_nethermind" {
 variable "prysm_ethereumjs" {
   default = {
     name            = "prysm-ethereumjs"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -103,7 +103,7 @@ variable "prysm_ethereumjs" {
 variable "prysm_erigon" {
   default = {
     name            = "prysm-erigon"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -112,7 +112,7 @@ variable "prysm_erigon" {
 variable "prysm_reth" {
   default = {
     name            = "prysm-reth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -122,7 +122,7 @@ variable "prysm_reth" {
 variable "lodestar_geth" {
   default = {
     name            = "lodestar-geth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -140,7 +140,7 @@ variable "lodestar_nethermind" {
 variable "lodestar_besu" {
   default = {
     name            = "lodestar-besu"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -149,7 +149,7 @@ variable "lodestar_besu" {
 variable "lodestar_ethereumjs" {
   default = {
     name            = "lodestar-ethereumjs"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -158,7 +158,7 @@ variable "lodestar_ethereumjs" {
 variable "lodestar_erigon" {
   default = {
     name            = "lodestar-erigon"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -167,7 +167,7 @@ variable "lodestar_erigon" {
 variable "lodestar_reth" {
   default = {
     name            = "lodestar-reth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -177,7 +177,7 @@ variable "lodestar_reth" {
 variable "nimbus_geth" {
   default = {
     name            = "nimbus-geth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -186,7 +186,7 @@ variable "nimbus_geth" {
 variable "nimbus_besu" {
   default = {
     name            = "nimbus-besu"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -204,7 +204,7 @@ variable "nimbus_nethermind" {
 variable "nimbus_ethereumjs" {
   default = {
     name            = "nimbus-ethereumjs"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -259,7 +259,7 @@ variable "teku_nethermind" {
 variable "teku_ethereumjs" {
   default = {
     name            = "teku-ethereumjs"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -268,7 +268,7 @@ variable "teku_ethereumjs" {
 variable "teku_erigon" {
   default = {
     name            = "teku-erigon"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }

@@ -5,7 +5,7 @@ default_ethereum_client_images:
   nimbus: ethpandaops/nimbus:unstable-a986a1b
   prysm: ethpandaops/prysm:devnet-10-b83d0a0
   prysm_validator: ethpandaops/prysm-validator:devnet-10-b83d0a0
-  teku: ethpandaops/teku:master-5800509
+  teku: ethpandaops/teku:master-d418f8d
 ### Execution layer clients
   besu: ethpandaops/besu:main-9d9fe8c
   geth: ethpandaops/geth:lightclient-devnet-10-4d161de
