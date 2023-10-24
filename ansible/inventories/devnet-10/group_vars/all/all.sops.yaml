@@ -16,7 +16,7 @@ secret_mev_signingkey: ENC[AES256_GCM,data:yel+FJTTj4NuXDycr3pilLV0l4Zj3Mu1hwzin
 secret_mev_flood_private_key: ENC[AES256_GCM,data:GsERcUe0pfkcnjVQHTVAmAGLsacFFhjNtHNKrlmksyIgagXzEq/MkW+GtVTYYIE45QTvJvlQX1IcUCyLvelD2g==,iv:JD4c+Me7g8XW+vurKCBi0AEABrNB2jltt0DdB12box0=,tag:YOYoMNIHaPHn/XLzd839gw==,type:str]
 secret_mev_flood_user_key: ENC[AES256_GCM,data:89pXkZS+78OgSNUyqxD7EHLwVqAC3FvDc4lWfsDV8uMb0WxVNnriY6obNuihqiLfgNNT/EgXHOwPdtnPOLeNQg==,iv:dMbBubR809m/1Ef+Dj3fF4GcxtrlJMX9rnywZDX00ng=,tag:gX5J4nDvD7CixPYLMPB9Pw==,type:str]
 secret_xatu_sentry:
-    server_address: ENC[AES256_GCM,data:Fk1yqdcZL9q2jvzeQh527uZpcC5KYZ2cMP7/GlcU,iv:0g3IXB1DutIJFGTq23/Kz24r3MwMiCPKbE4U68bNLKg=,tag:bFvg91K+M7gRNoJEu6/CLg==,type:str]
+    server_address: ENC[AES256_GCM,data:dqTkFwFWVmNoscaMVGma8Py3qNcmkkOXGUX6ix5QPAXr/a52EKse5sNgfZtsOJsl61v3,iv:HyHvJ0moeJyXWy85Z4j9lzcLGSCAwU3GykX9oI1u2zM=,tag:tXyO9njRJBnzotwC4RHAfw==,type:str]
     user: ENC[AES256_GCM,data:CP+oFlU3+Q==,iv:rZI0Uy9cSl1x83Ev00I8iu51vQ7tEw97R1ptAsHcJj4=,tag:OUmnkc1PXD8L5NA7043ZwQ==,type:str]
     password: ENC[AES256_GCM,data:MPiGyB7L6aJ0WmI0AZbsHntbMh1wROoQ8ek8iwELDHZTo3AI,iv:jg3K8YiaRIUopk4A3Kq5XUrzjWezto4wcmRCuLKoBrg=,tag:WswN/DtPEEVt82Mupf7sQA==,type:str]
 tx_fuzz_blobs_privkey: ENC[AES256_GCM,data:DGbEFRC9B/WRhJFRmbXBAwTPFyn8SD/Qk+EYPrUj2F/TgU9EPSNtOWT9QEcUqwKxn4K3h1mrDxDp62bVzbNW3Q==,iv:NSFdKO7QjWA9A//sOSYbVFouB2XbhlcyJFLvxzq+C3g=,tag:VenuTAX0Ja5GjPR0o3RBug==,type:str]
@@ -37,8 +37,8 @@ sops:
             cjFQSjNMdEtTZ3ZsVXF0S1YzUFpjSWMK9egMDPVbDH9wZ63Xphb71mEISx2Oen4T
             DVSVbwUAAWgyxR4TWC2hk/JjYZ3MKIFY65WVc4J1MB/ULq+l0HhttQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-24T12:58:53Z"
-    mac: ENC[AES256_GCM,data:g2hEHGARomq0A9G4At4m4t+UmaApIJia4sO0yxd0ZI04K41xbVeDeGqZiWVR271hQT1KfX9jrHbASoo9AdWMM0pgvSl+vAqs08wI4+vXs7Xv+IDceerMsd55l0qx+6VpvplHWFMXKZSlv2EK2XDI/OkG6SSteZDCpn/lpv/tqu0=,iv:tRyFjt28Mm2TdeSFEEpY01b6D+gkiT0DEi0e46FQ/c4=,tag:sBwK9ceWqlvYYRQTRntJhw==,type:str]
+    lastmodified: "2023-10-24T13:13:03Z"
+    mac: ENC[AES256_GCM,data:K4VmgQb3dCFkZH0rr7AuT+/AYCtXE1I94AQeJWQaddmt5+G5iybwhZXMPDrwd6zu+HjH1zesPX/AGM0WDqtNJRn375duNT8MhE3hOclBd1pdzDEgUlarmBVcQKVv4LudBe3nf4NXV5rlFpJBW9gi6BtVS7ok8/L3EKFkBvHHvyY=,iv:j/cgYdVFgzyGWftLh9Ic5Z73vhUixRkDiYLBzLhkNp8=,tag:xsof0X8bAcmWqNYjdgmf/Q==,type:str]
     pgp:
         - created_at: "2023-08-17T08:39:40Z"
           enc: |-

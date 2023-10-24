@@ -7,6 +7,7 @@ xatu_sentry_config_network_name_override: "{{ ethereum_network_name }}"
 xatu_sentry_container_networks: "{{ docker_networks_shared }}"
 xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
 
+ethereum_node_xatu_sentry_enabled: true
 
 xatu_sentry_container_command:
   - sentry
