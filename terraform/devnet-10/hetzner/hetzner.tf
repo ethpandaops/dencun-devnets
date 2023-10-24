@@ -69,7 +69,7 @@ locals {
 locals {
   hcloud_default_location    = "nbg1"
   hcloud_default_image       = "debian-12"
-  hcloud_default_server_type = "cax41"
+  hcloud_default_server_type = "cax31"
   hcloud_global_labels = [
     "Owner:Devops",
     "EthNetwork:${var.ethereum_network}"
@@ -154,18 +154,6 @@ resource "cloudflare_record" "server_record" {
     for vm in local.hcloud_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "${each.value.name}.srv.${var.ethereum_network}"
-  type    = "A"
-  value   = hcloud_server.main[each.value.id].ipv4_address
-  proxied = false
-  ttl     = 120
-}
-
-resource "cloudflare_record" "server_record_short" {
-  for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
-  }
-  zone_id = data.cloudflare_zone.default.id
   name    = "${each.value.name}.${var.ethereum_network}"
   type    = "A"
   value   = hcloud_server.main[each.value.id].ipv4_address
@@ -178,30 +166,6 @@ resource "cloudflare_record" "server_record_rpc" {
     for vm in local.hcloud_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "rpc.${each.value.name}.srv.${var.ethereum_network}"
-  type    = "A"
-  value   = hcloud_server.main[each.value.id].ipv4_address
-  proxied = false
-  ttl     = 120
-}
-
-resource "cloudflare_record" "server_record_beacon" {
-  for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
-  }
-  zone_id = data.cloudflare_zone.default.id
-  name    = "bn.${each.value.name}.srv.${var.ethereum_network}"
-  type    = "A"
-  value   = hcloud_server.main[each.value.id].ipv4_address
-  proxied = false
-  ttl     = 120
-}
-
-resource "cloudflare_record" "server_record_rpc_short" {
-  for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
-  }
-  zone_id = data.cloudflare_zone.default.id
   name    = "rpc.${each.value.name}.${var.ethereum_network}"
   type    = "A"
   value   = hcloud_server.main[each.value.id].ipv4_address
@@ -209,7 +173,7 @@ resource "cloudflare_record" "server_record_rpc_short" {
   ttl     = 120
 }
 
-resource "cloudflare_record" "server_record_beacon_short" {
+resource "cloudflare_record" "server_record_beacon" {
   for_each = {
     for vm in local.hcloud_vms : "${vm.id}" => vm
   }
