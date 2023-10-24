@@ -21,6 +21,7 @@ secret_xatu_sentry:
     password: ENC[AES256_GCM,data:MPiGyB7L6aJ0WmI0AZbsHntbMh1wROoQ8ek8iwELDHZTo3AI,iv:jg3K8YiaRIUopk4A3Kq5XUrzjWezto4wcmRCuLKoBrg=,tag:WswN/DtPEEVt82Mupf7sQA==,type:str]
 tx_fuzz_blobs_privkey: ENC[AES256_GCM,data:DGbEFRC9B/WRhJFRmbXBAwTPFyn8SD/Qk+EYPrUj2F/TgU9EPSNtOWT9QEcUqwKxn4K3h1mrDxDp62bVzbNW3Q==,iv:NSFdKO7QjWA9A//sOSYbVFouB2XbhlcyJFLvxzq+C3g=,tag:VenuTAX0Ja5GjPR0o3RBug==,type:str]
 tx_fuzz_txs_privkey: ENC[AES256_GCM,data:6MD8VIRpnkvngbUE9J6NR7mD6biZkGjdq3rpM3VVub7bCqV3frETzOFzwaHi898LquRb+oMFQSZKINl1+63OZg==,iv:C+PN6gUXQdyy2J401xmGN092jzEvd3lx7+2UQ56N0/o=,tag:2ecaxuZN6YsO0cm+nmgYWw==,type:str]
+goomy_private_key: ENC[AES256_GCM,data:AtRm2Bl+/KmooKGd6a1x/+g+uIizxjMgUe78NnHATtuD7+ocovr1kOzltEdxMhRba4XSEr0kc5AkNoDEiZFBUQ==,iv:FJNZJMsEQmcsDypPVNBqL9v+9v5kfkmJikpQlQ78E1k=,tag:HOo5NaWtnkt+xzTRPjzZkA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -36,8 +37,8 @@ sops:
             cjFQSjNMdEtTZ3ZsVXF0S1YzUFpjSWMK9egMDPVbDH9wZ63Xphb71mEISx2Oen4T
             DVSVbwUAAWgyxR4TWC2hk/JjYZ3MKIFY65WVc4J1MB/ULq+l0HhttQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-10T09:21:21Z"
-    mac: ENC[AES256_GCM,data:fj36W6PYIjqSRfLvDR4KX1thT+dKgZN5wg3En0zNWPSwxsNExAqIeTQanPNV2FRl/npc9ohYDjn+EHx7oVrsMdUb6O0PgwA5Zz3R/AGVSFa07Jy/IDYKLsQUxppQm+ZLA5hllq+KZ8OWRYcX4xAFZtVw6mKh7FV7ifkO2YJhjmo=,iv:0HubyXPUryynZsfPbWqnIM1D556F5X6efA66nCLBkPk=,tag:pgr/y77sH7fKzS6XVhscgA==,type:str]
+    lastmodified: "2023-10-24T12:58:53Z"
+    mac: ENC[AES256_GCM,data:g2hEHGARomq0A9G4At4m4t+UmaApIJia4sO0yxd0ZI04K41xbVeDeGqZiWVR271hQT1KfX9jrHbASoo9AdWMM0pgvSl+vAqs08wI4+vXs7Xv+IDceerMsd55l0qx+6VpvplHWFMXKZSlv2EK2XDI/OkG6SSteZDCpn/lpv/tqu0=,iv:tRyFjt28Mm2TdeSFEEpY01b6D+gkiT0DEi0e46FQ/c4=,tag:sBwK9ceWqlvYYRQTRntJhw==,type:str]
     pgp:
         - created_at: "2023-08-17T08:39:40Z"
           enc: |-
