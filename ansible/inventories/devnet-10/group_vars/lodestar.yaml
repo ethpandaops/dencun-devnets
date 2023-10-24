@@ -23,7 +23,6 @@ validator_bls_sync_files:
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: lodestar
 
-lodestar_mev_boost_enabled: true
 # role: ethpandaops.general.lodestar
 lodestar_container_name: beacon
 lodestar_container_image: "{{ default_ethereum_client_images.lodestar }}"
@@ -44,7 +43,7 @@ lodestar_container_command_extra_args:
   - --nat=true
   - --chain.trustedSetup=/network-config/trusted_setup.txt
   - --builder
-  - --builder.urls=http://mev-boost:18550
+  - --builder.urls=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.dencun-devnet-10.ethpandaops.io:9062
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
@@ -53,4 +52,5 @@ lodestar_validator_container_volumes:
 lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+  - --useProduceBlockV3
 lodestar_validator_datadir: /data/lodestar-validator

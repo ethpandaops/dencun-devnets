@@ -172,6 +172,7 @@ variable "teku_nethermind" {
     count           = 5
     validator_start = 150000
     validator_end   = 175000
+    size            = "c-8"
   }
 }
 
