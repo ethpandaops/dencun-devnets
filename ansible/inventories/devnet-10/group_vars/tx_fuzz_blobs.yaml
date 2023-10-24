@@ -5,8 +5,8 @@ tx_fuzz_blobs_container_name: tx_fuzz_blobs
 tx_fuzz_blobs_container_command:
   - blobs
   - --no-al
-  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.srv.{{ network_subdomain }}
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-2.{{ network_subdomain }}
   - --sk={{ tx_fuzz_blobs_privkey }}
-  - --txcount=3
+  - --txcount=2
 
 tx_fuzz_container_networks: "{{ docker_networks_shared }}"
