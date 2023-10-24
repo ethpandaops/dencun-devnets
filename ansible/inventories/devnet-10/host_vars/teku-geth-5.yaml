@@ -1,0 +1,2 @@
+teku_container_security_opts:
+    - "seccomp:unconfined"
