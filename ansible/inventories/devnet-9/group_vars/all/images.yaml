@@ -3,8 +3,8 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:deneb-free-blobs-38e7172
   lodestar: ethpandaops/lodestar:deneb-builder-49aab61
   nimbus: ethpandaops/nimbus:unstable-e9c8f82
-  prysm: ethpandaops/prysm:remove_bad_sidecars-b5f203a
-  prysm_validator: ethpandaops/prysm-validator:develop-c20f188
+  prysm: ethpandaops/prysm:develop-a2f6036
+  prysm_validator: ethpandaops/prysm-validator:develop-linux-amd64-a2f6036
   teku: ethpandaops/teku:master-ccaf7a4
 ### Execution layer clients
   besu: ethpandaops/besu:main-a56a35f
