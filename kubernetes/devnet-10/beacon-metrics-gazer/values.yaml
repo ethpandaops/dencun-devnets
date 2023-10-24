@@ -28,7 +28,6 @@ beacon-metrics-gazer:
     - "8080"
     - --address
     - "0.0.0.0"
-    - --verbose
 
   extraVolumes:
     - name: custom-config
