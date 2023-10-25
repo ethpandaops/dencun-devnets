@@ -3,4 +3,4 @@ goomy_container_networks: "{{ docker_networks_shared }}"
 goomy_rpc_urls:
   - "{% for host in groups['execution_node'] %}https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.{{ host }}.dencun-devnet-10.ethpandaops.io,{% endfor %}"
 goomy_scenario: "combined"
-goomy_extra_args: ["--sidecars", "1", "--throughput", "3", "--max-pending", "4"]
+goomy_extra_args: ["--sidecars", "1", "--throughput", "5", "--max-pending", "4"]
