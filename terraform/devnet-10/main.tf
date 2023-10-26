@@ -397,6 +397,17 @@ resource "digitalocean_firewall" "mev_rule" {
   }
 }
 
+resource "digitalocean_firewall" "mev_rule-web" {
+  name        = "${var.ethereum_network}-mev-relay-web"
+  droplet_ids = [digitalocean_droplet.main["mev-relay-1"].id]
+  // Mev-relay-api
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "9060"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
+}
+
 resource "cloudflare_record" "mev_relay_cloudflare_record" {
   zone_id = data.cloudflare_zone.default.id
   name    = "mev-api.${var.ethereum_network}"
