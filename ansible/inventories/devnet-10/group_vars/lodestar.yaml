@@ -43,7 +43,6 @@ lodestar_container_command_extra_args:
   - --nat=true
   - --chain.trustedSetup=/network-config/trusted_setup.txt
   - --builder
-  - --builder.urls=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.dencun-devnet-10.ethpandaops.io:9062
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
