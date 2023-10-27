@@ -16,7 +16,7 @@ bootstrap_default_user_authorized_keys_github:
   - savid
   - skylenet
   - pk910
-
+  - marioevz
 # role: robertdebock.fail2ban
 fail2ban_loglevel: INFO
 fail2ban_logtarget: /var/log/fail2ban.log
