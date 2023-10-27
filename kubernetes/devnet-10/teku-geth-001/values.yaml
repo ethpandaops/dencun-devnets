@@ -46,6 +46,7 @@ teku-geth-001:
               - --syncmode=full
               - --bootnodes=enode://066ea803300c79a2dffb0b4467ea285ede264ab92ced4e00e1fc727ac33881d568d98091faf2b180fc009693a02984fa14b79d9b4ed37f868ca2cb2f9d8bc0f4@137.184.56.116:30303?discport=30303
               - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-10.ethpandaops.io
+              - --rpc.allow-unprotected-txs
             erigon:
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
               - --http.vhosts=*
@@ -72,7 +73,7 @@ teku-geth-001:
               - --nat=true
               - --chain.trustedSetup=/data/network-config/trusted_setup.txt
               - --builder
-              - --builder.urls=http://mev-boost:18550
+              - --builder.urls=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.dencun-devnet-10.ethpandaops.io:9062
             teku:
               - --network=/data/network-config/config.yaml
               - --initial-state=/data/network-config/genesis.ssz
@@ -84,7 +85,6 @@ teku-geth-001:
               - --logging=info
               - --Xlog-include-p2p-warnings-enabled
               - --metrics-block-timing-tracking-enabled
-              - --Xmetrics-blob-sidecars-storage-enabled=true
               - --Xtrusted-setup=/data/network-config/trusted_setup.txt
               - --Xpeer-rate-limit=100000
               - --Xpeer-request-limit=1000
@@ -107,6 +107,8 @@ teku-geth-001:
               - --boot-nodes=enr:-Iq4QGHYblIeLUPZ9aIs-pkfSS1iK__e050O47cdpDgq-ziaRBqZNWi_0IO3B_oKeDRkK-C37qIPQvLZxrYMqLOB7pGGAYtbj6hdgmlkgnY0gmlwhIm4OHSJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QAMwzXPK4JthvxAVCTXPIKRV87FILFKiVeOxm1TTFxEgA5Yv-fMfrG8THYcqhhT47LIhv4RH552DS7xJwGwNjZwMh2F0dG5ldHOIAAAAAAAAGACEZXRoMpBMQCo3UEFilAABAAAAAAAAgmlkgnY0gmlwhIm4OHSJc2VjcDI1NmsxoQPDgsNXamX8b98X14Ayd5gpcEwOncU5ZArTIlz0d_v4yIN0Y3CCIyiDdWRwgiMo
               - --self-limiter=blob_sidecars_by_range:256/10
               - --debug-level=info
+              - --quic-port=9001
+              - --enr-quic-port=9001
             nimbus:
               - --network=/data/network-config
               - --validator-monitor-auto=false

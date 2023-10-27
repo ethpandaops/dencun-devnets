@@ -25,6 +25,7 @@ dora:
   name: dencun-devnet-10
   configPath: "https://config.dencun-devnet-10.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.dencun-devnet-10.ethpandaops.io/api/v1/nodes/validator-ranges"
+  proxyCount: 2
 
   postgresql:
     name: "dora-postgresql"
