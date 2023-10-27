@@ -1,0 +1,85 @@
+# role: ethpandaops.general.xatu_sentry
+xatu_sentry_config_name: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+xatu_sentry_config_server_address: "{{ secret_xatu_sentry.server_address }}"
+xatu_sentry_config_server_auth_user: "{{ secret_xatu_sentry.user }}"
+xatu_sentry_config_server_auth_password: "{{ secret_xatu_sentry.password }}"
+xatu_sentry_config_network_name_override: "{{ ethereum_network_name }}"
+xatu_sentry_container_networks: "{{ docker_networks_shared }}"
+xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"
+
+ethereum_node_xatu_sentry_enabled: true
+
+xatu_sentry_container_command:
+  - sentry
+  - --config=/config.yaml
+
+xatu_sentry_config:
+  logging: "info"
+  metricsAddr: ":9090"
+  name: "{{ xatu_sentry_config_name }}"
+  ntpServer: time.google.com
+  ethereum:
+    beaconNodeAddress: "{{ vars[ethereum_node_cl + '_container_name'] }}:{{ethereum_node_cl_ports_http_beacon}}"
+    overrideNetworkName: "{{ xatu_sentry_config_network_name_override }}"
+    beaconSubscriptions:
+    - attestation
+    - block
+    - chain_reorg
+    - finalized_checkpoint
+    - head
+    - voluntary_exit
+    - contribution_and_proof
+    - blob_sidecar
+  attestationData:
+    enabled: false
+  beaconCommittees:
+    enabled: false
+  forkChoice:
+    enabled: false
+  outputs:
+  - config:
+      address: "{{ xatu_sentry_config_server_address }}"
+      headers:
+        authorization: "Basic {{ (xatu_sentry_config_server_auth_user + ':' + xatu_sentry_config_server_auth_password) | b64encode }}"
+      maxExportBatchSize: 32
+      maxQueueSize: 1000000
+      workers: 5
+      tls: true
+    filter:
+      eventNames:
+      - BEACON_API_ETH_V1_EVENTS_UNKNOWN
+      - BEACON_API_ETH_V1_BEACON_COMMITTEE
+      - BEACON_API_ETH_V1_EVENTS_BLOB_SIDECAR
+      - BEACON_API_ETH_V1_EVENTS_BLOCK
+      - BEACON_API_ETH_V1_EVENTS_BLOCK_V2
+      - BEACON_API_ETH_V1_EVENTS_CHAIN_REORG
+      - BEACON_API_ETH_V1_EVENTS_CHAIN_REORG_V2
+      - BEACON_API_ETH_V1_EVENTS_FINALIZED_CHECKPOINT
+      - BEACON_API_ETH_V1_EVENTS_FINALIZED_CHECKPOINT_V2
+      - BEACON_API_ETH_V1_EVENTS_HEAD
+      - BEACON_API_ETH_V1_EVENTS_HEAD_V2
+      - BEACON_API_ETH_V1_EVENTS_VOLUNTARY_EXIT
+      - BEACON_API_ETH_V1_EVENTS_VOLUNTARY_EXIT_V2
+      - BEACON_API_ETH_V1_EVENTS_CONTRIBUTION_AND_PROOF
+      - BEACON_API_ETH_V1_EVENTS_CONTRIBUTION_AND_PROOF_V2
+      - BEACON_API_ETH_V1_VALIDATOR_ATTESTATION_DATA
+      - MEMPOOL_TRANSACTION
+      - MEMPOOL_TRANSACTION_V2
+      - BEACON_API_ETH_V2_BEACON_BLOCK
+      - BEACON_API_ETH_V2_BEACON_BLOCK_V2
+    name: grpc-general
+    type: xatu
+  - config:
+      address: "{{ xatu_sentry_config_server_address }}"
+      headers:
+        authorization: "Basic {{ (xatu_sentry_config_server_auth_user + ':' + xatu_sentry_config_server_auth_password) | b64encode }}"
+      maxExportBatchSize: 128
+      maxQueueSize: 1000000
+      workers: 10
+      tls: true
+    filter:
+      eventNames:
+      - BEACON_API_ETH_V1_EVENTS_ATTESTATION
+      - BEACON_API_ETH_V1_EVENTS_ATTESTATION_V2
+    name: grpc-attestation
+    type: xatu

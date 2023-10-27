@@ -1,0 +1,102 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_el:
+  - MarekM25
+  - kamilchodola
+  - LukaszRozmej
+  - marcindsobczak
+  - asdacap
+  - rubo
+  - smartprogrammer93
+  - g11tech
+  - cbermudez97
+  - flcl42
+  - jflo
+  - shashankshampi
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: nethermind
+
+# role: ethpandaops.general.nethermind
+nethermind_container_name: execution
+nethermind_container_image: "{{ default_ethereum_client_images.nethermind }}"
+nethermind_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+nethermind_container_volumes:
+  - "{{ nethermind_datadir }}:/data"
+  - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+nethermind_container_command_extra_args:
+  - --Init.ChainSpecPath=/network-config/chainspec.json
+  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --Init.IsMining=false
+  - --Pruning.Mode=None
+  - --config=none.cfg
+  - --EthStats.Enabled=true
+  - --EthStats.Name={{ inventory_hostname }}
+  - --EthStats.Secret={{ ethstats_secret }}
+  - --EthStats.Server=wss://{{ ethstats_url }}/api/
+  - --log={{ log_level | upper | default('DEBUG') }}
+  - --TxPool.BlobSupportEnabled=true
+  - --TxPool.PersistentBlobStorageEnabled=true
+  - --TxPool.ReportMinutes=5
+  #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
+nethermind_container_pull: true
+
+prometheus_config: |
+  global:
+    scrape_interval: 30s
+    evaluation_interval: 30s
+    scrape_timeout: 10s
+    external_labels:
+      instance: "{{ inventory_hostname }}"
+      ip_address: "{{ ansible_host }}"
+      network: "{{ ethereum_network_name }}"
+      testnet: "{{ ethereum_network_name }}"
+      execution_client: "{{ ethereum_node_el }}"
+      consensus_client: "{{ ethereum_node_cl }}"
+  remote_write:
+    - queue_config:
+        batch_send_deadline: 5s
+        max_backoff: 500ms
+        max_samples_per_send: 500
+        min_backoff: 50ms
+        max_shards: 100
+      url: {{ prometheus_remote_push_url }}
+      remote_timeout: 10s
+      basic_auth:
+        username: {{ prometheus_remote_write_username }}
+        password: {{ prometheus_remote_write_password }}
+  scrape_configs:
+    - job_name: "prometheus"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["localhost:9090"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["172.17.0.1:9100"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "exporter"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["ethereum-metrics-exporter:9090"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "consensus_node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "execution"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["execution:{{ ethereum_node_el_ports_metrics }}"]
+          labels:
+            instance: "{{ inventory_hostname }}"
