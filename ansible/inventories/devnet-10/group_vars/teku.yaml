@@ -44,7 +44,6 @@ teku_container_command_extra_args:
   - --logging={{ log_level | default('debug') }}
   - --Xlog-include-p2p-warnings-enabled
   - --metrics-block-timing-tracking-enabled
-  - --Xmetrics-blob-sidecars-storage-enabled=true
   - --Xtrusted-setup=/network-config/trusted_setup.txt
   - --Xpeer-rate-limit=100000
   - --Xpeer-request-limit=1000
