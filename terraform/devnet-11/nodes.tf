@@ -59,9 +59,9 @@ variable "lighthouse_erigon" {
 variable "lighthouse_ethereumjs" {
   default = {
     name            = "lighthouse-ethereumjs"
-    count           = 1
-    validator_start = 250
-    validator_end   = 260
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -70,7 +70,7 @@ variable "prysm_geth" {
   default = {
     name            = "prysm-geth"
     count           = 1
-    validator_start = 260
+    validator_start = 250
     validator_end   = 360
   }
 }
@@ -105,9 +105,9 @@ variable "prysm_erigon" {
 variable "prysm_ethereumjs" {
   default = {
     name            = "prysm-ethereumjs"
-    count           = 1
-    validator_start = 510
-    validator_end   = 520
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -116,7 +116,7 @@ variable "lodestar_geth" {
   default = {
     name            = "lodestar-geth"
     count           = 1
-    validator_start = 520
+    validator_start = 510
     validator_end   = 620
   }
 }
@@ -197,9 +197,9 @@ variable "teku_erigon" {
 variable "teku_ethereumjs" {
   default = {
     name            = "teku-ethereumjs"
-    count           = 1
-    validator_start = 1030
-    validator_end   = 1040
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -208,7 +208,7 @@ variable "nimbus_geth" {
   default = {
     name            = "nimbus-geth"
     count           = 1
-    validator_start = 1040
+    validator_start = 1030
     validator_end   = 1140
   }
 }
@@ -243,9 +243,9 @@ variable "nimbus_erigon" {
 variable "nimbus_ethereumjs" {
   default = {
     name            = "nimbus-ethereumjs"
-    count           = 1
-    validator_start = 1290
-    validator_end   = 1300
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -254,7 +254,7 @@ variable "lighthouse_reth" {
   default = {
     name            = "lighthouse-reth"
     count           = 1
-    validator_start = 1300
+    validator_start = 1290
     validator_end   = 1400
   }
 }
