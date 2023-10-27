@@ -5,6 +5,16 @@ ethereum_cl_bootnodes:
 
 ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-2']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-3']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-4']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-5']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-nethermind-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-nethermind-2']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-nethermind-3']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-nethermind-4']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-nethermind-5']['ethereum_node_fact_el_enode'] }}"
 
 
 
