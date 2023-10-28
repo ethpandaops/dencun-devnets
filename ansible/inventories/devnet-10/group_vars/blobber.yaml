@@ -14,7 +14,7 @@ blobber_container_volumes:
 
 # Blobber specific configs
 blobber_beacon_api: "beacon:5052"
-blobber_slot_actions: {"name": "blob_gossip_delay", "delay_milliseconds": 1500}
+blobber_slot_actions: {"name": "blob_gossip_delay", "delay_milliseconds": 2000}
 #blobber_slot_actions: {"name": "conflicting_blobs"}
 blobber_slot_action_frequency: 1
 
