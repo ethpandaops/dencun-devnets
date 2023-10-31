@@ -1,0 +1,30 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/ethstats.yaml.j2
+
+ethstats:
+  fullnameOverride: ethstats
+
+  image:
+    repository: ethpandaops/ethstats
+    tag: snapshot
+
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: ethstats.dencun-devnet-11.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  secretEnv:
+    WS_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>"
+
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 200m
