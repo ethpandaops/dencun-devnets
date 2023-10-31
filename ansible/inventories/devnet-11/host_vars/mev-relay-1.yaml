@@ -99,7 +99,7 @@ mev_relay_website_container_command_extra_args:
 # role: ethpandaops.general.ethereum_node
 ethereum_node_cl: lighthouse
 
-lighthouse_checkpoint_sync_enabled: true
+lighthouse_checkpoint_sync_enabled: false
 
 # role: ethpandaops.general.lighthouse
 lighthouse_container_name: beacon
@@ -134,7 +134,6 @@ lighthouse_container_pull: true
 
 ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
-  - "{{ hostvars['teku-nethermind-1']['ethereum_node_fact_el_enode'] }}"
 
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
