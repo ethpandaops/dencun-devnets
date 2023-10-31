@@ -126,7 +126,7 @@ variable "lodestar_geth" {
     count           = 1
     validator_start = 510
     validator_end   = 620
-    location       = "fra1"
+    location        = "fra1"
   }
 }
 
@@ -277,7 +277,7 @@ variable "lighthouse_reth" {
     count           = 1
     validator_start = 1290
     validator_end   = 1400
-    location = "syd1"
+    location        = "syd1"
   }
 }
 

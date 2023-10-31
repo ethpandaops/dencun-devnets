@@ -241,7 +241,7 @@ variable "teku_geth" {
     count           = 1
     validator_start = 2400
     validator_end   = 2500
-    location       = "hel1"
+    location        = "hel1"
   }
 }
 
