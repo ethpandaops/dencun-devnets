@@ -15,6 +15,7 @@ variable "lighthouse_geth" {
     count           = 1
     validator_start = 1800
     validator_end   = 1900
+    location        = "hel1"
   }
 }
 
@@ -60,6 +61,7 @@ variable "lighthouse_reth" {
     count           = 1
     validator_start = 1900
     validator_end   = 2000
+    location        = "fsn1"
   }
 }
 
@@ -79,6 +81,7 @@ variable "prysm_besu" {
     count           = 1
     validator_start = 2000
     validator_end   = 2100
+    location        = "nbg1"
   }
 }
 
@@ -134,6 +137,7 @@ variable "lodestar_nethermind" {
     count           = 1
     validator_start = 2100
     validator_end   = 2200
+    location        = "hel1"
   }
 }
 
@@ -198,6 +202,7 @@ variable "nimbus_nethermind" {
     count           = 1
     validator_start = 2200
     validator_end   = 2300
+    location        = "fsn1"
   }
 }
 
@@ -216,6 +221,7 @@ variable "nimbus_erigon" {
     count           = 1
     validator_start = 2300
     validator_end   = 2400
+    location        = "nbg1"
   }
 }
 
@@ -235,6 +241,7 @@ variable "teku_geth" {
     count           = 1
     validator_start = 2400
     validator_end   = 2500
+    location       = "hel1"
   }
 }
 
@@ -253,6 +260,7 @@ variable "teku_nethermind" {
     count           = 1
     validator_start = 2500
     validator_end   = 2600
+    location        = "fsn1"
   }
 }
 
@@ -280,5 +288,6 @@ variable "teku_reth" {
     count           = 1
     validator_start = 2600
     validator_end   = 2700
+    location        = "nbg1"
   }
 }

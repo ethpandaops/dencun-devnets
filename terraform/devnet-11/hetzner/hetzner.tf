@@ -21,8 +21,8 @@ variable "hcloud_ssh_key_fingerprint" {
 variable "hetzner_regions" {
   default = [
     "nbg1",
-    "hel1",
-    "fsn1"
+    "fsn1",
+    "hel1"
   ]
 }
 
@@ -56,7 +56,7 @@ locals {
             labels = "group_name:${vm_group.name},val_start:${vm_group.validator_start + (i * (vm_group.validator_end -
               vm_group.validator_start) / vm_group.count)},val_end:${min(vm_group.validator_start + ((i + 1) * (vm_group.validator_end -
             vm_group.validator_start) / vm_group.count), vm_group.validator_end)}"
-            location     = element(var.hetzner_regions, i % length(var.hetzner_regions))
+            location     = try(vm_group.location, local.hcloud_default_location)
             size         = try(vm_group.size, local.hcloud_default_server_type)
             ansible_vars = try(vm_group.ansible_vars, null)
           }
@@ -213,5 +213,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "../../../ansible/inventories/devnet-10/hetzner_inventory.ini"
+  filename = "../../../ansible/inventories/devnet-11/hetzner_inventory.ini"
 }

@@ -60,20 +60,15 @@ variable "digitalocean_ssh_key_name" {
 variable "regions" {
   default = [
     "nyc1",
-    # "sgp1",
-    # "lon1",
-    # "nyc3",
-    "ams3",
-    # "fra1",
-    # "tor1",
-    # "blr1",
+    "fra1",
+    "blr1",
     "sfo3",
     "syd1"
   ]
 }
 
 variable "base_cidr_block" {
-  default = "10.90.0.0/16"
+  default = "10.91.0.0/16"
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -138,7 +133,7 @@ locals {
         vms = {
           "${i + 1}" = {
             tags   = "group_name:${vm_group.name},val_start:${vm_group.validator_start + (i * (vm_group.validator_end - vm_group.validator_start) / vm_group.count)},val_end:${min(vm_group.validator_start + ((i + 1) * (vm_group.validator_end - vm_group.validator_start) / vm_group.count), vm_group.validator_end)}"
-            region = element(var.regions, i % length(var.regions))
+            region = try(vm_group.location, local.digitalocean_default_region)
             size   = try(vm_group.size, local.digitalocean_default_size)
           }
 
@@ -149,8 +144,8 @@ locals {
 }
 
 locals {
-  digitalocean_default_region = "ams3"
-  digitalocean_default_size   = "s-2vcpu-8gb-amd"
+  digitalocean_default_region = "fra1"
+  digitalocean_default_size   = "s-4vcpu-8gb-240gb-intel"
   digitalocean_default_image  = "debian-12-x64"
   digitalocean_global_tags = [
     "Owner:Devops",
@@ -311,25 +306,12 @@ resource "cloudflare_record" "server_record" {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
   }
   zone_id = data.cloudflare_zone.default.id
-  name    = "${each.value.name}.srv.${var.ethereum_network}"
-  type    = "A"
-  value   = digitalocean_droplet.main[each.value.id].ipv4_address
-  proxied = false
-  ttl     = 120
-}
-
-resource "cloudflare_record" "server_record_short" {
-  for_each = {
-    for vm in local.digitalocean_vms : "${vm.id}" => vm
-  }
-  zone_id = data.cloudflare_zone.default.id
   name    = "${each.value.name}.${var.ethereum_network}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
   proxied = false
   ttl     = 120
 }
-
 
 resource "cloudflare_record" "server_record_rpc" {
   for_each = {
@@ -393,17 +375,6 @@ resource "digitalocean_firewall" "mev_rule" {
   inbound_rule {
     protocol         = "tcp"
     port_range       = "9062"
-    source_addresses = ["0.0.0.0/0", "::/0"]
-  }
-}
-
-resource "digitalocean_firewall" "mev_rule-web" {
-  name        = "${var.ethereum_network}-mev-relay-web"
-  droplet_ids = [digitalocean_droplet.main["mev-relay-1"].id]
-  // Mev-relay-api
-  inbound_rule {
-    protocol         = "tcp"
-    port_range       = "9060"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 }

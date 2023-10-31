@@ -15,6 +15,10 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = "~> 1.42.1"
     }
+    random = {
+      source = "hashicorp/random"
+      version = "3.5.1"
+    }
   }
 }
 
