@@ -136,6 +136,7 @@ bootstrap_default_user_authorized_keys_github_all:
   - skylenet
   - jtraglia
   - pk910
+  - marioevz
 bootstrap_default_user_authorized_keys_github: >
   {{
     (bootstrap_default_user_authorized_keys_github_all | default([])) +

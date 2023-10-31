@@ -62,4 +62,5 @@ rpc-proxy:
       "net_version",
       "rpc_modules",
       "web3_clientVersion",
+      "debug_getRawReceipts",
     ]

@@ -1,8 +1,8 @@
 default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: ethpandaops/lighthouse:devnet-10-9c1f3a6
-  lodestar: ethpandaops/lodestar:deneb-builder-81914b8
-  nimbus: ethpandaops/nimbus:unstable-a986a1b
+  lodestar: ethpandaops/lodestar:deneb-builder-906dee8
+  nimbus: ethpandaops/nimbus:deneb-blinded-diagnostics-9e7037d
   prysm: ethpandaops/prysm:devnet-10-2850f4d
   prysm_validator: ethpandaops/prysm-validator:devnet-10-2850f4d
   teku: ethpandaops/teku:master-d418f8d
@@ -10,7 +10,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:main-9d9fe8c
   geth: ethpandaops/geth:lightclient-devnet-10-4d161de
   erigon: ethpandaops/erigon:devel-106e880
-  ethereumjs: ethpandaops/ethereumjs:update-official-setup-468c4cc
+  ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
   nethermind: ethpandaops/nethermind:master-4847b06
   reth: ethpandaops/reth:main-9dd270e
 
