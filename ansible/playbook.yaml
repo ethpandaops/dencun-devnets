@@ -1,7 +1,7 @@
-- hosts: localhost
-  roles:
-    - role: ethpandaops.general.ethereum_genesis
-      tags: [ethereum_genesis]
+#- hosts: localhost
+#  roles:
+#    - role: ethpandaops.general.ethereum_genesis
+#      tags: [ethereum_genesis]
 
 - import_playbook: ethpandaops.general.bootstrap_server
   vars:
@@ -36,8 +36,8 @@
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-    - role: ethpandaops.general.ethereum_testnet_config
-      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+#    - role: ethpandaops.general.ethereum_testnet_config
+#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
@@ -49,8 +49,8 @@
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-    - role: ethpandaops.general.ethereum_testnet_config
-      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+#    - role: ethpandaops.general.ethereum_testnet_config
+#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]
@@ -95,18 +95,18 @@
             - "tech.pegasys.teku.statetransition.blobs"
 
 
-- hosts: bootnode
-  become: true
-  roles:
-    - role: ethpandaops.general.ethereum_inventory_web
-      tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
+#- hosts: bootnode
+#  become: true
+#  roles:
+#    - role: ethpandaops.general.ethereum_inventory_web
+#      tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
 
-- hosts: localhost
-  roles:
-    - role: ethpandaops.general.ethereum_post_network_setup
-      tags: [eth_post_network_setup, ethereum_post_network_setup]
-    - role: ethpandaops.general.generate_kubernetes_config
-      tags: [gen_kubernetes_config, generate_kubernetes_config]
+#- hosts: localhost
+#  roles:
+#    - role: ethpandaops.general.ethereum_post_network_setup
+#      tags: [eth_post_network_setup, ethereum_post_network_setup]
+#    - role: ethpandaops.general.generate_kubernetes_config
+#      tags: [gen_kubernetes_config, generate_kubernetes_config]
 
 - hosts: tx_fuzz_blobs
   become: true
