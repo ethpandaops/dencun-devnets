@@ -144,6 +144,10 @@
   roles:
     - role: ethpandaops.general.mev_boost
       tags: [mev_boost]
+
+- hosts: mev_flood
+  become: true
+  roles:
     - role: ethpandaops.general.mev_flood
       tags: [mev_flood]
 

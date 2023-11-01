@@ -2,6 +2,7 @@ teku_container_validator_args:
   - --validators-external-signer-url=http://web3signer:9000
   - --validators-proposer-default-fee-recipient={{ teku_validator_fee_recipient }}
   - --validators-keystore-locking-enabled=false
+  - --validators-external-signer-public-keys=external-signer
 
 prometheus_config: |
   global:
