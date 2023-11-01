@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Define the URL from a Jinja2 variable
+URL="{{ beacon_url }}"
+
+# Poll the URL in a loop
+while true; do
+    # Fetch the slot value
+    SLOT_VALUE=$(curl -s $URL | jq -r '.data[].header.message.slot')
+
+    # Check if the slot value has reached "{{ slot_to_stop_at }}"
+    if [[ $SLOT_VALUE == "{{ slot_to_stop_at }}" ]]; then
+        echo "Slot value has reached $SLOT_VALUE !"
+
+        echo "Stopping beacon node..."
+        sleep 2
+        docker stop beacon
+        # Exit the loop
+        break
+    else
+        echo "Current slot value: $SLOT_VALUE"
+    fi
+
+    # Wait for a while before polling again
+    sleep 10
+done

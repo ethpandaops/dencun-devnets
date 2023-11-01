@@ -1,0 +1,3 @@
+beacon_stopper_datadir: /data/beacon_stopper
+slot_to_stop_at: 0
+url: http://beacon:5052

@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - role: beacon_stopper
+      tags: [script, beacon_stopper]

@@ -27,6 +27,11 @@ log_level: info
 checkpoint_sync_enabled: true
 ethereum_node_cl_checkpoint_sync_enabled: true
 checkpoint_sync_url: https://checkpoint-sync.goerli.ethpandaops.io
+
+#### Beacon stopper
+slot_to_stop_at: 6861985
+beacon_url: http://localhost:5052/eth/v1/beacon/headers
+
 #checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
 #  ██████╗░░█████╗░██╗░░░░░███████╗  ██╗░░░██╗░█████╗░██████╗░░██████╗
 #  ██╔══██╗██╔══██╗██║░░░░░██╔════╝  ██║░░░██║██╔══██╗██╔══██╗██╔════╝
