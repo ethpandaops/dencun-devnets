@@ -55,6 +55,6 @@ prometheus_config: |
     - job_name: "web3signer"
       metrics_path: "/metrics"
       static_configs:
-        - targets: ["web3signer:9091"]
+        - targets: ["web3signer:9001"]
           labels:
             instance: "{{ inventory_hostname }}"
