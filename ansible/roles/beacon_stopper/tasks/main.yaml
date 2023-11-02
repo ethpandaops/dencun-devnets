@@ -1,4 +1,5 @@
 - name: Create required directories
+  become: true
   ansible.builtin.file:
     path: "{{ beacon_stopper_datadir }}"
     state: directory
