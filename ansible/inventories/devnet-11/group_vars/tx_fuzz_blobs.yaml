@@ -5,7 +5,7 @@ tx_fuzz_blobs_container_name: tx_fuzz_blobs
 tx_fuzz_blobs_container_command:
   - blobs
   - --no-al
-  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.{{ network_subdomain }}
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-geth-1.{{ network_subdomain }}
   - --sk={{ tx_fuzz_blobs_privkey }}
   - --txcount=3
 
