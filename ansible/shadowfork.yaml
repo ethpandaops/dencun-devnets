@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: all,!localhost
   roles:
     - role: beacon_stopper
       tags: [script, beacon_stopper]
