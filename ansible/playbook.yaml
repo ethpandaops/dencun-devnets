@@ -95,16 +95,16 @@
             - "tech.pegasys.teku.statetransition.blobs"
 
 
-#- hosts: bootnode
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.ethereum_inventory_web
-#      tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
+- hosts: bootnode
+  become: true
+  roles:
+    - role: ethpandaops.general.ethereum_inventory_web
+      tags: [ethereum, eth_inventory_web, ethereum_inventory_web]
 
-#- hosts: localhost
-#  roles:
-#    - role: ethpandaops.general.ethereum_post_network_setup
-#      tags: [eth_post_network_setup, ethereum_post_network_setup]
+- hosts: localhost
+  roles:
+    - role: ethpandaops.general.ethereum_post_network_setup
+      tags: [eth_post_network_setup, ethereum_post_network_setup]
 #    - role: ethpandaops.general.generate_kubernetes_config
 #      tags: [gen_kubernetes_config, generate_kubernetes_config]
 
