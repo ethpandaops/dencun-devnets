@@ -24,8 +24,8 @@ ethstats_secret: "{{ secret_ethstats }}"
 log_level: info
 ### Checkpoint sync specific for Ansible & Kubernetes
 #checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
-checkpoint_sync_enabled: true
-ethereum_node_cl_checkpoint_sync_enabled: true
+checkpoint_sync_enabled: false
+ethereum_node_cl_checkpoint_sync_enabled: false
 checkpoint_sync_url: https://checkpoint-sync.goerli.ethpandaops.io
 
 #### Beacon stopper
@@ -44,9 +44,9 @@ beacon_url: http://localhost:5052/eth/v1/beacon/headers
 ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:2.0.4"
 ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_image.split(':')[-1] }}"
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
-ethereum_genesis_chain_id: 7011893060
+ethereum_genesis_chain_id: 5
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('dencun-', '') }}"
-ethereum_genesis_timestamp: 1698051540
+ethereum_genesis_timestamp: 1699004100
 ethereum_genesis_timedelay: 60
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -102,13 +102,13 @@ ethereum_genesis_generator_config_files:
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
     export CL_EXEC_BLOCK="0"
     export DEPOSIT_CONTRACT_BLOCK="0x0000000000000000000000000000000000000000000000000000000000000000"
-    export NUMBER_OF_VALIDATORS=330000
+    export NUMBER_OF_VALIDATORS=2100
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
     export CAPELLA_FORK_VERSION="0x40{{ ethereum_genesis_fork_version_suffix }}"
     export DENEB_FORK_VERSION="0x50{{ ethereum_genesis_fork_version_suffix }}"
-    export DENEB_FORK_EPOCH="256"
+    export DENEB_FORK_EPOCH="20"
     export WITHDRAWAL_TYPE="0x00"
     export WITHDRAWAL_ADDRESS={{ ethereum_genesis_validator_bls_change_execution_address }}
     export BEACON_STATIC_ENR=""
@@ -117,6 +117,7 @@ ethereum_genesis_generator_config_files:
     export SLOT_DURATION_IN_SECONDS=12
     export MAX_CHURN=4
     export EJECTION_BALANCE=31000000000
+    export SHADOW_FORK_RPC="https://eth:prAP7jyLJoHzbCa@rpc.bootnode-1.goerli-sf-0.ethpandaops.io"
 ethereum_genesis_validator_keys_output_dir: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys"
 ethereum_genesis_validator_bls_change_execution_address: "{{ ethereum_node_cl_validator_fee_recipient }}"
 ethereum_genesis_validator_keyranges: >-
@@ -155,7 +156,7 @@ ethereum_node_images_always_pull: true
 ethereum_node_metrics_exporter_enabled: true
 ethereum_node_xatu_sentry_enabled: false
 # TODO: Change before shadowfork
-#ethereum_node_cl_validator_enabled: false
+ethereum_node_cl_validator_enabled: true
 ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 ethereum_node_cl_ports_p2p_tcp: 9000
 ethereum_node_cl_ports_p2p_udp: 9000

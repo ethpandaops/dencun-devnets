@@ -49,7 +49,9 @@ prysm_container_command_extra_args: >-
 #  - --genesis-state=/network-config/genesis.ssz
 #  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
 prysm_container_command_extra_simple_args:
-  - --goerli
+  - --chain-config-file=/network-config/config.yaml
+  - --genesis-state=/network-config/genesis.ssz
+  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --grpc-gateway-corsdomain=*
   - --min-sync-peers=1
   - --pprof
@@ -70,6 +72,6 @@ prysm_validator_container_entrypoint:
   - /app/cmd/validator/validator
 #  - --chain-config-file=/network-config/config.yaml
 prysm_validator_container_command_extra_args:
-  - --goerli
+  - --chain-config-file=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 prysm_validator_datadir: /data/prysm-validator

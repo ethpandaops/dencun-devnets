@@ -49,7 +49,7 @@ lighthouse_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --testnet-dir=/network-config
 lighthouse_container_command_extra_args:
-  - --network=goerli
+  - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:256/10
   - --debug-level={{ log_level | default('debug') }}
@@ -62,7 +62,7 @@ lighthouse_validator_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --testnet-dir=/network-config
 lighthouse_validator_container_command_extra_args:
-  - --network=goerli
+  - --testnet-dir=/network-config
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lighthouse_validator_datadir: /data/lighthouse-validator
 lighthouse_container_pull: true

@@ -37,7 +37,8 @@ lodestar_container_volumes:
 #  - --paramsFile=/network-config/config.yaml
 #  - --genesisStateFile=/network-config/genesis.ssz
 lodestar_container_command_extra_args:
-  - --network=goerli
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --rest.namespace="*"
   - --network.connectToDiscv5Bootnodes
@@ -50,6 +51,6 @@ lodestar_validator_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --paramsFile=/network-config/config.yaml
 lodestar_validator_container_command_extra_args:
-  - --network=goerli
+  - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lodestar_validator_datadir: /data/lodestar-validator

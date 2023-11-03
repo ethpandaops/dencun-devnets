@@ -8,7 +8,7 @@ default_ethereum_client_images:
   teku: ethpandaops/teku:master-d418f8d
 ### Execution layer clients
   besu: ethpandaops/besu:main-9d9fe8c
-  geth: ethpandaops/geth:lightclient-devnet-10-4d161de
+  geth: ethpandaops/geth:master-a3be381
   erigon: ethpandaops/erigon:devel-106e880
   ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
   nethermind: ethpandaops/nethermind:master-4847b06
