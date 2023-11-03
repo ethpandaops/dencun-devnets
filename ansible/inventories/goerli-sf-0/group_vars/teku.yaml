@@ -34,9 +34,9 @@ teku_container_volumes:
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --network=/network-config/config.yaml
+#  - --initial-state=/network-config/genesis.ssz
 teku_container_command_extra_args:
-  - --network=/network-config/config.yaml
-  - --initial-state=/network-config/genesis.ssz
+  - --network=goerli
   - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true

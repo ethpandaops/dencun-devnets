@@ -35,10 +35,11 @@ geth_container_env:
 geth_container_command_extra_args:
   - --http.api=eth,net,web3,debug,admin
   - --http.vhosts=*
-  - --networkid={{ ethereum_network_id }}
-  - --syncmode=full
-  - --override.cancun=1698948540
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --goerli
+#  - --networkid={{ ethereum_network_id }}
+#  - --syncmode=full
+#  - --override.cancun=1698948540
+#  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
@@ -66,9 +67,10 @@ teku_container_volumes:
   - "{{ teku_datadir }}:/data"
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
+# - --network=/network-config/config.yaml
+#  - --initial-state=/network-config/genesis.ssz
 teku_container_command_extra_args:
-  - --network=/network-config/config.yaml
-  - --initial-state=/network-config/genesis.ssz
+  - --network=goerli
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
   - --data-storage-mode=ARCHIVE

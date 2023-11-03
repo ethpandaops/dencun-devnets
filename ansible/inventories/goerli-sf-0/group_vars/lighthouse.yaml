@@ -49,7 +49,7 @@ lighthouse_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --testnet-dir=/network-config
 lighthouse_container_command_extra_args:
-  - --testnet-dir=/network-config
+  - --network=goerli
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:256/10
   - --debug-level={{ log_level | default('debug') }}

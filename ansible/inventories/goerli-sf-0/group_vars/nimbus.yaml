@@ -44,7 +44,7 @@ nimbus_container_command_extra_args: >-
   {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
 #  - --network=/network-config
 nimbus_container_command_extra_simple_args:
-  - --network=/network-config
+  - --network=goerli
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level={{ log_level | upper | default('DEBUG') }}

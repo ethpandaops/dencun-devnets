@@ -36,9 +36,7 @@ besu_container_command_extra_args:
   - --data-storage-format=BONSAI
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
   - --Xfilter-on-enr-fork-id=true
-  - --genesis-file=/network-config/besu.json
-  - --sync-mode=FULL
-  - --kzg-trusted-setup=/network-config/trusted_setup.txt
+  - --network=goerli
 
 besu_container_pull: true
 
