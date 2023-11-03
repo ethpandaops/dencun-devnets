@@ -39,9 +39,9 @@ variable "lighthouse_besu" {
 variable "lighthouse_erigon" {
   default = {
     name            = "lighthouse-erigon"
-    count           = 1
-    validator_start = 300
-    validator_end   = 400
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -51,7 +51,7 @@ variable "prysm_geth" {
   default = {
     name            = "prysm-geth"
     count           = 1
-    validator_start = 400
+    validator_start = 300
     validator_end   = 500
   }
 }
@@ -77,9 +77,9 @@ variable "prysm_besu" {
 variable "prysm_erigon" {
   default = {
     name            = "prysm-erigon"
-    count           = 1
-    validator_start = 700
-    validator_end   = 800
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -88,7 +88,7 @@ variable "lodestar_geth" {
   default = {
     name            = "lodestar-geth"
     count           = 1
-    validator_start = 800
+    validator_start = 700
     validator_end   = 900
   }
 }
@@ -114,9 +114,9 @@ variable "lodestar_besu" {
 variable "lodestar_erigon" {
   default = {
     name            = "lodestar-erigon"
-    count           = 1
-    validator_start = 1100
-    validator_end   = 1200
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -125,7 +125,7 @@ variable "teku_geth" {
   default = {
     name            = "teku-geth"
     count           = 1
-    validator_start = 1200
+    validator_start = 1100
     validator_end   = 1300
   }
 }
@@ -181,16 +181,16 @@ variable "nimbus_besu" {
     name            = "nimbus-besu"
     count           = 1
     validator_start = 1800
-    validator_end   = 1900
+    validator_end   = 2000
   }
 }
 
 variable "nimbus_erigon" {
   default = {
     name            = "nimbus-erigon"
-    count           = 1
-    validator_start = 1900
-    validator_end   = 2000
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
