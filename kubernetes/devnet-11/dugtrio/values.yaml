@@ -15,6 +15,9 @@ dugtrio:
       memory: 1Gi
   ingress:
     enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "21600"
+      nginx.ingress.kubernetes.io/eventsource: "true"
     className: ingress-nginx-public
     hosts:
       - host: bn.dencun-devnet-11.ethpandaops.io
