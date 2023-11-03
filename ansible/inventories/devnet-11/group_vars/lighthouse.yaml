@@ -54,7 +54,7 @@ lighthouse_container_command_extra_args:
   - --debug-level={{ log_level | default('debug') }}
   - --quic-port={{ lighthouse_ports_quic }}
   - --enr-quic-port={{ lighthouse_ports_quic }}
-  - --publish-blocks-first
+
 
 lighthouse_validator_container_name: validator
 lighthouse_validator_container_volumes:
