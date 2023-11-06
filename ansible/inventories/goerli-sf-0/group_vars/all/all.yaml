@@ -24,12 +24,12 @@ ethstats_secret: "{{ secret_ethstats }}"
 log_level: info
 ### Checkpoint sync specific for Ansible & Kubernetes
 #checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
-checkpoint_sync_enabled: true
-ethereum_node_cl_checkpoint_sync_enabled: true
+checkpoint_sync_enabled: false
+ethereum_node_cl_checkpoint_sync_enabled: false
 checkpoint_sync_url: https://checkpoint-sync.goerli.ethpandaops.io
 
 #### Beacon stopper
-slot_to_stop_at: 6868110
+slot_to_stop_at: 6897699
 beacon_url: http://localhost:5052/eth/v1/beacon/headers
 
 #checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
@@ -46,7 +46,7 @@ ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_ima
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 5
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('dencun-', '') }}"
-ethereum_genesis_timestamp: 1699004100
+ethereum_genesis_timestamp: 1699284600
 ethereum_genesis_timedelay: 60
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -156,7 +156,7 @@ ethereum_node_images_always_pull: true
 ethereum_node_metrics_exporter_enabled: true
 ethereum_node_xatu_sentry_enabled: false
 # TODO: Change before shadowfork
-ethereum_node_cl_validator_enabled: false
+ethereum_node_cl_validator_enabled: true
 ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 ethereum_node_cl_ports_p2p_tcp: 9000
 ethereum_node_cl_ports_p2p_udp: 9000

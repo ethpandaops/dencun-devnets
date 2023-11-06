@@ -15,8 +15,9 @@ erigon_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 
 #  - --networkid={{ ethereum_network_id }}
+#  - --chain=goerli
 erigon_container_command_extra_args:
-  - --chain=goerli
+  - --networkid={{ ethereum_network_id }}
   - --torrent.download.rate=40mb
   - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
   - --http.vhosts=*
@@ -25,7 +26,7 @@ erigon_container_command_extra_args:
   - --db.size.limit=100GB
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
-erigon_init_custom_network: false
+erigon_init_custom_network: true
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 
 prometheus_config: |

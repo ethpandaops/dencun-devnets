@@ -25,8 +25,9 @@ reth_container_volumes:
   - "{{ reth_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 #  - --chain=/network-config/genesis.json
+#  - --chain=goerli
 reth_container_command_extra_args:
-  - --chain=goerli
+  - --chain=/network-config/genesis.json
   - --http.api=eth,net,web3,debug,admin,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 

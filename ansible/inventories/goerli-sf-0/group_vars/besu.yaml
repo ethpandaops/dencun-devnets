@@ -30,13 +30,17 @@ besu_container_volumes:
 #  - --genesis-file=/network-config/besu.json
 #  - --sync-mode=FULL
 #  - --kzg-trusted-setup=/network-config/trusted_setup.txt
+
+#  - --network=goerli
 besu_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnodes | join(',')}}
   - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
   - --data-storage-format=BONSAI
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
   - --Xfilter-on-enr-fork-id=true
-  - --network=goerli
+  - --genesis-file=/network-config/besu.json
+  - --sync-mode=FULL
+  - --kzg-trusted-setup=/network-config/trusted_setup.txt
 
 besu_container_pull: true
 

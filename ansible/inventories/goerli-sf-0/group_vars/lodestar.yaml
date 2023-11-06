@@ -37,8 +37,11 @@ lodestar_container_volumes:
 #  - --paramsFile=/network-config/config.yaml
 #  - --genesisStateFile=/network-config/genesis.ssz
 #  - --chain.trustedSetup=/network-config/trusted_setup.txt
+#  - --network=goerli
 lodestar_container_command_extra_args:
-  - --network=goerli
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
+  - --chain.trustedSetup=/network-config/trusted_setup.txt
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --rest.namespace="*"
   - --network.connectToDiscv5Bootnodes
