@@ -1,0 +1,19 @@
+
+# role: ethpandaops.general.dora
+dora_hostname: "dora.{{ ethereum_network_name }}.ethpandaops.io"
+dora_container_image: "{{ default_tooling_images.dora }}"
+dora_container_ports:
+  - "8080:8080"
+dora_container_volumes:
+  - "{{ dora_datadir }}/explorer:/config"
+  - "{{ eth_testnet_config_dir }}:/testnet"
+dora_chain_name: ""
+dora_chain_config: "/testnet/config.yaml"
+dora_chain_displayname: "{{ ethereum_network_name }}"
+dora_frontend_subtitle: "{{ ethereum_network_name }}"
+dora_beaconapi_endpoint: "http://beacon:5052"
+dora_frontend_validatornames_inventory: "https://bootnode-1.goerli-sf-0.ethpandaops.io/meta/api/v1/validator-ranges.json"
+dora_container_env:
+  VIRTUAL_HOST: "{{ dora_hostname }}"
+  VIRTUAL_PORT: "8080"
+  LETSENCRYPT_HOST: "{{ dora_hostname }}"

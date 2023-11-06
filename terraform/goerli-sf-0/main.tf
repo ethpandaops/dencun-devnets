@@ -345,6 +345,15 @@ resource "cloudflare_record" "server_record_beacon" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "dora_cloudflare_record" {
+  zone_id = data.cloudflare_zone.default.id
+  name    = "dora.${var.ethereum_network}"
+  type    = "A"
+  value   = digitalocean_droplet.main["bootnode-1"].ipv4_address
+  proxied = false
+  ttl     = 120
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //                          GENERATED FILES AND OUTPUTS
 ////////////////////////////////////////////////////////////////////////////////////////

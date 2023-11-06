@@ -152,3 +152,9 @@
   roles:
     - role: ethpandaops.general.xatu_sentry
       tags: [xatu]
+
+- hosts: dora
+  become: true
+  roles:
+    - role: ethpandaops.general.dora
+      tags: [dora]
