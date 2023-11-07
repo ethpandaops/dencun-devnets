@@ -18,7 +18,7 @@ secret_xatu_sentry:
     password: ENC[AES256_GCM,data:MPiGyB7L6aJ0WmI0AZbsHntbMh1wROoQ8ek8iwELDHZTo3AI,iv:jg3K8YiaRIUopk4A3Kq5XUrzjWezto4wcmRCuLKoBrg=,tag:WswN/DtPEEVt82Mupf7sQA==,type:str]
 tx_fuzz_blobs_privkey: ENC[AES256_GCM,data:DGbEFRC9B/WRhJFRmbXBAwTPFyn8SD/Qk+EYPrUj2F/TgU9EPSNtOWT9QEcUqwKxn4K3h1mrDxDp62bVzbNW3Q==,iv:NSFdKO7QjWA9A//sOSYbVFouB2XbhlcyJFLvxzq+C3g=,tag:VenuTAX0Ja5GjPR0o3RBug==,type:str]
 tx_fuzz_txs_privkey: ENC[AES256_GCM,data:6MD8VIRpnkvngbUE9J6NR7mD6biZkGjdq3rpM3VVub7bCqV3frETzOFzwaHi898LquRb+oMFQSZKINl1+63OZg==,iv:C+PN6gUXQdyy2J401xmGN092jzEvd3lx7+2UQ56N0/o=,tag:2ecaxuZN6YsO0cm+nmgYWw==,type:str]
-goomy_private_key: ENC[AES256_GCM,data:AtRm2Bl+/KmooKGd6a1x/+g+uIizxjMgUe78NnHATtuD7+ocovr1kOzltEdxMhRba4XSEr0kc5AkNoDEiZFBUQ==,iv:FJNZJMsEQmcsDypPVNBqL9v+9v5kfkmJikpQlQ78E1k=,tag:HOo5NaWtnkt+xzTRPjzZkA==,type:str]
+goomy_private_key: ENC[AES256_GCM,data:OVo2b4sAXkVLEHepE/n3KW/Li3kdkKH+2LdsQPR3yd6PhDhwnX+4oE7ChYuEPVzWUuXOZ3ThKdotJPCZHjK4jQ==,iv:NSWOw6Fsnf4RidtyIRm5VkkQYe704SlGS0JIaelGOLY=,tag:SHX0z4bTw9EXsZ4ZDW54+A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -34,8 +34,8 @@ sops:
             cjFQSjNMdEtTZ3ZsVXF0S1YzUFpjSWMK9egMDPVbDH9wZ63Xphb71mEISx2Oen4T
             DVSVbwUAAWgyxR4TWC2hk/JjYZ3MKIFY65WVc4J1MB/ULq+l0HhttQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-30T17:23:28Z"
-    mac: ENC[AES256_GCM,data:10CUzCYfZ4jAcRlJgPioclauw7f1dpFK3BfvX946gDqCWElxn+CADcJQCFSZdptkIetq1B/H4Urd+5MoyUE39th8D06Cy2Of7kLB8VtrSLwHDnjLKk0vZeJDX/kIp1IZSZlC9AClx3s76vOsptUCXXvUNviRjw2uGR2WwM6sv8k=,iv:Upufwkud0p5GhYnZrp9syAD9HF4I9KjZjqqgix8By6A=,tag:rsomiEO5JwqfsYmBDkpJSQ==,type:str]
+    lastmodified: "2023-11-06T17:59:16Z"
+    mac: ENC[AES256_GCM,data:Tuhhl5rW7Px4AThBuEkHzju9tg1t/h1h61A+v8mDH9ZfiG7UpvXTx8Ls1bK5Yy/aWq6YhyUX4wyUJKogj3nj7txHW9d/5wchdPOXg+j3AOWyPwNchbGlKiQ1eMoW9iJ3043B4ot+t5uZeNFMq6ORGAh+0gye3uGmwODC6Gv7jko=,iv:Mf/VuHMlAgGqwlOFZimPDP3XS7KgHhD0xsjkn05z7vY=,tag:6Xr7pyOuSJqVUAQkubfCUA==,type:str]
     pgp:
         - created_at: "2023-08-17T08:39:40Z"
           enc: |-
