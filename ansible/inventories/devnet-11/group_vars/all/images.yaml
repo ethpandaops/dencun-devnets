@@ -9,7 +9,7 @@ default_ethereum_client_images:
 ### Execution layer clients
   besu: ethpandaops/besu:main-9d9fe8c
   geth: ethpandaops/geth:lightclient-devnet-10-4d161de
-  erigon: ethpandaops/erigon:devel-106e880
+  erigon: ethpandaops/erigon:devel-34c0fe2
   ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
   nethermind: nethermindeth/nethermind:cancun-334cd09
   reth: ethpandaops/reth:main-9dd270e
