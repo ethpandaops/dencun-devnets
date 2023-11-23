@@ -6,7 +6,7 @@ ethstats:
   image:
     repository: ethpandaops/ethstats
     tag: snapshot
-
+    pullPolicy: IfNotPresent
   ingress:
     enabled: true
 

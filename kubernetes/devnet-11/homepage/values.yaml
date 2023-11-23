@@ -1,6 +1,6 @@
-# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/testnet-homepage.yaml.j2
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/devnet-homepage.yaml.j2
 
-testnet-homepage:
+devnets-homepage:
   fullnameOverride: homepage
 
   replicas: 1
@@ -8,7 +8,7 @@ testnet-homepage:
   image:
     repository: ethpandaops/ethereum-testnet-homepage
     tag: latest
-
+    pullPolicy: Always
   resources:
     requests:
       cpu: 33m
@@ -29,10 +29,10 @@ testnet-homepage:
     https://notes.ethereum.org/@ethpandaops/dencun-devnet-11
 
     ## Ansible setup
-    https://github.com/ethpandaops/dencun-testnet
+    https://github.com/ethpandaops/dencun-devnets
 
     ## Client versions
-    https://github.com/ethpandaops/dencun-testnet/blob/master/ansible/inventories/devnet-11/group_vars/all/images.yaml
+    https://github.com/ethpandaops/dencun-devnets/blob/master/ansible/inventories/devnet-11/group_vars/all/images.yaml
 
     ## Validator ranges
     - https://config.dencun-devnet-11.ethpandaops.io/api/v1/nodes/validator-ranges
@@ -102,7 +102,7 @@ testnet-homepage:
         ethstatsUrl: https://ethstats.dencun-devnet-11.ethpandaops.io
         chainName: "dencun-devnet-11"
         chainId: "7011893061"
-        github: https://github.com/ethpandaops/dencun-testnet/tree/master/network-configs/devnet-11
+        github: https://github.com/ethpandaops/dencun-devnets/tree/master/network-configs/devnet-11
       metamask:
         enabled: true
       logo:
@@ -116,7 +116,7 @@ testnet-homepage:
         safari_pinned_tab: https://i.imgur.com/M0gEdpw.png
 
       links:
-      - name: "Testnet Spec"
+      - name: "Devnet Spec"
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl

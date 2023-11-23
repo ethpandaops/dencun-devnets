@@ -1,6 +1,6 @@
 dependencies:
 - name: dugtrio
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.0.1
-digest: sha256:70d762655d833f74333657a75384f099d259d1549a7626204852b969137f9d37
-generated: "2023-11-02T04:55:34.464680602+01:00"
+  version: 0.0.3
+digest: sha256:8ac5bfbb6a47ca2e6130e0e5dbfe4f9ede8a1dd07ab655027654d728b7bf4f8e
+generated: "2023-11-23T13:53:52.240188+01:00"

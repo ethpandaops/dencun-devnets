@@ -6,6 +6,7 @@ forky:
   image:
     repository: ethpandaops/forky
     tag: 0.0.50-debian
+    pullPolicy: IfNotPresent
   resources:
     requests:
       cpu: 256m

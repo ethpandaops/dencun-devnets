@@ -4,6 +4,7 @@ beacon-metrics-gazer:
   image:
     repository: dapplion/beacon-metrics-gazer
     tag: latest
+    pullPolicy: Always
   fullnameOverride: beacon-metrics-gazer
   resources:
     requests:

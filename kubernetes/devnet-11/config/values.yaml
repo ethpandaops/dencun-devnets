@@ -11,83 +11,83 @@ config:
     # Support all files as they appear in the github repo
     - path: /besu.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/besu.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/besu.json
     - path: /bootnode.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/bootnode.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/bootnode.txt
     - path: /bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/bootstrap_nodes.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/bootstrap_nodes.txt
     - path: /chainspec.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/chainspec.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/chainspec.json
     - path: /config.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/config.yaml
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/config.yaml
     - path: /deploy_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deploy_block.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deploy_block.txt
     - path: /deposit_contract.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deposit_contract.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deposit_contract.txt
     - path: /deposit_contract_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deposit_contract_block.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deposit_contract_block.txt
     - path: /deposit_contract_block_hash.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deposit_contract_block_hash.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deposit_contract_block_hash.txt
     - path: /genesis.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/genesis.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/genesis.json
     - path: /genesis.ssz
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/genesis.ssz
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/genesis.ssz
     - path: /parseBeaconState.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/parseBeaconState.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/parseBeaconState.json
     - path: /trusted_setup.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/trusted_setup.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/trusted_setup.txt
     - path: /trusted_setup.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/trusted_setup.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/trusted_setup.json
 
     # Execution Layer specific redirects
     - path: /el/bootnodes
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/bootnode.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/bootnode.txt
     - path: /el/besu.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/besu.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/besu.json
     - path: /el/chainspec.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/chainspec.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/chainspec.json
     - path: /el/genesis.json
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/genesis.json
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/genesis.json
 
     # Consensus Layer specific redirects
     - path: /cl/bootstrap_nodes.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/bootstrap_nodes.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/bootstrap_nodes.txt
     - path: /cl/boot_enr.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/boot_enr.yaml
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/boot_enr.yaml
     - path: /cl/config.yaml
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/config.yaml
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/config.yaml
     - path: /cl/genesis.ssz
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/genesis.ssz
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/genesis.ssz
     - path: /cl/deploy_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deploy_block.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deploy_block.txt
     - path: /cl/deposit_contract.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deposit_contract.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deposit_contract.txt
     - path: /cl/deposit_contract_block.txt
       upstream: raw.githubusercontent.com
-      target: /ethpandaops/dencun-testnet/master/network-configs/devnet-11/deposit_contract_block.txt
+      target: /ethpandaops/dencun-devnets/master/network-configs/devnet-11/deposit_contract_block.txt
 
     # Ansible generated ethereum nodes inventory
     - path: /api/v1/nodes/inventory

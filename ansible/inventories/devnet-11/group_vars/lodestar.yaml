@@ -42,7 +42,6 @@ lodestar_container_command_extra_args:
   - --network.connectToDiscv5Bootnodes
   - --nat=true
   - --chain.trustedSetup=/network-config/trusted_setup.txt
-  - --builder
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
@@ -53,3 +52,5 @@ lodestar_validator_container_command_extra_args:
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --useProduceBlockV3
 lodestar_validator_datadir: /data/lodestar-validator
+
+lodestar_mev_boost_enabled: true

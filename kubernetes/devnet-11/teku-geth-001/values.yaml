@@ -62,7 +62,7 @@ teku-geth-001:
               - --sync=full
               - --maxPeers=25
               - --isSingleNode=true
-              - --logLevel=info
+              - --logLevel=debug
           consensus:
             lodestar:
               - --paramsFile=/data/network-config/config.yaml
@@ -72,7 +72,6 @@ teku-geth-001:
               - --network.connectToDiscv5Bootnodes
               - --nat=true
               - --chain.trustedSetup=/data/network-config/trusted_setup.txt
-              - --builder
             teku:
               - --network=/data/network-config/config.yaml
               - --initial-state=/data/network-config/genesis.ssz
@@ -81,7 +80,7 @@ teku-geth-001:
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=ARCHIVE
               - --validators-graffiti=teku/reth
-              - --logging=info
+              - --logging=debug
               - --Xlog-include-p2p-warnings-enabled
               - --metrics-block-timing-tracking-enabled
               - --Xtrusted-setup=/data/network-config/trusted_setup.txt
@@ -105,14 +104,14 @@ teku-geth-001:
               - --testnet-dir=/data/network-config
               - --boot-nodes=enr:-Iq4QGyJo9eb-TO7T3XTqooDbHJhOWLCj674j1gYjKZc-s-zSxqdqQDIDjHFTwPNRElyUQgNSWVINHTjBJks56UvfYqGAYuFYGM9gmlkgnY0gmlwhKdjiDWJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLXsD3-TFkjvPK_VBw4uYtpJ-KFZe7IIzxKLksGLxorMQ20hsJAmhM035dokxcPviFxoUqzZlHO2LeJ4G1zMGWYEh2F0dG5ldHOIAADAAAAAAACEZXRoMpBx4W4HUHYjZxQAAAAAAAAAgmlkgnY0gmlwhKdjiDWJc2VjcDI1NmsxoQI3mwqQq0AYyRetTVAD6uhEfw9YUI0eVnS5d89ObXvww4N0Y3CCIyiDdWRwgiMo
               - --self-limiter=blob_sidecars_by_range:256/10
-              - --debug-level=info
+              - --debug-level=debug
               - --quic-port=9001
               - --enr-quic-port=9001
             nimbus:
               - --network=/data/network-config
               - --validator-monitor-auto=false
               - --doppelganger-detection=off
-              - --log-level=INFO
+              - --log-level=DEBUG
               - --light-client-data-serve=false
               - --graffiti=teku/reth
               - --bootstrap-node=enr:-Iq4QGyJo9eb-TO7T3XTqooDbHJhOWLCj674j1gYjKZc-s-zSxqdqQDIDjHFTwPNRElyUQgNSWVINHTjBJks56UvfYqGAYuFYGM9gmlkgnY0gmlwhKdjiDWJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk

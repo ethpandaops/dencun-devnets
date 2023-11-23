@@ -5,6 +5,7 @@ forkmon:
   image:
     repository: skylenet/nodemonitor
     tag: darkmode
+    pullPolicy: IfNotPresent
   ingress:
     enabled: true
     className: ingress-nginx-public

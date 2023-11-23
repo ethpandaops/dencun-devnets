@@ -5,7 +5,7 @@ dora:
   image:
     repository: ethpandaops/dora
     tag: master
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   resources:
     requests:
       cpu: 500m
