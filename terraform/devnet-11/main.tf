@@ -20,6 +20,7 @@ terraform {
     skip_metadata_api_check     = true
     endpoints                   = { s3 = "https://fra1.digitaloceanspaces.com" }
     skip_requesting_account_id  = true
+    skip_s3_checksum            = true
     region                      = "us-east-1"
     bucket                      = "merge-testnets"
     key                         = "infrastructure/dencun-devnet-11/terraform.tfstate"
