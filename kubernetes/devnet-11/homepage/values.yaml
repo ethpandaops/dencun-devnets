@@ -1,6 +1,6 @@
-# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/devnet-homepage.yaml.j2
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/testnet-homepage.yaml.j2
 
-devnets-homepage:
+testnet-homepage:
   fullnameOverride: homepage
 
   replicas: 1
