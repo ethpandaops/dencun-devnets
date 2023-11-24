@@ -71,3 +71,5 @@ prysm_validator_container_command_extra_args:
   - --chain-config-file=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 prysm_validator_datadir: /data/prysm-validator
+
+prysm_mev_boost_enabled: true

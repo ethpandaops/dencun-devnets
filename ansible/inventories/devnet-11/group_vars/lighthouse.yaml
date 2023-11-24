@@ -67,3 +67,5 @@ lighthouse_validator_container_command_extra_args:
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
 lighthouse_validator_datadir: /data/lighthouse-validator
 lighthouse_container_pull: true
+
+lightouse_mev_boost_enabled: true
