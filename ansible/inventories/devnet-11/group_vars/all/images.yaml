@@ -30,6 +30,6 @@ default_tooling_images:
   eth_fauceth: chainflag/eth-faucet:latest
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
-  dora: ethpandaops/dora:master
+  dora: ethpandaops/dora:master-442275a
   blobber: ethpandaops/blobber:1.0.4
   dugtrio: ethpandaops/dugtrio:latest
