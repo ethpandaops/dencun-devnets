@@ -3,5 +3,6 @@ nimbus_container_command_extra_simple_args:
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level=DEBUG
+  - --dump:on
   - --light-client-data-serve=false
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
