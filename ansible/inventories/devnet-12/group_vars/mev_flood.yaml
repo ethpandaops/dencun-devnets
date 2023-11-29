@@ -1,0 +1,9 @@
+mev_flood_container_command_extra_args:
+  - --rpcUrl=http://execution:8545
+  - --privateKey=0x{{ secret_mev_flood_private_key }}
+  - --userKey=0x{{ secret_mev_flood_user_key }}
+
+mev_flood_spam_container_command_extra_args:
+  - --rpcUrl=http://execution:8545
+  - --privateKey=0x{{ secret_mev_flood_private_key }}
+  - --userKey=0x{{ secret_mev_flood_user_key }}
