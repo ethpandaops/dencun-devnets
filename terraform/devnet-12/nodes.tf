@@ -276,7 +276,7 @@ variable "lighthouse_reth" {
     name            = "lighthouse-reth"
     count           = 1
     validator_start = 1290
-    validator_end   = 1400
+    validator_end   = 1450
     location        = "syd1"
   }
 }
@@ -284,9 +284,9 @@ variable "lighthouse_reth" {
 variable "prysm_reth" {
   default = {
     name            = "prysm-reth"
-    count           = 1
-    validator_start = 1400
-    validator_end   = 1500
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
     location        = "nyc1"
   }
 }
@@ -295,7 +295,7 @@ variable "lodestar_reth" {
   default = {
     name            = "lodestar-reth"
     count           = 1
-    validator_start = 1500
+    validator_start = 1450
     validator_end   = 1600
     location        = "fra1"
   }
