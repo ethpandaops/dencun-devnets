@@ -90,8 +90,8 @@ testnet-homepage:
       defaultTheme: dark
       ethereum:
         faucetUrl: https://faucet.dencun-devnet-12.ethpandaops.io
-        faucet2Url: https://faucet-2.dencun-devnet-12.ethpandaops.io
         rpcUrl: https://rpc.dencun-devnet-12.ethpandaops.io
+        beaconRpcUrl: https://beacon.dencun-devnet-12.ethpandaops.io
         explorerUrl: https://explorer.dencun-devnet-12.ethpandaops.io
         forkmonUrl: https://forkmon.dencun-devnet-12.ethpandaops.io
         beaconexplorerUrl: "https://dencun-devnet-12.beaconcha.in"
@@ -120,11 +120,13 @@ testnet-homepage:
         dataLookup: github
       - name: "JSON RPC"
         dataLookup: rpcUrl
+      - name: "Beacon RPC"
+        dataLookup: beaconRpcUrl
       - name: "Explorer"
         dataLookup: explorerUrl
       - name: "Dora the Explorer"
         dataLookup: doraUrl
-      - name: "Beaconchain explorer (not working)"
+      - name: "Beaconchain explorer"
         dataLookup: "beaconexplorerUrl"
       - name: "Blobscan"
         dataLookup: blobscanUrl
@@ -132,10 +134,8 @@ testnet-homepage:
         dataLookup: blobscanethpandaUrl
       - name: "Checkpoint Sync"
         dataLookup: checkpointSyncUrl
-      - name: "Faucet 1"
+      - name: "Faucet"
         dataLookup: faucetUrl
-      - name: "Faucet 2"
-        dataLookup: faucet2Url
       - name: "Forkmon"
         dataLookup: forkmonUrl
       - name: "Ethstats"

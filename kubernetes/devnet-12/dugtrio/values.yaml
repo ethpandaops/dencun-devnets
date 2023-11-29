@@ -17,7 +17,7 @@ dugtrio:
     enabled: true
     className: ingress-nginx-public
     hosts:
-      - host: bn.dencun-devnet-12.ethpandaops.io
+      - host: beacon.dencun-devnet-12.ethpandaops.io
         paths:
           - path: /
             pathType: Prefix
