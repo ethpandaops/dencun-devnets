@@ -1,0 +1,75 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_cl:
+  - kasey
+  - terencechain
+  - potuz
+  - nisdas
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/prysm_wallet_pass.txt"
+    dest: "{{ prysm_validator_datadir }}/wallet_pass.txt"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/prysm/direct/accounts/all-accounts.keystore.json"
+    dest: "{{ prysm_validator_datadir }}/wallet/direct/accounts/all-accounts.keystore.json"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/prysm/keymanageropts.json"
+    dest: "{{ prysm_validator_datadir }}/wallet/direct/keymanageropts.json"
+
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ prysm_validator_datadir }}/change_operations.json"
+    owner: prysm
+    group: prysm
+
+prysm_container_ports:
+  - "127.0.0.1:{{ prysm_ports_http_beacon }}:{{ prysm_ports_http_beacon }}"
+  - "{{ prysm_ports_p2p_tcp }}:{{ prysm_ports_p2p_tcp }}"
+  - "{{ prysm_ports_p2p_udp }}:{{ prysm_ports_p2p_udp }}/udp"
+  - "127.0.0.1:{{ethereum_node_cl_ports_metrics }}:{{ ethereum_node_cl_ports_metrics }}"
+  - 0.0.0.0:6060:6060
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: prysm
+
+# role: ethpandaops.general.prysm
+prysm_container_name: beacon
+prysm_container_image: "{{ default_ethereum_client_images.prysm }}"
+prysm_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+prysm_container_volumes:
+  - "{{ prysm_datadir }}:/data"
+  - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+prysm_container_entrypoint:
+  - /app/cmd/beacon-chain/beacon-chain
+prysm_container_command_extra_args: >-
+  {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args }}
+prysm_container_command_extra_simple_args:
+  - --grpc-gateway-corsdomain=*
+  - --chain-config-file=/network-config/config.yaml
+  - --genesis-state=/network-config/genesis.ssz
+  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
+  - --min-sync-peers=1
+  - --pprof
+  - --pprofaddr=0.0.0.0
+  - --enable-debug-rpc-endpoints
+  - --verbosity=debug
+  - --subscribe-all-subnets
+
+prysm_container_command_extra_bootnode_args: >-
+  {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+
+prysm_validator_container_name: validator
+prysm_validator_container_image: "{{ prysm_container_image }}"
+prysm_validator_container_volumes:
+  - "{{ prysm_validator_datadir }}:/validator-data"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+prysm_validator_container_entrypoint:
+  - /app/cmd/validator/validator
+prysm_validator_container_command_extra_args:
+  - --chain-config-file=/network-config/config.yaml
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+prysm_validator_datadir: /data/prysm-validator
+
+prysm_mev_boost_enabled: true

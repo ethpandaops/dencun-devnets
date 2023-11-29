@@ -1,0 +1,178 @@
+---
+bootstrap_default_user_authorized_keys_github_team_el:
+  - avalonche
+  - Wazzymandias
+
+mev_relay_cleanup_all: false
+
+mev_relay_user: mev_relay
+mev_relay_datadir: "/data/mev_relay"
+mev_relay_docker_network_name: shared
+mev_relay_docker_networks:
+  - name: "{{ mev_relay_docker_network_name }}"
+
+beacon_endpoint: http://beacon:5052
+mev_img: flashbots/mev-boost-relay:0.28.0a5
+
+gen_validators_root: "0x31c7fb3b0dc46ad79c8117cbeafe6060a973f662823b08618d915b644472449d"
+ethereum_genesis_fork_version_suffix: 762367
+# ------------------------------------------------------------------
+# mev-relay-housekeeper
+mev_relay_housekeeper_enabled: true
+mev_relay_housekeeper_datadir: "{{ mev_relay_datadir }}/mev-relay-housekeeper"
+mev_relay_housekeeper_container_name: mev-relay-housekeeper
+mev_relay_housekeeper_container_image: "{{ mev_img }}"
+mev_relay_housekeeper_container_env:
+  GENESIS_FORK_VERSION=0x10{{ ethereum_genesis_fork_version_suffix }}
+  GENESIS_VALIDATORS_ROOT={{ gen_validators_root }}
+  BELLATRIX_FORK_VERSION=0x30{{ ethereum_genesis_fork_version_suffix }}
+  CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
+  DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+
+mev_relay_housekeeper_container_pull: true
+mev_relay_housekeeper_container_command_extra_args:
+    - --network=custom
+    - --beacon-uris={{ beacon_endpoint }}
+    - --redis-uri=mev-relay-redis:6379
+    - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+
+# ------------------------------------------------------------------
+# mev-relay-api
+mev_relay_api_enabled: true
+mev_relay_api_datadir: "{{ mev_relay_datadir }}/mev-relay-api"
+mev_relay_api_container_name: mev-relay-api
+mev_relay_api_container_image: "{{ mev_img }}"
+mev_relay_api_container_env:
+  GENESIS_FORK_VERSION=0x10{{ ethereum_genesis_fork_version_suffix }}
+  GENESIS_VALIDATORS_ROOT={{ gen_validators_root }}
+  BELLATRIX_FORK_VERSION=0x30{{ ethereum_genesis_fork_version_suffix }}
+  CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
+  DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+  DISABLE_PAYLOAD_DATABASE_STORAGE=1
+mev_relay_api_container_pull: true
+mev_relay_api_container_networks: "{{ mev_relay_docker_networks }}"
+mev_relay_api_container_ports:
+  - "{{ mev_relay_api_listening_port }}:{{ mev_relay_api_listening_port }}"
+mev_relay_api_container_command_extra_args:
+  - --network=custom
+  - --beacon-uris={{ beacon_endpoint }}
+  - --pprof
+  - --debug
+  - --redis-uri=mev-relay-redis:6379
+  - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+  - --secret-key=0x607a11b45a7219cc61a3d9c5fd08c7eebd602a6a19a977f8d3771d5711a550f2
+  - --listen-addr=0.0.0.0:9062
+  - --blocksim=http://execution:8545
+# ------------------------------------------------------------------
+# mev-relay-website
+mev_relay_website_enabled: true
+mev_relay_website_datadir: "{{ mev_relay_datadir }}/mev-relay-website"
+mev_relay_website_container_name: mev-relay-website
+mev_relay_website_container_image: "{{ mev_img }}"
+mev_relay_website_container_env:
+  GENESIS_FORK_VERSION=0x10{{ ethereum_genesis_fork_version_suffix }}
+  GENESIS_VALIDATORS_ROOT={{ gen_validators_root }}
+  BELLATRIX_FORK_VERSION=0x30{{ ethereum_genesis_fork_version_suffix }}
+  CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
+  DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
+  DB_TABLE_PREFIX=custom
+  LOG_LEVEL=debug
+  RELAY_URL=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.{{ network_subdomain }}:9062
+mev_relay_website_container_ports:
+  - "9060:9060"
+mev_relay_website_container_pull: true
+mev_relay_website_container_networks: "{{ mev_relay_docker_networks }}"
+mev_relay_website_container_command_extra_args:
+  - --network=custom
+  - --redis-uri=mev-relay-redis:6379
+  - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
+  - --show-config-details
+  - --listen-addr=0.0.0.0:9060
+  - https://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-relay-api.{{ network_subdomain }}:9062
+
+
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: lighthouse
+
+lighthouse_checkpoint_sync_enabled: false
+
+# role: ethpandaops.general.lighthouse
+lighthouse_container_name: beacon
+lighthouse_container_image: "{{ default_ethereum_client_images.lighthouse }}"
+lighthouse_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+lighthouse_container_volumes:
+  - "{{ lighthouse_datadir }}:/data"
+  - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+lighthouse_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --self-limiter=blob_sidecars_by_range:256/10
+  - --debug-level=info
+  - --always-prepare-payload
+  - --prepare-payload-lookahead=12000
+  - --disable-peer-scoring
+
+lighthouse_validator_container_volumes: validator
+lighthouse_validator_container_volumes:
+  - "{{ lighthouse_validator_datadir }}:/validator-data"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+lighthouse_validator_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
+lighthouse_validator_datadir: /data/lighthouse-validator
+lighthouse_container_pull: true
+
+
+ethereum_el_bootnodes:
+  - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
+
+ethereum_cl_bootnodes:
+  - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: geth
+
+# role: ethpandaops.general.geth
+geth_container_name: execution
+geth_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+  BUILDER_TX_SIGNING_KEY: 0x{{ secret_mev_signingkey }}
+geth_container_command_extra_args:
+  - --http.api=admin,engine,net,eth,web3,debug,flashbots
+  - --http.vhosts=*
+  - --ws
+  - --ws.api=admin,engine,net,eth,web3,debug,flashbots
+  - --ws.addr=0.0.0.0
+  - --ws.port=8545
+  - --ws.origins=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --builder
+  - --builder.remote_relay_endpoint=http://mev-api.{{ network_subdomain }}:9062
+  - --builder.beacon_endpoints=http://beacon:5052
+  - --builder.bellatrix_fork_version=0x30{{ ethereum_genesis_fork_version_suffix }}
+  - --builder.genesis_fork_version=0x10{{ ethereum_genesis_fork_version_suffix }}
+  - --builder.genesis_validators_root={{ gen_validators_root }}s
+  - --builder.algotype=greedy
+geth_init_custom_network: true
+geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
+geth_container_pull: true
+
+geth_container_image: flashbots/builder:1.13.2.4844.dev6-4d161de
+
+ethereum_node_json_rpc_snooper_engine_enabled: false
+
