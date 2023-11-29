@@ -4,8 +4,8 @@ dora:
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
-    tag: master
-    pullPolicy: IfNotPresent
+    tag: master-latest
+    pullPolicy: Always
   resources:
     requests:
       cpu: 500m
