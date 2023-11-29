@@ -213,5 +213,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "../../../ansible/inventories/devnet-11/hetzner_inventory.ini"
+  filename = "../../../ansible/inventories/devnet-12/hetzner_inventory.ini"
 }
