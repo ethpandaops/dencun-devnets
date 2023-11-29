@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="lighthouse-geth-1"
-network="devnet-12"
+network="devnet-11"
 domain="ethpandaops.io"
 prefix="dencun"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -43,7 +43,8 @@ print_usage() {
   echo "  fork_choice                       Get the fork choice of the network"
   echo "  send_blob n                       Send "n" number of blob(s) to the network [default 1]"
   echo "  deposit s e                       Deposit to the network from validator index start to end - mandatory argument"
-  echo "  set_withdrawal_addr s e address   Set the withdrawal credentials for validator index start to end and Ethereum address - mandatory argument"
+  echo "  exit s e                          Exit from the network from validator index start to end - mandatory argument"
+  echo "  set_withdrawal_addr s e address   Set the withdrawal credentials for validator index start (mandatory) to end (optional) and Ethereum address"
   echo "  full_withdrawal s e               Withdraw from the network from validator index start to end - mandatory argument"
   echo "  help                              Print this help message"
   echo ""
@@ -383,6 +384,31 @@ for arg in "${command[@]}"; do
           echo "Exiting without depositing to the network"
           exit;
         fi
+      fi
+      ;;
+    "exit")
+      # if I have 1 argument, then use that as the validator index, else use second and third in a loop
+      # if there are less than 2 arguments, then exit
+      if [[ $# -lt 2 ]]; then
+        echo "Exit calls for at least one arguments and at most two!"
+        echo "  Usage: ${0} exit startIndex (endIndex)"
+        echo "  Example: ${0} exit 10"
+        echo "  Example: ${0} exit 0 10"
+        exit;
+      else
+        if [[ -n "${command[3]}" ]]; then
+          echo "Exiting validators from ${command[2]} to ${command[3]}"
+          for i in $(seq ${command[2]} ${command[3]})
+          do
+            ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/$i/0/0"
+          done
+          exit;
+        else
+          echo "Exiting validator ${command[2]}"
+          ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/${command[2]}/0/0"
+          exit;
+        fi
+        exit;
       fi
       ;;
     "set_withdrawal_addr")
