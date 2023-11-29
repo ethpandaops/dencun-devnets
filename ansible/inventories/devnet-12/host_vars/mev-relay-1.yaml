@@ -12,10 +12,10 @@ mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
 beacon_endpoint: http://beacon:5052
-mev_img: flashbots/mev-boost-relay:0.28.0a5
+mev_img: flashbots/mev-boost-relay:sha-301f5a9
 
 gen_validators_root: "0x31c7fb3b0dc46ad79c8117cbeafe6060a973f662823b08618d915b644472449d"
-ethereum_genesis_fork_version_suffix: 762367
+ethereum_genesis_fork_version_suffix: 430399
 # ------------------------------------------------------------------
 # mev-relay-housekeeper
 mev_relay_housekeeper_enabled: true
