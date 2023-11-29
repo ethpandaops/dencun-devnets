@@ -81,6 +81,7 @@ mev_relay_website_container_env:
   DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
   DB_TABLE_PREFIX=custom
   LOG_LEVEL=debug
+  LINK_DATA_API=http://mev-api.{{ network_subdomain }}:9062
   RELAY_URL=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.{{ network_subdomain }}:9062
 mev_relay_website_container_ports:
   - "9060:9060"
