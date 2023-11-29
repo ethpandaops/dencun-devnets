@@ -401,11 +401,13 @@ for arg in "${command[@]}"; do
           for i in $(seq ${command[2]} ${command[3]})
           do
             ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/$i/0/0"
+            echo "validator $i exit submitted"
           done
           exit;
         else
           echo "Exiting validator ${command[2]}"
           ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/${command[2]}/0/0"
+          echo "validator $i exit submitted"
           exit;
         fi
         exit;
