@@ -12,7 +12,7 @@ default_ethereum_client_images:
   erigon: ethpandaops/erigon:devel-8cfafa4
   ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
   nethermind: ethpandaops/nethermind:master-dcec565
-  reth: ethpandaops/reth:main-c49cda6
+  reth: ethpandaops/reth:main-471c28e
 
 
 default_tooling_images:
