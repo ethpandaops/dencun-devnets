@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="lighthouse-geth-1"
-network="devnet-11"
+network="devnet-12"
 domain="ethpandaops.io"
 prefix="dencun"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
