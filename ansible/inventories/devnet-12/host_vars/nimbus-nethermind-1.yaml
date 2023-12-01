@@ -1,3 +1,0 @@
-default_ethereum_client_images:
-  nimbus: ethpandaops/nimbus:unstable-6dee4d5
-  nethermind: ethpandaops/nethermind:master-dcec565
