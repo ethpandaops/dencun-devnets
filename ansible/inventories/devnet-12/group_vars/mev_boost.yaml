@@ -1,5 +1,5 @@
 mev_boost_container_image: flashbots/mev-boost:1.6.4844.dev4
-ethereum_genesis_fork_version_suffix: 416294
+
 mev_boost_container_env:
   GENESIS_FORK_VERSION: "0x10{{ ethereum_genesis_fork_version_suffix }}"
   SKIP_RELAY_SIGNATURE_CHECK: "1"

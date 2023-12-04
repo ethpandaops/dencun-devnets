@@ -139,11 +139,6 @@
     - role: ethpandaops.general.mev_relay
       tags: [mev_relay]
 
-- hosts: mev_boost
-  become: true
-  roles:
-    - role: ethpandaops.general.mev_boost
-      tags: [mev_boost]
 
 - hosts: mev_flood
   become: true

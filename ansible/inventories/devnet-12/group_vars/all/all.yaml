@@ -37,11 +37,13 @@ checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
 # role: ethpandaops.general.ethereum_genesis
 ethereum_genesis_generator_container_image: "ethpandaops/ethereum-genesis-generator:2.0.4"
 ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_image.split(':')[-1] }}"
+#ethereum_genesis_network_seed: "/Users/bbusa/Documents/Ethereum.nosync/testnets/dencun-devnets/ansible/inventories/devnet-12/inventory.ini"
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 7011893062
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('dencun-', '') }}"
 ethereum_genesis_timestamp: 1701262740
 ethereum_genesis_timedelay: 60
+ethereum_genesis_fork_version_suffix: 430399
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
   Darwin: "date -v +30M +%s"
