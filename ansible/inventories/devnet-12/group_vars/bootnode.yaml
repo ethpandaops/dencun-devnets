@@ -60,7 +60,7 @@ teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
-  JAVA_OPTS: "-XX:SoftMaxHeapSize=4g -Xmx4g"
+  JAVA_OPTS: "-XX:SoftMaxHeapSize=3500m -Xmx3500m"
 teku_container_volumes:
   - "{{ teku_datadir }}:/data"
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
@@ -79,6 +79,7 @@ teku_container_command_extra_args:
   - --Xtrusted-setup=/network-config/trusted_setup.txt
   - --Xpeer-rate-limit=100000
   - --Xpeer-request-limit=1000
+  - --ignore-weak-subjectivity-period-enabled
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus

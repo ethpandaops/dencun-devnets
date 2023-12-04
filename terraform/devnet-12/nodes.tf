@@ -16,6 +16,7 @@ variable "bootnode" {
     validator_start = 0
     validator_end   = 0
     location        = "fra1"
+    size            = "s-4vcpu-16gb-320gb-intel"
   }
 }
 
