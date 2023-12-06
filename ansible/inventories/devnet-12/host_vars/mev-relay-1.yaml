@@ -12,7 +12,7 @@ mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
 beacon_endpoint: http://beacon:5052
-mev_img: flashbots/mev-boost-relay:sha-301f5a9
+mev_img: flashbots/mev-boost-relay:0.28.0a7
 
 gen_validators_root: "0x31c7fb3b0dc46ad79c8117cbeafe6060a973f662823b08618d915b644472449d"
 
@@ -173,7 +173,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev6-4d161de
+geth_container_image: flashbots/builder:1.13.2.4844.dev7-4d161de
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 
