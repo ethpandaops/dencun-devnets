@@ -1,6 +1,6 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:proposer-signature-cache-c59fa34
+  lighthouse: ethpandaops/lighthouse:proposer-signature-cache-29ecfc3
   lodestar: ethpandaops/lodestar:blobs-inclproof-d5a5a47
   nimbus: ethpandaops/nimbus:59k-b186c6a
   prysm: ethpandaops/prysm:devnet-10-2850f4d
