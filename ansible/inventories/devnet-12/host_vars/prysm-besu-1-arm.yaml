@@ -1,3 +1,0 @@
-prysm_container_image: gcr.io/prylabs-dev/prysm/beacon-chain:devnet-10
-prysm_validator_container_image: gcr.io/prylabs-dev/prysm/validator:devnet-10
-
