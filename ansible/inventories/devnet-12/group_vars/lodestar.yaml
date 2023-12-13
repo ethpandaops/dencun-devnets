@@ -50,7 +50,7 @@ lodestar_validator_container_volumes:
 lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}
-  - --useProduceBlockV3
+  #- --useProduceBlockV3
 lodestar_validator_datadir: /data/lodestar-validator
 
 lodestar_mev_boost_enabled: true
