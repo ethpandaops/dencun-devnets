@@ -117,7 +117,7 @@ lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:256/10
-  - --debug-level=info
+  - --debug-level=debug
   - --always-prepare-payload
   - --prepare-payload-lookahead=12000
   - --disable-peer-scoring
