@@ -5,7 +5,7 @@ dora:
   image:
     repository: ethpandaops/dora
     tag: master-latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   resources:
     requests:
       cpu: 500m
@@ -31,10 +31,6 @@ dora:
     name: "dora-postgresql"
     fullnameOverride: "dora-postgresql"
   
-  extraEnv:
-    - name: FRONTEND_PPROF
-      value: "true"
-
   endpoints:
   # Rpc
   - url: http://teku-geth-001:5052
@@ -124,6 +120,9 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1-arm.dencun-devnet-12.ethpandaops.io
     name: nimbus-reth-1-arm
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-geth-1.dencun-devnet-12.ethpandaops.io
+    name: prysm-geth-1
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.dencun-devnet-12.ethpandaops.io
     name: teku-besu-1

@@ -74,9 +74,9 @@ variable "lighthouse_ethereumjs" {
 variable "prysm_geth" {
   default = {
     name            = "prysm-geth"
-    count           = 0
-    validator_start = 250
-    validator_end   = 360
+    count           = 1
+    validator_start = 2700
+    validator_end   = 2800
     location        = "syd1"
   }
 }
