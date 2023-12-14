@@ -63,4 +63,7 @@ rpc-proxy:
       "rpc_modules",
       "web3_clientVersion",
       "debug_getRawReceipts",
+      "debug_traceBlock",
+      "trace_transaction",
+      "trace_block",
     ]
