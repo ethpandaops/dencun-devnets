@@ -1,0 +1,56 @@
+blobber_container_image: "{{ default_tooling_images.blobber }}"
+
+blobber_log_level: trace
+
+ethereum_node_blobber_enabled: true
+
+# Storage configs
+blobber_datadir: /data/blobber
+blobber_validator_local_key_folder: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys/{{ inventory_hostname }}"
+blobber_validator_remote_key_folder: "{{ blobber_datadir }}/validators"
+
+blobber_container_volumes:
+  - "{{ blobber_datadir }}:/data"
+
+# Blobber specific configs
+blobber_beacon_api: "beacon:5052"
+#blobber_slot_actions: {"name": "equivocating_blob_sidecars", "broadcast_blobs_first": true}
+#blobber_slot_actions: {"name": "conflicting_blobs"}
+blobber_slot_actions: {"name": "blob_gossip_delay", "delay_milliseconds": 1500}
+blobber_slot_action_frequency: 1
+
+blobber_container_ports:
+  - "{{ blobber_p2p_port }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port }}:{{ blobber_p2p_port }}/udp"
+  - "{{ blobber_p2p_port + 1 }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port + 1 }}:{{ blobber_p2p_port }}/udp"
+  - "{{ blobber_p2p_port + 2 }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port + 2 }}:{{ blobber_p2p_port }}/udp"
+  - "{{ blobber_p2p_port + 3 }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port + 3 }}:{{ blobber_p2p_port }}/udp"
+  - "{{ blobber_p2p_port + 4 }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port + 4 }}:{{ blobber_p2p_port }}/udp"
+  - "{{ blobber_p2p_port + 5 }}:{{ blobber_p2p_port }}"
+  - "{{ blobber_p2p_port + 5 }}:{{ blobber_p2p_port }}/udp"
+  - "127.0.0.1:{{ blobber_api_listen_port }}:{{ blobber_api_listen_port }}"
+
+#  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-geth-1.{{ network_subdomain }}"
+#  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-besu-1.{{ network_subdomain }}"
+#  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-erigon-1.{{ network_subdomain }}"
+#  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-nethermind-1.{{ network_subdomain }}"
+#  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-reth-1.{{ network_subdomain }}"
+blobber_container_command:
+  - "--cl={{ blobber_beacon_api }}"
+  - "--beacon-port-start={{ blobber_p2p_port }}"
+  - "--log-level={{ blobber_log_level }}"
+  - "--external-ip=0.0.0.0"
+  - "--slot-action={{ blobber_slot_actions | to_json }}"
+  - "--slot-action-frequency={{ blobber_slot_action_frequency }}"
+  - "--validator-key-folder=/data/validators"
+  - "--validator-proxy-port-start={{ blobber_api_listen_port }}"
+  - "--enable-unsafe-mode"
+
+blobber_container_command_extra_args: []
+
+# Default image pull policy
+blobber_container_pull: false
