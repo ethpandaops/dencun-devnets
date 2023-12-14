@@ -1,2 +1,2 @@
-prysm_container_image: gcr.io/prylabs-dev/prysm/beacon-chain:HEAD-b84b79
-prysm_validator_container_image: gcr.io/prylabs-dev/prysm/validator:HEAD-b84b79
+prysm_container_image: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-09f3df
+prysm_validator_container_image: gcr.io/prysmaticlabs/prysm/validator:HEAD-09f3df

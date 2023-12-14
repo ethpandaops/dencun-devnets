@@ -145,6 +145,9 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1-arm.dencun-devnet-12.ethpandaops.io
     name: teku-besu-1-arm
     priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-2-arm.dencun-devnet-12.ethpandaops.io
+    name: teku-besu-2-arm
+    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-1.dencun-devnet-12.ethpandaops.io
     name: teku-erigon-1
     priority: -1

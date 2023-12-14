@@ -250,7 +250,7 @@ variable "teku_geth" {
 variable "teku_besu" {
   default = {
     name            = "teku-besu"
-    count           = 1
+    count           = 2
     validator_start = 0
     validator_end   = 0
   }
