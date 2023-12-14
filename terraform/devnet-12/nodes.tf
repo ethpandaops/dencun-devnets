@@ -84,9 +84,9 @@ variable "prysm_geth" {
 variable "prysm_nethermind" {
   default = {
     name            = "prysm-nethermind"
-    count           = 0
-    validator_start = 360
-    validator_end   = 460
+    count           = 1
+    validator_start = 2800
+    validator_end   = 2900
     location        = "nyc1"
   }
 }
@@ -94,9 +94,9 @@ variable "prysm_nethermind" {
 variable "prysm_besu" {
   default = {
     name            = "prysm-besu"
-    count           = 0
-    validator_start = 460
-    validator_end   = 485
+    count           = 1
+    validator_start = 2900
+    validator_end   = 3000
     location        = "fra1"
   }
 }
@@ -104,9 +104,9 @@ variable "prysm_besu" {
 variable "prysm_erigon" {
   default = {
     name            = "prysm-erigon"
-    count           = 0
-    validator_start = 485
-    validator_end   = 510
+    count           = 1
+    validator_start = 3000
+    validator_end   = 3100
     location        = "blr1"
   }
 }
@@ -285,9 +285,9 @@ variable "lighthouse_reth" {
 variable "prysm_reth" {
   default = {
     name            = "prysm-reth"
-    count           = 0
-    validator_start = 0
-    validator_end   = 0
+    count           = 1
+    validator_start = 3100
+    validator_end   = 3200
     location        = "nyc1"
   }
 }

@@ -123,8 +123,20 @@ checkpointz:
       - name: nimbus-reth-1-arm
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1-arm.dencun-devnet-12.ethpandaops.io
         dataProvider: true
+      - name: prysm-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1.dencun-devnet-12.ethpandaops.io
+        dataProvider: true
+      - name: prysm-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-erigon-1.dencun-devnet-12.ethpandaops.io
+        dataProvider: true
       - name: prysm-geth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-geth-1.dencun-devnet-12.ethpandaops.io
+        dataProvider: true
+      - name: prysm-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.dencun-devnet-12.ethpandaops.io
+        dataProvider: true
+      - name: prysm-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-reth-1.dencun-devnet-12.ethpandaops.io
         dataProvider: true
       - name: teku-besu-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.dencun-devnet-12.ethpandaops.io
