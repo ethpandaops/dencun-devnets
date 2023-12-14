@@ -21,7 +21,7 @@ erigon_container_command_extra_args:
   - --http.vhosts=*
   - --ws
   - --prune=htc
-  - --db.size.limit=100GB
+  - --db.size.limit=1000GB
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 erigon_init_custom_network: true
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
