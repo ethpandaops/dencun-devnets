@@ -80,9 +80,9 @@ variable "prysm_geth" {
 variable "prysm_besu" {
   default = {
     name            = "prysm-besu"
-    count           = 0
-    validator_start = 0
-    validator_end   = 0
+    count           = 1
+    validator_start = 3200
+    validator_end   = 3300
     location        = "nbg1"
   }
 }
