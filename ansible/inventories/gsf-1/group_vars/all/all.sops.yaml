@@ -2,8 +2,8 @@ secret_zerossl:
     ACME_EAB_KID: ENC[AES256_GCM,data:fntl4mWciQgaQzELFE2BvS9ZGxQcJw==,iv:0tdxzEKA8SNJoB6JYInA6smdtWlyT1AsPV8cZTRuRR4=,tag:R3hsq117eDe3yINvGOPCLw==,type:str]
     ACME_EAB_HMAC_KEY: ENC[AES256_GCM,data:Q+c39xzsv8f1sc9wlRNLGXetJewRcb1zV20TJ4Zlx+C/IcUtw6oShPCLt0K/lg6bQecNn+8h9aaZaZ9vICEtytAPe/F9ygy3LuLqZtxF9fLPuDjqrHc=,iv:c828LApis2giEmlO5C1lFBqQBuZRTjuM3B0gWhCvgOc=,tag:1U7aLvRqEpxlpcfuSzWbaA==,type:str]
 secret_prometheus_remote_write:
-    username: ENC[AES256_GCM,data:2/srJlk/hs5ak3fg,iv:AMiBv/Z/X7osygF7JvGrunsPwZQLtEiBSfmdL3PYDlg=,tag:y/D+etUcDONGGtFmdt+HPg==,type:str]
-    password: ENC[AES256_GCM,data:Nv9uGlq7agboQUNOWifMCxUoTi9AWZ9gXaDFb2s=,iv:fDTWZ5Z4V8euYAuKdyXtrRuHcXWW94zQkxA+BACAg3g=,tag:Z76GtcYTJ+2DEWuACEdvSA==,type:str]
+    username: ENC[AES256_GCM,data:MYNu/I52dE9FbFU=,iv:hG7CNBgAgmkdUpSUwA00lseD2yT6io4zU9Qbcv5uwCg=,tag:MYWA6Wvb1PylJWlFSOV3Zg==,type:str]
+    password: ENC[AES256_GCM,data:fQLqRKYR5udeMpzvhUDyluCOkGufqlfSOtMM8CE=,iv:5m3Jm0eaAOVMoc6RmWa0y1aOiGytCglH7iQPIo2baw4=,tag:DvzN7gBflj257UGaTrm4Ug==,type:str]
 secret_nginx_shared_basic_auth:
     name: ENC[AES256_GCM,data:ewHq,iv:3m9r+IutYQfVmmxnhGgrBTPf8AR5EY/7mxXSRscMgDo=,tag:9H/NPeIVAuDJ2W3L3sjIng==,type:str]
     password: ENC[AES256_GCM,data:GiqfFP7amT/6x3W75fMV,iv:H8CmQRbYnZo8zA4X3bK5/wUvWIDsV3MYRktaiLP0+3w=,tag:y+hEypeHIbXadljRAXGjtw==,type:str]
@@ -34,8 +34,8 @@ sops:
             cjFQSjNMdEtTZ3ZsVXF0S1YzUFpjSWMK9egMDPVbDH9wZ63Xphb71mEISx2Oen4T
             DVSVbwUAAWgyxR4TWC2hk/JjYZ3MKIFY65WVc4J1MB/ULq+l0HhttQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-12-14T16:22:03Z"
-    mac: ENC[AES256_GCM,data:0gX+MbXp+WGRoxiYyCOl2gY07VtDgCCYHxnkLrbMLANCzq6U5dlr3cQQy0PKQurIIH/OZM2rVEphE1nM1sB61h7MyuhPdhkFotobycmjogKhtbcjAB7qjLCmFU8zwoM9x4LRF7p058Xv7dnZPO+5FEEgajSQya7RNrYrSk5tnx4=,iv:fp7MMlmlvoew4jD4WJwEuh6zjHLbPj9tSrofmAHKApg=,tag:ngDbkKSmEsiI13wdgoH2fQ==,type:str]
+    lastmodified: "2023-12-15T20:53:57Z"
+    mac: ENC[AES256_GCM,data:TMHPvPolp8VjI059YRA9iz4Y7k3VE2eRvJFWjyeOdbZjXbQxcYwNbn2g1uf3fC3IX0H4YFlAJw62lyuX8503RCn8lrMqljRPStLJ8brqNck3KSpupYSiisPMh6ai6z8bR6+p8urvgMmBrLnh/cxJ9F7UwJCOzwgMTKPYLwdRzWY=,iv:kEImznw2qoz5BdTiI2WUMbqBiiFnF9hVxyzRun/Lpjg=,tag:G2AXoqtx/ELzVRtajNCD6w==,type:str]
     pgp:
         - created_at: "2023-08-17T08:39:40Z"
           enc: |-

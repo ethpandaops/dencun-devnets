@@ -50,7 +50,7 @@ prysm_container_command_extra_simple_args:
   #- --chain-config-file=/network-config/config.yaml
   #- --genesis-state=/network-config/genesis.ssz
   - --grpc-gateway-corsdomain=*
-  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
+#  - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --min-sync-peers=1
   - --pprof
   - --pprofaddr=0.0.0.0

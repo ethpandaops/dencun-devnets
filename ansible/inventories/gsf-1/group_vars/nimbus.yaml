@@ -26,10 +26,9 @@ nimbus_container_name: beacon
 # Checkpointsync
 nimbus_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
 nimbus_checkpoint_container_command_extra_args:
-  - --trusted-node-url={{ checkpoint_sync_url }}
-  - --network=/network-config
-  - --backfill=false
-nimbus_checkpoint_autoremove_enabled: true
+  - --network:goerli
+  - --trusted-node-url=https://checkpoint-sync.goerli.ethpandaops.io
+nimbus_checkpoint_autoremove_enabled: false
 
 nimbus_container_image: "{{ default_ethereum_client_images.nimbus }}"
 nimbus_container_env:

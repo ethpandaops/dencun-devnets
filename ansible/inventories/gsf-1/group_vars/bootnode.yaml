@@ -1,3 +1,4 @@
+# CHANGE FOR SHADOWFORK
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
 
@@ -14,7 +15,7 @@ eth_inventory_web_container_env:
 ethereum_node_el: geth
 ethereum_node_cl: teku
 ethereum_node_cl_validator_enabled: false
-
+ethereum_node_cl_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_el:
   - mariusVanDerWijden

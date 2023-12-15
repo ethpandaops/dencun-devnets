@@ -4,6 +4,7 @@ ethereum_cl_bootnodes:
 
 ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
+ethereum_node_cl_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus

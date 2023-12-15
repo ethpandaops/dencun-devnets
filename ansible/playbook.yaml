@@ -8,10 +8,10 @@
 #    target: all:!localhost
 #  tags: [init-server, bootstrap]
 #
-#- hosts: all:!localhost
-#  serial: "{{ batch_count | default('100%') }}"
-#  become: true
-#  roles:
+- hosts: all:!localhost
+  serial: "{{ batch_count | default('100%') }}"
+  become: true
+  roles:
 #    # - role: robertdebock.fail2ban
 #    #   tags: [init-server, fail2ban]
 #    - role: geerlingguy.docker
@@ -26,16 +26,16 @@
 #      tags: [init-server, docker_network]
 #    - role: ethpandaops.general.node_exporter
 #      tags: [init-server, node_exporter]
-#    - role: ethpandaops.general.prometheus
-#      tags: [init-server, prometheus]
+    - role: ethpandaops.general.prometheus
+      tags: [init-server, prometheus]
 #    - role: ethpandaops.general.vector
 #      tags: [init-server, vector]
 
 - hosts: bootnode
   become: true
   roles:
-#    - role: ethpandaops.general.cl_bootnode
-#      tags: [cl_bootnode]
+    - role: ethpandaops.general.cl_bootnode
+      tags: [cl_bootnode]
 #    - role: ethpandaops.general.ethereum_testnet_config
 #      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node

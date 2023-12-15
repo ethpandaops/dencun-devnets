@@ -32,8 +32,8 @@ besu_container_command_extra_args:
   #- --bootnodes={{ ethereum_el_bootnodes | join(',')}}
   - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
   - --data-storage-format=BONSAI
-  - --kzg-trusted-setup=/network-config/trusted_setup.txt
-  - --Xfilter-on-enr-fork-id=true
+#  - --kzg-trusted-setup=/network-config/trusted_setup.txt
+#  - --Xfilter-on-enr-fork-id=true
 #  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
 
 besu_container_pull: true
