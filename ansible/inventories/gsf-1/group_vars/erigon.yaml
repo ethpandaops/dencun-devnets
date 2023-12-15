@@ -21,9 +21,10 @@ erigon_container_command_extra_args:
   - --http.vhosts=*
   - --ws
   - --prune=htc
-  - --db.size.limit=1000GB
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
-erigon_init_custom_network: true
+  - --db.size.limit=1100GB
+#  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+# CHANGE FOR SHADOWFORK
+erigon_init_custom_network: false
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 
 prometheus_config: |

@@ -34,14 +34,14 @@ nethermind_container_command_extra_args:
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
   - --Init.IsMining=false
   - --Pruning.Mode=None
-  - --EthStats.Enabled=true
-  - --EthStats.Name={{ inventory_hostname }}
-  - --EthStats.Secret={{ ethstats_secret }}
-  - --EthStats.Server=wss://{{ ethstats_url }}/api/
   - --log={{ log_level | upper | default('DEBUG') }}
   - --TxPool.BlobSupportEnabled=true
   - --TxPool.PersistentBlobStorageEnabled=true
   - --TxPool.ReportMinutes=5
+#    - --EthStats.Enabled=true
+#    - --EthStats.Name={{ inventory_hostname }}
+#    - --EthStats.Secret={{ ethstats_secret }}
+#    - --EthStats.Server=wss://{{ ethstats_url }}/api/
   #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
 nethermind_container_pull: true
 

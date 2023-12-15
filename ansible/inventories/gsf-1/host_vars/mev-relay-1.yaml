@@ -161,7 +161,6 @@ geth_container_command_extra_args:
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
   - --builder
   - --builder.remote_relay_endpoint=http://mev-api.{{ network_subdomain }}:9062
   - --builder.beacon_endpoints=http://beacon:5052
