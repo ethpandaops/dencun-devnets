@@ -61,7 +61,7 @@ prysm_container_command_extra_bootnode_args: >-
   {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
 
 prysm_validator_container_name: validator
-prysm_validator_container_image: "{{ prysm_container_image }}"
+prysm_validator_container_image: "{{ default_ethereum_client_images.prysm_validator }}"
 prysm_validator_container_volumes:
   - "{{ prysm_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
