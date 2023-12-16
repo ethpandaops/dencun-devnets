@@ -4,6 +4,7 @@ ethereum_cl_bootnodes:
 
 ethereum_el_bootnodes:
   - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
+  - "enode://7cf9442f2ec40ac979f4305d84dc0d43cb423ebabca7a63cd4c2bee5dfb67c1e02b223a1cd1ccf94483839bf92b052173e0072909f50e58f5169a1415b05b30a@159.223.222.22:30303"
 ethereum_node_cl_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
 
 # role: ethpandaops.general.prometheus
