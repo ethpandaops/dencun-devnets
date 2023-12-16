@@ -22,8 +22,8 @@ dora:
           - path: /
             pathType: Prefix
 
-  name: dencun-gsf-1
-  
+  name: goerli
+
   #configPath: "https://config.dencun-gsf-1.ethpandaops.io/cl/config.yaml"
   #validatorNamesInventory: "https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges"
   proxyCount: 2
