@@ -21,7 +21,7 @@ geth_container_command_extra_args:
   - --http.api=eth,net,web3,debug,admin,txpool
   - --http.vhosts=*
 #  - --networkid={{ ethereum_network_id }}
-#  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
