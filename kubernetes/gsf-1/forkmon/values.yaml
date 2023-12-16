@@ -14,6 +14,13 @@ forkmon:
         paths:
           - path: /
             pathType: Prefix
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 8Gi
+    requests:
+      cpu: 1000m
+      memory: 1Gi
   network: dencun-gsf-1
   endpoints:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.bootnode-1.dencun-gsf-1.ethpandaops.io
