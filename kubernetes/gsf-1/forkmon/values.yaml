@@ -21,6 +21,21 @@ forkmon:
     requests:
       cpu: 1000m
       memory: 1Gi
+  # -- Liveness probe
+  # @default -- See `values.yaml`
+  livenessProbe:
+    tcpSocket:
+      port: http
+    initialDelaySeconds: 300
+    periodSeconds: 1200
+
+  # -- Readiness probe
+  # @default -- See `values.yaml`
+  readinessProbe:
+    tcpSocket:
+      port: http
+    initialDelaySeconds: 300
+    periodSeconds: 1200
   network: dencun-gsf-1
   endpoints:
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.bootnode-1.dencun-gsf-1.ethpandaops.io
