@@ -78,7 +78,8 @@ blockscout:
     enabled: true
 
   postgresql:
-    persistence:
-      enabled: true
-      size: 15Gi
     fullnameOverride: blockscout-postgresql
+    primary:
+      persistence:
+        enabled: true
+        size: 15Gi
