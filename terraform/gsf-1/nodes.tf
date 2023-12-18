@@ -45,7 +45,7 @@ variable "lighthouse_besu" {
     name            = "lighthouse-besu"
     count           = 3
     validator_start = 11100
-    validator_end   = 11400
+    validator_end   = 11700
     location        = "blr1"
   }
 }
@@ -53,9 +53,9 @@ variable "lighthouse_besu" {
 variable "lighthouse_erigon" {
   default = {
     name            = "lighthouse-erigon"
-    count           = 3
-    validator_start = 11400
-    validator_end   = 11700
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
     location        = "sfo3"
     size            = "so-8vcpu-64gb"
   }
@@ -96,7 +96,7 @@ variable "prysm_besu" {
     name            = "prysm-besu"
     count           = 3
     validator_start = 22800
-    validator_end   = 23100
+    validator_end   = 23400
     location        = "fra1"
   }
 }
@@ -104,9 +104,9 @@ variable "prysm_besu" {
 variable "prysm_erigon" {
   default = {
     name            = "prysm-erigon"
-    count           = 3
-    validator_start = 23100
-    validator_end   = 23400
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
     location        = "blr1"
     size            = "so-8vcpu-64gb"
   }
@@ -147,7 +147,7 @@ variable "lodestar_besu" {
     name            = "lodestar-besu"
     count           = 3
     validator_start = 24000
-    validator_end   = 24300
+    validator_end   = 24600
     location        = "sfo3"
   }
 }
@@ -155,9 +155,9 @@ variable "lodestar_besu" {
 variable "lodestar_erigon" {
   default = {
     name            = "lodestar-erigon"
-    count           = 3
-    validator_start = 24300
-    validator_end   = 24600
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
     location        = "syd1"
     size            = "so-8vcpu-64gb"
   }
@@ -199,7 +199,7 @@ variable "teku_besu" {
     name            = "teku-besu"
     count           = 3
     validator_start = 26700
-    validator_end   = 27000
+    validator_end   = 27300
     location        = "sfo3"
   }
 }
@@ -207,9 +207,9 @@ variable "teku_besu" {
 variable "teku_erigon" {
   default = {
     name            = "teku-erigon"
-    count           = 3
-    validator_start = 27000
-    validator_end   = 27300
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
     location        = "syd1"
     size            = "so-8vcpu-64gb"
   }
@@ -250,7 +250,7 @@ variable "nimbus_besu" {
     name            = "nimbus-besu"
     count           = 3
     validator_start = 27900
-    validator_end   = 28200
+    validator_end   = 28500
     location        = "blr1"
   }
 }
@@ -258,9 +258,9 @@ variable "nimbus_besu" {
 variable "nimbus_erigon" {
   default = {
     name            = "nimbus-erigon"
-    count           = 3
-    validator_start = 28200
-    validator_end   = 28500
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
     location        = "sfo3"
     size            = "so-8vcpu-64gb"
   }

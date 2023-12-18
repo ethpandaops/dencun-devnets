@@ -42,18 +42,17 @@ nimbus_container_volumes:
 nimbus_container_command_extra_args: >-
   {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
 nimbus_container_command_extra_simple_args:
-  - --network=goerli
-  #- --network=/network-config
+  - --network=/network-config
   - --validator-monitor-auto=false
   - --doppelganger-detection=off
   - --log-level={{ log_level | upper | default('DEBUG') }}
   - --light-client-data-serve=false
-  - --graffiti={{ ansible_hostname }}🐼
-nimbus_container_command_extra_bootnode_args: []
-  #{{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}🐼
+nimbus_container_command_extra_bootnode_args: >-
+  {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+
 
 nimbus_validator_datadir: /data/nimbus-validator
 nimbus_container_validator_volumes:
   - "{{ nimbus_validator_datadir }}:/validator-data"
 
-nimbus_mev_boost_enabled: true

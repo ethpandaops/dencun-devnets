@@ -34,10 +34,11 @@ geth_container_env:
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 geth_container_command_extra_args:
-  - --goerli
-  #- --networkid={{ ethereum_network_id }}
   - --http.api=eth,net,web3,debug,admin
   - --http.vhosts=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --override.cancun={{ cancun_timestamp }}
 #  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 # CHANGE FOR SHADOWFORK
 geth_init_custom_network: false
@@ -62,26 +63,22 @@ teku_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
-  JAVA_OPTS: "-XX:SoftMaxHeapSize=3500m -Xmx3500m"
+  JAVA_OPTS: "-XX:SoftMaxHeapSize=4000m -Xmx4000m"
 teku_container_volumes:
   - "{{ teku_datadir }}:/data"
   - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_container_command_extra_args:
-  - --network=goerli
-  # - --network=/network-config/config.yaml
-  # - --initial-state=/network-config/genesis.ssz
+#  - --network=goerli
+  - --network=/network-config/config.yaml
+  - --initial-state=/network-config/genesis.ssz
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
   - --data-storage-mode=ARCHIVE
-  - --validators-graffiti=bootnode-{{ ethereum_node_cl }}/{{ ethereum_node_el }}
   - --logging=info
   - --Xlog-include-p2p-warnings-enabled
   - --metrics-block-timing-tracking-enabled
   - --Xmetrics-blob-sidecars-storage-enabled=true
-  - --Xtrusted-setup=/network-config/trusted_setup.txt
-  - --Xpeer-rate-limit=100000
-  - --Xpeer-request-limit=1000
   - --ignore-weak-subjectivity-period-enabled
 
 # role: ethpandaops.general.prometheus

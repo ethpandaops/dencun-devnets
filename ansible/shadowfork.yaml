@@ -1,0 +1,49 @@
+- hosts: all,!localhost
+  roles:
+    - role: ethpandaops.general.beacon_stopper
+      tags: [script, beacon_stopper]
+
+
+- hosts: all,!localhost
+  serial: "{{ batch_count | default('100%') }}"
+  tags: [cleanup]
+  become: true
+  tasks:
+    - name: Cleanup all data
+      block:
+        - name: Remove eth containers
+          community.docker.docker_container:
+            name: "{{ item }}"
+            state: absent
+            timeout: 5
+          loop:
+            # Consensus layer clients
+            - "lighthouse-validator"
+            - "lighthouse"
+            - "lodestar-validator"
+            - "lodestar"
+            - "nimbus"
+            - "prysm-validator"
+            - "prysm"
+            - "teku-validator"
+            - "teku"
+            - "beacon"
+            - "validator"
+        - name: Remove data dirs
+          file:
+            state: absent
+            path: "{{ item }}"
+          loop:
+            # Consensus layer data
+            - /data/lighthouse
+            - /data/lighthouse-validator
+            - /data/lodestar
+            - /data/lodestar-validator
+            - /data/nimbus
+            - /data/nimbus-validator
+            - /data/prysm
+            - /data/prysm-validator
+            - /data/teku
+            - /data/teku-validator
+            # Config files
+            - /data/ethereum-network-config

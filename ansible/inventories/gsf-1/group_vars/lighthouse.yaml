@@ -50,9 +50,8 @@ lighthouse_container_volumes:
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
-  - --network=goerli
-  #- --testnet-dir=/network-config
-  #- --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --debug-level={{ log_level | default('debug') }}
   - --quic-port={{ lighthouse_ports_quic }}
   - --enr-quic-port={{ lighthouse_ports_quic }}
@@ -67,4 +66,3 @@ lighthouse_validator_container_command_extra_args:
 lighthouse_validator_datadir: /data/lighthouse-validator
 lighthouse_container_pull: true
 
-lightouse_mev_boost_enabled: true

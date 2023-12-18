@@ -28,21 +28,23 @@ nethermind_container_volumes:
   - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 nethermind_container_command_extra_args:
-  - --config=goerli
-  #- --Init.ChainSpecPath=/network-config/chainspec.json
-  #- --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --Init.ChainSpecPath=/network-config/chainspec.json
+  - --config=goerli.cfg
+  - --Init.BaseDbPath=nethermind_db/goerli
+#  - --Bloom.IndexLevelBucketSizes=[16,16,16,16]
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --Init.IsMining=false
   - --Pruning.Mode=None
-  - --log={{ log_level | upper | default('DEBUG') }}
-  - --TxPool.BlobSupportEnabled=true
-  - --TxPool.PersistentBlobStorageEnabled=true
-  - --TxPool.ReportMinutes=5
   - --EthStats.Enabled=true
   - --EthStats.Name={{ inventory_hostname }}
   - --EthStats.Secret={{ ethstats_secret }}
   - --EthStats.Server=wss://{{ ethstats_url }}/api/
-  #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
+  - --log={{ log_level | upper | default('DEBUG') }}
+  - --TxPool.BlobSupportEnabled=true
+  - --TxPool.PersistentBlobStorageEnabled=true
+  - --TxPool.ReportMinutes=5
+
 nethermind_container_pull: true
 
 prometheus_config: |

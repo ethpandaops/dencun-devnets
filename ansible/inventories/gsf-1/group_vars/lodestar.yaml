@@ -35,14 +35,12 @@ lodestar_container_volumes:
   - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lodestar_container_command_extra_args:
-  - --network=goerli
-  #- --paramsFile=/network-config/config.yaml
-  #- --genesisStateFile=/network-config/genesis.ssz
-  #- --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
+  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --rest.namespace="*"
   - --network.connectToDiscv5Bootnodes
   - --nat=true
-  - --chain.trustedSetup=/network-config/trusted_setup.txt
 
 lodestar_validator_container_name: validator
 lodestar_validator_container_volumes:
@@ -51,7 +49,6 @@ lodestar_validator_container_volumes:
 lodestar_validator_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --graffiti={{ ansible_hostname }}🐼
-  #- --useProduceBlockV3
+
 lodestar_validator_datadir: /data/lodestar-validator
 
-lodestar_mev_boost_enabled: true

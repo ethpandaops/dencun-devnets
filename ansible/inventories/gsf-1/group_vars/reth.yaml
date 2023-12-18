@@ -25,11 +25,9 @@ reth_container_volumes:
   - "{{ reth_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 reth_container_command_extra_args:
-  - --chain=goerli
-  #- --chain=/network-config/genesis.json
-  #- --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --chain=/network-config/genesis.json
   - --http.api=eth,net,web3,debug,admin,txpool
-  #- --trustedSetup=/network-config/trusted_setup.txt
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 
 prometheus_config: |
   global:

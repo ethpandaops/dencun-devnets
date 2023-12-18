@@ -3,8 +3,8 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:proposer-signature-cache-29ecfc3
   lodestar: ethpandaops/lodestar:blobs-inclproof-d5a5a47
   nimbus: ethpandaops/nimbus:unstable-44db870
-  prysm: ethpandaops/prysm:develop-1962cca
-  prysm_validator: ethpandaops/prysm-validator:develop-linux-amd64-1962cca
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-344e68
+  prysm_validator: ethpandaops/prysm:develop-1962cca
   teku: ethpandaops/teku:master-16c4354
 ### Execution layer clients
   besu: ethpandaops/besu:main-be5cc68
@@ -13,7 +13,6 @@ default_ethereum_client_images:
   ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
   nethermind: ethpandaops/nethermind:master-dcec565
   reth: ethpandaops/reth:main-b0c4d99
-
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.137

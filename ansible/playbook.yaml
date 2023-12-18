@@ -1,56 +1,56 @@
-#- hosts: localhost
-#  roles:
-#    - role: ethpandaops.general.ethereum_genesis
-#      tags: [ethereum_genesis]
+- hosts: localhost
+  roles:
+    - role: ethpandaops.general.ethereum_genesis
+      tags: [ethereum_genesis]
 
-#- import_playbook: ethpandaops.general.bootstrap_server
-#  vars:
-#    target: all:!localhost
-#  tags: [init-server, bootstrap]
-#
+- import_playbook: ethpandaops.general.bootstrap_server
+  vars:
+    target: all:!localhost
+  tags: [init-server, bootstrap]
+
 - hosts: all:!localhost
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-#    # - role: robertdebock.fail2ban
-#    #   tags: [init-server, fail2ban]
-#    - role: geerlingguy.docker
-#      tags: [init-server, docker]
-#    - role: geerlingguy.pip
-#      pip_install_packages:
-#        - name: docker
-#      tags: [init-server, pip]
-#    - role: ethpandaops.general.docker_cleanup
-#      tags: [init-server, docker_cleanup]
-#    - role: ethpandaops.general.docker_network
-#      tags: [init-server, docker_network]
-#    - role: ethpandaops.general.node_exporter
-#      tags: [init-server, node_exporter]
+    # - role: robertdebock.fail2ban
+    #   tags: [init-server, fail2ban]
+    - role: geerlingguy.docker
+      tags: [init-server, docker]
+    - role: geerlingguy.pip
+      pip_install_packages:
+        - name: docker
+      tags: [init-server, pip]
+    - role: ethpandaops.general.docker_cleanup
+      tags: [init-server, docker_cleanup]
+    - role: ethpandaops.general.docker_network
+      tags: [init-server, docker_network]
+    - role: ethpandaops.general.node_exporter
+      tags: [init-server, node_exporter]
     - role: ethpandaops.general.prometheus
       tags: [init-server, prometheus]
-#    - role: ethpandaops.general.vector
-#      tags: [init-server, vector]
+    - role: ethpandaops.general.vector
+      tags: [init-server, vector]
 
 - hosts: bootnode
   become: true
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-#    - role: ethpandaops.general.ethereum_testnet_config
-#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
-#    - role: ethpandaops.general.docker_nginx_proxy
-#      tags: [docker_nginx_proxy]
-#    - role: ethpandaops.general.generate_basic_auth_nginx
-#      tags: [docker_nginx_proxy]
+    - role: ethpandaops.general.docker_nginx_proxy
+      tags: [docker_nginx_proxy]
+    - role: ethpandaops.general.generate_basic_auth_nginx
+      tags: [docker_nginx_proxy]
 
 - hosts: ethereum_node, mev_relay
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-#    - role: ethpandaops.general.ethereum_testnet_config
-#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]
