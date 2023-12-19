@@ -515,10 +515,6 @@ dora:
     name: lighthouse-reth-3
     priority: -1
     archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: lighthouse-erigon-1
-    priority: -1
-    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.dencun-gsf-1.ethpandaops.io
     name: lodestar-besu-1
     priority: -1
