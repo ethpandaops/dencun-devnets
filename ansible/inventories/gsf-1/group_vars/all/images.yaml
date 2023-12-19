@@ -1,11 +1,11 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:proposer-signature-cache-29ecfc3
+  lighthouse: ethpandaops/lighthouse:unstable-c55608b
   lodestar: ethpandaops/lodestar:blobs-inclproof-d5a5a47
-  nimbus: ethpandaops/nimbus:unstable-44db870
-  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-344e68
-  prysm_validator: ethpandaops/prysm:develop-1962cca
-  teku: ethpandaops/teku:master-16c4354
+  nimbus: ethpandaops/nimbus:unstable-f125a5c
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-374d77
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-374d77
+  teku: ethpandaops/teku:master-f733b7c
 ### Execution layer clients
   besu: ethpandaops/besu:main-be5cc68
   geth: ethpandaops/geth:master-5b57727

@@ -45,5 +45,4 @@
             - /data/prysm-validator
             - /data/teku
             - /data/teku-validator
-            # Config files
-            - /data/ethereum-network-config
+
