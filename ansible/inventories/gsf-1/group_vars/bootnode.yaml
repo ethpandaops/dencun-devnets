@@ -1,6 +1,18 @@
-# CHANGE FOR SHADOWFORK
 ethereum_cl_bootnodes:
   - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+  - "{{ hostvars['bootnode-2']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['bootnode-3']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['bootnode-4']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['bootnode-5']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_cl_enr'] }}"
+
+ethereum_el_bootnodes:
+  - "{{ hostvars['bootnode-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['bootnode-2']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['bootnode-3']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['bootnode-4']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['bootnode-5']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_el_enode'] }}"
 
 # role: eth_inventory_web
 eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
@@ -39,6 +51,7 @@ geth_container_command_extra_args:
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
   - --override.cancun={{ cancun_timestamp }}
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 #  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 # CHANGE FOR SHADOWFORK
 geth_init_custom_network: false
@@ -80,7 +93,7 @@ teku_container_command_extra_args:
   - --metrics-block-timing-tracking-enabled
   - --Xmetrics-blob-sidecars-storage-enabled=true
   - --ignore-weak-subjectivity-period-enabled
-
+  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus
 prometheus_remote_write_username: "{{ secret_prometheus_remote_write.username }}"
