@@ -1,0 +1,57 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/beacon-metrics-gazer.yaml.j2
+
+beacon-metrics-gazer:
+  image:
+    repository: dapplion/beacon-metrics-gazer
+    tag: latest
+    pullPolicy: Always
+  fullnameOverride: beacon-metrics-gazer
+  resources:
+    requests:
+      cpu: 68m
+      memory: 128Mi
+    limits:
+      cpu: 128m
+      memory: 256Mi
+
+  serviceMonitor:
+    enabled: true
+    labels:
+      vmagent: common
+      network: "dencun-gsf-1"
+
+  customCommand:
+    - /beacon-metrics-gazer
+    - http://teku-geth-001:5052
+    - --ranges-file
+    - /custom-config/ranges.yaml
+    - --port
+    - "8080"
+    - --address
+    - "0.0.0.0"
+
+  extraVolumes:
+    - name: custom-config
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: custom-config
+      mountPath: "/custom-config"
+
+  initContainers:
+  - name: init-config
+    image: alpine:latest
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+    command:
+      - sh
+      - -ace
+      - >
+        apk update && apk add curl yq;
+        curl -s https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges | yq '.ranges' -P > /custom-config/ranges.yaml;
+        echo "====== init done ======";
+        cat /custom-config/ranges.yaml;
+    volumeMounts:
+      - name: custom-config
+        mountPath: "/custom-config"
