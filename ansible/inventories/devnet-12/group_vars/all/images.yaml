@@ -6,6 +6,7 @@ default_ethereum_client_images:
   prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-374d77
   prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-374d77
   teku: ethpandaops/teku:master-f733b7c
+
 ### Execution layer clients
   besu: ethpandaops/besu:main-80c8a8f
   geth: ethpandaops/geth:master-cd58897

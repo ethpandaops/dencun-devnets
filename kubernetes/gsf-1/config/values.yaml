@@ -1,7 +1,7 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/config.yaml.j2
 
 network: gsf-1
-chainId: 7011893063
+chainId: 5
 
 domain: dencun-gsf-1.ethpandaops.io
 

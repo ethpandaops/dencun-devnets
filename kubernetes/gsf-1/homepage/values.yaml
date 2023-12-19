@@ -1,0 +1,150 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/testnet-homepage.yaml.j2
+
+testnet-homepage:
+  fullnameOverride: homepage
+
+  replicas: 1
+
+  image:
+    repository: ethpandaops/ethereum-testnet-homepage
+    tag: latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 33m
+      memory: 64Mi
+  ingress:
+    enabled: true
+
+    className: ingress-nginx-public
+
+    hosts:
+      - host: dencun-gsf-1.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customMarkdown: |-
+    ## Network Spec
+    https://notes.ethereum.org/@ethpandaops/dencun-gsf-1
+
+    ## Ansible setup
+    https://github.com/ethpandaops/dencun-devnets
+
+    ## Client versions
+    https://github.com/ethpandaops/dencun-devnets/blob/master/ansible/inventories/gsf-1/group_vars/all/images.yaml
+
+    ## Validator ranges
+    - https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges
+
+    Some examples:
+    ```sh
+    ## Pretty print in YAML format
+    curl -s https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges \
+      | yq '.ranges' -P
+    ```
+
+    ## Ethereum node inventory
+    - https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/inventory
+
+    Some examples on how to filter specific data from the node inventory:
+    ```sh
+    # Getting execution layer client enodes
+    curl -s https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/inventory \
+      | jq -r '.ethereum_pairs[] | .execution.enode'
+    # Getting conseus layer client ENRs
+    curl -s https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/inventory \
+      | jq -r '.ethereum_pairs[] | .consensus.enr'
+    ```
+
+    ## Genesis configuration
+    ### Execution layer clients
+    - https://config.dencun-gsf-1.ethpandaops.io/el/genesis.json
+    - https://config.dencun-gsf-1.ethpandaops.io/el/chainspec.json
+
+    ### Consensus layer clients
+    - https://config.dencun-gsf-1.ethpandaops.io/cl/config.yaml
+    - https://config.dencun-gsf-1.ethpandaops.io/cl/genesis.ssz
+    - https://config.dencun-gsf-1.ethpandaops.io/cl/deploy_block.txt
+    - https://config.dencun-gsf-1.ethpandaops.io/cl/deposit_contract.txt
+    - https://config.dencun-gsf-1.ethpandaops.io/cl/deposit_contract_block.txt
+
+
+  customArgs:
+    - -b
+    - https://dencun-gsf-1.ethpandaops.io
+
+  config:
+    baseURL: https://dencun-gsf-1.ethpandaops.io
+    languageCode: en-us
+    title: dencun-gsf-1
+    theme: PaperMod
+    markup:
+      highlight:
+        codeFences: true
+        guessSyntax: true
+        lineNos: false
+        style: monokai
+    params:
+      disableThemeToggle: true
+      defaultTheme: dark
+      ethereum:
+        faucetUrl: https://faucet.dencun-gsf-1.ethpandaops.io
+        rpcUrl: https://rpc.dencun-gsf-1.ethpandaops.io
+        beaconRpcUrl: https://beacon.dencun-gsf-1.ethpandaops.io
+        explorerUrl: https://explorer.dencun-gsf-1.ethpandaops.io
+        forkmonUrl: https://forkmon.dencun-gsf-1.ethpandaops.io
+        beaconexplorerUrl: "https://dencun-gsf-1.beaconcha.in"
+        doraUrl: https://dora.dencun-gsf-1.ethpandaops.io
+        checkpointSyncUrl: "https://checkpoint-sync.dencun-gsf-1.ethpandaops.io"
+        blobscanUrl: https://blobscan.com
+        blobscanethpandaUrl: https://blobscan.dencun-gsf-1.ethpandaops.io
+        ethstatsUrl: https://ethstats.dencun-gsf-1.ethpandaops.io
+        chainName: "dencun-gsf-1"
+        chainId: "5"
+        github: https://github.com/ethpandaops/dencun-devnets/tree/master/network-configs/gsf-1
+      metamask:
+        enabled: true
+      logo:
+        enabled: false
+        url: https://i.imgur.com/M0gEdpw.png
+      assets:
+        favicon: https://i.imgur.com/M0gEdpw.png
+        favicon16x16: https://i.imgur.com/M0gEdpw.png
+        favicon32x32: https://i.imgur.com/M0gEdpw.png
+        apple_touch_icon: https://i.imgur.com/M0gEdpw.png
+        safari_pinned_tab: https://i.imgur.com/M0gEdpw.png
+
+      links:
+      - name: "Devnet Spec"
+        dataLookup: github
+      - name: "JSON RPC"
+        dataLookup: rpcUrl
+      - name: "Beacon RPC"
+        dataLookup: beaconRpcUrl
+      - name: "Explorer"
+        dataLookup: explorerUrl
+      - name: "Dora the Explorer"
+        dataLookup: doraUrl
+      - name: "Beaconchain explorer"
+        dataLookup: "beaconexplorerUrl"
+      - name: "Blobscan"
+        dataLookup: blobscanUrl
+      - name: "Blobscan ethpanda edition"
+        dataLookup: blobscanethpandaUrl
+      - name: "Checkpoint Sync"
+        dataLookup: checkpointSyncUrl
+      - name: "Faucet"
+        dataLookup: faucetUrl
+      - name: "Forkmon"
+        dataLookup: forkmonUrl
+      - name: "Ethstats"
+        dataLookup: ethstatsUrl
+    menu:
+      main:
+        - identifier: ethereum-website
+          name: ethereum.org
+          url: https://ethereum.org
+          weight: 30
+    disableKinds: ["taxonomy", "taxonomyTerm"]
+    copyright: "Long live the surge"

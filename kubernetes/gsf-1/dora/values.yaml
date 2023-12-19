@@ -22,10 +22,9 @@ dora:
           - path: /
             pathType: Prefix
 
-  name: goerli
-
-  #configPath: "https://config.dencun-gsf-1.ethpandaops.io/cl/config.yaml"
-  #validatorNamesInventory: "https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges"
+  name: dencun-gsf-1
+  configPath: "https://config.dencun-gsf-1.ethpandaops.io/cl/config.yaml"
+  validatorNamesInventory: "https://config.dencun-gsf-1.ethpandaops.io/api/v1/nodes/validator-ranges"
   proxyCount: 2
 
   postgresql:
@@ -58,18 +57,6 @@ dora:
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-besu-3.dencun-gsf-1.ethpandaops.io
     name: lighthouse-besu-3
-    priority: -1
-    archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: lighthouse-erigon-1
-    priority: -1
-    archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-gsf-1.ethpandaops.io
-    name: lighthouse-erigon-2
-    priority: -1
-    archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-3.dencun-gsf-1.ethpandaops.io
-    name: lighthouse-erigon-3
     priority: -1
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-gsf-1.ethpandaops.io
@@ -528,6 +515,10 @@ dora:
     name: lighthouse-reth-3
     priority: -1
     archive: true
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-gsf-1.ethpandaops.io
+    name: lighthouse-erigon-1
+    priority: -1
+    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.dencun-gsf-1.ethpandaops.io
     name: lodestar-besu-1
     priority: -1
@@ -536,15 +527,6 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-3.dencun-gsf-1.ethpandaops.io
     name: lodestar-besu-3
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: lodestar-erigon-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-erigon-2.dencun-gsf-1.ethpandaops.io
-    name: lodestar-erigon-2
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-erigon-3.dencun-gsf-1.ethpandaops.io
-    name: lodestar-erigon-3
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1.dencun-gsf-1.ethpandaops.io
     name: lodestar-geth-1
@@ -582,15 +564,6 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-3.dencun-gsf-1.ethpandaops.io
     name: nimbus-besu-3
     priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: nimbus-erigon-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-2.dencun-gsf-1.ethpandaops.io
-    name: nimbus-erigon-2
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-3.dencun-gsf-1.ethpandaops.io
-    name: nimbus-erigon-3
-    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.dencun-gsf-1.ethpandaops.io
     name: nimbus-geth-1
     priority: -1
@@ -626,15 +599,6 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-3.dencun-gsf-1.ethpandaops.io
     name: prysm-besu-3
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: prysm-erigon-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-erigon-2.dencun-gsf-1.ethpandaops.io
-    name: prysm-erigon-2
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-erigon-3.dencun-gsf-1.ethpandaops.io
-    name: prysm-erigon-3
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-geth-1.dencun-gsf-1.ethpandaops.io
     name: prysm-geth-1
@@ -986,15 +950,6 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-3.dencun-gsf-1.ethpandaops.io
     name: teku-besu-3
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-1.dencun-gsf-1.ethpandaops.io
-    name: teku-erigon-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-2.dencun-gsf-1.ethpandaops.io
-    name: teku-erigon-2
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-3.dencun-gsf-1.ethpandaops.io
-    name: teku-erigon-3
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.dencun-gsf-1.ethpandaops.io
     name: teku-geth-1

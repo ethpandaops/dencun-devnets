@@ -1,0 +1,11 @@
+tx_fuzz_txs_container_image: "{{ default_tooling_images.tx_fuzz }}"
+tx_fuzz_txs_container_name: tx_fuzz_txs
+
+tx_fuzz_txs_container_command:
+  - spam
+  - --no-al
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.{{ network_subdomain }}
+  - --sk={{ tx_fuzz_txs_privkey }}
+
+
+tx_fuzz_container_networks: "{{ docker_networks_shared }}"
