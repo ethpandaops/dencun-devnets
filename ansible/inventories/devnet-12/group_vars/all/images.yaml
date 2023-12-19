@@ -1,18 +1,19 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:proposer-signature-cache-29ecfc3
+  lighthouse: ethpandaops/lighthouse:unstable-c55608b
   lodestar: ethpandaops/lodestar:blobs-inclproof-d5a5a47
-  nimbus: statusim/nimbus-eth2:multiarch-v23.7.0
-  prysm: ethpandaops/prysm:develop-381116a
-  prysm_validator: ethpandaops/prysm-validator:develop-linux-amd64-381116a
-  teku: ethpandaops/teku:master-16c4354
+  nimbus: ethpandaops/nimbus:unstable-f125a5c
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-374d77
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-374d77
+  teku: ethpandaops/teku:master-f733b7c
+
 ### Execution layer clients
-  besu: ethpandaops/besu:main-be5cc68
-  geth: ethpandaops/geth:master-5b57727
-  erigon: ethpandaops/erigon:devel-8cfafa4
-  ethereumjs: ethpandaops/ethereumjs:integrate-snapsync-b09794f
-  nethermind: ethpandaops/nethermind:master-dcec565
-  reth: ethpandaops/reth:main-b0c4d99
+  besu: ethpandaops/besu:main-80c8a8f
+  geth: ethpandaops/geth:master-cd58897
+  erigon: ethpandaops/erigon:devel-33fc53f
+  ethereumjs: ethpandaops/ethereumjs:master-c5054eb
+  nethermind: ethpandaops/nethermind:master-13b85a3
+  reth: ethpandaops/reth:main-b1d0dc4
 
 
 default_tooling_images:

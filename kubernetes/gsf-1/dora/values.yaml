@@ -30,13 +30,8 @@ dora:
   postgresql:
     name: "dora-postgresql"
     fullnameOverride: "dora-postgresql"
-  
+
   endpoints:
-  # Rpc
-  - url: http://teku-geth-001:5052
-    name: rpc-teku-geth-001
-    archive: true
-    priority: 1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-gsf-1.ethpandaops.io
     name: bootnode-1
     priority: -1
@@ -518,6 +513,10 @@ dora:
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-reth-3.dencun-gsf-1.ethpandaops.io
     name: lighthouse-reth-3
+    priority: -1
+    archive: true
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-gsf-1.ethpandaops.io
+    name: lighthouse-erigon-1
     priority: -1
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.dencun-gsf-1.ethpandaops.io
