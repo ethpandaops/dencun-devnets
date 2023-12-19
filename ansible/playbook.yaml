@@ -1,76 +1,76 @@
-#- hosts: localhost
-#  roles:
-#    - role: ethpandaops.general.ethereum_genesis
-#      tags: [ethereum_genesis]
+- hosts: localhost
+  roles:
+    - role: ethpandaops.general.ethereum_genesis
+      tags: [ethereum_genesis]
 
-#- import_playbook: ethpandaops.general.bootstrap_server
-#  vars:
-#    target: all:!localhost
-#  tags: [init-server, bootstrap]
-#
-#- hosts: all:!localhost
-#  serial: "{{ batch_count | default('100%') }}"
-#  become: true
-#  roles:
-#    # - role: robertdebock.fail2ban
-#    #   tags: [init-server, fail2ban]
-#    - role: geerlingguy.docker
-#      tags: [init-server, docker]
-#    - role: geerlingguy.pip
-#      pip_install_packages:
-#        - name: docker
-#      tags: [init-server, pip]
-#    - role: ethpandaops.general.docker_cleanup
-#      tags: [init-server, docker_cleanup]
-#    - role: ethpandaops.general.docker_network
-#      tags: [init-server, docker_network]
-#    - role: ethpandaops.general.node_exporter
-#      tags: [init-server, node_exporter]
-#    - role: ethpandaops.general.prometheus
-#      tags: [init-server, prometheus]
-#    - role: ethpandaops.general.vector
-#      tags: [init-server, vector]
+- import_playbook: ethpandaops.general.bootstrap_server
+  vars:
+    target: all:!localhost
+  tags: [init-server, bootstrap]
+
+- hosts: all:!localhost
+  serial: "{{ batch_count | default('100%') }}"
+  become: true
+  roles:
+    # - role: robertdebock.fail2ban
+    #   tags: [init-server, fail2ban]
+    - role: geerlingguy.docker
+      tags: [init-server, docker]
+    - role: geerlingguy.pip
+      pip_install_packages:
+        - name: docker
+      tags: [init-server, pip]
+    - role: ethpandaops.general.docker_cleanup
+      tags: [init-server, docker_cleanup]
+    - role: ethpandaops.general.docker_network
+      tags: [init-server, docker_network]
+    - role: ethpandaops.general.node_exporter
+      tags: [init-server, node_exporter]
+    - role: ethpandaops.general.prometheus
+      tags: [init-server, prometheus]
+    - role: ethpandaops.general.vector
+      tags: [init-server, vector]
 
 - hosts: bootnode
   become: true
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-#    - role: ethpandaops.general.ethereum_testnet_config
-#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
-#    - role: ethpandaops.general.docker_nginx_proxy
-#      tags: [docker_nginx_proxy]
-#    - role: ethpandaops.general.generate_basic_auth_nginx
-#      tags: [docker_nginx_proxy]
+    - role: ethpandaops.general.docker_nginx_proxy
+      tags: [docker_nginx_proxy]
+    - role: ethpandaops.general.generate_basic_auth_nginx
+      tags: [docker_nginx_proxy]
 
 - hosts: ethereum_node, mev_relay
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-#    - role: ethpandaops.general.ethereum_testnet_config
-#      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
-#    - role: ethpandaops.general.validator_keys
-#      when: ethereum_node_cl_validator_enabled == true
-#      tags: [ethereum, validator_keys]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.validator_keys
+      when: ethereum_node_cl_validator_enabled == true
+      tags: [ethereum, validator_keys]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
-#    - role: ethpandaops.general.docker_nginx_proxy
-#      tags: [docker_nginx_proxy]
-#    - role: ethpandaops.general.generate_basic_auth_nginx
-#      tags: [docker_nginx_proxy]
-#  post_tasks:
-#    - name: Wait between runs
-#      tags: [ethereum, ethereum_node]
-#      ansible.builtin.pause:
-#        seconds: >-
-#          {{
-#            batch_count is defined | ternary(
-#                (batch_wait_seconds | default(30)),
-#                0
-#              )
-#          }}
+    - role: ethpandaops.general.docker_nginx_proxy
+      tags: [docker_nginx_proxy]
+    - role: ethpandaops.general.generate_basic_auth_nginx
+      tags: [docker_nginx_proxy]
+  post_tasks:
+    - name: Wait between runs
+      tags: [ethereum, ethereum_node]
+      ansible.builtin.pause:
+        seconds: >-
+          {{
+            batch_count is defined | ternary(
+                (batch_wait_seconds | default(30)),
+                0
+              )
+          }}
 
 - hosts: teku
   serial:
@@ -105,49 +105,49 @@
   roles:
     - role: ethpandaops.general.ethereum_post_network_setup
       tags: [eth_post_network_setup, ethereum_post_network_setup]
-#    - role: ethpandaops.general.generate_kubernetes_config
-#      tags: [gen_kubernetes_config, generate_kubernetes_config]
+    - role: ethpandaops.general.generate_kubernetes_config
+      tags: [gen_kubernetes_config, generate_kubernetes_config]
 
-#- hosts: tx_fuzz_blobs
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.tx_fuzz
-#      tags: [tx_fuzz, tx_fuzz_blobs]
-#      vars:
-#        tx_fuzz_container_name: "{{ tx_fuzz_blobs_container_name }}"
-#        tx_fuzz_container_command: "{{ tx_fuzz_blobs_container_command }}"
-#        tx_fuzz_container_image: "{{ tx_fuzz_blobs_container_image }}"
-#- hosts: tx_fuzz_txs
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.tx_fuzz
-#      tags: [tx_fuzz, tx_fuzz_txs]
-#      vars:
-#        tx_fuzz_container_name: "{{ tx_fuzz_txs_container_name }}"
-#        tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
-#        tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
-#
-#- hosts: goomy
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.goomy
-#      tags: [goomy]
-#
-#- hosts: mev_relay
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.mev_relay
-#      tags: [mev_relay]
+- hosts: tx_fuzz_blobs
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz, tx_fuzz_blobs]
+      vars:
+        tx_fuzz_container_name: "{{ tx_fuzz_blobs_container_name }}"
+        tx_fuzz_container_command: "{{ tx_fuzz_blobs_container_command }}"
+        tx_fuzz_container_image: "{{ tx_fuzz_blobs_container_image }}"
+- hosts: tx_fuzz_txs
+  become: true
+  roles:
+    - role: ethpandaops.general.tx_fuzz
+      tags: [tx_fuzz, tx_fuzz_txs]
+      vars:
+        tx_fuzz_container_name: "{{ tx_fuzz_txs_container_name }}"
+        tx_fuzz_container_command: "{{ tx_fuzz_txs_container_command }}"
+        tx_fuzz_container_image: "{{ tx_fuzz_txs_container_image }}"
+
+- hosts: goomy
+  become: true
+  roles:
+    - role: ethpandaops.general.goomy
+      tags: [goomy]
+
+- hosts: mev_relay
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_relay
+      tags: [mev_relay]
 
 
-#- hosts: mev_flood
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.mev_flood
-#      tags: [mev_flood]
-#
-#- hosts: xatu
-#  become: true
-#  roles:
-#    - role: ethpandaops.general.xatu_sentry
-#      tags: [xatu]
+- hosts: mev_flood
+  become: true
+  roles:
+    - role: ethpandaops.general.mev_flood
+      tags: [mev_flood]
+
+- hosts: xatu
+  become: true
+  roles:
+    - role: ethpandaops.general.xatu_sentry
+      tags: [xatu]
