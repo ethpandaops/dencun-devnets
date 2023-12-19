@@ -21,7 +21,7 @@ prometheus_config: |
     evaluation_interval: 30s
     scrape_timeout: 10s
     external_labels:
-      instance: "{{ inventory_hostname }}"
+      instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
       ip_address: "{{ ansible_host }}"
       network: "{{ ethereum_network_name }}"
       testnet: "{{ ethereum_network_name }}"
@@ -45,22 +45,22 @@ prometheus_config: |
       static_configs:
         - targets: ["localhost:9090"]
           labels:
-            instance: "{{ inventory_hostname }}"
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
     - job_name: "node"
       metrics_path: "/metrics"
       static_configs:
         - targets: ["172.17.0.1:9100"]
           labels:
-            instance: "{{ inventory_hostname }}"
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
     - job_name: "exporter"
       metrics_path: "/metrics"
       static_configs:
         - targets: ["ethereum-metrics-exporter:9090"]
           labels:
-            instance: "{{ inventory_hostname }}"
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
     - job_name: "consensus_node"
       metrics_path: "/metrics"
       static_configs:
         - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
           labels:
-            instance: "{{ inventory_hostname }}"
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
