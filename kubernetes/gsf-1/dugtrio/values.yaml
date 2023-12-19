@@ -28,9 +28,6 @@ dugtrio:
     - "^/teku/v[0-9]+/admin/.*"
 
   endpoints:
-  # Rpc
-  - url: http://teku-geth-001:5052
-    name: rpc-teku-geth-001
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-gsf-1.ethpandaops.io
     name: bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-2.dencun-gsf-1.ethpandaops.io
