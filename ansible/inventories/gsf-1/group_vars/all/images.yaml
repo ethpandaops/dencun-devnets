@@ -1,7 +1,7 @@
 default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: ethpandaops/lighthouse:unstable-c55608b
-  lodestar: ethpandaops/lodestar:blobs-inclproof-d5a5a47
+  lodestar: ethpandaops/lodestar:blobs-inclproof-5799ef2
   nimbus: ethpandaops/nimbus:unstable-f125a5c
   prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-374d77
   prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-374d77
@@ -15,7 +15,7 @@ default_ethereum_client_images:
   reth: ethpandaops/reth:main-b0c4d99
 
 default_tooling_images:
-  xatu_sentry: ethpandaops/xatu:0.0.1-sentry-hotfix
+  xatu_sentry: ethpandaops/xatu:0.0.137
   ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.22.0
   tx_fuzz: ethpandaops/tx-fuzz:1.3.2
   forkmon: skylenet/nodemonitor:darkmode
