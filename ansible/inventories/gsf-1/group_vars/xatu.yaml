@@ -19,7 +19,7 @@ xatu_sentry_config:
   name: "{{ xatu_sentry_config_name }}"
   ntpServer: time.google.com
   ethereum:
-    beaconNodeAddress: "{{ vars[ethereum_node_cl + '_container_name'] }}:{{ethereum_node_cl_ports_http_beacon}}"
+    beaconNodeAddress: "http://{{ vars[ethereum_node_cl + '_container_name'] }}:{{ethereum_node_cl_ports_http_beacon}}"
     overrideNetworkName: "{{ xatu_sentry_config_network_name_override }}"
     beaconSubscriptions:
     - attestation
