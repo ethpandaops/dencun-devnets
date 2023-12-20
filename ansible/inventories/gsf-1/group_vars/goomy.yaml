@@ -1,6 +1,9 @@
 
 goomy_container_networks: "{{ docker_networks_shared }}"
 goomy_rpc_urls:
-  - "{% for host in groups['execution_node'] %}https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.{{ host }}.{{ network_subdomain }},{% endfor %}"
+  - "https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-3.{{ network_subdomain }}"
+  - "https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.prysm-geth-10.{{ network_subdomain }}"
+  - "https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.teku-nethermind-5.{{ network_subdomain }}"
+
 goomy_scenario: "combined"
-goomy_extra_args: ["--sidecars", "1", "--throughput", "2", "--max-pending", "20"]
+goomy_extra_args: ["--sidecars", "1", "--throughput", "3", "--max-pending", "20"]
