@@ -28,7 +28,6 @@ reth_container_command_extra_args:
   - --chain=/network-config/genesis.json
   - --http.api=eth,net,web3,debug,admin,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  #- --trustedSetup=/network-config/trusted_setup.txt
 
 prometheus_config: |
   global:

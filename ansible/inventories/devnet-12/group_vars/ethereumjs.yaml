@@ -29,8 +29,6 @@ ethereumjs_container_command_extra_args:
   - --isSingleNode=true
   - --logLevel={{ log_level | default('debug') }}
 
-
-  #- --trustedSetup=/network-config/trusted_setup.txt
 prometheus_config: |
   global:
     scrape_interval: 30s

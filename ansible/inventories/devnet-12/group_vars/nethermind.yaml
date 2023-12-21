@@ -42,7 +42,6 @@ nethermind_container_command_extra_args:
   - --TxPool.BlobSupportEnabled=true
   - --TxPool.PersistentBlobStorageEnabled=true
   - --TxPool.ReportMinutes=5
-  #- --Init.KzgSetupPath /pth/to/kzg_trusted_setup.txt
 nethermind_container_pull: true
 
 prometheus_config: |
