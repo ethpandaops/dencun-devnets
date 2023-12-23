@@ -82,4 +82,4 @@ blockscout:
     primary:
       persistence:
         enabled: true
-        size: 15Gi
+        size: 55Gi
