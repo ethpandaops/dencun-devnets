@@ -22,7 +22,6 @@ teku-geth-001:
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
               - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-12.ethpandaops.io:443
-              - --kzg-trusted-setup=/data/network-config/trusted_setup.txt
               - --Xfilter-on-enr-fork-id=true
             nethermind:
               - --Init.ChainSpecPath=/data/network-config/chainspec.json
@@ -67,15 +66,14 @@ teku-geth-001:
             lodestar:
               - --paramsFile=/data/network-config/config.yaml
               - --genesisStateFile=/data/network-config/genesis.ssz
-              - --bootnodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-Ly4QBTqN6yitDlBfcHoIJ4_NW_514GWAWbeOfLY25uOzIaPCF6XKH35VYEgqiFHQvjJLhvb4888nD5GrbDXDqy9CVoFh2F0dG5ldHOIAAAYAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQOnBCWkHzKIPiTWGyBIUFSkSsVDvMZ0Lv18iXOlw6_yZYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA,enr:-MW4QJdW8uWV5kFFKchGPd4Wn_1-slCrXSaZQA8yqT3vqgrPN9dGjYI5M1AY5Zq4dKWzbhr2sWLCQZV_xgFXv_aMmQGBiIdhdHRuZXRziAAAAAMAAAAAhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
+              - --bootnodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-MS4QIjnj9KdZF-zjHnbyz7wGkhX4ZA8SwPGrU5tt_FqPD6xZ93JwW0Jc9ADuECxJUSCCDELWGV7AvsyvmDeKnl2Ee4Eh2F0dG5ldHOIAAAAAMAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQJNHd29NoJj5nmhrt1L1RinUeG_Vp575ZznxyrKBjXDUYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo,enr:-MW4QOCmTRbMhAP6HEAZUmH7RRiBP5B2vXat_w6S66APDbwdQZHqw8WT4qxa7sklbqQHmWBHYDZW22vsTIMLQF8p6ziBqIdhdHRuZXRziAAAAAAAAAAMhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
               - --rest.namespace="*"
               - --network.connectToDiscv5Bootnodes
               - --nat=true
-              - --chain.trustedSetup=/data/network-config/trusted_setup.txt
             teku:
               - --network=/data/network-config/config.yaml
               - --genesis-state=/data/network-config/genesis.ssz
-              - --p2p-discovery-bootnodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-Ly4QBTqN6yitDlBfcHoIJ4_NW_514GWAWbeOfLY25uOzIaPCF6XKH35VYEgqiFHQvjJLhvb4888nD5GrbDXDqy9CVoFh2F0dG5ldHOIAAAYAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQOnBCWkHzKIPiTWGyBIUFSkSsVDvMZ0Lv18iXOlw6_yZYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA,enr:-MW4QJdW8uWV5kFFKchGPd4Wn_1-slCrXSaZQA8yqT3vqgrPN9dGjYI5M1AY5Zq4dKWzbhr2sWLCQZV_xgFXv_aMmQGBiIdhdHRuZXRziAAAAAMAAAAAhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
+              - --p2p-discovery-bootnodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-MS4QIjnj9KdZF-zjHnbyz7wGkhX4ZA8SwPGrU5tt_FqPD6xZ93JwW0Jc9ADuECxJUSCCDELWGV7AvsyvmDeKnl2Ee4Eh2F0dG5ldHOIAAAAAMAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQJNHd29NoJj5nmhrt1L1RinUeG_Vp575ZznxyrKBjXDUYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo,enr:-MW4QOCmTRbMhAP6HEAZUmH7RRiBP5B2vXat_w6S66APDbwdQZHqw8WT4qxa7sklbqQHmWBHYDZW22vsTIMLQF8p6ziBqIdhdHRuZXRziAAAAAAAAAAMhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=ARCHIVE
@@ -83,7 +81,6 @@ teku-geth-001:
               - --logging=debug
               - --Xlog-include-p2p-warnings-enabled
               - --metrics-block-timing-tracking-enabled
-              - --Xtrusted-setup=/data/network-config/trusted_setup.txt
               - --Xpeer-rate-limit=100000
               - --Xpeer-request-limit=1000
               - --ignore-weak-subjectivity-period-enabled
@@ -101,11 +98,11 @@ teku-geth-001:
               - --subscribe-all-subnets
               - --bootstrap-node=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo
-              - --bootstrap-node=enr:-Ly4QBTqN6yitDlBfcHoIJ4_NW_514GWAWbeOfLY25uOzIaPCF6XKH35VYEgqiFHQvjJLhvb4888nD5GrbDXDqy9CVoFh2F0dG5ldHOIAAAYAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQOnBCWkHzKIPiTWGyBIUFSkSsVDvMZ0Lv18iXOlw6_yZYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
-              - --bootstrap-node=enr:-MW4QJdW8uWV5kFFKchGPd4Wn_1-slCrXSaZQA8yqT3vqgrPN9dGjYI5M1AY5Zq4dKWzbhr2sWLCQZV_xgFXv_aMmQGBiIdhdHRuZXRziAAAAAMAAAAAhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
+              - --bootstrap-node=enr:-MS4QIjnj9KdZF-zjHnbyz7wGkhX4ZA8SwPGrU5tt_FqPD6xZ93JwW0Jc9ADuECxJUSCCDELWGV7AvsyvmDeKnl2Ee4Eh2F0dG5ldHOIAAAAAMAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQJNHd29NoJj5nmhrt1L1RinUeG_Vp575ZznxyrKBjXDUYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+              - --bootstrap-node=enr:-MW4QOCmTRbMhAP6HEAZUmH7RRiBP5B2vXat_w6S66APDbwdQZHqw8WT4qxa7sklbqQHmWBHYDZW22vsTIMLQF8p6ziBqIdhdHRuZXRziAAAAAAAAAAMhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
             lighthouse:
               - --testnet-dir=/data/network-config
-              - --boot-nodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-Ly4QBTqN6yitDlBfcHoIJ4_NW_514GWAWbeOfLY25uOzIaPCF6XKH35VYEgqiFHQvjJLhvb4888nD5GrbDXDqy9CVoFh2F0dG5ldHOIAAAYAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQOnBCWkHzKIPiTWGyBIUFSkSsVDvMZ0Lv18iXOlw6_yZYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA,enr:-MW4QJdW8uWV5kFFKchGPd4Wn_1-slCrXSaZQA8yqT3vqgrPN9dGjYI5M1AY5Zq4dKWzbhr2sWLCQZV_xgFXv_aMmQGBiIdhdHRuZXRziAAAAAMAAAAAhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
+              - --boot-nodes=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk,enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo,enr:-MS4QIjnj9KdZF-zjHnbyz7wGkhX4ZA8SwPGrU5tt_FqPD6xZ93JwW0Jc9ADuECxJUSCCDELWGV7AvsyvmDeKnl2Ee4Eh2F0dG5ldHOIAAAAAMAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQJNHd29NoJj5nmhrt1L1RinUeG_Vp575ZznxyrKBjXDUYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo,enr:-MW4QOCmTRbMhAP6HEAZUmH7RRiBP5B2vXat_w6S66APDbwdQZHqw8WT4qxa7sklbqQHmWBHYDZW22vsTIMLQF8p6ziBqIdhdHRuZXRziAAAAAAAAAAMhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
               - --self-limiter=blob_sidecars_by_range:256/10
               - --debug-level=debug
               - --quic-port=9001
@@ -122,8 +119,8 @@ teku-geth-001:
               - --graffiti=Barnabass-MacBook-Pro🐼
               - --bootstrap-node=enr:-Iq4QPtsWZ3khgjCez8MKR9-s-Y2CGmebezPj8jNLxrAhaipY0gYq4aMpblZg0LvfYaYveIomb1oczN675GimAGThD2GAYw0peHqgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-LK4QLTxS2XSf0m_QtLdu7wBFw1qpBW4cKKDoTUEgbca0SmtD9sNxK0_OAecEiBjWcL3bRDkrSej8Nv8gTyk6LpR09MEh2F0dG5ldHOIAAAAAAYAAACEZXRoMpBWns9KUFmZRtwAAAAAAAAAgmlkgnY0gmlwhHTL3NmJc2VjcDI1NmsxoQIJFIuIA3NxBqWJ2a9e5x_3F528RHhHNPysp8-S1kCVUoN0Y3CCIyiDdWRwgiMo
-              - --bootstrap-node=enr:-Ly4QBTqN6yitDlBfcHoIJ4_NW_514GWAWbeOfLY25uOzIaPCF6XKH35VYEgqiFHQvjJLhvb4888nD5GrbDXDqy9CVoFh2F0dG5ldHOIAAAYAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQOnBCWkHzKIPiTWGyBIUFSkSsVDvMZ0Lv18iXOlw6_yZYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
-              - --bootstrap-node=enr:-MW4QJdW8uWV5kFFKchGPd4Wn_1-slCrXSaZQA8yqT3vqgrPN9dGjYI5M1AY5Zq4dKWzbhr2sWLCQZV_xgFXv_aMmQGBiIdhdHRuZXRziAAAAAMAAAAAhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA
+              - --bootstrap-node=enr:-MS4QIjnj9KdZF-zjHnbyz7wGkhX4ZA8SwPGrU5tt_FqPD6xZ93JwW0Jc9ADuECxJUSCCDELWGV7AvsyvmDeKnl2Ee4Eh2F0dG5ldHOIAAAAAMAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQJNHd29NoJj5nmhrt1L1RinUeG_Vp575ZznxyrKBjXDUYhzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
+              - --bootstrap-node=enr:-MW4QOCmTRbMhAP6HEAZUmH7RRiBP5B2vXat_w6S66APDbwdQZHqw8WT4qxa7sklbqQHmWBHYDZW22vsTIMLQF8p6ziBqIdhdHRuZXRziAAAAAAAAAAMhGV0aDKQ7Jx11FBDA5n__________4JpZIJ2NIJpcISG0ZHDhHF1aWOCIymJc2VjcDI1NmsxoQPr5X7Nfz1RRG74C98BzYf-yvV4XhmdT8Cuxiu1b2D-oYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA
 
 
   geth:
@@ -131,7 +128,7 @@ teku-geth-001:
     fullnameOverride: geth-teku-001
     image:
       repository: ethpandaops/geth
-      tag: master-5b57727
+      tag: master-cd58897
       pullPolicy: Always
     p2pNodePort:
       enabled: false
@@ -189,7 +186,7 @@ teku-geth-001:
           - name: storage
             mountPath: "/data"
       - name: init-genesis
-        image: ethpandaops/geth:master-5b57727
+        image: ethpandaops/geth:master-cd58897
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: false
@@ -215,7 +212,7 @@ teku-geth-001:
     fullnameOverride: teku-geth-001
     image:
       repository: ethpandaops/teku
-      tag: master-16c4354
+      tag: master-f733b7c
       pullPolicy: Always
     mode: "beacon"
     p2pNodePort:
