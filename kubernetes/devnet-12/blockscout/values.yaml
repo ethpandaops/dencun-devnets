@@ -15,6 +15,7 @@ blockscout:
       memory: 2Gi
     limits:
       cpu: 2000m
+      memory: 6Gi
 
   ingress:
     enabled: true
