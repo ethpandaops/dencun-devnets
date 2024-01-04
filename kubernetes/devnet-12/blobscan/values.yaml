@@ -28,6 +28,10 @@ blobscan:
     CHAIN_ID: "7011893062"
   blobscandb:
     fullnameOverride: blobscan-blobscandb
+    primary:
+      persistence:
+        enabled: true
+        size: 300Gi
 
 blobscan-indexer:
   fullnameOverride: blobscan-indexer
