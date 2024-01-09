@@ -33,7 +33,7 @@ besu_container_command_extra_args:
   - --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE,WEB3
   - --data-storage-format=BONSAI
   - --Xfilter-on-enr-fork-id=true
-  - --sync-mode=FULL
+  #- --sync-mode=FULL
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}:443
 
 besu_container_pull: true

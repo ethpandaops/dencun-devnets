@@ -18,7 +18,7 @@ geth_container_env:
 geth_container_command_extra_args:
   - --goerli
   #- --networkid={{ ethereum_network_id }}
-  - --syncmode=full
+  #- --syncmode=full
   #- --override.cancun={{ cancun_timestamp }}
   - --http.api=eth,net,web3,debug,admin,txpool
   - --http.vhosts=*
