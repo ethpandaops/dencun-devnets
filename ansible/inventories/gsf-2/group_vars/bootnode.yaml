@@ -36,10 +36,10 @@ geth_container_command_extra_args:
   - --goerli
   - --http.api=eth,net,web3,debug,admin
   - --http.vhosts=*
-  - --networkid={{ ethereum_network_id }}
+  #- --networkid={{ ethereum_network_id }}
   #- --syncmode=full
-  - --override.cancun={{ cancun_timestamp }}
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  #- --override.cancun={{ cancun_timestamp }}
+  #- --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 # CHANGE FOR SHADOWFORK
 geth_init_custom_network: false

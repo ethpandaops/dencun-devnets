@@ -159,7 +159,7 @@ geth_container_command_extra_args:
   - --builder.genesis_fork_version=0x10{{ ethereum_genesis_fork_version_suffix }}
   - --builder.genesis_validators_root={{ gen_validators_root }}s
   - --builder.algotype=greedy
-geth_init_custom_network: true
+geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 

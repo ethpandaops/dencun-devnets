@@ -1,0 +1,98 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/config.yaml.j2
+
+network: gsf-2
+chainId: 5
+
+domain: dencun-gsf-2.ethpandaops.io
+
+config:
+  enabled: true
+  files:
+    # Support all files as they appear in the github repo
+    - path: /besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/besu.json
+    - path: /bootnode.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/bootnode.txt
+    - path: /bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/bootstrap_nodes.txt
+    - path: /chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/chainspec.json
+    - path: /config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/config.yaml
+    - path: /deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deploy_block.txt
+    - path: /deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deposit_contract.txt
+    - path: /deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deposit_contract_block.txt
+    - path: /deposit_contract_block_hash.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deposit_contract_block_hash.txt
+    - path: /genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/genesis.json
+    - path: /genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/genesis.ssz
+    - path: /parseBeaconState.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/parseBeaconState.json
+    - path: /trusted_setup.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/trusted_setup.txt
+    - path: /trusted_setup.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/trusted_setup.json
+
+    # Execution Layer specific redirects
+    - path: /el/bootnodes
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/bootnode.txt
+    - path: /el/besu.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/besu.json
+    - path: /el/chainspec.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/chainspec.json
+    - path: /el/genesis.json
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/genesis.json
+
+    # Consensus Layer specific redirects
+    - path: /cl/bootstrap_nodes.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/bootstrap_nodes.txt
+    - path: /cl/boot_enr.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/boot_enr.yaml
+    - path: /cl/config.yaml
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/config.yaml
+    - path: /cl/genesis.ssz
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/genesis.ssz
+    - path: /cl/deploy_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deploy_block.txt
+    - path: /cl/deposit_contract.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deposit_contract.txt
+    - path: /cl/deposit_contract_block.txt
+      upstream: raw.githubusercontent.com
+      target: /ethpandaops/dencun-devnets/master/network-configs/gsf-2/deposit_contract_block.txt
+
+    # Ansible generated ethereum nodes inventory
+    - path: /api/v1/nodes/inventory
+      upstream: bootnode-1.dencun-gsf-2.ethpandaops.io
+      target: /meta/api/v1/inventory.json
+    - path: /api/v1/nodes/validator-ranges
+      upstream: bootnode-1.dencun-gsf-2.ethpandaops.io
+      target: /meta/api/v1/validator-ranges.json

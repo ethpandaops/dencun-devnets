@@ -41,8 +41,8 @@ nethermind_container_command_extra_args:
   - --EthStats.Secret={{ ethstats_secret }}
   - --EthStats.Server=wss://{{ ethstats_url }}/api/
   - --log={{ log_level | upper | default('DEBUG') }}
-  - --TxPool.BlobSupportEnabled=true
-  - --TxPool.PersistentBlobStorageEnabled=true
+  #- --TxPool.BlobSupportEnabled=true
+  #- --TxPool.PersistentBlobStorageEnabled=true
   - --TxPool.ReportMinutes=5
 
 nethermind_container_pull: true
