@@ -14,8 +14,9 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status | Network | Links | Ansible | Terraform | Kubernetes
 ------ | ------- | ----  |  -----  | -------   | ----------
+ 🟢 Active | [gsf-2](https://dencun-gsf-2.ethpandaops.io/) | [Network config](network-configs/gsf-2) / [Inventory](ansible/inventories/gsf-2/inventory.ini)  | [🔗](ansible/inventories/gsf-2) | [🔗](terraform/gsf-2) | [🔗](kubernetes/gsf-2)
  🟢 Active | [devnet-12](https://dencun-devnet-12.ethpandaops.io/) | [Network config](network-configs/devnet-12) / [Inventory](ansible/inventories/devnet-12/inventory.ini)  | [🔗](ansible/inventories/devnet-12) | [🔗](terraform/devnet-12) | [🔗](kubernetes/devnet-12)
- 🔴 Off | [gsf-1](https://dencun-gsf-11.ethpandaops.io/) | [Network config](network-configs/gsf-1) / [Inventory](ansible/inventories/gsf-1/inventory.ini)  | [🔗](ansible/inventories/gsf-1) | [🔗](terraform/gsf-1) | [🔗](kubernetes/gsf-1)
+ 🔴 Off | [gsf-1](https://dencun-gsf-1.ethpandaops.io/) | [Network config](network-configs/gsf-1) / [Inventory](ansible/inventories/gsf-1/inventory.ini)  | [🔗](ansible/inventories/gsf-1) | [🔗](terraform/gsf-1) | [🔗](kubernetes/gsf-1)
  🔴 Off | [devnet-11](https://dencun-devnet-11.ethpandaops.io/) | [Network config](network-configs/devnet-11) / [Inventory](ansible/inventories/devnet-11/inventory.ini)  | [🔗](ansible/inventories/devnet-11) | [🔗](terraform/devnet-11) | [🔗](kubernetes/devnet-11)
  🔴 Off | [devnet-10](https://dencun-devnet-10.ethpandaops.io/) | [Network config](network-configs/devnet-10) / [Inventory](ansible/inventories/devnet-10/inventory.ini)  | [🔗](ansible/inventories/devnet-10) | [🔗](terraform/devnet-10) | [🔗](kubernetes/devnet-10)
  🔴 Off | [devnet-9](https://dencun-devnet-9.ethpandaops.io/) | [Network config](network-configs/devnet-9) / [Inventory](ansible/inventories/devnet-9/inventory.ini)  | [🔗](ansible/inventories/devnet-9) | [🔗](terraform/devnet-9) | [🔗](kubernetes/devnet-9)

@@ -1,0 +1,59 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_cl:
+  - zah
+  - tersec
+  - etan-status
+  - arnetheduck
+  - henridf
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/nimbus-keys/"
+    dest: "{{ nimbus_validator_datadir }}/keys/"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/secrets/"
+    dest: "{{ nimbus_validator_datadir }}/secrets/"
+
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ nimbus_validator_datadir }}/change_operations.json"
+    owner: nimbus
+    group: nimbus
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: nimbus
+nimbus_container_name: beacon
+# role: ethpandaops.general.nimbus
+# Checkpointsync
+nimbus_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
+nimbus_checkpoint_container_command_extra_args:
+  - --network:goerli
+  - --trusted-node-url=https://checkpoint-sync.goerli.ethpandaops.io
+nimbus_checkpoint_autoremove_enabled: false
+
+nimbus_container_image: "{{ default_ethereum_client_images.nimbus }}"
+nimbus_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+nimbus_container_volumes:
+  - "{{ nimbus_datadir }}:/data"
+  - "{{ nimbus_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+nimbus_container_command_extra_args: >-
+  {{ nimbus_container_command_extra_simple_args + nimbus_container_command_extra_bootnode_args }}
+nimbus_container_command_extra_simple_args:
+  - --network=goerli
+  #- --network=/network-config
+  - --validator-monitor-auto=false
+  - --doppelganger-detection=off
+  - --log-level={{ log_level | upper | default('DEBUG') }}
+  - --light-client-data-serve=false
+  - --graffiti={{ ethereum_node_cl }}/{{ ethereum_node_el }}🐼
+nimbus_container_command_extra_bootnode_args: >-
+  {{ ethereum_cl_bootnodes | map('regex_replace', '^', '--bootstrap-node=') | list }}
+
+
+nimbus_validator_datadir: /data/nimbus-validator
+nimbus_container_validator_volumes:
+  - "{{ nimbus_validator_datadir }}:/validator-data"
+

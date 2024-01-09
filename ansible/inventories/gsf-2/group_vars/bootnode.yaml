@@ -1,0 +1,143 @@
+ethereum_cl_bootnodes:
+  - "{{ hostvars['bootnode-1']['cl_bootnode_fact_enr'] }}"
+
+# role: eth_inventory_web
+eth_inventory_web_container_networks: "{{ docker_networks_shared }}"
+eth_inventory_web_container_env:
+  VIRTUAL_HOST: "{{ server_fqdn }}"
+  VIRTUAL_PORT: "80"
+  VIRTUAL_PATH: "/meta/api"
+  VIRTUAL_DEST: "/"
+  LETSENCRYPT_HOST: "{{ server_fqdn }}"
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: geth
+ethereum_node_cl: teku
+ethereum_node_cl_validator_enabled: false
+ethereum_node_cl_checkpoint_sync_enabled: "{{ checkpoint_sync_enabled }}"
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_el:
+  - mariusVanDerWijden
+  - holiman
+  - karalabe
+  - g11tech
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: geth
+
+# role: ethpandaops.general.geth
+geth_container_name: execution
+geth_container_image: "{{ default_ethereum_client_images.geth }}"
+geth_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+geth_container_command_extra_args:
+  - --http.api=eth,net,web3,debug,admin
+  - --http.vhosts=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --override.cancun={{ cancun_timestamp }}
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+#  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+# CHANGE FOR SHADOWFORK
+geth_init_custom_network: false
+geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
+geth_container_pull: true
+
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_cl:
+  - tbenr
+  - ajsutton
+  - rolfyone
+  - siladu
+  - lucassaldanha
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: teku
+
+# role: ethpandaops.general.teku
+teku_container_name: beacon
+teku_container_image: "{{ default_ethereum_client_images.teku }}"
+teku_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+  JAVA_OPTS: "-XX:SoftMaxHeapSize=4000m -Xmx4000m"
+teku_container_volumes:
+  - "{{ teku_datadir }}:/data"
+  - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+teku_container_command_extra_args:
+#  - --network=goerli
+  - --network=/network-config/config.yaml
+  - --initial-state=/network-config/genesis.ssz
+  - --p2p-peer-upper-bound=100
+  - --data-storage-non-canonical-blocks-enabled=true
+  - --data-storage-mode=ARCHIVE
+  - --logging=info
+  - --Xlog-include-p2p-warnings-enabled
+  - --metrics-block-timing-tracking-enabled
+  - --Xmetrics-blob-sidecars-storage-enabled=true
+  - --ignore-weak-subjectivity-period-enabled
+  - --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+# role: ethpandaops.general.prometheus
+prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus
+prometheus_remote_write_username: "{{ secret_prometheus_remote_write.username }}"
+prometheus_remote_write_password: "{{ secret_prometheus_remote_write.password }}"
+
+prometheus_config: |
+  global:
+    scrape_interval: 30s
+    evaluation_interval: 30s
+    scrape_timeout: 10s
+    external_labels:
+      instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+      ip_address: "{{ ansible_host }}"
+      network: "{{ ethereum_network_name }}"
+      testnet: "{{ ethereum_network_name }}"
+      execution_client: "{{ ethereum_node_el }}"
+      consensus_client: "{{ ethereum_node_cl }}"
+  remote_write:
+    - queue_config:
+        batch_send_deadline: 5s
+        max_backoff: 500ms
+        max_samples_per_send: 500
+        min_backoff: 50ms
+        max_shards: 100
+      url: {{ prometheus_remote_push_url }}
+      remote_timeout: 10s
+      basic_auth:
+        username: {{ prometheus_remote_write_username }}
+        password: {{ prometheus_remote_write_password }}
+  scrape_configs:
+    - job_name: "prometheus"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["localhost:9090"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["172.17.0.1:9100"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "exporter"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["ethereum-metrics-exporter:9090"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "consensus_node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "execution"
+      metrics_path: "/debug/metrics/prometheus"
+      static_configs:
+        - targets: ["execution:{{ ethereum_node_el_ports_metrics }}"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"

@@ -1,0 +1,12 @@
+tx_fuzz_blobs_container_image: "{{ default_tooling_images.tx_fuzz }}"
+tx_fuzz_blobs_container_name: tx_fuzz_blobs
+
+
+tx_fuzz_blobs_container_command:
+  - blobs
+  - --no-al
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.lighthouse-geth-4.{{ network_subdomain }}
+  - --sk={{ tx_fuzz_blobs_privkey }}
+  - --txcount=3
+
+tx_fuzz_container_networks: "{{ docker_networks_shared }}"
