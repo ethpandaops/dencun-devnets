@@ -34,7 +34,7 @@ dora:
   postgresql:
     name: "dora-postgresql"
     fullnameOverride: "dora-postgresql"
-  
+
   endpoints:
   # Rpc
   - url: http://teku-geth-001:5052

@@ -39,9 +39,9 @@ blockscout:
     ECTO_USE_SSL: "false"
     SHOW_TXS_CHART: "true"
     ETHEREUM_JSONRPC_VARIANT: "geth"
-    ETHEREUM_JSONRPC_HTTP_URL: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.dencun-devnet-12.ethpandaops.io
+    ETHEREUM_JSONRPC_HTTP_URL: http://geth-teku-001:8545
     ETHEREUM_JSONRPC_WS_URL: ws://geth-teku-001:8546
-    ETHEREUM_JSONRPC_TRACE_URL: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.dencun-devnet-12.ethpandaops.io
+    ETHEREUM_JSONRPC_TRACE_URL: http://geth-teku-001:8545
     INDEXER_COIN_BALANCES_BATCH_SIZE: "5"
     NETWORK: Ethereum
     SUBNETWORK: dencun-devnet-12
@@ -80,7 +80,3 @@ blockscout:
 
   postgresql:
     fullnameOverride: blockscout-postgresql
-    primary:
-      persistence:
-        enabled: true
-        size: 55Gi
