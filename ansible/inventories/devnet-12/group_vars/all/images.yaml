@@ -3,8 +3,8 @@ default_ethereum_client_images:
   lighthouse: ethpandaops/lighthouse:unstable-c55608b
   lodestar: ethpandaops/lodestar:unstable-9262064
   nimbus: ethpandaops/nimbus:unstable-f125a5c
-  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-929e9d
-  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-929e9d
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-5cea6b
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-5cea6b
   teku: ethpandaops/teku:master-f733b7c
 
 ### Execution layer clients
