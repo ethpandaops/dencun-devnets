@@ -8,7 +8,7 @@ default_ethereum_client_images:
   teku: consensys/teku:24.1.0
 
 ### Execution layer clients
-  besu: ethpandaops/besu:main-80c8a8f
+  besu: hyperledger/besu:24.1.0
   geth: ethereum/client-go:v1.13.9
   erigon: thorax/erigon:v2.56.1
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
@@ -25,7 +25,7 @@ default_tooling_images:
   powfaucet: pk910/powfaucet:v2-stable
   ethstats: ethpandaops/ethstats:snapshot
   homepage: ethpandaops/ethereum-testnet-homepage:latest
-  checkpointz: ethpandaops/checkpointz:0.18.0
+  checkpointz: ethpandaops/checkpointz:0.19.0
   blockscout: blockscout/blockscout:master
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
   eth_fauceth: chainflag/eth-faucet:latest
