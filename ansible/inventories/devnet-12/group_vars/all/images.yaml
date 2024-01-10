@@ -5,15 +5,15 @@ default_ethereum_client_images:
   nimbus: ethpandaops/nimbus:unstable-f125a5c
   prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-5cea6b
   prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-5cea6b
-  teku: ethpandaops/teku:master-f733b7c
+  teku: consensys/teku:24.1.0
 
 ### Execution layer clients
   besu: ethpandaops/besu:main-80c8a8f
   geth: ethpandaops/geth:master-cd58897
-  erigon: ethpandaops/erigon:devel-33fc53f
+  erigon: thorax/erigon:v2.56.1
   ethereumjs: ethpandaops/ethereumjs:master-c5054eb
   nethermind: nethermindeth/nethermind:release-1.25.0
-  reth: ethpandaops/reth:main-b1d0dc4
+  reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.14
 
 
 default_tooling_images:
