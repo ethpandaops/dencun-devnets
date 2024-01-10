@@ -24,7 +24,7 @@ ethstats_secret: "{{ secret_ethstats }}"
 log_level: info
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: checkpoint-sync.{{ network_subdomain }}
-checkpoint_sync_enabled: false
+checkpoint_sync_enabled: true
 checkpoint_sync_url: https://{{ checkpoint_sync_node }}
 checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
 #  ██████╗░░█████╗░██╗░░░░░███████╗  ██╗░░░██╗░█████╗░██████╗░░██████╗

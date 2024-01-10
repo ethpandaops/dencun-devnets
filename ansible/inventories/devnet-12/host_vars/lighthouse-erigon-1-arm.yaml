@@ -1,0 +1,14 @@
+default_ethereum_client_images:
+  lighthouse: ethpandaops/lighthouse:unstable-38df87c
+  erigon: thorax/erigon:2.56.1-arm64
+lighthouse_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --self-limiter=blob_sidecars_by_range:256/10
+  - --debug-level={{ log_level | default('debug') }}
+  - --quic-port={{ lighthouse_ports_quic }}
+  - --enr-quic-port={{ lighthouse_ports_quic }}
+  - --slasher
+  - --slasher-history-length=256
+  - --slasher-max-db-size=16
+  - --allow-insecure-genesis-sync
