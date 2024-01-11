@@ -16,14 +16,14 @@ geth_container_env:
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 geth_container_command_extra_args:
-  - --goerli
-  #- --networkid={{ ethereum_network_id }}
-  #- --syncmode=full
-  #- --override.cancun={{ cancun_timestamp }}
+#  - --goerli
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --override.cancun={{ cancun_timestamp }}
   - --http.api=eth,net,web3,debug,admin,txpool
   - --http.vhosts=*
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+#  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true

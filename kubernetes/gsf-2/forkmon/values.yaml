@@ -23,8 +23,6 @@ forkmon:
     name: bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-besu-1.dencun-gsf-2.ethpandaops.io
     name: lighthouse-besu-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-erigon-1.dencun-gsf-2.ethpandaops.io
-    name: lighthouse-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-geth-1.dencun-gsf-2.ethpandaops.io
     name: lighthouse-geth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.dencun-gsf-2.ethpandaops.io
