@@ -53,7 +53,7 @@ variable "lighthouse_besu" {
 variable "lighthouse_erigon" {
   default = {
     name            = "lighthouse-erigon"
-    count           = 1
+    count           = 2
     validator_start = 10000
     validator_end   = 10500
     location        = "sfo3"
