@@ -1,19 +1,19 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:unstable-c55608b
-  lodestar: ethpandaops/lodestar:unstable-9262064
-  nimbus: ethpandaops/nimbus:unstable-07455e6
-  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-929e9d
-  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-929e9d
-  teku: ethpandaops/teku:master-f733b7c
+  lighthouse: sigp/lighthouse:v4.6.0-rc.0
+  lodestar: chainsafe/lodestar:v1.14.0-rc.1
+  nimbus: statusim/nimbus-eth2:multiarch-v24.1.1
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v4.2.0-rc.1
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v4.2.0-rc.1
+  teku: consensys/teku:24.1.0
 
 ### Execution layer clients
-  besu: ethpandaops/besu:main-80c8a8f
-  geth: ethpandaops/geth:master-cd58897
-  erigon: ethpandaops/erigon:devel-33fc53f
-  ethereumjs: ethpandaops/ethereumjs:master-c5054eb
-  nethermind: nethermindeth/nethermind:release-1.25.0
-  reth: ethpandaops/reth:main-b1d0dc4
+  besu: hyperledger/besu:24.1.0
+  geth: ethereum/client-go:v1.13.9
+  erigon: thorax/erigon:v2.56.1
+  ethereumjs: ethpandaops/ethereumjs:stable-3981bca
+  nethermind: nethermind/nethermind:1.25.0
+  reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.14
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.137
