@@ -1,10 +1,10 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:unstable-38df87c
-  lodestar: ethpandaops/lodestar:unstable-9262064
+  lighthouse: sigp/lighthouse:v4.6.0-rc.0
+  lodestar: chainsafe/lodestar:v1.14.0-rc.1
   nimbus: statusim/nimbus-eth2:multiarch-v24.1.1
-  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-5cea6b
-  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:HEAD-5cea6b
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v4.2.0-rc.1
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v4.2.0-rc.1
   teku: consensys/teku:24.1.0
 
 ### Execution layer clients
