@@ -41,8 +41,8 @@ blobber_container_ports:
 #  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-reth-1.{{ network_subdomain }}"
 blobber_container_command:
   - "--cl={{ blobber_beacon_api }}"
-  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-geth-1.{{ network_subdomain }}"
-  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-besu-1.{{ network_subdomain }}"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-reth-1.{{ network_subdomain }}"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.teku-geth-1.{{ network_subdomain }}"
   - "--beacon-port-start={{ blobber_p2p_port }}"
   - "--log-level={{ blobber_log_level }}"
   - "--external-ip=0.0.0.0"
