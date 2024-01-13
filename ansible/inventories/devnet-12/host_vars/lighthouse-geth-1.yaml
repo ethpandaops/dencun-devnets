@@ -1,0 +1,20 @@
+geth_container_command_extra_args:
+  - --http.api=eth,net,web3,debug,admin,txpool
+  - --http.vhosts=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --metrics.expensive
+
+lighthouse_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --self-limiter=blob_sidecars_by_range:256/10
+  - --debug-level={{ log_level | default('debug') }}
+  - --quic-port={{ lighthouse_ports_quic }}
+  - --enr-quic-port={{ lighthouse_ports_quic }}
+  - --slasher
+  - --slasher-history-length=256
+  - --slasher-max-db-size=16
+  - --checkpoint-sync-url={{ checkpoint_sync_url }}
