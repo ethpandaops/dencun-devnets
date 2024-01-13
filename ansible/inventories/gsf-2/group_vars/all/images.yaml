@@ -31,5 +31,5 @@ default_tooling_images:
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
   dora: ethpandaops/dora:master-latest
-  blobber: parithoshj/blobber:1.0.5
+  blobber: ethpandaops/blobber:1.1.0
   dugtrio: ethpandaops/dugtrio:latest

@@ -14,9 +14,9 @@ blobber_container_volumes:
 
 # Blobber specific configs
 blobber_beacon_api: "beacon:5052"
-#blobber_slot_actions: {"name": "equivocating_blob_sidecars", "broadcast_blobs_first": true}
+blobber_slot_actions: {"name": "equivocating_blob_sidecars", "broadcast_blobs_first": true}
 #blobber_slot_actions: {"name": "conflicting_blobs"}
-blobber_slot_actions: {"name": "blob_gossip_delay", "delay_milliseconds": 1500}
+#blobber_slot_actions: {"name": "blob_gossip_delay", "delay_milliseconds": 1500}
 blobber_slot_action_frequency: 1
 
 blobber_container_ports:
@@ -41,6 +41,8 @@ blobber_container_ports:
 #  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-reth-1.{{ network_subdomain }}"
 blobber_container_command:
   - "--cl={{ blobber_beacon_api }}"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lighthouse-reth-1.{{ network_subdomain }}"
+  - "--cl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.teku-geth-1.{{ network_subdomain }}"
   - "--beacon-port-start={{ blobber_p2p_port }}"
   - "--log-level={{ blobber_log_level }}"
   - "--external-ip=0.0.0.0"
