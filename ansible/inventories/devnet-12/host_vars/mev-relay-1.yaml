@@ -121,6 +121,7 @@ lighthouse_container_command_extra_args:
   - --always-prepare-payload
   - --prepare-payload-lookahead=12000
   - --disable-peer-scoring
+  - --checkpoint-sync-url={{ checkpoint_sync_url }}
 
 lighthouse_validator_container_volumes: validator
 lighthouse_validator_container_volumes:
