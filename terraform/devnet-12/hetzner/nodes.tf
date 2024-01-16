@@ -81,8 +81,8 @@ variable "prysm_besu" {
   default = {
     name            = "prysm-besu"
     count           = 1
-    validator_start = 3200
-    validator_end   = 3300
+    validator_start = 3350
+    validator_end   = 3450
     location        = "nbg1"
   }
 }
