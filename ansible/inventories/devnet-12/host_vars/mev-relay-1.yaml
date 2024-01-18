@@ -121,6 +121,7 @@ lighthouse_container_command_extra_args:
   - --always-prepare-payload
   - --prepare-payload-lookahead=12000
   - --disable-peer-scoring
+  - --checkpoint-sync-url={{ checkpoint_sync_url }}
 
 lighthouse_validator_container_volumes: validator
 lighthouse_validator_container_volumes:
@@ -159,7 +160,6 @@ geth_container_command_extra_args:
   - --ws.port=8545
   - --ws.origins=*
   - --networkid={{ ethereum_network_id }}
-  - --syncmode=full
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
   - --builder
