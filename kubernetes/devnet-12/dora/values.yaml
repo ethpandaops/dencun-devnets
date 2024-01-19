@@ -67,10 +67,6 @@ dora:
     name: lighthouse-nethermind-1
     priority: -1
     archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
-    name: lighthouse-nethermind-1-arm
-    priority: -1
-    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-reth-1.dencun-devnet-12.ethpandaops.io
     name: lighthouse-reth-1
     priority: -1
@@ -93,9 +89,6 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-nethermind-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
-    name: lodestar-nethermind-1-arm
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-reth-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-reth-1
@@ -121,9 +114,6 @@ dora:
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1.dencun-devnet-12.ethpandaops.io
     name: nimbus-reth-1
     priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1-arm.dencun-devnet-12.ethpandaops.io
-    name: nimbus-reth-1-arm
-    priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1.dencun-devnet-12.ethpandaops.io
     name: prysm-besu-1
     priority: -1
@@ -144,12 +134,6 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.dencun-devnet-12.ethpandaops.io
     name: teku-besu-1
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1-arm.dencun-devnet-12.ethpandaops.io
-    name: teku-besu-1-arm
-    priority: -1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-2-arm.dencun-devnet-12.ethpandaops.io
-    name: teku-besu-2-arm
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-1.dencun-devnet-12.ethpandaops.io
     name: teku-erigon-1

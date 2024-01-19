@@ -33,8 +33,6 @@ forkmon:
     name: lighthouse-geth-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1.dencun-devnet-12.ethpandaops.io
     name: lighthouse-nethermind-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
-    name: lighthouse-nethermind-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-reth-1.dencun-devnet-12.ethpandaops.io
     name: lighthouse-reth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lighthouse-reth-1-arm.dencun-devnet-12.ethpandaops.io
@@ -49,8 +47,6 @@ forkmon:
     name: lodestar-geth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-nethermind-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
-    name: lodestar-nethermind-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.lodestar-reth-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-reth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-besu-1.dencun-devnet-12.ethpandaops.io
@@ -67,8 +63,6 @@ forkmon:
     name: nimbus-nethermind-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-reth-1.dencun-devnet-12.ethpandaops.io
     name: nimbus-reth-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-reth-1-arm.dencun-devnet-12.ethpandaops.io
-    name: nimbus-reth-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-besu-1.dencun-devnet-12.ethpandaops.io
     name: prysm-besu-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-besu-1-arm.dencun-devnet-12.ethpandaops.io
@@ -83,10 +77,6 @@ forkmon:
     name: prysm-reth-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-besu-1.dencun-devnet-12.ethpandaops.io
     name: teku-besu-1
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-besu-1-arm.dencun-devnet-12.ethpandaops.io
-    name: teku-besu-1-arm
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-besu-2-arm.dencun-devnet-12.ethpandaops.io
-    name: teku-besu-2-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-erigon-1.dencun-devnet-12.ethpandaops.io
     name: teku-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.teku-geth-1.dencun-devnet-12.ethpandaops.io

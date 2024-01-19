@@ -69,9 +69,6 @@ checkpointz:
       - name: lighthouse-nethermind-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.dencun-devnet-12.ethpandaops.io
         dataProvider: true
-      - name: lighthouse-nethermind-1-arm
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
-        dataProvider: true
       - name: lighthouse-reth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-reth-1.dencun-devnet-12.ethpandaops.io
         dataProvider: true
@@ -92,9 +89,6 @@ checkpointz:
         dataProvider: true
       - name: lodestar-nethermind-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
-        dataProvider: true
-      - name: lodestar-nethermind-1-arm
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1-arm.dencun-devnet-12.ethpandaops.io
         dataProvider: true
       - name: lodestar-reth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-reth-1.dencun-devnet-12.ethpandaops.io
@@ -120,9 +114,6 @@ checkpointz:
       - name: nimbus-reth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1.dencun-devnet-12.ethpandaops.io
         dataProvider: true
-      - name: nimbus-reth-1-arm
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1-arm.dencun-devnet-12.ethpandaops.io
-        dataProvider: true
       - name: prysm-besu-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1.dencun-devnet-12.ethpandaops.io
         dataProvider: true
@@ -143,12 +134,6 @@ checkpointz:
         dataProvider: true
       - name: teku-besu-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.dencun-devnet-12.ethpandaops.io
-        dataProvider: true
-      - name: teku-besu-1-arm
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1-arm.dencun-devnet-12.ethpandaops.io
-        dataProvider: true
-      - name: teku-besu-2-arm
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-2-arm.dencun-devnet-12.ethpandaops.io
         dataProvider: true
       - name: teku-erigon-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-1.dencun-devnet-12.ethpandaops.io

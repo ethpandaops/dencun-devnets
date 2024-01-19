@@ -31,7 +31,7 @@ variable "lighthouse_besu" {
 variable "lighthouse_nethermind" {
   default = {
     name            = "lighthouse-nethermind"
-    count           = 1
+    count           = 0
     validator_start = 250
     validator_end   = 510
     location        = "nbg1"
@@ -136,7 +136,7 @@ variable "lodestar_geth" {
 variable "lodestar_nethermind" {
   default = {
     name            = "lodestar-nethermind"
-    count           = 1
+    count           = 0
     validator_start = 2100
     validator_end   = 2200
     location        = "hel1"
