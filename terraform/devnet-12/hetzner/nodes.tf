@@ -230,7 +230,7 @@ variable "nimbus_erigon" {
 variable "nimbus_reth" {
   default = {
     name            = "nimbus-reth"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -250,7 +250,7 @@ variable "teku_geth" {
 variable "teku_besu" {
   default = {
     name            = "teku-besu"
-    count           = 2
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
