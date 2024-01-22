@@ -8,4 +8,4 @@ version: 0.1.0
 dependencies:
   - name: blockscout
     repository: https://ethpandaops.github.io/ethereum-helm-charts
-    version: 0.2.0
+    version: 0.2.1

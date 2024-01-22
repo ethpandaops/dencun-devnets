@@ -80,5 +80,4 @@ blockscout:
     enabled: true
 
   postgresql:
-    replicas: 0
     fullnameOverride: blockscout-postgresql
