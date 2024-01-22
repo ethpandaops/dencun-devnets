@@ -30,6 +30,7 @@ blobscan:
     fullnameOverride: blobscan-blobscandb
 
 blobscan-indexer:
+  replicas: 0
   fullnameOverride: blobscan-indexer
   image:
     repository: blossomlabs/blobscan-indexer

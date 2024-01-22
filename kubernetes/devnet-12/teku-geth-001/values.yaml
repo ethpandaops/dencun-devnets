@@ -78,7 +78,6 @@ teku-geth-001:
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=ARCHIVE
-              - --validators-graffiti=Barnabass-MacBook-Pro🐼
               - --logging=debug
               - --Xlog-include-p2p-warnings-enabled
               - --metrics-block-timing-tracking-enabled
@@ -117,7 +116,6 @@ teku-geth-001:
               - --doppelganger-detection=off
               - --log-level=DEBUG
               - --light-client-data-serve=false
-              - --graffiti=Barnabass-MacBook-Pro🐼
               - --bootstrap-node=enr:-Iq4QC062-OmCxOQlgGZ5RrMZTbXnusl94Zowgt3_dIDqQhdE-LzN4u4csp-pEmWAXVHfiFhap8aAdRYifTLUJAgvBGGAYwa1U8fgmlkgnY0gmlwhEDiaLeJc2VjcDI1NmsxoQPZLBX2rEiQ20AfN2f1SQLfnGMQd_t7Rq0-HNkYA9d4uoN1ZHCCIyk
               - --bootstrap-node=enr:-LK4QOFXZ1ZMEwJUIQP3OxxyfVs4jdxo7cpeWhLgIUyMt4dfNU5bZNrmod7-IP_HhgpCxW8QxGvzLBk3zlhvzNuEhhRrh2F0dG5ldHOIAAAAAAAAAAaEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhEDiaLeJc2VjcDI1NmsxoQKVDZre1slkhn4d53LOHOEzxC3P5d8RLTRLUzf89KPWA4N0Y3CCIyiDdWRwgiMo
               - --bootstrap-node=enr:-MS4QM2LKhnsinJ7rE9MIPMS1iWKK8_65b4S0h03GLkOL6dgYveLmW9ySPMVYt-jL0Y5NrQJ6kZDgiUiKIJX6x6GzXAEh2F0dG5ldHOIAIABAAAAAACEZXRoMpDsnHXUUEMDmf__________gmlkgnY0gmlwhES31sqJc2VjcDI1NmsxoQI2OOcP409cbfYB6yOZOi0rUIav9nlafclHO8SCyYzxRohzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiDdWRwgiMo
