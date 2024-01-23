@@ -78,7 +78,7 @@ teku-geth-001:
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=ARCHIVE
-              - --logging=debug
+              - --logging=info
               - --Xlog-include-p2p-warnings-enabled
               - --metrics-block-timing-tracking-enabled
               - --Xpeer-rate-limit=100000
@@ -147,8 +147,8 @@ teku-geth-001:
         cpu: 2000m
         memory: 5Gi
       limits:
-        cpu: 3000m
-        memory: 7Gi
+        cpu: 5000m
+        memory: 8Gi
     initContainers:
       - name: init-config
         image: alpine:latest
@@ -229,8 +229,8 @@ teku-geth-001:
         cpu: 2000m
         memory: 5Gi
       limits:
-        cpu: 3000m
-        memory: 7Gi
+        cpu: 5000m
+        memory: 8Gi
     persistence:
       enabled: true
       size: 200Gi
