@@ -1,6 +1,6 @@
 default_ethereum_client_images:
-  lighthouse: sigp/lighthouse:v4.6.0-rc.0
-  erigon: thorax/erigon:2.56.1-arm64
+  lighthouse: sigp/lighthouse:v4.6.0
+  erigon: thorax/erigon:2.57.1-arm64
 lighthouse_container_command_extra_args:
   - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}

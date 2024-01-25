@@ -1,3 +1,0 @@
-default_ethereum_client_images:
-  lodestar: ethpandaops/lodestar:valexit-batchux-6f07085
-  nethermind: nethermind/nethermind:1.25.0

@@ -1,24 +1,24 @@
 default_ethereum_client_images:
 ### Consensus layer clients
-  lighthouse: sigp/lighthouse:v4.6.0-rc.0
-  lodestar: chainsafe/lodestar:v1.14.0-rc.1
-  nimbus: statusim/nimbus-eth2:multiarch-v24.1.1
-  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v4.2.1-rc.0
-  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v4.2.1-rc.0
-  teku: consensys/teku:24.1.0
+  lighthouse: sigp/lighthouse:v4.6.0
+  lodestar: chainsafe/lodestar:v1.15.0-rc.0
+  nimbus: statusim/nimbus-eth2:multiarch-v24.1.2
+  prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v4.2.1-rc.1
+  prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v4.2.1-rc.1
+  teku: consensys/teku:24.1.1
 
 ### Execution layer clients
   besu: hyperledger/besu:24.1.0
-  geth: ethereum/client-go:v1.13.10
-  erigon: thorax/erigon:v2.56.1
+  erigon: thorax/erigon:v2.57.1
+  geth: ethereum/client-go:v1.13.11
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
-  nethermind: nethermind/nethermind:1.25.0
+  nethermind: nethermind/nethermind:1.25.3
   reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.15
 
 
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.137
-  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.22.0
+  ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.23.0
   tx_fuzz: ethpandaops/tx-fuzz:1.3.2
   forkmon: skylenet/nodemonitor:darkmode
   forky: ethpandaops/forky:0.0.50-debian
