@@ -7,7 +7,6 @@ blockscout:
     repository: blockscout/blockscout
     tag: master
     pullPolicy: IfNotPresent
-  replicas: 0
   podAnnotations:
     "promtail.io/ignore_pod": "true"
   resources:
