@@ -12,7 +12,7 @@ default_ethereum_client_images:
   erigon: thorax/erigon:v2.57.1
   geth: ethereum/client-go:v1.13.11
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
-  nethermind: nethermind/nethermind:1.25.3
+  nethermind: nethermindeth/nethermind:a55635d
   reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.15
 
 
