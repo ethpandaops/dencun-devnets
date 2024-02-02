@@ -6,6 +6,22 @@ geth_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
   - --metrics.expensive
+  - --pprof
+  - --pprof.addr=0.0.0.0
+
+geth_container_command:
+  - --datadir=/data
+  - --port={{ geth_ports_p2p }}
+  - --http
+  - --http.addr=0.0.0.0
+  - --http.port={{ geth_ports_http_rpc }}
+  - --authrpc.addr=0.0.0.0
+  - --authrpc.port={{ geth_ports_engine }}
+  - --authrpc.vhosts=*
+  - --authrpc.jwtsecret=/execution-auth.jwt
+  - --nat=extip:{{ geth_announced_ip }}
+  - --metrics
+  - --metrics.port={{ geth_ports_metrics }}
 
 teku_container_command_extra_args:
   - --network=/network-config/config.yaml
@@ -24,4 +40,10 @@ teku_container_command_extra_args:
   - --checkpoint-sync-url={{ checkpoint_sync_url }}
 default_ethereum_client_images:
   teku: consensys/teku:24.1.1
-  geth: ethpandaops/geth:karalabe-blobpool-crash-cleanup-ca5228c
+  geth: ethpandaops/geth:master-47d76c5
+geth_container_ports:
+  - "127.0.0.1:{{ geth_ports_http_rpc }}:{{ geth_ports_http_rpc }}"
+  - "127.0.0.1:{{ geth_ports_engine }}:{{ geth_ports_engine }}"
+  - "{{ geth_ports_p2p }}:{{ geth_ports_p2p }}"
+  - "{{ geth_ports_p2p }}:{{ geth_ports_p2p }}/udp"
+  - "127.0.0.1:{{ geth_ports_metrics }}:{{ geth_ports_metrics }}"

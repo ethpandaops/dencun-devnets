@@ -10,10 +10,10 @@ default_ethereum_client_images:
 ### Execution layer clients
   besu: hyperledger/besu:24.1.0
   erigon: thorax/erigon:v2.57.1
-  geth: ethereum/client-go:v1.13.11
+  geth: ethpandaops/geth:master-47d76c5
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
   nethermind: nethermindeth/nethermind:1.25.4-dc1db75
-  reth: ethpandaops/reth:main-ce46419
+  reth: bbusa/reth:debug
 
 
 default_tooling_images:

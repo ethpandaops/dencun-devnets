@@ -32,7 +32,6 @@ geth_init_custom_network_container_command:
   - /genesis.json
 geth_container_pull: true
 
-
 prometheus_config: |
   global:
     scrape_interval: 30s

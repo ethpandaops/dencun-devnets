@@ -1,0 +1,4 @@
+default_ethereum_client_images:
+
+  teku: consensys/teku:24.1.1
+  reth: bbusa/reth:debug-arm
