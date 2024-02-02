@@ -14,6 +14,7 @@ roles:
 
 collections:
   - name: ansible.posix
+  - name: ansible.utils
   - name: community.sops
     version: 1.6.0
   - name: ethpandaops.general

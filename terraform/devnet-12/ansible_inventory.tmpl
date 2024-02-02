@@ -7,7 +7,7 @@ ethereum_network_name=${ethereum_network_name}
 [${replace(gid, "-", "_")}]
 %{ for key, host in hosts ~}
 %{ if host.group == gid ~}
-${host.hostname} ansible_host=${host.ip} cloud=${host.cloud} cloud_region=${host.region} %{ if max(host.validator_start, host.validator_end) != 0 }validator_start=${host.validator_start} validator_end=${host.validator_end}%{ endif }
+${host.hostname} ansible_host=${host.ip} ipv6=${host.ipv6} cloud=${host.cloud} cloud_region=${host.region} %{ if max(host.validator_start, host.validator_end) != 0 }validator_start=${host.validator_start} validator_end=${host.validator_end}%{ endif }
 %{ endif ~}
 %{ endfor ~}
 

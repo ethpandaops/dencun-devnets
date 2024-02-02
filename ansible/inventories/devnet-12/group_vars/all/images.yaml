@@ -2,7 +2,7 @@ default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: sigp/lighthouse:v4.6.0
   lodestar: chainsafe/lodestar:v1.15.0-rc.0
-  nimbus: statusim/nimbus-eth2:multiarch-v24.1.2
+  nimbus: statusim/nimbus-eth2:multiarch-v24.2.0
   prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v4.2.1-rc.1
   prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v4.2.1-rc.1
   teku: consensys/teku:24.1.1
@@ -12,8 +12,8 @@ default_ethereum_client_images:
   erigon: thorax/erigon:v2.57.1
   geth: ethereum/client-go:v1.13.11
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
-  nethermind: nethermindeth/nethermind:a55635d
-  reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.15
+  nethermind: nethermindeth/nethermind:1.25.4-dc1db75
+  reth: ethpandaops/reth:main-ce46419
 
 
 default_tooling_images:

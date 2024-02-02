@@ -137,6 +137,7 @@ locals {
             tags   = "group_name:${vm_group.name},val_start:${vm_group.validator_start + (i * (vm_group.validator_end - vm_group.validator_start) / vm_group.count)},val_end:${min(vm_group.validator_start + ((i + 1) * (vm_group.validator_end - vm_group.validator_start) / vm_group.count), vm_group.validator_end)}"
             region = try(vm_group.location, local.digitalocean_default_region)
             size   = try(vm_group.size, local.digitalocean_default_size)
+            ipv6   = try(vm_group.ipv6, false)
           }
 
         }
@@ -256,12 +257,12 @@ resource "digitalocean_firewall" "main" {
   // Consensus layer p2p port
   inbound_rule {
     protocol         = "tcp"
-    port_range       = "9000-9001"
+    port_range       = "9000-9002"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
   inbound_rule {
     protocol         = "udp"
-    port_range       = "9000-9001"
+    port_range       = "9000-9002"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
@@ -315,6 +316,18 @@ resource "cloudflare_record" "server_record" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "server_record6" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm if vm.ipv6
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = digitalocean_droplet.main[each.value.id].ipv6_address
+  proxied = false
+  ttl     = 120
+}
+
 resource "cloudflare_record" "server_record_rpc" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
@@ -327,6 +340,18 @@ resource "cloudflare_record" "server_record_rpc" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "server_record_rpc6" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm if vm.ipv6
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "rpc.${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = digitalocean_droplet.main[each.value.id].ipv6_address
+  proxied = false
+  ttl     = 120
+}
+
 resource "cloudflare_record" "server_record_beacon" {
   for_each = {
     for vm in local.digitalocean_vms : "${vm.id}" => vm
@@ -335,6 +360,18 @@ resource "cloudflare_record" "server_record_beacon" {
   name    = "bn.${each.value.name}.${var.ethereum_network}"
   type    = "A"
   value   = digitalocean_droplet.main[each.value.id].ipv4_address
+  proxied = false
+  ttl     = 120
+}
+
+resource "cloudflare_record" "server_record_beacon6" {
+  for_each = {
+    for vm in local.digitalocean_vms : "${vm.id}" => vm if vm.ipv6
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "bn.${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = digitalocean_droplet.main[each.value.id].ipv6_address
   proxied = false
   ttl     = 120
 }
@@ -354,6 +391,7 @@ resource "local_file" "ansible_inventory" {
         {
           for key, server in digitalocean_droplet.main : "do.${key}" => {
             ip              = "${server.ipv4_address}"
+            ipv6            = try(server.ipv6_address, "none")
             group           = try(split(":", tolist(server.tags)[2])[1], "unknown")
             validator_start = try(split(":", tolist(server.tags)[4])[1], 0)
             validator_end   = try(split(":", tolist(server.tags)[3])[1], 0) # if the tag is not a number it will be 0 - e.g no validator keys

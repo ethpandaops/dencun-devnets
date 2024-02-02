@@ -28,6 +28,7 @@ variable "lighthouse_geth" {
     validator_start = 0
     validator_end   = 100
     location        = "fra1"
+    ipv6            = true
   }
 }
 
@@ -128,6 +129,7 @@ variable "lodestar_geth" {
     validator_start = 510
     validator_end   = 620
     location        = "fra1"
+    ipv6            = true
   }
 }
 
