@@ -22,3 +22,6 @@ teku_container_command_extra_args:
   - --Xpeer-request-limit=1000
   - --ignore-weak-subjectivity-period-enabled
   - --checkpoint-sync-url={{ checkpoint_sync_url }}
+default_ethereum_client_images:
+  teku: consensys/teku:24.1.1
+  geth: ethpandaops/geth:karalabe-blobpool-crash-cleanup-ca5228c
