@@ -34,8 +34,6 @@ dugtrio:
     name: lighthouse-besu-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-msf-1.ethpandaops.io
     name: lighthouse-erigon-1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-msf-1.ethpandaops.io
-    name: lighthouse-erigon-2
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-msf-1.ethpandaops.io
     name: lighthouse-geth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.dencun-msf-1.ethpandaops.io

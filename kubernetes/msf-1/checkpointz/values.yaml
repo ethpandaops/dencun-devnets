@@ -54,9 +54,6 @@ checkpointz:
       - name: lighthouse-erigon-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-msf-1.ethpandaops.io
         dataProvider: true
-      - name: lighthouse-erigon-2
-        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-msf-1.ethpandaops.io
-        dataProvider: true
       - name: lighthouse-geth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-msf-1.ethpandaops.io
         dataProvider: true

@@ -47,10 +47,6 @@ dora:
     name: lighthouse-erigon-1
     priority: -1
     archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-msf-1.ethpandaops.io
-    name: lighthouse-erigon-2
-    priority: -1
-    archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-msf-1.ethpandaops.io
     name: lighthouse-geth-1
     priority: -1
