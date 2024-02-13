@@ -1,0 +1,125 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/checkpointz.yaml.j2
+
+checkpointz:
+  fullnameOverride: checkpointz
+  replicas: 1
+
+  image:
+    repository: ethpandaops/checkpointz
+    tag: 0.18.0
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 64m
+      memory: 256Mi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: checkpoint-sync.dencun-msf-1.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+    tls:
+    - hosts:
+      - checkpoint-sync.dencun-msf-1.ethpandaops.io
+      secretName: dencun-msf-1-checkpoint-sync-tls
+
+  config:
+    global:
+      listenAddr: ":5555"
+      logging: "info" # panic,fatal,warm,info,debug,trace
+      metricsAddr: ":9090"
+
+    checkpointz:
+      mode: full
+      caches:
+        blocks:
+          max_items: 100
+        states:
+          max_items: 5
+      historical_epoch_count: 20
+
+    beacon:
+      upstreams:
+      - name: bootnode-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-besu-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-erigon-2
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-nethermind-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lighthouse-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-reth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-besu-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-erigon-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-reth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: nimbus-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: nimbus-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: nimbus-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: nimbus-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-reth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: prysm-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-besu-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: prysm-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-erigon-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: prysm-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-geth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: prysm-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-nethermind-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: prysm-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.prysm-reth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: teku-besu-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-besu-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: teku-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-erigon-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: teku-geth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-geth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: teku-nethermind-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-nethermind-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
+      - name: teku-reth-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.teku-reth-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true

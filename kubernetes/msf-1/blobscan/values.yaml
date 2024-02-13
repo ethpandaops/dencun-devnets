@@ -1,0 +1,64 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/blobscan.yaml.j2
+
+blobscan:
+  fullnameOverride: blobscan
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan.dencun-msf-1.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan
+                port:
+                  number: 3000
+  config:
+    NEXTAUTH_URL: https://blobscan.dencun-msf-1.ethpandaops.io
+    NEXT_PUBLIC_NETWORK_NAME: dencun-msf-1
+    NEXT_PUBLIC_BEACON_BASE_URL: https://dora.dencun-msf-1.ethpandaops.io
+    NEXT_PUBLIC_EXPLORER_BASE_URL: https://explorer.dencun-msf-1.ethpandaops.io
+    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
+    CHAIN_ID: "1"
+  blobscandb:
+    fullnameOverride: blobscan-blobscandb
+
+blobscan-indexer:
+  fullnameOverride: blobscan-indexer
+  image:
+    repository: blossomlabs/blobscan-indexer
+    tag: latest
+    pullPolicy: Always
+  config:
+    EXECUTION_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.bootnode-1.dencun-msf-1.ethpandaops.io
+    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>bn.bootnode-1.dencun-msf-1.ethpandaops.io
+
+# Blobscan API
+blobscan-api:
+  fullnameOverride: blobscan-api
+  image:
+    repository: blossomlabs/blobscan
+    tag: latest
+    pullPolicy: Always
+  config:
+    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>bn.bootnode-1.dencun-msf-1.ethpandaops.io
+    CHAIN_ID: "1"
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: blobscan-api.dencun-msf-1.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blobscan-api
+                port:
+                  number: 3001
