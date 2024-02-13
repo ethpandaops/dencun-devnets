@@ -1,6 +1,7 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora.yaml.j2
 
 dora:
+  replicas: 0
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
