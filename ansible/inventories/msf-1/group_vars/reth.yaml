@@ -1,0 +1,87 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_el:
+  - gakonst
+  - Rjected
+  - joshieDo
+  - onbjerg
+  - shekhirin
+  - rkrasiuk
+  - mattsse
+  - rakita
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: reth
+
+# role: ethpandaops.general.reth
+reth_container_name: execution
+reth_container_image: "{{ default_ethereum_client_images.reth }}"
+reth_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+  RUST_LOG: "{{ log_level | default('debug') }}"
+reth_container_volumes:
+  - "{{ reth_datadir }}:/data"
+  - "{{ reth_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+reth_container_command_extra_args:
+#  - --chain=goerli
+  #- --chain=/network-config/genesis.json
+  - --http.api=eth,net,web3,debug,admin,txpool
+ # - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+
+prometheus_config: |
+  global:
+    scrape_interval: 30s
+    evaluation_interval: 30s
+    scrape_timeout: 10s
+    external_labels:
+      instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+      ip_address: "{{ ansible_host }}"
+      network: "{{ ethereum_network_name }}"
+      testnet: "{{ ethereum_network_name }}"
+      execution_client: "{{ ethereum_node_el }}"
+      consensus_client: "{{ ethereum_node_cl }}"
+  remote_write:
+    - queue_config:
+        batch_send_deadline: 5s
+        max_backoff: 500ms
+        max_samples_per_send: 500
+        min_backoff: 50ms
+        max_shards: 100
+      url: {{ prometheus_remote_push_url }}
+      remote_timeout: 10s
+      basic_auth:
+        username: {{ prometheus_remote_write_username }}
+        password: {{ prometheus_remote_write_password }}
+  scrape_configs:
+    - job_name: "prometheus"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["localhost:9090"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["172.17.0.1:9100"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "exporter"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["ethereum-metrics-exporter:9090"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "consensus_node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
+    - job_name: "execution"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["execution:{{ ethereum_node_el_ports_metrics }}"]
+          labels:
+            instance: "{{ ethereum_network_name }}-{{ inventory_hostname }}"

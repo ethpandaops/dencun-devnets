@@ -1,0 +1,58 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_cl:
+  - tbenr
+  - ajsutton
+  - rolfyone
+  - siladu
+  - lucassaldanha
+  - StefanBratanov
+  - zilm13
+  - mehdi-aouadi
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/teku-keys/"
+    dest: "{{ teku_validator_datadir }}/keys/"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/teku-secrets/"
+    dest: "{{ teku_validator_datadir }}/secrets/"
+
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ teku_validator_datadir }}/change_operations.json"
+    owner: teku
+    group: teku
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: teku
+
+# role: ethpandaops.general.teku
+teku_container_name: beacon
+teku_container_image: "{{ default_ethereum_client_images.teku }}"
+teku_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+  JAVA_OPTS: "-Xmx4000m"
+teku_container_volumes:
+  - "{{ teku_datadir }}:/data"
+  - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+teku_container_command_extra_args:
+#  - --network=goerli
+  #- --network=/network-config/config.yaml
+  #- --genesis-state=/network-config/genesis.ssz
+  #- --p2p-discovery-bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --p2p-peer-upper-bound=100
+  - --data-storage-non-canonical-blocks-enabled=true
+  - --data-storage-mode=PRUNE
+  - --validators-graffiti={{ ansible_hostname }}🐼
+  - --logging={{ log_level | default('debug') }}
+  - --Xlog-include-p2p-warnings-enabled
+  - --metrics-block-timing-tracking-enabled
+#  - --ignore-weak-subjectivity-period-enabled
+teku_validator_container_volumes:
+  - "{{ teku_validator_datadir }}:/validator-data"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+teku_validator_datadir: /data/teku-validator
+
+teku_container_pull: true
+

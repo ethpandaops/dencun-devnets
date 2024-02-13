@@ -1,0 +1,69 @@
+# role: ethpandaops.general.bootstrap
+bootstrap_default_user_authorized_keys_github_team_cl:
+  - AgeManning
+  - ethdreamer
+  - paulhauner
+  - pawanjay176
+  - michaelsproul
+  - potuz
+  - nisdas
+  - antondlr
+  - realbigsean
+  - jimmygchen
+
+log_level: debug
+
+# role: validator_keys
+validator_keys_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/keys/"
+    dest: "{{ lighthouse_validator_datadir }}/keys/"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/secrets/"
+    dest: "{{ lighthouse_validator_datadir }}/secrets/"
+
+validator_bls_sync_files:
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
+    dest: "{{ lighthouse_validator_datadir }}/change_operations.json"
+    owner: lighthouse
+    group: lighthouse
+
+lighthouse_ports_quic: 9001
+
+lighthouse_container_ports:
+  - "127.0.0.1:{{ lighthouse_ports_http_beacon }}:{{ lighthouse_ports_http_beacon }}"
+  - "{{ lighthouse_ports_p2p_tcp }}:{{ lighthouse_ports_p2p_tcp }}"
+  - "{{ lighthouse_ports_p2p_udp }}:{{ lighthouse_ports_p2p_udp }}/udp"
+  - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}"
+  - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}/udp"
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_cl: lighthouse
+
+# role: ethpandaops.general.lighthouse
+lighthouse_container_name: beacon
+lighthouse_container_image: "{{ default_ethereum_client_images.lighthouse }}"
+lighthouse_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+lighthouse_container_volumes:
+  - "{{ lighthouse_datadir }}:/data"
+  - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+lighthouse_container_command_extra_args:
+#  - --network=goerli
+  #- --testnet-dir=/network-config
+  #- --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --debug-level={{ log_level | default('debug') }}
+  - --quic-port={{ lighthouse_ports_quic }}
+  - --enr-quic-port={{ lighthouse_ports_quic }}
+
+lighthouse_validator_container_name: validator
+lighthouse_validator_container_volumes:
+  - "{{ lighthouse_validator_datadir }}:/validator-data"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+lighthouse_validator_container_command_extra_args:
+  - --testnet-dir=/network-config
+  - --graffiti={{ ansible_hostname }}🐼
+lighthouse_validator_datadir: /data/lighthouse-validator
+lighthouse_container_pull: true
+
