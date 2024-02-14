@@ -28,12 +28,12 @@ mev_relay_housekeeper_container_env:
   BELLATRIX_FORK_VERSION=0x30{{ ethereum_genesis_fork_version_suffix }}
   CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
   DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
-  DB_TABLE_PREFIX=custom
+  DB_TABLE_PREFIX=mainnet
   LOG_LEVEL=debug
 
 mev_relay_housekeeper_container_pull: true
 mev_relay_housekeeper_container_command_extra_args:
-    #- --network=custom
+    - --network=mainnet
     - --beacon-uris={{ beacon_endpoint }}
     - --redis-uri=mev-relay-redis:6379
     - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
@@ -51,13 +51,14 @@ mev_relay_api_container_env:
   CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
   DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
   LOG_LEVEL=debug
+  DB_TABLE_PREFIX=mainnet
   DISABLE_PAYLOAD_DATABASE_STORAGE=1
 mev_relay_api_container_pull: true
 mev_relay_api_container_networks: "{{ mev_relay_docker_networks }}"
 mev_relay_api_container_ports:
   - "{{ mev_relay_api_listening_port }}:{{ mev_relay_api_listening_port }}"
 mev_relay_api_container_command_extra_args:
-  #- --network=custom
+  - --network=mainnet
   - --beacon-uris={{ beacon_endpoint }}
   - --pprof
   - --debug
@@ -79,6 +80,7 @@ mev_relay_website_container_env:
   CAPELLA_FORK_VERSION=0x40{{ ethereum_genesis_fork_version_suffix }}
   DENEB_FORK_VERSION=0x50{{ ethereum_genesis_fork_version_suffix }}
   LOG_LEVEL=debug
+  DB_TABLE_PREFIX=mainnet
   LINK_DATA_API=http://mev-api.{{ network_subdomain }}:9062
   RELAY_URL=http://0xa55c1285d84ba83a5ad26420cd5ad3091e49c55a813eee651cd467db38a8c8e63192f47955e9376f6b42f6d190571cb5@mev-api.{{ network_subdomain }}:9062
 mev_relay_website_container_ports:
@@ -86,7 +88,7 @@ mev_relay_website_container_ports:
 mev_relay_website_container_pull: true
 mev_relay_website_container_networks: "{{ mev_relay_docker_networks }}"
 mev_relay_website_container_command_extra_args:
-  #- --network=custom
+  - --network=mainnet
   - --redis-uri=mev-relay-redis:6379
   - --db=postgres://postgres:postgres@mev-relay-database:5432/boostrelay?sslmode=disable
   - --show-config-details
@@ -163,7 +165,7 @@ geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev7-4d161de
+geth_container_image: flashbots/builder:1.13.12.4844.dev1
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 
