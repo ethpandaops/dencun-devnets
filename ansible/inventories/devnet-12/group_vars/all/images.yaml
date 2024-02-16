@@ -12,7 +12,7 @@ default_ethereum_client_images:
   erigon: thorax/erigon:v2.57.1
   geth: ethpandaops/geth:karalabe-billy-repair-205d17d
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
-  nethermind: nethermindeth/nethermind:1.25.4-5899434
+  nethermind: nethermindeth/nethermind:release-1.25.4
   reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.18
 
 
