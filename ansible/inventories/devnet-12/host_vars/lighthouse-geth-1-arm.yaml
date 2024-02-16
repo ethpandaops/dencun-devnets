@@ -60,7 +60,6 @@ lighthouse_container_command_extra_args:
   - --slasher-max-db-size=16
   - --checkpoint-sync-url={{ checkpoint_sync_url }}
   - --port6={{ lighthouse_ipv6_port }}
-  - --enr-address=::0
   - --enr-udp6-port={{ lighthouse_ipv6_port }}
   - --enr-tcp6-port={{ lighthouse_ipv6_port }}
 ethereum_node_docker_network_name: shared6

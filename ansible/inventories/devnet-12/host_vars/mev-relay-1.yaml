@@ -12,7 +12,7 @@ mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
 beacon_endpoint: http://beacon:5052
-mev_img: flashbots/mev-boost-relay:0.28.0a7
+mev_img: flashbots/mev-boost-relay:0.29.1a2
 
 gen_validators_root: "0x31c7fb3b0dc46ad79c8117cbeafe6060a973f662823b08618d915b644472449d"
 
@@ -152,10 +152,10 @@ geth_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
   BUILDER_TX_SIGNING_KEY: 0x{{ secret_mev_signingkey }}
 geth_container_command_extra_args:
-  - --http.api=admin,engine,net,eth,web3,debug,flashbots
+  - --http.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --http.vhosts=*
   - --ws
-  - --ws.api=admin,engine,net,eth,web3,debug,flashbots
+  - --ws.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --ws.addr=0.0.0.0
   - --ws.port=8545
   - --ws.origins=*
@@ -173,7 +173,7 @@ geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_container_pull: true
 
-geth_container_image: flashbots/builder:1.13.2.4844.dev7-4d161de
+geth_container_image: flashbots/builder:1.13.12.4844.dev1
 
 ethereum_node_json_rpc_snooper_engine_enabled: false
 
