@@ -12,7 +12,7 @@ mev_relay_docker_networks:
   - name: "{{ mev_relay_docker_network_name }}"
 
 beacon_endpoint: http://beacon:5052
-mev_img: flashbots/mev-boost-relay:0.29.1a1
+mev_img: flashbots/mev-boost-relay:0.29.1a2
 
 gen_validators_root: ""
 
@@ -143,7 +143,7 @@ geth_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
   BUILDER_TX_SIGNING_KEY: 0x{{ secret_mev_signingkey }}
 geth_container_command_extra_args:
-  - --http.api=admin,engine,net,eth,web3,debug,flashbots
+  - --http.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --http.vhosts=*
   - --ws
   - --ws.api=admin,engine,net,eth,web3,debug,flashbots
