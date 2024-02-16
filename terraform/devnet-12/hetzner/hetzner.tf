@@ -59,6 +59,8 @@ locals {
             location     = try(vm_group.location, local.hcloud_default_location)
             size         = try(vm_group.size, local.hcloud_default_server_type)
             ansible_vars = try(vm_group.ansible_vars, null)
+            ipv4_enabled = try(vm_group.ipv4_enabled, true)
+            ipv6_enabled = try(vm_group.ipv6_enabled, true)
           }
         }
       }
@@ -85,6 +87,8 @@ locals {
         vm_key    = vm_key
 
         name         = try(vm.name, "${group.id}")
+        ipv4_enabled = try(vm.ipv4_enabled, true)
+        ipv6_enabled = try(vm.ipv6_enabled, true)
         ssh_keys     = try(vm.ssh_keys, [data.hcloud_ssh_key.main.id])
         location     = try(vm.location, try(group.location, local.hcloud_default_location))
         image        = try(vm.image, local.hcloud_default_image)
@@ -130,6 +134,10 @@ resource "hcloud_server" "main" {
   ssh_keys    = each.value.ssh_keys
   backups     = each.value.backups
   labels      = { for label in each.value.labels : split(":", label)[0] => split(":", label)[1] }
+  public_net {
+    ipv4_enabled = try(each.value.ipv4_enabled, true)
+    ipv6_enabled = try(each.value.ipv6_enabled, true)
+  }
 }
 
 resource "hcloud_server_network" "main" {
@@ -151,7 +159,7 @@ data "cloudflare_zone" "default" {
 
 resource "cloudflare_record" "server_record" {
   for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv4_enabled, true) == true
   }
   zone_id = data.cloudflare_zone.default.id
   name    = "${each.value.name}.${var.ethereum_network}"
@@ -161,9 +169,21 @@ resource "cloudflare_record" "server_record" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "server_record6" {
+  for_each = {
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv6_enabled, true) == true
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = hcloud_server.main[each.value.id].ipv6_address
+  proxied = false
+  ttl     = 120
+}
+
 resource "cloudflare_record" "server_record_rpc" {
   for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv4_enabled, true) == true
   }
   zone_id = data.cloudflare_zone.default.id
   name    = "rpc.${each.value.name}.${var.ethereum_network}"
@@ -173,9 +193,21 @@ resource "cloudflare_record" "server_record_rpc" {
   ttl     = 120
 }
 
+resource "cloudflare_record" "server_record_rpc6" {
+  for_each = {
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv6_enabled, true) == true
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "rpc.${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = hcloud_server.main[each.value.id].ipv6_address
+  proxied = false
+  ttl     = 120
+}
+
 resource "cloudflare_record" "server_record_beacon" {
   for_each = {
-    for vm in local.hcloud_vms : "${vm.id}" => vm
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv4_enabled, true) == true
   }
   zone_id = data.cloudflare_zone.default.id
   name    = "bn.${each.value.name}.${var.ethereum_network}"
@@ -184,6 +216,20 @@ resource "cloudflare_record" "server_record_beacon" {
   proxied = false
   ttl     = 120
 }
+
+resource "cloudflare_record" "server_record_beacon6" {
+  for_each = {
+    for vm in local.hcloud_vms : "${vm.id}" => vm if coalesce(vm.ipv6_enabled, true) == true
+  }
+  zone_id = data.cloudflare_zone.default.id
+  name    = "bn.${each.value.name}.${var.ethereum_network}"
+  type    = "AAAA"
+  value   = hcloud_server.main[each.value.id].ipv6_address
+  proxied = false
+  ttl     = 120
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //                          GENERATED FILES AND OUTPUTS
@@ -200,7 +246,8 @@ resource "local_file" "ansible_inventory" {
       hosts = merge(
         {
           for key, server in hcloud_server.main : "${key}" => {
-            ip              = server.ipv4_address
+            ip              = coalesce(server.ipv4_address, (try(server.ipv6_address, "")))
+            ipv6            = coalesce(server.ipv6_address, "")
             group           = server.labels.group_name
             validator_start = server.labels.val_start
             validator_end   = server.labels.val_end
