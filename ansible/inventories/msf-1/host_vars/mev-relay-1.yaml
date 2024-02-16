@@ -146,7 +146,7 @@ geth_container_command_extra_args:
   - --http.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --http.vhosts=*
   - --ws
-  - --ws.api=admin,engine,net,eth,web3,debug,flashbots
+  - --ws.api=admin,engine,net,eth,web3,debug,flashbots,mev
   - --ws.addr=0.0.0.0
   - --ws.port=8545
   - --ws.origins=*
