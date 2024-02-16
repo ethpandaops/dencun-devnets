@@ -22,7 +22,7 @@ beacon-metrics-gazer:
 
   customCommand:
     - /beacon-metrics-gazer
-    - https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>bn.bootnode-1.dencun-msf-1.ethpandaops.io
+    - https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
     - --ranges-file
     - /custom-config/ranges.yaml
     - --port

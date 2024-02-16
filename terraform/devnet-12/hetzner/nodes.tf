@@ -16,6 +16,7 @@ variable "lighthouse_geth" {
     validator_start = 1800
     validator_end   = 1900
     location        = "hel1"
+    ipv4_enabled    = false
   }
 }
 
@@ -127,9 +128,10 @@ variable "prysm_reth" {
 variable "lodestar_geth" {
   default = {
     name            = "lodestar-geth"
-    count           = 0
+    count           = 1
     validator_start = 0
     validator_end   = 0
+    ipv4_enabled    = false
   }
 }
 

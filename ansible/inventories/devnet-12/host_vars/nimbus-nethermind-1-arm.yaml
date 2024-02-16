@@ -1,0 +1,16 @@
+nethermind_container_command_extra_args:
+  - --Init.ChainSpecPath=/network-config/chainspec.json
+  - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
+  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --Init.IsMining=false
+  - --config=none.cfg
+  - --EthStats.Enabled=true
+  - --EthStats.Name={{ inventory_hostname }}
+  - --EthStats.Secret={{ ethstats_secret }}
+  - --EthStats.Server=wss://{{ ethstats_url }}/api/
+  - --log={{ log_level | upper | default('DEBUG') }}
+  - --TxPool.BlobsSupport=StorageWithReorgs
+  - --TxPool.ReportMinutes=5
+  - --Sync.SnapSync=true
+  - --Sync.FastBlocks=true
+  - --Sync.FastSyncCatchUpHeightDelta=10000000000

@@ -30,6 +30,7 @@ blobscan:
     fullnameOverride: blobscan-blobscandb
 
 blobscan-indexer:
+  replicas: 0
   fullnameOverride: blobscan-indexer
   image:
     repository: blossomlabs/blobscan-indexer
@@ -37,7 +38,7 @@ blobscan-indexer:
     pullPolicy: Always
   config:
     EXECUTION_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.bootnode-1.dencun-msf-1.ethpandaops.io
-    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>bn.bootnode-1.dencun-msf-1.ethpandaops.io
+    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
 
 # Blobscan API
 blobscan-api:
@@ -47,7 +48,7 @@ blobscan-api:
     tag: latest
     pullPolicy: Always
   config:
-    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>bn.bootnode-1.dencun-msf-1.ethpandaops.io
+    BEACON_NODE_ENDPOINT: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
     CHAIN_ID: "1"
   ingress:
     enabled: true

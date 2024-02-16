@@ -8,10 +8,12 @@ geth_container_command:
   - --authrpc.port={{ geth_ports_engine }}
   - --authrpc.vhosts=*
   - --authrpc.jwtsecret=/execution-auth.jwt
-  - --nat=extip:{{ geth_announced_ip }}
+  - --nat=extip:{{ ipv6 }}
   - --metrics
   - --metrics.port={{ geth_ports_metrics }}
   - --metrics.addr=0.0.0.0
+  - --verbosity=4
+
 
 geth_container_command_extra_args:
   - --http.api=eth,net,web3,debug,admin,txpool
@@ -72,3 +74,9 @@ lighthouse_container_ports:
   - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}/udp"
   - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}"
   - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}/udp"
+
+geth_container_ports:
+  - "127.0.0.1:{{ geth_ports_http_rpc }}:{{ geth_ports_http_rpc }}"
+  - "127.0.0.1:{{ geth_ports_engine }}:{{ geth_ports_engine }}"
+  - "[::]:{{ geth_ports_p2p }}:{{ geth_ports_p2p }}"
+  - "[::]:{{ geth_ports_p2p }}:{{ geth_ports_p2p }}/udp"
