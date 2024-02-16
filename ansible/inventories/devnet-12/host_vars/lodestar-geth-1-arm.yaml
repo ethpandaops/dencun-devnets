@@ -28,9 +28,9 @@ lodestar_container_command_extra_args:
   - --discoveryPort6={{ lodestar_ports_p2p_udp +1 }}
   - --enr.tcp6={{ lodestar_ports_p2p_tcp +1 }}
   - --enr.udp6={{ lodestar_ports_p2p_udp +1 }}
-  - --checkpointSyncUrl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
+  - --checkpointSyncUrl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lodestar-geth-1.dencun-devnet-12.ethpandaops.io
 
-ethereum_node_docker_network_name: shared7
+ethereum_node_docker_network_name: shared6
 #docker network create --ipv6 --subnet 2a03:b0c0:3:d0::1a7f:9000/124 shared7
 lodestar_container_ports:
   - "127.0.0.1:{{ lodestar_ports_http_beacon }}:{{ lodestar_ports_http_beacon }}"
@@ -66,4 +66,9 @@ geth_container_command_extra_args:
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+
+geth_container_ports:
+  - "127.0.0.1:{{ geth_ports_http_rpc }}:{{ geth_ports_http_rpc }}"
+  - "127.0.0.1:{{ geth_ports_engine }}:{{ geth_ports_engine }}"
+  - "[::]:{{ geth_ports_p2p }}:{{ geth_ports_p2p }}"
+  - "[::]:{{ geth_ports_p2p }}:{{ geth_ports_p2p }}/udp"

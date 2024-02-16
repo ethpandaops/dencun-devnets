@@ -1,6 +1,7 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora.yaml.j2
 
 dora:
+  replicas: 0
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
@@ -45,10 +46,6 @@ dora:
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-1.dencun-msf-1.ethpandaops.io
     name: lighthouse-erigon-1
-    priority: -1
-    archive: true
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-erigon-2.dencun-msf-1.ethpandaops.io
-    name: lighthouse-erigon-2
     priority: -1
     archive: true
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lighthouse-geth-1.dencun-msf-1.ethpandaops.io
