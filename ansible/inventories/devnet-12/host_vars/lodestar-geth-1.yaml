@@ -1,69 +1,72 @@
-lodestar_container_command:
-  - beacon
-  - --dataDir=/data
-  - --discv5
-  - --listenAddress=0.0.0.0
-  - --port={{ lodestar_ports_p2p_tcp }}
-  - --enr.ip={{ lodestar_announced_ip }}
-  - --enr.tcp={{ lodestar_ports_p2p_tcp }}
-  - --enr.udp={{ lodestar_ports_p2p_udp }}
-  - --rest
-  - --rest.address=0.0.0.0
-  - --rest.port={{ lodestar_ports_http_beacon }}
-  - --jwt-secret=/execution-auth.jwt
-  - --execution.urls={{ lodestar_execution_engine_endpoint }}
-  - --metrics
-  - --metrics.address=0.0.0.0
-  - --metrics.port={{ lodestar_ports_metrics }}
+default_ethereum_client_images:
+### Consensus layer clients
+  lodestar: chainsafe/lodestar:v1.15.0-rc.0
+  geth: ethpandaops/geth:master-ac0ff04
+# lodestar_container_command:
+#   - beacon
+#   - --dataDir=/data
+#   - --discv5
+#   - --listenAddress=0.0.0.0
+#   - --port={{ lodestar_ports_p2p_tcp }}
+#   - --enr.ip={{ lodestar_announced_ip }}
+#   - --enr.tcp={{ lodestar_ports_p2p_tcp }}
+#   - --enr.udp={{ lodestar_ports_p2p_udp }}
+#   - --rest
+#   - --rest.address=0.0.0.0
+#   - --rest.port={{ lodestar_ports_http_beacon }}
+#   - --jwt-secret=/execution-auth.jwt
+#   - --execution.urls={{ lodestar_execution_engine_endpoint }}
+#   - --metrics
+#   - --metrics.address=0.0.0.0
+#   - --metrics.port={{ lodestar_ports_metrics }}
 
-lodestar_container_command_extra_args:
-  - --paramsFile=/network-config/config.yaml
-  - --genesisStateFile=/network-config/genesis.ssz
-  - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
-  - --rest.namespace="*"
-  - --network.connectToDiscv5Bootnodes
-  - --nat=true
-  - --listenAddress6=::0
-  - --port6={{ lodestar_ports_p2p_udp +1}}
-  - --discoveryPort6={{ lodestar_ports_p2p_udp +1 }}
-  - --enr.tcp6={{ lodestar_ports_p2p_tcp +1 }}
-  - --enr.udp6={{ lodestar_ports_p2p_udp +1 }}
-  - --checkpointSyncUrl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
+# lodestar_container_command_extra_args:
+#   - --paramsFile=/network-config/config.yaml
+#   - --genesisStateFile=/network-config/genesis.ssz
+#   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+#   - --rest.namespace="*"
+#   - --network.connectToDiscv5Bootnodes
+#   - --nat=true
+#   - --listenAddress6=::0
+#   - --port6={{ lodestar_ports_p2p_udp +1}}
+#   - --discoveryPort6={{ lodestar_ports_p2p_udp +1 }}
+#   - --enr.tcp6={{ lodestar_ports_p2p_tcp +1 }}
+#   - --enr.udp6={{ lodestar_ports_p2p_udp +1 }}
+#   - --checkpointSyncUrl=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
 
-ethereum_node_docker_network_name: shared7
-#docker network create --ipv6 --subnet 2a03:b0c0:3:d0::1a7f:9000/124 shared7
-lodestar_container_ports:
-  - "127.0.0.1:{{ lodestar_ports_http_beacon }}:{{ lodestar_ports_http_beacon }}"
-  - "{{ lodestar_ports_p2p_tcp }}:{{ lodestar_ports_p2p_tcp }}"
-  - "{{ lodestar_ports_p2p_udp }}:{{ lodestar_ports_p2p_udp }}/udp"
-  - "[::]:{{ lodestar_ports_p2p_tcp+1 }}:{{ lodestar_ports_p2p_tcp+1 }}"
-  - "[::]:{{ lodestar_ports_p2p_udp+1 }}:{{ lodestar_ports_p2p_udp+1 }}/udp"
-lodestar_checkpoint_sync_enabled: true
-checkpoint_sync_enabled: true
+# ethereum_node_docker_network_name: shared7
+# #docker network create --ipv6 --subnet 2a03:b0c0:3:d0::1a7f:9000/124 shared7
+# lodestar_container_ports:
+#   - "127.0.0.1:{{ lodestar_ports_http_beacon }}:{{ lodestar_ports_http_beacon }}"
+#   - "{{ lodestar_ports_p2p_tcp }}:{{ lodestar_ports_p2p_tcp }}"
+#   - "{{ lodestar_ports_p2p_udp }}:{{ lodestar_ports_p2p_udp }}/udp"
+#   - "[::]:{{ lodestar_ports_p2p_tcp+1 }}:{{ lodestar_ports_p2p_tcp+1 }}"
+#   - "[::]:{{ lodestar_ports_p2p_udp+1 }}:{{ lodestar_ports_p2p_udp+1 }}/udp"
+# lodestar_checkpoint_sync_enabled: true
+# checkpoint_sync_enabled: true
 
+# geth_container_command:
+#   - --datadir=/data
+#   - --port={{ geth_ports_p2p }}
+#   - --http
+#   - --http.addr=0.0.0.0
+#   - --http.addr=::0
+#   - --http.port={{ geth_ports_http_rpc }}
+#   - --authrpc.addr=0.0.0.0
+#   - --authrpc.port={{ geth_ports_engine }}
+#   - --authrpc.vhosts=*
+#   - --authrpc.jwtsecret=/execution-auth.jwt
+#   - --nat=extip:{{ ipv6 }}
+#   - --metrics
+#   - --metrics.port={{ geth_ports_metrics }}
+#   - --metrics.addr=0.0.0.0
+#   - --discovery.v5
 
-geth_container_command:
-  - --datadir=/data
-  - --port={{ geth_ports_p2p }}
-  - --http
-  - --http.addr=0.0.0.0
-  - --http.addr=::0
-  - --http.port={{ geth_ports_http_rpc }}
-  - --authrpc.addr=0.0.0.0
-  - --authrpc.port={{ geth_ports_engine }}
-  - --authrpc.vhosts=*
-  - --authrpc.jwtsecret=/execution-auth.jwt
-  - --nat=extip:{{ ipv6 }}
-  - --metrics
-  - --metrics.port={{ geth_ports_metrics }}
-  - --metrics.addr=0.0.0.0
-  - --discovery.v5
-
-geth_container_command_extra_args:
-  - --http.api=eth,net,web3,debug,admin,txpool
-  - --http.vhosts=*
-  - --state.scheme=path
-  - --networkid={{ ethereum_network_id }}
-  - --syncmode=full
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+# geth_container_command_extra_args:
+#   - --http.api=eth,net,web3,debug,admin,txpool
+#   - --http.vhosts=*
+#   - --state.scheme=path
+#   - --networkid={{ ethereum_network_id }}
+#   - --syncmode=full
+#   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+#   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}

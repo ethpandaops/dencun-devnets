@@ -1,74 +1,79 @@
-geth_container_command:
-  - --datadir=/data
-  - --port={{ geth_ports_p2p }}
-  - --http
-  - --http.addr=0.0.0.0
-  - --http.port={{ geth_ports_http_rpc }}
-  - --authrpc.addr=0.0.0.0
-  - --authrpc.port={{ geth_ports_engine }}
-  - --authrpc.vhosts=*
-  - --authrpc.jwtsecret=/execution-auth.jwt
-  - --nat=extip:{{ geth_announced_ip }}
-  - --metrics
-  - --metrics.port={{ geth_ports_metrics }}
-  - --metrics.addr=0.0.0.0
+default_ethereum_client_images:
+### Consensus layer clients
+  lighthouse: sigp/lighthouse:v4.6.0
+  geth: ethpandaops/geth:master-ac0ff04
 
-geth_container_command_extra_args:
-  - --http.api=eth,net,web3,debug,admin,txpool
-  - --http.vhosts=*
-  - --networkid={{ ethereum_network_id }}
-  - --syncmode=full
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
-  - --metrics.expensive
+# geth_container_command:
+#   - --datadir=/data
+#   - --port={{ geth_ports_p2p }}
+#   - --http
+#   - --http.addr=0.0.0.0
+#   - --http.port={{ geth_ports_http_rpc }}
+#   - --authrpc.addr=0.0.0.0
+#   - --authrpc.port={{ geth_ports_engine }}
+#   - --authrpc.vhosts=*
+#   - --authrpc.jwtsecret=/execution-auth.jwt
+#   - --nat=extip:{{ geth_announced_ip }}
+#   - --metrics
+#   - --metrics.port={{ geth_ports_metrics }}
+#   - --metrics.addr=0.0.0.0
 
-lighthouse_container_command:
-  - lighthouse
-  - beacon_node
-  - --datadir=/data
-  - --disable-upnp
-  - --disable-enr-auto-update
-  - --enr-address={{ lighthouse_announced_ip }}
-  - --enr-tcp-port={{ lighthouse_ports_p2p_tcp }}
-  - --enr-udp-port={{ lighthouse_ports_p2p_udp }}
-  - --listen-address=0.0.0.0
-  - --listen-address=::0
-  - --port={{ lighthouse_ports_p2p_tcp }}
-  - --discovery-port={{ lighthouse_ports_p2p_udp }}
-  - --http
-  - --http-address=0.0.0.0
-  - --http-port={{ lighthouse_ports_http_beacon }}
-  - --execution-jwt=/execution-auth.jwt
-  - --execution-endpoint={{ lighthouse_execution_engine_endpoint }}
-  - --metrics
-  - --metrics-address=0.0.0.0
-  - --metrics-allow-origin=*
-  - --metrics-port={{ lighthouse_ports_metrics }}
+# geth_container_command_extra_args:
+#   - --http.api=eth,net,web3,debug,admin,txpool
+#   - --http.vhosts=*
+#   - --networkid={{ ethereum_network_id }}
+#   - --syncmode=full
+#   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+#   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+#   - --metrics.expensive
 
-lighthouse_announced_ipv6: "{{ ipv6 }}"
-lighthouse_container_command_extra_args:
-  - --testnet-dir=/network-config
-  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
-  - --self-limiter=blob_sidecars_by_range:256/10
-  - --debug-level={{ log_level | default('debug') }}
-  - --quic-port={{ lighthouse_ports_quic }}
-  - --enr-quic-port={{ lighthouse_ports_quic }}
-  - --slasher
-  - --slasher-history-length=256
-  - --slasher-max-db-size=16
-  - --checkpoint-sync-url={{ checkpoint_sync_url }}
-  - --port6={{ lighthouse_ipv6_port }}
-  - --enr-address={{ lighthouse_announced_ipv6 }}
-  - --enr-udp6-port={{ lighthouse_ipv6_port }}
-  - --enr-tcp6-port={{ lighthouse_ipv6_port }}
-ethereum_node_docker_network_name: shared6
-lighthouse_ports_quic: 9001
-lighthouse_ipv6_port: 9002
-lighthouse_container_ports:
-  - "127.0.0.1:{{ lighthouse_ports_http_beacon }}:{{ lighthouse_ports_http_beacon }}"
-  - "{{ lighthouse_ports_p2p_tcp }}:{{ lighthouse_ports_p2p_tcp }}"
-  - "{{ lighthouse_ports_p2p_udp }}:{{ lighthouse_ports_p2p_udp }}/udp"
-  - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}"
-  - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}/udp"
-  - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}"
-  - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}/udp"
+# lighthouse_container_command:
+#   - lighthouse
+#   - beacon_node
+#   - --datadir=/data
+#   - --disable-upnp
+#   - --disable-enr-auto-update
+#   - --enr-address={{ lighthouse_announced_ip }}
+#   - --enr-tcp-port={{ lighthouse_ports_p2p_tcp }}
+#   - --enr-udp-port={{ lighthouse_ports_p2p_udp }}
+#   - --listen-address=0.0.0.0
+#   - --listen-address=::0
+#   - --port={{ lighthouse_ports_p2p_tcp }}
+#   - --discovery-port={{ lighthouse_ports_p2p_udp }}
+#   - --http
+#   - --http-address=0.0.0.0
+#   - --http-port={{ lighthouse_ports_http_beacon }}
+#   - --execution-jwt=/execution-auth.jwt
+#   - --execution-endpoint={{ lighthouse_execution_engine_endpoint }}
+#   - --metrics
+#   - --metrics-address=0.0.0.0
+#   - --metrics-allow-origin=*
+#   - --metrics-port={{ lighthouse_ports_metrics }}
+
+# lighthouse_announced_ipv6: "{{ ipv6 }}"
+# lighthouse_container_command_extra_args:
+#   - --testnet-dir=/network-config
+#   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+#   - --self-limiter=blob_sidecars_by_range:256/10
+#   - --debug-level={{ log_level | default('debug') }}
+#   - --quic-port={{ lighthouse_ports_quic }}
+#   - --enr-quic-port={{ lighthouse_ports_quic }}
+#   - --slasher
+#   - --slasher-history-length=256
+#   - --slasher-max-db-size=16
+#   - --checkpoint-sync-url={{ checkpoint_sync_url }}
+#   - --port6={{ lighthouse_ipv6_port }}
+#   - --enr-address={{ lighthouse_announced_ipv6 }}
+#   - --enr-udp6-port={{ lighthouse_ipv6_port }}
+#   - --enr-tcp6-port={{ lighthouse_ipv6_port }}
+# ethereum_node_docker_network_name: shared6
+# lighthouse_ports_quic: 9001
+# lighthouse_ipv6_port: 9002
+# lighthouse_container_ports:
+#   - "127.0.0.1:{{ lighthouse_ports_http_beacon }}:{{ lighthouse_ports_http_beacon }}"
+#   - "{{ lighthouse_ports_p2p_tcp }}:{{ lighthouse_ports_p2p_tcp }}"
+#   - "{{ lighthouse_ports_p2p_udp }}:{{ lighthouse_ports_p2p_udp }}/udp"
+#   - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}"
+#   - "{{ lighthouse_ports_quic }}:{{ lighthouse_ports_quic }}/udp"
+#   - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}"
+#   - "[::]:{{ lighthouse_ipv6_port }}:{{ lighthouse_ipv6_port }}/udp"
