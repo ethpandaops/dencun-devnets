@@ -47,6 +47,8 @@ forkmon:
     name: nimbus-nethermind-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-reth-1.dencun-msf-1.ethpandaops.io
     name: nimbus-reth-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.nimbus-erigon-1.dencun-msf-1.ethpandaops.io
+    name: nimbus-erigon-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-besu-1.dencun-msf-1.ethpandaops.io
     name: prysm-besu-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@rpc.prysm-erigon-1.dencun-msf-1.ethpandaops.io
