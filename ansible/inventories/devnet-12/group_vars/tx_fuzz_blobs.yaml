@@ -6,7 +6,7 @@ tx_fuzz_blobs_container_command:
   - blobs
   - --no-al
   #- --rpc=http://execution:8545
-  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.prysm-besu-1.{{ network_subdomain }}
+  - --rpc=https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.prysm-geth-1.{{ network_subdomain }}
   - --sk={{ tx_fuzz_blobs_privkey }}
   - --txcount=10
 
