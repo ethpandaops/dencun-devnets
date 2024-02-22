@@ -15,11 +15,10 @@ default_ethereum_client_images:
   nethermind: nethermind/nethermind:1.25.4
   reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.19
 
-
 default_tooling_images:
   xatu_sentry: ethpandaops/xatu:0.0.137
   ethereum_metrics_exporter: ethpandaops/ethereum-metrics-exporter:0.23.0
-  tx_fuzz: ethpandaops/tx-fuzz:1.3.2
+  tx_fuzz: ethpandaops/tx-fuzz:latest
   forkmon: skylenet/nodemonitor:darkmode
   forky: ethpandaops/forky:0.0.50-debian
   powfaucet: pk910/powfaucet:v2-stable

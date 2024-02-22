@@ -25,6 +25,9 @@ erigon_container_command_extra_args:
   - --db.size.limit=100GB
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --txpool.totalblobpoollimit=20000
+  - --txpool.blobslots=20000
+
 erigon_init_custom_network: true
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 

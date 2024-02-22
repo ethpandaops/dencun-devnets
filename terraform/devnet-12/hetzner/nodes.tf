@@ -16,7 +16,7 @@ variable "lighthouse_geth" {
     validator_start = 1800
     validator_end   = 1900
     location        = "hel1"
-    ipv4_enabled    = false
+    ipv4_enabled    = true
   }
 }
 

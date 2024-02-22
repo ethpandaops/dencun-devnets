@@ -4,6 +4,8 @@ ethereum_cl_bootnodes:
   - "{{ hostvars['lodestar-geth-1']['ethereum_node_fact_cl_enr'] }}"
   - "{{ hostvars['lighthouse-besu-1']['ethereum_node_fact_cl_enr'] }}"
   - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['nimbus-erigon-1-arm']['ethereum_node_fact_cl_enr'] }}"
+  - "{{ hostvars['teku-erigon-1']['ethereum_node_fact_cl_enr'] }}"
 
 
 ethereum_el_bootnodes:
@@ -12,6 +14,8 @@ ethereum_el_bootnodes:
   - "{{ hostvars['lighthouse-besu-1']['ethereum_node_fact_el_enode'] }}"
   - "{{ hostvars['lighthouse-geth-1']['ethereum_node_fact_el_enode'] }}"
   - "{{ hostvars['lodestar-geth-1']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['nimbus-erigon-1-arm']['ethereum_node_fact_el_enode'] }}"
+  - "{{ hostvars['teku-erigon-1']['ethereum_node_fact_el_enode'] }}"
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics-public.analytics.production.platform.ethpandaops.io/insert/1/prometheus
