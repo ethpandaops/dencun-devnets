@@ -112,14 +112,14 @@ lighthouse_container_volumes:
   - "{{ lighthouse_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
-  #- --testnet-dir=/network-config
+  - --testnet-dir=/network-config
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --self-limiter=blob_sidecars_by_range:256/10
   - --debug-level=debug
   - --always-prepare-payload
   - --prepare-payload-lookahead=12000
   - --disable-peer-scoring
-  - --checkpoint-sync-url=https://beaconstate.ethstaker.cc
+#  - --checkpoint-sync-url=https://beaconstate.ethstaker.cc
 
 lighthouse_container_pull: true
 lighthouse_checkpoint_sync_enabled: true
@@ -150,10 +150,10 @@ geth_container_command_extra_args:
   - --ws.addr=0.0.0.0
   - --ws.port=8545
   - --ws.origins=*
-  #- --networkid={{ ethereum_network_id }}
-  #- --syncmode=full
-  #- --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  #- --override.cancun={{ cancun_timestamp }}
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --override.cancun={{ cancun_timestamp }}
   - --builder
   - --builder.remote_relay_endpoint=http://mev-api.{{ network_subdomain }}:9062
   - --builder.beacon_endpoints=http://beacon:5052
