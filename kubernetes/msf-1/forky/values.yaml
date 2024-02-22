@@ -39,7 +39,7 @@ forky:
           spec:
             seconds_per_slot: 12
             slots_per_epoch: 32
-            genesis_time: 1704976320
+            genesis_time: 1708607220
       sources:
         - name: bootnode-1
           type: "beacon_node"
@@ -100,6 +100,11 @@ forky:
           type: "beacon_node"
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-1.dencun-msf-1.ethpandaops.io
+            polling_interval: "12s"
+        - name: nimbus-erigon-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.dencun-msf-1.ethpandaops.io
             polling_interval: "12s"
         - name: nimbus-geth-1
           type: "beacon_node"

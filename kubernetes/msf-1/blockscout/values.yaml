@@ -2,7 +2,7 @@
 
 blockscout:
   fullnameOverride: blockscout
-  replicas: 0
+
   image:
     repository: blockscout/blockscout
     tag: master
