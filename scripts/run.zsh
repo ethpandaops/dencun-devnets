@@ -1,6 +1,6 @@
 #!/bin/zsh
 node="lighthouse-geth-1"
-network="devnet-12"
+network="msf-1"
 domain="ethpandaops.io"
 prefix="dencun"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
@@ -398,15 +398,30 @@ for arg in "${command[@]}"; do
       else
         if [[ -n "${command[3]}" ]]; then
           echo "Exiting validators from ${command[2]} to ${command[3]}"
+          if [[ ! -f offline-preparation.json ]]; then
+            ethdo validator exit --prepare-offline --connection=$bn_endpoint --timeout=300s
+          else
+            echo "offline-preparation.json already exists, remove it to prepare a new one"
+          fi
+          echo "[" > exit.json
           for i in $(seq ${command[2]} ${command[3]})
           do
-            ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/$i/0/0"
-            echo "validator $i exit submitted"
+            echo "Exiting validator $i"
+            ethdo validator exit --offline --mnemonic="$sops_mnemonic" --path="m/12381/3600/$i/0/0"
+            cat exit-operations.json >> exit.json
+            if [[ $i -ne ${command[3]} ]]; then
+              echo "," >> exit.json
+            fi
+
           done
+          echo "]" >> exit.json
+          mv exit.json exit-operations.json
+          ethdo validator exit --connection=$bn_endpoint --timeout=300s
+          echo "validator exit submitted for validators ${command[2]} to ${command[3]}"
           exit;
         else
           echo "Exiting validator ${command[2]}"
-          ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --path="m/12381/3600/${command[2]}/0/0"
+          ethdo validator exit --mnemonic="$sops_mnemonic" --connection=$bn_endpoint --offline --path="m/12381/3600/${command[2]}/0/0"
           echo "validator $i exit submitted"
           exit;
         fi
@@ -416,43 +431,18 @@ for arg in "${command[@]}"; do
     "set_withdrawal_addr")
       if [[ $# -ne 4 ]]; then
         echo "setting  calls for exactly 3 arguments!"
-        echo "  Usage: ${0} set_withdrawal_addr startIndex endIndex adress"
+        echo "  Usage: ${0} set_withdrawal_addr startIndex endIndex address"
         echo "  Example: ${0} set_withdrawal_addr 0 10 0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
         exit;
       else
-        genesis_validators_root=$(curl --silent $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_validators_root')
-        fork_version=$(curl --silent $bn_endpoint/eth/v1/beacon/genesis | jq -r '.data.genesis_fork_version')
-        deposit_contract_address=$(curl --silent $bn_endpoint/eth/v1/config/spec | jq -r '.data.DEPOSIT_CONTRACT_ADDRESS')
-
-        # create folder for withdrawal data
-        mkdir -p /tmp/set_withdrawal_addr
+        echo "Setting withdrawal credentials for validators ${command[2]} to ${command[3]} to address ${command[4]}"
         # generate the withdrawal credentials
-        eth2-val-tools bls-address-change \
-        --withdrawals-mnemonic=$sops_mnemonic \
-        --execution-address=${command[4]} \
-        --source-min=${command[2]} \
-        --source-max=${command[3]} \
-        --genesis-validators-root=$genesis_validators_root \
-        --fork-version=$fork_version \
-        --as-json-list=true > "/tmp/set_withdrawal_addr/change_operations.json"
-
-        # ask if you want to deposit to the network
-        echo "Are you sure you want to set withdrawal credentials for validators ${command[2]} to ${command[3]}? (y/n)"
-
-        read -r response
-        if [[ $response == "y" ]]; then
-            curl -X POST $bn_endpoint/eth/v1/beacon/pool/bls_to_execution_changes \
-               -H "Content-Type: application/json" \
-               --data-binary "@/tmp/set_withdrawal_addr/change_operations.json"
-        else
-          echo "Exiting without submitting changes to the network"
-          exit;
-        fi
-
-        # deleting stale files
-        rm -rf /tmp/set_withdrawal_addr
-
-        echo
+        for i in $(seq ${command[2]} ${command[3]})
+        do
+          ethdo --connection=$bn_endpoint validator credentials set --mnemonic="$sops_mnemonic" --path="m/12381/3600/$i/0/0" --withdrawal-address="${command[4]}"
+          echo "Withdrawal credentials set for validator $i"
+        done
+        exit;
       fi
       ;;
     "full_withdrawal")

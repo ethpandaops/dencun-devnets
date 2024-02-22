@@ -2,7 +2,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-
+exit-operations.json
+offline-preparation.json
 # Ansible
 ansible/vendor/**
 ansible/tmp/**
