@@ -1,7 +1,7 @@
 default_ethereum_client_images:
 ### Consensus layer clients
   lodestar: chainsafe/lodestar:v1.15.0-rc.0
-  geth: ethpandaops/geth:master-ac0ff04
+  geth: ethpandaops/geth:v1.13.13
 # lodestar_container_command:
 #   - beacon
 #   - --dataDir=/data

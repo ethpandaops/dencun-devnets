@@ -10,7 +10,7 @@ default_ethereum_client_images:
 ### Execution layer clients
   besu: hyperledger/besu:24.1.0
   erigon: thorax/erigon:v2.58.0
-  geth: ethpandaops/geth:karalabe-blob-plain-split-566d06c
+  geth: ethpandaops/geth:holiman-refactor_pending-e48dd40
   ethereumjs: ethpandaops/ethereumjs:stable-3981bca
   nethermind: nethermindeth/nethermind:release-1.25.4
   reth: ghcr.io/paradigmxyz/reth:v0.1.0-alpha.18
