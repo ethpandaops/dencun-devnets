@@ -36,7 +36,7 @@ nethermind_container_command_extra_args:
   - --log={{ log_level | upper | default('DEBUG') }}
 #  - --Bloom.IndexLevelBucketSizes=[16,16,16,16]
 
-
+log_level: info
 nethermind_container_pull: true
 
 prometheus_config: |

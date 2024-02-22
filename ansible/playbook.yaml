@@ -36,8 +36,8 @@
   roles:
     - role: ethpandaops.general.cl_bootnode
       tags: [cl_bootnode]
-    # - role: ethpandaops.general.ethereum_testnet_config
-    #   tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.ethereum_node
       tags: [ethereum, ethereum_node]
     - role: ethpandaops.general.docker_nginx_proxy
@@ -49,8 +49,8 @@
   serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
-    # - role: ethpandaops.general.ethereum_testnet_config
-    #   tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+    - role: ethpandaops.general.ethereum_testnet_config
+      tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
     - role: ethpandaops.general.validator_keys
       when: ethereum_node_cl_validator_enabled == true
       tags: [ethereum, validator_keys]

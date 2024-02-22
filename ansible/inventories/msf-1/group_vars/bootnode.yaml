@@ -36,10 +36,10 @@ geth_container_command_extra_args:
 #  - --goerli
   - --http.api=eth,net,web3,debug,admin
   - --http.vhosts=*
-  #- --networkid={{ ethereum_network_id }}
+  - --networkid={{ ethereum_network_id }}
   - --state.scheme=path
-#  - --syncmode=full
-#  - --override.cancun={{ cancun_timestamp }}
+  - --syncmode=full
+  - --override.cancun={{ cancun_timestamp }}
 #  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 #  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 # CHANGE FOR SHADOWFORK
@@ -72,8 +72,8 @@ teku_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 teku_container_command_extra_args:
 #  - --network=goerli
-  #- --network=/network-config/config.yaml
-  #- --initial-state=/network-config/genesis.ssz
+  - --network=/network-config/config.yaml
+  - --initial-state=/network-config/genesis.ssz
   - --p2p-peer-upper-bound=100
   - --data-storage-non-canonical-blocks-enabled=true
   - --data-storage-mode=ARCHIVE

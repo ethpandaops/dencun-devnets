@@ -30,7 +30,7 @@ ethereum_node_cl_validator_enabled: true
 checkpoint_sync_url: https://{{ checkpoint_sync_node }}
 checkpoint_sync_url_kube: https://{{ checkpoint_sync_node }}
 #### Beacon stopper
-slot_to_stop_at:  7372200
+slot_to_stop_at: 8481211
 beacon_url: http://localhost:5052/eth/v1/beacon/headers
 
 #  ██████╗░░█████╗░██╗░░░░░███████╗  ██╗░░░██╗░█████╗░██████╗░░██████╗
@@ -47,9 +47,9 @@ ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_ima
 ethereum_genesis_network_seed: "{{ ansible_inventory_sources[0] }}"
 ethereum_genesis_chain_id: 1
 ethereum_genesis_generator_output_dir: "../network-configs/{{ ethereum_network_name | replace('dencun-', '') }}"
-ethereum_genesis_timestamp: 1704976200
+ethereum_genesis_timestamp: 1708607100
 ethereum_genesis_timedelay: 120
-cancun_timestamp: 1704979008
+cancun_timestamp: 1708608756
 ethereum_genesis_fork_version_suffix: 430400
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -111,7 +111,7 @@ ethereum_genesis_generator_config_files:
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
     export CAPELLA_FORK_VERSION="0x40{{ ethereum_genesis_fork_version_suffix }}"
     export DENEB_FORK_VERSION="0x50{{ ethereum_genesis_fork_version_suffix }}"
-    export DENEB_FORK_EPOCH="7"
+    export DENEB_FORK_EPOCH="4"
     export WITHDRAWAL_TYPE="0x00"
     export WITHDRAWAL_ADDRESS={{ ethereum_genesis_validator_bls_change_execution_address }}
     export BEACON_STATIC_ENR=""
