@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: 0.19.0
+    tag: 0.20.0
     pullPolicy: IfNotPresent
   resources:
     requests:
@@ -86,6 +86,9 @@ checkpointz:
         dataProvider: true
       - name: lodestar-geth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1.dencun-devnet-12.ethpandaops.io
+        dataProvider: true
+      - name: lodestar-geth-1-arm
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1-arm.dencun-devnet-12.ethpandaops.io
         dataProvider: true
       - name: lodestar-nethermind-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
