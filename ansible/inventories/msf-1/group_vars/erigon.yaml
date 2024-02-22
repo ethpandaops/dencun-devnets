@@ -15,8 +15,8 @@ erigon_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 erigon_container_command_extra_args:
   #- --chain=goerli
-  #- --networkid={{ ethereum_network_id }}
-  #- --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --networkid={{ ethereum_network_id }}
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
   - --http.vhosts=*
   - --ws

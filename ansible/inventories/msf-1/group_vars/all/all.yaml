@@ -24,7 +24,7 @@ ethstats_secret: "{{ secret_ethstats }}"
 log_level: info
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: beaconstate.ethstaker.cc
-checkpoint_sync_enabled: true
+checkpoint_sync_enabled: false
 # change later, its also defined below and commented out, revert back to that definition
 ethereum_node_cl_validator_enabled: true
 checkpoint_sync_url: https://{{ checkpoint_sync_node }}
@@ -121,7 +121,7 @@ ethereum_genesis_generator_config_files:
     export MAX_CHURN=8
     export ETH1_FOLLOW_DISTANCE=12
     export EJECTION_BALANCE=30000000000
-    export SHADOW_FORK_RPC="https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.dencun-gsf-2.ethpandaops.io"
+    export SHADOW_FORK_RPC="https://{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}@rpc.bootnode-1.dencun-msf-1.ethpandaops.io"
     export MIN_VALIDATOR_WITHDRAWABILITY_DELAY=1
     export SHARD_COMMITTEE_PERIOD=1
 ethereum_genesis_validator_keys_output_dir: "{{ ansible_inventory_sources[0] | dirname }}/files/validator_keys"

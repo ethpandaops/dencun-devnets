@@ -51,8 +51,8 @@ lighthouse_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 lighthouse_container_command_extra_args:
 #  - --network=goerli
-  #- --testnet-dir=/network-config
-  #- --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --testnet-dir=/network-config
+  - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --debug-level={{ log_level | default('debug') }}
   - --quic-port={{ lighthouse_ports_quic }}
   - --enr-quic-port={{ lighthouse_ports_quic }}

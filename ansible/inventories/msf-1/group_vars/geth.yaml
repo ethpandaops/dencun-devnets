@@ -17,13 +17,13 @@ geth_container_env:
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 geth_container_command_extra_args:
 #  - --goerli
-  #- --networkid={{ ethereum_network_id }}
+  - --networkid={{ ethereum_network_id }}
   - --state.scheme=path
-  #- --syncmode=full
-  #- --override.cancun={{ cancun_timestamp }}
+  - --syncmode=full
+  - --override.cancun={{ cancun_timestamp }}
   - --http.api=eth,net,web3,debug,admin,txpool
   - --http.vhosts=*
-  #- --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 #  - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
 geth_init_custom_network: false
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"

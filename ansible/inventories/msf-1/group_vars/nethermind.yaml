@@ -28,13 +28,13 @@ nethermind_container_volumes:
   - "{{ nethermind_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 nethermind_container_command_extra_args:
-  #- --Init.ChainSpecPath=/network-config/chainspec.json
-  #- --config=goerli.cfg
-  #- --Init.BaseDbPath=nethermind_db/goerli
-#  - --Bloom.IndexLevelBucketSizes=[16,16,16,16]
+  - --Init.ChainSpecPath=/network-config/chainspec.json
+  - --config=mainnet.cfg
+  - --Init.BaseDbPath=nethermind_db/mainnet
   - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
-  #- --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --log={{ log_level | upper | default('DEBUG') }}
+#  - --Bloom.IndexLevelBucketSizes=[16,16,16,16]
 
 
 nethermind_container_pull: true
