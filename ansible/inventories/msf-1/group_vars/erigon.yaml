@@ -23,6 +23,8 @@ erigon_container_command_extra_args:
   - --prune=htc
   - --db.size.limit=8TB
   - --ethstats={{ inventory_hostname }}:{{ ethstats_secret }}@{{ ethstats_url }}
+  - --override.cancun={{ cancun_timestamp }}
+
 # CHANGE FOR SHADOWFORK
 erigon_init_custom_network: false
 erigon_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
