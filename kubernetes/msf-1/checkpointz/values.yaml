@@ -81,6 +81,9 @@ checkpointz:
       - name: nimbus-besu-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-1.dencun-msf-1.ethpandaops.io
         dataProvider: true
+      - name: nimbus-erigon-1
+        address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.dencun-msf-1.ethpandaops.io
+        dataProvider: true
       - name: nimbus-geth-1
         address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.dencun-msf-1.ethpandaops.io
         dataProvider: true

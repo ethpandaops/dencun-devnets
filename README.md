@@ -14,6 +14,7 @@ This repository contains the infrastructure code used to setup [EIP4844](https:/
 
 Status | Network | Links | Ansible | Terraform | Kubernetes
 ------ | ------- | ----  |  -----  | -------   | ----------
+ 🟢 Active  | [msf-1](https://dencun-gsf-2.ethpandaops.io/) | [Network config](network-configs/msf-1) / [Inventory](ansible/inventories/msf-1/inventory.ini)  | [🔗](ansible/inventories/msf-1) | [🔗](terraform/msf-1) | [🔗](kubernetes/msf-1)
  🟢 Active | [devnet-12](https://dencun-devnet-12.ethpandaops.io/) | [Network config](network-configs/devnet-12) / [Inventory](ansible/inventories/devnet-12/inventory.ini)  | [🔗](ansible/inventories/devnet-12) | [🔗](terraform/devnet-12) | [🔗](kubernetes/devnet-12)
  🔴 Off | [gsf-2](https://dencun-gsf-2.ethpandaops.io/) | [Network config](network-configs/gsf-2) / [Inventory](ansible/inventories/gsf-2/inventory.ini)  | [🔗](ansible/inventories/gsf-2) | [🔗](terraform/gsf-2) | [🔗](kubernetes/gsf-2)
  🔴 Off | [gsf-1](https://dencun-gsf-1.ethpandaops.io/) | [Network config](network-configs/gsf-1) / [Inventory](ansible/inventories/gsf-1/inventory.ini)  | [🔗](ansible/inventories/gsf-1) | [🔗](terraform/gsf-1) | [🔗](kubernetes/gsf-1)

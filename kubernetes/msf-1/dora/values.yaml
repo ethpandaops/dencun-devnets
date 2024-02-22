@@ -1,7 +1,6 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora.yaml.j2
 
 dora:
-  replicas: 0
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
@@ -36,7 +35,6 @@ dora:
     fullnameOverride: "dora-postgresql"
 
   endpoints:
-  # Rpc
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.bootnode-1.dencun-msf-1.ethpandaops.io
     name: bootnode-1
     priority: -1
@@ -77,6 +75,9 @@ dora:
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-1.dencun-msf-1.ethpandaops.io
     name: nimbus-besu-1
+    priority: -1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.dencun-msf-1.ethpandaops.io
+    name: nimbus-erigon-1
     priority: -1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.dencun-msf-1.ethpandaops.io
     name: nimbus-geth-1

@@ -52,6 +52,8 @@ dugtrio:
     name: lodestar-reth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-besu-1.dencun-msf-1.ethpandaops.io
     name: nimbus-besu-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-erigon-1.dencun-msf-1.ethpandaops.io
+    name: nimbus-erigon-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-geth-1.dencun-msf-1.ethpandaops.io
     name: nimbus-geth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.nimbus-nethermind-1.dencun-msf-1.ethpandaops.io
