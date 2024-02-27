@@ -2,7 +2,7 @@ default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: sigp/lighthouse:v5.0.0
   lodestar: chainsafe/lodestar:v1.16.0
-  nimbus: statusim/nimbus-eth2:multiarch-v24.2.1
+  nimbus: statusim/nimbus-eth2:multiarch-v24.2.2
   prysm: gcr.io/prysmaticlabs/prysm/beacon-chain:v5.0.0
   prysm_validator: gcr.io/prysmaticlabs/prysm/validator:v5.0.0
   teku: consensys/teku:24.2.0
