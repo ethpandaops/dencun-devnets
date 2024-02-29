@@ -40,6 +40,9 @@ nethermind_container_command_extra_args:
   - --log={{ log_level | upper | default('DEBUG') }}
   - --TxPool.BlobsSupport=StorageWithReorgs
   - --TxPool.ReportMinutes=5
+  - --Seq.MinLevel=Info
+  - --Seq.ServerUrl=https://seq.nethermind.io
+  - --Seq.ApiKey={{ nethermind_seq_api_key }}
 nethermind_container_pull: true
 
 prometheus_config: |
