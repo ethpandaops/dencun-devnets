@@ -1,0 +1,3 @@
+default_ethereum_client_images:
+  teku: consensys/teku:24.2.0
+  nethermind: nethermind/nethermind:1.26.0-exp.3
