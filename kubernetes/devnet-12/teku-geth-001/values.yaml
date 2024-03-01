@@ -46,6 +46,7 @@ teku-geth-001:
               - --bootnodes=enode://59744008cb2de257daf3bdaa4fa34428c447e82705893be42a7407f20a84e45231b942c56e6bd771cbfb79c13b08eb85a002fe78cfd0c19b8634505aabed01db@64.226.104.183:30303?discport=30303,enode://ba216cbfc0fdc8718fe57abc1bf91bc98b584ad441b4f19b0c68ed5349c65d8cfe0e0a017df209452723d3bcd1949fe14cbde5cd5e2088d6bedd4af3a6739ece@68.183.214.202:30303?discport=30303,enode://665838f37b50d709e848ce0e191ba89b67a6a89a046d9e9ca1be80547bec34534fabff93312235cca27917674c7037ba8319aae057374d2365696e2a33398ffa@134.209.145.195:30303?discport=30303
               - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-12.ethpandaops.io
               - --rpc.allow-unprotected-txs
+              - --verbosity=4
             erigon:
               - --chain=dev
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
