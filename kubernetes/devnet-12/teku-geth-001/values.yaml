@@ -47,6 +47,7 @@ teku-geth-001:
               - --ethstats=k8s-teku-geth-001:<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>@ethstats.dencun-devnet-12.ethpandaops.io
               - --rpc.allow-unprotected-txs
               - --verbosity=4
+              - --snapshot=false
             erigon:
               - --chain=dev
               - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
