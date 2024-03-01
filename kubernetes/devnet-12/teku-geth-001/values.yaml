@@ -232,7 +232,7 @@ teku-geth-001:
         memory: 5Gi
       limits:
         cpu: 5000m
-        memory: 8Gi
+        memory: 6Gi
     persistence:
       enabled: true
       size: 200Gi
