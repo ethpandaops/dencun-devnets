@@ -150,7 +150,7 @@ teku-geth-001:
         memory: 5Gi
       limits:
         cpu: 5000m
-        memory: 8Gi
+        memory: 6Gi
     initContainers:
       - name: init-config
         image: alpine:latest
