@@ -57,6 +57,8 @@ dugtrio:
     name: lodestar-ethereumjs-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-geth-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-geth-1-arm.dencun-devnet-12.ethpandaops.io
+    name: lodestar-geth-1-arm
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-nethermind-1.dencun-devnet-12.ethpandaops.io
     name: lodestar-nethermind-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.node_ingress.combined}>@bn.lodestar-reth-1.dencun-devnet-12.ethpandaops.io

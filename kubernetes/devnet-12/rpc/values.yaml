@@ -3,7 +3,7 @@
 rpc-proxy:
   fullnameOverride: rpc-proxy
 
-  replicas: 1
+  replicas: 2
 
   resources:
     requests:
