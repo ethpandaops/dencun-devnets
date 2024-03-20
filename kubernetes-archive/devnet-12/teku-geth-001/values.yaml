@@ -138,8 +138,8 @@ teku-geth-001:
     enabled: true
     fullnameOverride: geth-teku-001
     image:
-      repository: ethereum/client-go
-      tag: v1.13.14
+      repository: ethpandaops/geth
+      tag: master-d8e0807
       pullPolicy: Always
     p2pNodePort:
       enabled: false
@@ -195,7 +195,7 @@ teku-geth-001:
           - name: storage
             mountPath: "/data"
       - name: init-genesis
-        image: ethereum/client-go:v1.13.14
+        image: ethpandaops/geth:master-d8e0807
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: false

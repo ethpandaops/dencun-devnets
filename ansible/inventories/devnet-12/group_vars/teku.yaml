@@ -50,6 +50,7 @@ teku_container_command_extra_args:
   - --Xpeer-rate-limit=100000
   - --Xpeer-request-limit=1000
   - --ignore-weak-subjectivity-period-enabled
+  - --checkpoint-sync-url=https://checkpoint-sync.dencun-devnet-12.ethpandaops.io
 
 teku_validator_container_volumes:
   - "{{ teku_validator_datadir }}:/validator-data"

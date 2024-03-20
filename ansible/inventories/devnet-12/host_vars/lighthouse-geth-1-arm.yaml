@@ -1,7 +1,7 @@
 default_ethereum_client_images:
 ### Consensus layer clients
   lighthouse: sigp/lighthouse:v4.6.0
-  geth: ethpandaops/geth:v1.13.13
+  geth: ethpandaops/geth:master-c170fa2
 
 # geth_container_command:
 #   - --datadir=/data
